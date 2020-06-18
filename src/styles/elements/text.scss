@@ -1,0 +1,20 @@
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  @apply text-xl mb-4 leading-tight font-sans;
+}
+
+p {
+  @apply mb-4 text-base;
+
+  &:last-child {
+    @apply mb-0;
+  }
+}
+
+body {
+  @apply text-base font-serif text-white;
+}
