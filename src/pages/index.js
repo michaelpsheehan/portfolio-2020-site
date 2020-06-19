@@ -14,9 +14,7 @@ const IndexPage = () => {
       <div className="c-test pt-64">
         <div className="container border">
           <div className="">
-            <h2 className="text-4xl text-center ">
-              Code By Sheen
-            </h2>
+            <h2 className="text-4xl text-center ">Code By Sheen</h2>
             <div>{entry.ctaButton1Text}</div>
             <div>{entry.ctaButton1Link}</div>
             <div>{entry.ctaButton2Text}</div>
@@ -31,6 +29,25 @@ const IndexPage = () => {
             <img
               srcSet={`${baseUrl}${entry.heroImage[0].optimisedImagesHero.srcset}`}
             />
+          </div>
+
+          <h2>Grid Test</h2>
+          <div className="c-grid">
+            <div className="border">
+              <div className="text-center">1</div>
+            </div>
+            <div className="border">
+              <div className="text-center">2</div>
+            </div>
+            <div className="border">
+              <div className="text-center">3</div>
+            </div>
+            <div className="border">
+              <div className="text-center">4</div>
+            </div>
+            <div className="border">
+              <div className="text-center">5</div>
+            </div>
           </div>
         </div>
       </div>

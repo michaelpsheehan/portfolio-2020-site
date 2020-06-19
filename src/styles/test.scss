@@ -2,3 +2,10 @@
   border: 5px solid green;
   @apply mb-64 bg-brand-blue;
 }
+
+.c-grid {
+  @apply mb-16;
+  @screen md {
+    @apply grid grid-cols-3 gap-4;
+  }
+}

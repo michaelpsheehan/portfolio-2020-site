@@ -132,23 +132,6 @@ module.exports = {
 	  "react-hooks/rules-of-hooks": "error",
 		"react-hooks/exhaustive-deps": "warn",
 		
-
-    "at-rule-no-unknown": [true, {
-      ignoreAtRules: [
-        /apply/, 
-        /tailwind/,
-        /screen/,
-        /if/,
-        /else/,
-        /return/,
-        /function/,
-	/debug/
-      ]
-		}],
-		"declaration-block-trailing-semicolon": null,
-    "no-descending-specificity": null
-
-
 	},
 	"plugins": [
 	  "html",
