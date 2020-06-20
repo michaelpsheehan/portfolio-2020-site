@@ -2,6 +2,7 @@ module.exports = {
   siteMetadata: {
     title: `Code By Sheen`,
     description: `Michael Sheehan web development portfolio`,
+    siteUrl: 'http://157.245.46.3',
     // author: `@gatsbyjs`,
   },
   plugins: [
@@ -50,15 +51,13 @@ module.exports = {
       options: {
         fonts: [
           {
-            family: 
-            `Lato`,
+            family: `Lato`,
           },
           {
-            family: 'Crimson Pro\:300,400' 
-          }
+            family: 'Crimson Pro:300,400',
+          },
         ],
-        display: 'swap'
-
+        display: 'swap',
       },
     },
     {

@@ -1,12 +1,11 @@
 import React from 'react'
-import { Link } from 'gatsby'
 import Layout from '../components/layout'
 import projectsIndexData from '../hooks/projectsIndexData'
 import SEO from '../components/Seo'
 
 const baseUrl = 'http://157.245.46.3'
 
-const ProjectsIndexPage = () => {
+const TestIndex = () => {
   const { projects } = projectsIndexData()
   console.log('Projects query results =', projects)
   return (
@@ -22,19 +21,15 @@ const ProjectsIndexPage = () => {
           <div className="c-grid">
             {projects &&
               projects.map((project) => (
-                <>
-                  <Link to={`/projects/${project.slug}`}>
-                    <div className="border">
-                      <div className="text-center">
-                        <div className="block">{project.slug}</div>
-                        <div className="block">{project.title}</div>
-                        <div className="block">{project.introBody}</div>
-                        <div className="block"> uri{project.uri}</div>
-                        <div className="block">url{project.url}</div>
-                      </div>
-                    </div>
-                  </Link>
-                </>
+                <div className="border">
+                  <div className="text-center">
+                    <div className="block">{project.slug}</div>
+                    <div className="block">{project.title}</div>
+                    <div className="block">{project.introBody}</div>
+                    <div className="block"> uri{project.uri}</div>
+                    <div className="block">url{project.url}</div>
+                  </div>
+                </div>
               ))}
           </div>
         </div>
@@ -43,4 +38,4 @@ const ProjectsIndexPage = () => {
   )
 }
 
-export default ProjectsIndexPage
+export default TestIndex
