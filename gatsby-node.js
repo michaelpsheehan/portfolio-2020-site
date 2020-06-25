@@ -1,3 +1,5 @@
+const { createRemoteFileNode } = require('gatsby-source-filesystem')
+
 exports.createPages = async ({ actions, graphql }) => {
   const GET_PAGES = `
     query projectsIndexQueryTest {

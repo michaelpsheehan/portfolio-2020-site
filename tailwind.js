@@ -6,7 +6,7 @@ module.exports = {
     },
     fontFamily: {
       sans: ['Lato', 'Helvetica', 'Arial', 'sans-serif'],
-      serif: ['Crimson Pro']
+      serif: ['Crimson Pro'],
     },
     screens: {
       sm: '640px',
@@ -22,7 +22,8 @@ module.exports = {
       'brand-red': '#ED6A5A',
       'brand-blue': '#1A68AF',
       'brand-light-blue': '#5891C4',
-  
+      'transition-color': '#2b2c28',
+      'color-text': '#DDDDDD',
     },
   },
   variants: {},

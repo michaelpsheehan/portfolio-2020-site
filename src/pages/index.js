@@ -12,7 +12,7 @@ const IndexPage = () => {
   return (
     <Layout>
       <SEO title={entry.title} />
-      <div className="c-test pt-64">
+      <div className=" pt-64">
         <div className="container border">
           <div className="">
             <Link to="/projects">

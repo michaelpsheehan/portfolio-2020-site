@@ -1,7 +1,9 @@
 import React from 'react'
 import { graphql } from 'gatsby'
-import formatDate from './format-date'
+import Layout from '../../components/Layout'
+import SEO from '../../components/Seo'
 import TechnologyList from './technologiesList'
+import formatDate from './format-date'
 
 export const projectEntryQuery = graphql`
   query($id: [Craft_QueryArgument]) {
@@ -57,7 +59,8 @@ const pageTemplate = ({ data }) => {
   console.log('dat.entries ', data.craft.entries[0])
 
   return (
-    <>
+    <Layout>
+      <SEO title={title || ''} />
       <div className="container border">
         <h1>{title}</h1>
         <div>{slug}</div>
@@ -86,7 +89,7 @@ const pageTemplate = ({ data }) => {
         <div>{richText}</div>
         <div dangerouslySetInnerHTML={{ __html: richText }} />
       </div>
-    </>
+    </Layout>
   )
 }
 

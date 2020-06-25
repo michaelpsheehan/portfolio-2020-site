@@ -1,0 +1,58 @@
+.c-site-head {
+  @apply bg-brand-blue py-16 font-sans;
+
+  &__container {
+    @apply relative flex items-center;
+  }
+
+  &__hamburger {
+    @apply absolute z-20 right-0 h-20 w-20;
+
+    span {
+      @apply block absolute w-full bg-white opacity-100 right-0 z-50 h-1 translate-x-0 translate-y-1/2;
+      border-radius: 40px;
+      top: 50%;
+      transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    span:first-child {
+      top: 20%;
+    }
+
+    span:nth-of-type(2) {
+      @apply translate-x-0 translate-y-1/2;
+      width: 65%;
+    }
+
+    span:last-child {
+      top: 80%;
+    }
+
+    &:hover {
+      @apply cursor-pointer;
+    }
+
+    &--open {
+      span {
+        &:first-child {
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%, -50%) rotate(-135deg) scale(0.6);
+        }
+
+        &:nth-of-type(2) {
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%, -50%) rotate(135deg);
+          transform: translateX(-110vw);
+        }
+
+        &:last-child {
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%, -50%) rotate(135deg) scale(0.6);
+        }
+      }
+    }
+  }
+}

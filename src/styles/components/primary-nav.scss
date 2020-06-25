@@ -1,0 +1,38 @@
+.c-primary-nav {
+  &__background {
+    @apply bg-brand-light-blue h-full w-full fixed z-10 inset-y-0 inset-x-0 opacity-0 pointer-events-none;
+    &--open {
+      @apply opacity-100 pointer-events-auto;
+    }
+  }
+
+  &__list {
+    @apply flex flex-col items-center justify-center h-full;
+
+    .active {
+      transition: all 3.2s;
+
+      li {
+        transition: all 0.2s;
+        border-bottom: 5px solid #ffffff;
+      }
+    }
+  }
+
+  &__list-item {
+    @apply uppercase text-white text-5xl my-4 mx-0 p-4 whitespace-no-wrap;
+    background: linear-gradient(
+      120deg,
+      transparent 0%,
+      transparent 50%,
+      #ffffff 50%
+    );
+    background-size: 240%;
+    transition: all 0.2s;
+
+    &:hover {
+      @apply text-brand-light-blue;
+      background-position: 100%;
+    }
+  }
+}
