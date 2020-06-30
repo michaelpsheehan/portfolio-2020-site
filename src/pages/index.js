@@ -3,57 +3,31 @@ import { Link } from 'gatsby'
 import Layout from '../components/layout'
 import homepageData from '../hooks/homepageData'
 import SEO from '../components/Seo'
-
-const baseUrl = 'http://157.245.46.3'
+import Hero from '../components/content/hero'
+import HeroImage from '../components/content/HeroImage'
 
 const IndexPage = () => {
   const { entry, siteUrl } = homepageData()
-
+  console.log('entry ==', entry)
   return (
     <Layout>
       <SEO title={entry.title} />
-      <div className=" pt-64">
-        <div className="container border">
-          <div className="">
-            <Link to="/projects">
-              <h2 className="text-4xl text-center ">Code By Sheen</h2>
-              <div>{entry.ctaButton1Text}</div>
-              <div>{entry.ctaButton1Link}</div>
-              <div>{entry.ctaButton2Text}</div>
-              <div>{entry.ctaButton2Link}</div>
-              <div>{entry.heroImage[0].url}</div>
-              <div />
-              <h2>Image Optimize placeholder image --</h2>
-              <img
-                src={`${entry.heroImage[0].optimisedImagesHero.placeholderImage}`}
-              />
-              full image optimize srcset image below
-              <img
-                srcSet={`${siteUrl}${entry.heroImage[0].optimisedImagesHero.srcset}`}
-              />
-            </Link>
-          </div>
-
-          <h2>Grid Test</h2>
-          <div className="c-grid">
-            <div className="border">
-              <div className="text-center">1</div>
-            </div>
-            <div className="border">
-              <div className="text-center">2</div>
-            </div>
-            <div className="border">
-              <div className="text-center">3</div>
-            </div>
-            <div className="border">
-              <div className="text-center">4</div>
-            </div>
-            <div className="border">
-              <div className="text-center">5</div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <Hero
+        heroContent={{
+          heroTextBody: entry.heroTextBody,
+          primaryButton: {
+            text: entry.ctaButton1Text,
+            url: entry.ctaButton1Link,
+          },
+          secondaryButton: {
+            text: entry.ctaButton2Text,
+            url: entry.ctaButton2Link,
+          },
+        }}
+        heroMediaContent={
+          <HeroImage siteUrl={siteUrl} image={entry.heroImage[0]} />
+        }
+      />
     </Layout>
   )
 }

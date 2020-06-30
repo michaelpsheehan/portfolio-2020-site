@@ -13,6 +13,7 @@ const homepageData = () => {
         entry: entries(section: "homepage") {
           title
           ... on Craft_homepage_homepage_Entry {
+            heroTextBody
             ctaButton1Text
             ctaButton1Link
             ctaButton2Text
