@@ -4,9 +4,9 @@
 
 @tailwind utilities;
 
-@import './test.scss';
+@import './elements/text.scss';
+@import './objects/container.scss';
 @import './components/site-head.scss';
 @import './components/primary-nav.scss';
 @import './components/content/hero.scss';
-@import './elements/text.scss';
 @import './components/core/button.scss';

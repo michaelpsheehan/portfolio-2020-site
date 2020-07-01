@@ -23,11 +23,13 @@ class Header extends Component {
       <>
         <header className="c-site-head">
           <div className="c-site-head__container container">
-            <div className="c-site-head__hamburger" onClick={this.toggle}>
-              <NavBurger isToggled={isToggled} />
+            <div className="c-site-head__components">
+              <div className="c-site-head__hamburger" onClick={this.toggle}>
+                <NavBurger isToggled={isToggled} />
+              </div>
+              <Menu isToggled={isToggled} />
+              <div className=" header navbar" />
             </div>
-            <Menu isToggled={isToggled} />
-            <div className=" header navbar" />
           </div>
         </header>
       </>

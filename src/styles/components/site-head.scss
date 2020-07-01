@@ -1,12 +1,23 @@
 .c-site-head {
-  @apply bg-brand-blue py-16 font-sans;
+  @apply bg-brand-blue py-12 font-sans;
+
+  @screen md {
+    @apply py-16;
+  }
 
   &__container {
-    @apply relative flex items-center;
+    // @apply ;
+  }
+
+  &__components {
+    @apply relative w-full w-full flex items-center;
   }
 
   &__hamburger {
-    @apply absolute z-20 right-0 h-20 w-20;
+    @apply absolute z-20 right-0 h-12 w-12;
+    @screen md {
+      @apply h-20 w-20;
+    }
 
     span {
       @apply block absolute w-full bg-white opacity-100 right-0 z-50 h-1 translate-x-0 translate-y-1/2;

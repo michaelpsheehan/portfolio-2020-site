@@ -11,23 +11,25 @@ const IndexPage = () => {
   console.log('entry ==', entry)
   return (
     <Layout>
-      <SEO title={entry.title} />
-      <Hero
-        heroContent={{
-          heroTextBody: entry.heroTextBody,
-          primaryButton: {
-            text: entry.ctaButton1Text,
-            url: entry.ctaButton1Link,
-          },
-          secondaryButton: {
-            text: entry.ctaButton2Text,
-            url: entry.ctaButton2Link,
-          },
-        }}
-        heroMediaContent={
-          <HeroImage siteUrl={siteUrl} image={entry.heroImage[0]} />
-        }
-      />
+      {entry && <SEO title={entry.title} />}
+      {entry && (
+        <Hero
+          heroContent={{
+            heroTextBody: entry.heroTextBody,
+            primaryButton: {
+              text: entry.ctaButton1Text,
+              url: entry.ctaButton1Link,
+            },
+            secondaryButton: {
+              text: entry.ctaButton2Text,
+              url: entry.ctaButton2Link,
+            },
+          }}
+          heroMediaContent={
+            <HeroImage siteUrl={siteUrl} image={entry.heroImage[0]} />
+          }
+        />
+      )}
     </Layout>
   )
 }
