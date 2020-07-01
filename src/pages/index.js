@@ -3,8 +3,8 @@ import { Link } from 'gatsby'
 import Layout from '../components/layout'
 import homepageData from '../hooks/homepageData'
 import SEO from '../components/Seo'
-import Hero from '../components/content/hero'
-import HeroImage from '../components/content/HeroImage'
+import Hero from '../components/content/hero/hero'
+import HeroImage from '../components/content/hero/HeroImage'
 
 const IndexPage = () => {
   const { entry, siteUrl } = homepageData()

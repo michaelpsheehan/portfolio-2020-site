@@ -1,5 +1,5 @@
 import React from 'react'
-import Button from '../core/Button'
+import Button from '../../core/Button'
 
 const Hero = ({ heroMediaContent, heroContent }) => {
   const { primaryButton, secondaryButton, heroTextBody } = heroContent

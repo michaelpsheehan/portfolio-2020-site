@@ -3,6 +3,11 @@ import { graphql, useStaticQuery } from 'gatsby'
 const projectsIndexData = () => {
   const data = useStaticQuery(graphql`
     query projectsIndexQuery {
+      site {
+        siteMetadata {
+          siteUrl
+        }
+      }
       craft {
         entry: entries(id: 4) {
           title

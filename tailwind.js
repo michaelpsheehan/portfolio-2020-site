@@ -21,6 +21,7 @@ module.exports = {
     colors: {
       black: '#222B2F',
       white: '#FFFFFF',
+      gray: '#707070',
       'brand-red': '#ED6A5A',
       'brand-blue': '#1A68AF',
       'brand-light-blue': '#5891C4',
