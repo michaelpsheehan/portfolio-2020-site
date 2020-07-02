@@ -44,6 +44,7 @@ const projectsIndexData = () => {
   return {
     entry: data.craft.entry[0] ? data.craft.entry[0] : null,
     projects: data.craft.entries,
+    siteUrl: data.site.siteMetadata.siteUrl,
   }
 }
 
