@@ -1,5 +1,9 @@
 .c-page-title {
-  @apply text-center text-3xl uppercase;
+  @apply text-center font-sans;
+
+  &__title {
+    @apply text-3xl uppercase;
+  }
 
   &__underline {
     @apply mx-auto w-24 text-gray;

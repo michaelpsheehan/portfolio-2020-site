@@ -2,8 +2,8 @@ import React from 'react'
 import { graphql } from 'gatsby'
 import Layout from '../../components/Layout'
 import SEO from '../../components/Seo'
-import TechnologyList from './technologiesList'
-import formatDate from './format-date'
+import TechnologyList from '../../components/content/technologiesList'
+import formatDate from '../../components/utilities/format-date'
 
 export const projectEntryQuery = graphql`
   query($id: [Craft_QueryArgument]) {

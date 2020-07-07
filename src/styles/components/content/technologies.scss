@@ -1,0 +1,11 @@
+.c-technologies {
+  @apply text-center;
+
+  &__heading {
+    @apply uppercase mb-8;
+  }
+
+  &__list {
+    @apply flex justify-center flex-wrap;
+  }
+}

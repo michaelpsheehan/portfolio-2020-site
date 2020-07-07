@@ -1,11 +1,11 @@
 import React from 'react'
 
-const HeroImage = ({ siteUrl, image }) => {
+const Image = ({ siteUrl, image, optimizedImageVariation }) => {
   const imageComponent = image ? (
     <img
-      className="c-hero-image"
+      className="c-image"
       src={`${siteUrl}${image.optimisedImagesHero.src}`}
-      srcSet={`${siteUrl}/${image.optimisedImagesHero.srcset}`}
+      srcSet={`${siteUrl}/${optimizedImageVariation.srcset}`}
       alt={image.id}
     />
   ) : (
@@ -13,4 +13,4 @@ const HeroImage = ({ siteUrl, image }) => {
   )
   return imageComponent
 }
-export default HeroImage
+export default Image

@@ -12,13 +12,16 @@
 
   &__text {
     @apply font-sans text-3xl text-black mb-8 whitespace-pre-wrap text-center;
+
     @screen md {
       @apply mb-16;
     }
+
     @screen lg {
       @apply text-5xl;
     }
   }
+
   &__buttons {
     @apply flex flex-col mx-auto w-2/3;
 
@@ -26,6 +29,7 @@
       @apply flex-row w-full justify-center;
     }
   }
+
   &-image {
     @apply h-full w-full object-cover object-center absolute;
   }

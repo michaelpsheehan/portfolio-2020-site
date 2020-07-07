@@ -1,10 +1,13 @@
 .c-button {
-  @apply border uppercase px-6 py-2 mb-4 bg-brand-blue font-sans rounded-full transition duration-300;
+  @apply border uppercase px-6 py-2 mb-4 bg-brand-blue border-brand-blue font-sans rounded-full transition duration-300 text-white text-center mx-2;
+
   @screen md {
     @apply py-4;
   }
+
   &--ghost {
     @apply bg-opacity-0 text-brand-blue border-brand-blue;
+
     &:hover {
       @apply bg-opacity-100 text-white;
     }

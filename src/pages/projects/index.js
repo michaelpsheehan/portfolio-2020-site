@@ -15,7 +15,10 @@ const ProjectsIndexPage = () => {
       {entry && (
         <>
           <SEO title={entry.title ? entry.title : ''} />
-          <Section content={<PageTitle title={entry.title} />} container />
+          <Section
+            content={<PageTitle title={entry.title} underline subtitle />}
+            container
+          />
         </>
       )}
       {projects && (

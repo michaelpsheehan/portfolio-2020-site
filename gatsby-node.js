@@ -1,7 +1,7 @@
 const { createRemoteFileNode } = require('gatsby-source-filesystem')
 
 exports.createPages = async ({ actions, graphql }) => {
-  const GET_PAGES = `
+  const GET_PROJECT_PAGES = `
     query projectsIndexQueryTest {
       craft {
         entries(section: "project") {
@@ -14,12 +14,11 @@ exports.createPages = async ({ actions, graphql }) => {
     }
   `
 
-  const result = await graphql(GET_PAGES)
-  console.log(result)
+  const result = await graphql(GET_PROJECT_PAGES)
   result.data.craft.entries.map((page) => {
     actions.createPage({
       path: `/projects/${page.slug}`,
-      component: require.resolve('./src/pages/templates/page-template.js'),
+      component: require.resolve('./src/pages/projects/entry.js'),
       context: { id: page.id },
     })
   })
