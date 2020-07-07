@@ -1,5 +1,5 @@
 .c-button {
-  @apply border uppercase px-6 py-2 mb-4 bg-brand-blue border-brand-blue font-sans rounded-full transition duration-300 text-white text-center mx-2;
+  @apply border uppercase px-6 py-2 mb-4 bg-brand-blue border-brand-blue font-sans rounded-full transition duration-300 text-white text-center mx-2 text-xs;
 
   @screen md {
     @apply py-4;

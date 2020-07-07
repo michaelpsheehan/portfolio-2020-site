@@ -9,6 +9,7 @@ import formatDate from '../../components/utilities/format-date'
 import PageTitle from '../../components/content/PageTitle'
 import HeroImage from '../../components/content/hero/HeroImage'
 import Intro from '../../components/content/Intro'
+import RichArticle from '../../components/content/rich-article/RichArticle'
 
 export const projectEntryQuery = graphql`
   query($id: [Craft_QueryArgument]) {
@@ -32,6 +33,31 @@ export const projectEntryQuery = graphql`
           richText
           codeRepoUrl
           siteUrl
+          richArticle {
+            ... on Craft_richArticle_text_BlockType {
+              id
+              typeHandle
+              heading
+              body
+            }
+            ... on Craft_richArticle_fullWidthImage_BlockType {
+              id
+              typeHandle
+              constrainImage
+              image(optimisedImagesHero: "") {
+                ... on Craft_images_Asset {
+                  id
+                  optimisedImagesHero {
+                    focalPoint
+                    optimizedImageUrls
+                    srcUrls
+                    srcset
+                  }
+                  url
+                }
+              }
+            }
+          }
 
           technologyentries {
             id
@@ -71,10 +97,12 @@ const pageTemplate = ({ data }) => {
     heroImage,
     codeRepoUrl,
     siteUrl: liveProjectUrl,
+    richArticle,
   } = data.craft.entries[0]
   console.log('repo url ==', codeRepoUrl)
   console.log('new site urlurl ==', liveProjectUrl)
-  console.log('entry data =', data.craft.entries[0].siteUrl)
+  console.log('entry data =', data.craft.entries[0])
+  console.log('rich article', richArticle)
   const { siteUrl } = data.site.siteMetadata
   const imageOptimizedHeroImage = heroImage[0]
   const currentProjectType =
@@ -131,6 +159,9 @@ const pageTemplate = ({ data }) => {
         }
         container
       />
+      {richArticle && (
+        <RichArticle richArticle={richArticle} siteUrl={siteUrl} />
+      )}
     </Layout>
   )
 }

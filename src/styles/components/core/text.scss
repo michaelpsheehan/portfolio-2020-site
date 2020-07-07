@@ -1,3 +1,7 @@
 .c-text {
-  @apply max-w-2xl border mx-auto mb-8;
+  @apply max-w-2xl mx-auto mb-8;
+
+  &__heading {
+    @apply uppercase text-xl mb-4;
+  }
 }
