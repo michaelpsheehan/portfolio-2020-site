@@ -154,8 +154,8 @@ const pageTemplate = ({ data }) => {
           <Intro
             introHeading={introHeading}
             introBody={introBody}
-            viewSiteLink={codeRepoUrl}
-            viewCodeLink={liveProjectUrl}
+            viewSiteLink={liveProjectUrl}
+            viewCodeLink={codeRepoUrl}
           />
         }
         container

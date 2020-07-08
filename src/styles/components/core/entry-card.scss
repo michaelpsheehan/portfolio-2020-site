@@ -1,8 +1,7 @@
 .c-entry-card {
-  // @apply border;
+  @apply shadow rounded-lg overflow-y-hidden relative;
 
   &__image {
-    // @apply border;
   }
 
   &__overlay {
@@ -16,7 +15,6 @@
   @screen md {
     @apply transition duration-200;
     &:hover {
-      // @apply transition duration-200;
       transform: scale(1.05);
       .c-entry-card__overlay {
         @apply opacity-100;

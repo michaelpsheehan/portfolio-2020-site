@@ -1,6 +1,5 @@
 import React from 'react'
 import { Link } from 'gatsby'
-
 import Button from './Button'
 
 const EntryCard = ({ item, siteUrl, itemSection = '', classes = '' }) => {
@@ -12,7 +11,7 @@ const EntryCard = ({ item, siteUrl, itemSection = '', classes = '' }) => {
 
   return (
     <div className={`c-entry-card ${classes}`}>
-      <Link to={`/${itemSection}/${slug}`} className="relative block">
+      <Link to={`/${itemSection}/${slug}`}>
         {heroImage && (
           <img
             className="c-entry-card__image "
@@ -29,7 +28,7 @@ const EntryCard = ({ item, siteUrl, itemSection = '', classes = '' }) => {
                 <Button classes="c-button--ghost c-button--white " />
               </div>
             </div>
-            <h2 className="py-8 px-4 shadow">{title}</h2>
+            <h2 className="py-8 px-4">{title}</h2>
           </>
         )}
         {/* <h2>{item && title}</h2> */}
