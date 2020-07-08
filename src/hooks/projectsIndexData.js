@@ -17,6 +17,7 @@ const projectsIndexData = () => {
             id
             slug
             title
+            thumbnailDescription
             introBody
             url
             uri

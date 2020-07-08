@@ -4,4 +4,23 @@
   &__image {
     // @apply border;
   }
+
+  &__overlay {
+    @apply absolute inset-0 w-full h-full  bg-brand-light-blue text-white opacity-0 transition duration-200;
+
+    &-content {
+      @apply border py-4 px-16 flex flex-col justify-around text-center items-center h-full;
+    }
+  }
+
+  @screen md {
+    @apply transition duration-200;
+    &:hover {
+      // @apply transition duration-200;
+      transform: scale(1.05);
+      .c-entry-card__overlay {
+        @apply opacity-100;
+      }
+    }
+  }
 }

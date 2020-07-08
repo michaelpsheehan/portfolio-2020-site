@@ -1,12 +1,12 @@
 .c-grid {
-  @screen md {
-    @apply grid grid-cols-2 gap-12;
+  @screen lg {
+    @apply grid grid-cols-2 gap-4;
   }
 
   &__item {
-    @apply border border-black mb-8;
+    @apply mb-8;
 
-    @screen md {
+    @screen lg {
       @apply mb-0;
     }
   }

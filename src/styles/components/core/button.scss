@@ -12,4 +12,12 @@
       @apply bg-opacity-100 text-white;
     }
   }
+
+  &--white {
+    @apply text-white border-white;
+
+    &:hover {
+      @apply bg-white text-brand-light-blue;
+    }
+  }
 }

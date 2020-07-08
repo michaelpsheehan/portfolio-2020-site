@@ -28,6 +28,7 @@ export const projectEntryQuery = graphql`
         title
         ... on Craft_project_project_Entry {
           projectType(label: true)
+          thumbnailDescription
           introHeading
           introBody
           richText
