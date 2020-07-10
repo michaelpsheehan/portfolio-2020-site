@@ -8,7 +8,7 @@ import HeroImage from '../components/content/hero/HeroImage'
 
 const IndexPage = () => {
   const { entry, siteUrl } = homepageData()
-  // console.log('entry ==', entry)
+
   return (
     <Layout>
       {entry && <SEO title={entry.title} />}

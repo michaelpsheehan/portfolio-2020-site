@@ -3,7 +3,6 @@ import Button from '../../core/Button'
 
 const Hero = ({ heroMediaContent, heroContent }) => {
   const { primaryButton, secondaryButton, heroTextBody } = heroContent
-  // console.log(heroContent)
 
   return (
     <div className="c-hero">

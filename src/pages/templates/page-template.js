@@ -56,7 +56,6 @@ const pageTemplate = ({ data }) => {
     postDate,
     technologyentries,
   } = data.craft.entries[0]
-  // console.log('dat.entries ', data.craft.entries[0])
 
   return (
     <Layout>

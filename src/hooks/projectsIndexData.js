@@ -9,6 +9,15 @@ const projectsIndexData = () => {
         }
       }
       craft {
+        assets {
+          url
+          ... on Craft_images_Asset {
+            id
+            url
+          }
+          filename
+        }
+
         entry: entries(id: 4) {
           title
         }
@@ -29,6 +38,19 @@ const projectsIndexData = () => {
                 id
                 filename
                 url
+
+                # localFile {
+                #   childImageSharp {
+                #     fluid(maxWidth: 650) {
+                #       base64
+                #       aspectRatio
+                #       src
+                #       srcSet
+                #       sizes
+                #     }
+                #   }
+                # }
+
                 imageOptimizeSmallImage {
                   focalPoint
                   optimizedImageUrls

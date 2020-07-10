@@ -12,7 +12,6 @@ class Header extends Component {
     this.setState({
       toggle: !this.state.toggle,
     })
-    // console.log(this.state)
   }
 
   render() {
