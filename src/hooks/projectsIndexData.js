@@ -32,6 +32,7 @@ const projectsIndexData = () => {
             uri
             postDate
             sectionHandle
+            imageCaption
             heroImage {
               # id
               ... on Craft_images_Asset {

@@ -4,7 +4,15 @@ import Button from './Button'
 import Image from './Image'
 
 const EntryCard = ({ item, siteUrl, itemSection = '', classes = '' }) => {
-  const { slug, title, thumbnailDescription, introBody, uri, url } = item
+  const {
+    slug,
+    title,
+    thumbnailDescription,
+    imageCaption,
+    introBody,
+    uri,
+    url,
+  } = item
   const entryCardImage = item.heroImage[0]
     ? item.heroImage[0].imageOptimizeSmallImage
     : null
@@ -17,6 +25,7 @@ const EntryCard = ({ item, siteUrl, itemSection = '', classes = '' }) => {
         {entryCardImage && (
           <Image
             image={entryCardImage}
+            alt={imageCaption}
             classes="c-entry-card__image c-image--test "
           />
         )}

@@ -14,14 +14,12 @@ import RichArticle from '../../components/content/rich-article/RichArticle'
 const pageTemplate = ({ data }) => {
   const {
     title,
-    slug,
     projectType,
-    richText,
     introHeading,
     introBody,
-    postDate,
     technologyentries,
     heroImage,
+    imageCaption,
     codeRepoUrl,
     siteUrl: liveProjectUrl,
     richArticle,
@@ -31,6 +29,7 @@ const pageTemplate = ({ data }) => {
   // console.log('entry data =', data.craft.entries[0])
   // console.log('rich article', richArticle)
   const { siteUrl } = data.site.siteMetadata
+  console.log(imageCaption)
   const imageOptimizedHeroImage = heroImage[0].optimizedImagesFullWidth
 
   console.log('image hero --', imageOptimizedHeroImage)
@@ -59,7 +58,7 @@ const pageTemplate = ({ data }) => {
       <div />
       {imageOptimizedHeroImage && (
         <Section
-          content={<Image image={imageOptimizedHeroImage} />}
+          content={<Image image={imageOptimizedHeroImage} alt={imageCaption} />}
           container
         />
       )}
@@ -112,6 +111,7 @@ export const projectEntryQuery = graphql`
           richText
           codeRepoUrl
           siteUrl
+          imageCaption
           richArticle {
             ... on Craft_richArticle_text_BlockType {
               id
@@ -121,6 +121,7 @@ export const projectEntryQuery = graphql`
             }
             ... on Craft_richArticle_fullWidthImage_BlockType {
               id
+              imageCaption
               typeHandle
               constrainImage
               image(optimizedImagesFullWidth: "") {

@@ -3,16 +3,17 @@ import Section from '../../../core/Section'
 import Image from '../../../core/Image'
 
 const ImageBlock = ({ block, siteUrl, classes = '' }) => {
-  const { constrainImage, image } = block
+  const { constrainImage, image, imageCaption } = block
 
   if (image === null) {
     return
   }
-  // const image = image ? image[0].optimizedImagesFullWidth : null
 
   return (
     <Section
-      content={<Image image={image[0].optimizedImagesFullWidth} />}
+      content={
+        <Image image={image[0].optimizedImagesFullWidth} alt={imageCaption} />
+      }
       container={constrainImage}
     />
   )
