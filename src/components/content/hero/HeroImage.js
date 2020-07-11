@@ -4,8 +4,8 @@ const HeroImage = ({ siteUrl, image }) => {
   const imageComponent = image ? (
     <img
       className="c-hero-image"
-      src={`${siteUrl}${image.optimisedImagesHero.src}`}
-      srcSet={`${siteUrl}/${image.optimisedImagesHero.srcset}`}
+      src={`${siteUrl}${image.optimizedImagesFullWidth.src}`}
+      srcSet={`${siteUrl}/${image.optimizedImagesFullWidth.srcset}`}
       alt={image.id}
     />
   ) : (

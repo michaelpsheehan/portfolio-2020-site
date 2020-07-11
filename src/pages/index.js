@@ -5,6 +5,7 @@ import homepageData from '../hooks/homepageData'
 import SEO from '../components/Seo'
 import Hero from '../components/content/hero/hero'
 import HeroImage from '../components/content/hero/HeroImage'
+import Image from '../components/core/Image'
 
 const IndexPage = () => {
   const { entry, siteUrl } = homepageData()
@@ -26,7 +27,12 @@ const IndexPage = () => {
             },
           }}
           heroMediaContent={
-            <HeroImage siteUrl={siteUrl} image={entry.heroImage[0]} />
+            <Image
+              image={entry.heroImage[0].optimizedImagesFullWidth}
+              siteUrl={siteUrl}
+              classes="c-hero-image "
+            />
+            // <HeroImage siteUrl={siteUrl} image={entry.heroImage[0]} />
           }
         />
       )}

@@ -32,8 +32,8 @@ const projectsIndexData = () => {
             uri
             postDate
             sectionHandle
-            heroImage(imageOptimizeSmallImage: "") {
-              id
+            heroImage {
+              # id
               ... on Craft_images_Asset {
                 id
                 filename
@@ -52,9 +52,29 @@ const projectsIndexData = () => {
                 # }
 
                 imageOptimizeSmallImage {
+                  colorPalette
+                  colorPaletteRgb
                   focalPoint
+                  lightness
+                  maxSrcsetWidth
                   optimizedImageUrls
-                  srcset(dpr: false)
+                  optimizedWebPImageUrls
+                  originalImageHeight
+                  originalImageWidth
+                  placeholder
+                  placeholderBox
+                  placeholderHeight
+                  placeholderImage
+                  placeholderSilhouette
+                  placeholderSvg
+                  placeholderWidth
+                  src
+                  srcUrls
+                  srcWebp
+                  srcset
+                  srcsetWebp
+                  variantHeights
+                  variantSourceWidths
                 }
               }
             }
@@ -65,7 +85,7 @@ const projectsIndexData = () => {
   `)
 
   return {
-    entry: data.craft.entry[0] ? data.craft.entry[0] : null,
+    entry: data.craft.entry ? data.craft.entry[0] : null,
     projects: data.craft.entries,
     siteUrl: data.site.siteMetadata.siteUrl,
   }

@@ -11,6 +11,84 @@ import HeroImage from '../../components/content/hero/HeroImage'
 import Intro from '../../components/content/Intro'
 import RichArticle from '../../components/content/rich-article/RichArticle'
 
+const pageTemplate = ({ data }) => {
+  const {
+    title,
+    slug,
+    projectType,
+    richText,
+    introHeading,
+    introBody,
+    postDate,
+    technologyentries,
+    heroImage,
+    codeRepoUrl,
+    siteUrl: liveProjectUrl,
+    richArticle,
+  } = data.craft.entries[0]
+  // console.log('repo url ==', codeRepoUrl)
+  // console.log('new site urlurl ==', liveProjectUrl)
+  // console.log('entry data =', data.craft.entries[0])
+  // console.log('rich article', richArticle)
+  const { siteUrl } = data.site.siteMetadata
+  const imageOptimizedHeroImage = heroImage[0].optimizedImagesFullWidth
+
+  console.log('image hero --', imageOptimizedHeroImage)
+  const currentProjectType =
+    projectType === 'Demo Project' ? (
+      projectType
+    ) : (
+      <div>
+        Developed while working at{' '}
+        <a className="underline" href="https://www.google.com" target="_blank">
+          {projectType}
+        </a>
+      </div>
+    )
+  return (
+    <Layout>
+      {title && (
+        <>
+          <SEO title={title || ''} />
+          <Section
+            content={<PageTitle title={title} subtitle={currentProjectType} />}
+            container
+          />
+        </>
+      )}
+      <div />
+      {imageOptimizedHeroImage && (
+        <Section
+          content={<Image image={imageOptimizedHeroImage} />}
+          container
+        />
+      )}
+      {technologyentries && (
+        <Section
+          content={<TechnologyList currentList={technologyentries} />}
+          container
+        />
+      )}
+      <Section
+        content={
+          <Intro
+            introHeading={introHeading}
+            introBody={introBody}
+            viewSiteLink={liveProjectUrl}
+            viewCodeLink={codeRepoUrl}
+          />
+        }
+        container
+      />
+      {richArticle && (
+        <RichArticle richArticle={richArticle} siteUrl={siteUrl} />
+      )}
+    </Layout>
+  )
+}
+
+export default pageTemplate
+
 export const projectEntryQuery = graphql`
   query($id: [Craft_QueryArgument]) {
     site {
@@ -45,10 +123,10 @@ export const projectEntryQuery = graphql`
               id
               typeHandle
               constrainImage
-              image(optimisedImagesHero: "") {
+              image(optimizedImagesFullWidth: "") {
                 ... on Craft_images_Asset {
                   id
-                  optimisedImagesHero {
+                  optimizedImagesFullWidth {
                     focalPoint
                     optimizedImageUrls
                     srcUrls
@@ -65,17 +143,36 @@ export const projectEntryQuery = graphql`
             title
           }
 
-          heroImage(optimisedImagesHero: "") {
+          # heroImage(optimizedImagesFullWidth: "") {
+          heroImage(optimizedImagesFullWidth: "") {
             url
             ... on Craft_images_Asset {
               id
-              optimisedImagesHero {
+              # optimizedImagesFullWidth {
+              optimizedImagesFullWidth {
+                colorPalette
+                colorPaletteRgb
                 focalPoint
+                lightness
+                maxSrcsetWidth
+                optimizedImageUrls
+                optimizedWebPImageUrls
+                originalImageHeight
+                originalImageWidth
+                placeholder
                 placeholderBox
+                placeholderHeight
                 placeholderImage
+                placeholderSilhouette
+                placeholderSvg
+                placeholderWidth
                 src
-                srcset
                 srcUrls
+                srcWebp
+                srcset
+                srcsetWebp
+                variantHeights
+                variantSourceWidths
               }
             }
           }
@@ -84,87 +181,3 @@ export const projectEntryQuery = graphql`
     }
   }
 `
-
-const pageTemplate = ({ data }) => {
-  const {
-    title,
-    slug,
-    projectType,
-    richText,
-    introHeading,
-    introBody,
-    postDate,
-    technologyentries,
-    heroImage,
-    codeRepoUrl,
-    siteUrl: liveProjectUrl,
-    richArticle,
-  } = data.craft.entries[0]
-  console.log('repo url ==', codeRepoUrl)
-  console.log('new site urlurl ==', liveProjectUrl)
-  console.log('entry data =', data.craft.entries[0])
-  console.log('rich article', richArticle)
-  const { siteUrl } = data.site.siteMetadata
-  const imageOptimizedHeroImage = heroImage[0]
-  const currentProjectType =
-    projectType === 'Demo Project' ? (
-      projectType
-    ) : (
-      <div>
-        Developed while working at{' '}
-        <a className="underline" href="https://www.google.com" target="_blank">
-          {projectType}
-        </a>
-      </div>
-    )
-  return (
-    <Layout>
-      {title && (
-        <>
-          <SEO title={title || ''} />
-          <Section
-            content={<PageTitle title={title} subtitle={currentProjectType} />}
-            container
-          />
-        </>
-      )}
-      <div />
-      {imageOptimizedHeroImage && (
-        <Section
-          content={
-            <Image
-              siteUrl={siteUrl}
-              image={imageOptimizedHeroImage}
-              optimizedImageVariation={
-                imageOptimizedHeroImage.optimisedImagesHero
-              }
-            />
-          }
-          container
-        />
-      )}
-      {technologyentries && (
-        <Section
-          content={<TechnologyList currentList={technologyentries} />}
-          container
-        />
-      )}
-      <Section
-        content={
-          <Intro
-            introHeading={introHeading}
-            introBody={introBody}
-            viewSiteLink={liveProjectUrl}
-            viewCodeLink={codeRepoUrl}
-          />
-        }
-        container
-      />
-      {richArticle && (
-        <RichArticle richArticle={richArticle} siteUrl={siteUrl} />
-      )}
-    </Layout>
-  )
-}
-
-export default pageTemplate

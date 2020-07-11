@@ -21,12 +21,32 @@ const homepageData = () => {
             heroImage {
               url
               ... on Craft_images_Asset {
-                optimisedImagesHero {
-                  ... on Craft_optimisedImagesHero_OptimizedImages {
-                    src
-                    srcset
+                optimizedImagesFullWidth {
+                  # ... on Craft_optimizedImagesFullWidth_OptimizedImages {
+                  ... on Craft_optimizedImagesFullWidth_OptimizedImages {
+                    colorPalette
+                    colorPaletteRgb
+                    focalPoint
+                    lightness
+                    maxSrcsetWidth
+                    optimizedImageUrls
+                    optimizedWebPImageUrls
+                    originalImageHeight
+                    originalImageWidth
+                    placeholder
                     placeholderBox
+                    placeholderHeight
                     placeholderImage
+                    placeholderSilhouette
+                    placeholderSvg
+                    placeholderWidth
+                    src
+                    srcUrls
+                    srcWebp
+                    srcset
+                    srcsetWebp
+                    variantHeights
+                    variantSourceWidths
                   }
                 }
               }

@@ -21,11 +21,11 @@ const projectEntryData = graphql`
             title
           }
 
-          heroImage(optimisedImagesHero: "") {
+          heroImage(optimizedImagesFullWidth: "") {
             url
             ... on Craft_images_Asset {
               id
-              optimisedImagesHero {
+              optimizedImagesFullWidth {
                 focalPoint
                 placeholderBox
                 placeholderImage

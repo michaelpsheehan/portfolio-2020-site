@@ -1,21 +1,23 @@
 import React from 'react'
 import { Link } from 'gatsby'
 import Button from './Button'
+import Image from './Image'
 
 const EntryCard = ({ item, siteUrl, itemSection = '', classes = '' }) => {
   const { slug, title, thumbnailDescription, introBody, uri, url } = item
-  const heroImage = item.heroImage[0]
+  const entryCardImage = item.heroImage[0]
     ? item.heroImage[0].imageOptimizeSmallImage
     : null
+
+  console.log('entry card hero image', entryCardImage)
 
   return (
     <div className={`c-entry-card ${classes}`}>
       <Link to={`/${itemSection}/${slug}`}>
-        {heroImage && (
-          <img
-            className="c-entry-card__image "
-            srcSet={`${siteUrl}/${heroImage.srcset}`}
-            alt={heroImage.id}
+        {entryCardImage && (
+          <Image
+            image={entryCardImage}
+            classes="c-entry-card__image c-image--test "
           />
         )}
         {item && (
