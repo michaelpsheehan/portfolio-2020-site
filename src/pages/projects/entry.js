@@ -24,15 +24,10 @@ const pageTemplate = ({ data }) => {
     siteUrl: liveProjectUrl,
     richArticle,
   } = data.craft.entries[0]
-  // console.log('repo url ==', codeRepoUrl)
-  // console.log('new site urlurl ==', liveProjectUrl)
-  // console.log('entry data =', data.craft.entries[0])
-  // console.log('rich article', richArticle)
+
   const { siteUrl } = data.site.siteMetadata
-  console.log(imageCaption)
   const imageOptimizedHeroImage = heroImage[0].optimizedImagesFullWidth
 
-  console.log('image hero --', imageOptimizedHeroImage)
   const currentProjectType =
     projectType === 'Demo Project' ? (
       projectType
@@ -128,10 +123,29 @@ export const projectEntryQuery = graphql`
                 ... on Craft_images_Asset {
                   id
                   optimizedImagesFullWidth {
+                    colorPalette
+                    colorPaletteRgb
                     focalPoint
+                    lightness
+                    maxSrcsetWidth
                     optimizedImageUrls
+                    optimizedWebPImageUrls
+                    originalImageHeight
+                    originalImageWidth
+                    placeholder
+                    placeholderBox
+                    placeholderHeight
+                    placeholderImage
+                    placeholderSilhouette
+                    placeholderSvg
+                    placeholderWidth
+                    src
                     srcUrls
+                    srcWebp
                     srcset
+                    srcsetWebp
+                    variantHeights
+                    variantSourceWidths
                   }
                   url
                 }

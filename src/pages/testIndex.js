@@ -7,7 +7,6 @@ const baseUrl = 'http://157.245.46.3'
 
 const TestIndex = () => {
   const { projects } = projectsIndexData()
-  // console.log('Projects query results =', projects)
   return (
     <Layout>
       <SEO title={projects.title} />

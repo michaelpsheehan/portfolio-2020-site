@@ -17,8 +17,6 @@ const EntryCard = ({ item, siteUrl, itemSection = '', classes = '' }) => {
     ? item.heroImage[0].imageOptimizeSmallImage
     : null
 
-  console.log('entry card hero image', entryCardImage)
-
   return (
     <div className={`c-entry-card ${classes}`}>
       <Link to={`/${itemSection}/${slug}`}>
