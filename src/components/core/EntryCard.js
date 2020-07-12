@@ -24,7 +24,7 @@ const EntryCard = ({ item, siteUrl, itemSection = '', classes = '' }) => {
           <Image
             image={entryCardImage}
             alt={imageCaption}
-            classes="c-entry-card__image c-image--test "
+            classes="c-entry-card__image"
           />
         )}
         {item && (
@@ -36,7 +36,9 @@ const EntryCard = ({ item, siteUrl, itemSection = '', classes = '' }) => {
                 <Button classes="c-button--ghost c-button--white " />
               </div>
             </div>
-            <h2 className="py-8 px-4">{title}</h2>
+            <div className="c-entry-card__text">
+              <h2 className="">{title}</h2>
+            </div>
           </>
         )}
       </Link>

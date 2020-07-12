@@ -1,7 +1,11 @@
 .c-entry-card {
-  @apply shadow rounded-lg overflow-y-hidden relative;
+  @apply shadow-2xl rounded-lg overflow-y-hidden relative bg-white;
 
   &__image {
+  }
+
+  &__text {
+    @apply py-8 px-4 bg-offwhite;
   }
 
   &__overlay {

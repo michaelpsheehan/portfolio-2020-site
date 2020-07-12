@@ -3,26 +3,15 @@ import { useStaticQuery, graphql } from 'gatsby'
 import {
   addImageToCache,
   checkImageCache,
-  printImageCache,
 } from '../../hooks/externalImageCache.js'
 import 'lazysizes'
 import 'lazysizes/plugins/attrchange/ls.attrchange'
-// import { addImageToCache, checkImageCache } from '../../hooks/externalImageCache'
 
 const Image = ({ image, alt = '', classes = '' }) => {
   if (image === null) {
     return
   }
   const { siteUrl } = getSiteUrl()
-  let imageSrc = image.placeholderImage
-
-  if (checkImageCache(image.src)) {
-    classes = ''
-    imageSrc = `${siteUrl}${image.src}`
-  } else {
-    addImageToCache(image.src)
-    classes += 'lazyload'
-  }
 
   // formats the srcset from imageOptimize to work with gatsby by adding the craft backend url to the start of each src
   const formattedSrcset = image.srcset
@@ -30,12 +19,24 @@ const Image = ({ image, alt = '', classes = '' }) => {
     .map((currentSrc) => `${siteUrl}${currentSrc.trim()}, `)
     .join()
 
-  const imageComponent = (
+  // checks a custom cache object to see if a
+  const imageHasLoaded = checkImageCache(`${siteUrl}${image.src}`)
+
+  // checks if an image has been loaded before using a custom cache object.The lazyloaded blur-up image is only loaded the first time that exact image variation has been loaded
+  const imageComponent = imageHasLoaded ? (
     <img
-      className={`c-image  w-full   ${classes}`}
+      className={`c-image lazyload w-full ${classes}`}
       sizes="100vw"
-      // src={image.placeholderImage}
-      src={imageSrc}
+      src={`${siteUrl}${image.src}`}
+      data-src={`${siteUrl}${image.src}`}
+      data-srcset={formattedSrcset}
+      alt={alt}
+    />
+  ) : (
+    <img
+      className={`c-image w-full lazyload ${classes}`}
+      sizes="100vw"
+      src={image.placeholderImage}
       data-src={`${siteUrl}${image.src}`}
       data-srcset={formattedSrcset}
       alt={alt}

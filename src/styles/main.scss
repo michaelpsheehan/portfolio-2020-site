@@ -7,6 +7,9 @@
 html {
   font-size: 20px;
 }
+body {
+  @apply bg-background-gray;
+}
 
 @import './elements/text.scss';
 @import './objects/container.scss';
