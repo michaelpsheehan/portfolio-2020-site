@@ -1,6 +1,6 @@
 .c-grid {
   @screen lg {
-    @apply grid grid-cols-2 gap-4;
+    @apply grid grid-cols-2 gap-12;
   }
 
   &__item {

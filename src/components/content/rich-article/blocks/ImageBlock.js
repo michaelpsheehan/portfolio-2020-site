@@ -2,11 +2,11 @@ import React from 'react'
 import Section from '../../../core/Section'
 import Image from '../../../core/Image'
 
-const ImageBlock = ({ block, siteUrl, classes = '' }) => {
+const ImageBlock = ({ block, classes = '' }) => {
   const { constrainImage, image, imageCaption } = block
-
-  if (image === null) {
-    return
+  console.log('IMAGE BLOCK ---', image[0])
+  if (image === null || !image[0]) {
+    return null
   }
 
   return (
