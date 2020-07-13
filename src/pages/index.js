@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'gatsby'
-import Layout from '../components/layout'
+import Layout from '../components/Layout'
 import homepageData from '../hooks/homepageData'
 import SEO from '../components/Seo'
 import Hero from '../components/content/hero/hero'
