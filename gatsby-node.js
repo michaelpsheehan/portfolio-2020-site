@@ -15,11 +15,13 @@ exports.createPages = async ({ actions, graphql }) => {
   `
 
   const result = await graphql(GET_PROJECT_PAGES)
-  result.data.craft.entries.map((page) => {
-    actions.createPage({
-      path: `/projects/${page.slug}`,
-      component: require.resolve('./src/pages/projects/entry.js'),
-      context: { id: page.id },
+  if (result.data.craft.entries) {
+    result.data.craft.entries.map((page) => {
+      actions.createPage({
+        path: `/projects/${page.slug}`,
+        component: require.resolve('./src/pages/projects/entry.js'),
+        context: { id: page.id },
+      })
     })
-  })
+  }
 }

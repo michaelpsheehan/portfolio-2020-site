@@ -16,7 +16,7 @@ module.exports = {
         // Field under which the remote schema will be accessible. You'll use this in your Gatsby query
         fieldName: 'craft',
         // url for the back end craft graphql api
-        url: 'http://157.245.46.3/api',
+        url: 'https://www.michaelsheehan.dev/api',
 
         headers: {
           Authorization: `Bearer ${process.env.CRAFTQL_API_KEY}`,
