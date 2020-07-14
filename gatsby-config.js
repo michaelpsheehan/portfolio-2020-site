@@ -2,7 +2,8 @@ module.exports = {
   siteMetadata: {
     title: `Code By Sheen`,
     description: `Michael Sheehan web development portfolio`,
-    siteUrl: 'http://157.245.46.3',
+    // siteUrl: 'http://157.245.46.3',
+    siteUrl: 'https://www.michaelsheehan.dev',
     // author: `@gatsbyjs`,
   },
   plugins: [
