@@ -94,53 +94,32 @@ async function createHomepage({ graphql, actions }) {
   const { entry } = data.craft
   const richArticle = entry ? data.craft.entry[0].richArticle : null
 
-  const updatedRichArticle = []
-  // if lottie animation files have been used in the richArticle Matrix field fetch the animation data to use with lottie-web
+  if (richArticle) {
+    const updatedRichArticle = await Promise.all(
+      richArticle.map(async (block) => {
+        if (block.typeHandle === 'animation' && block.animationUrl) {
+          const response = await axios.get(block.animationUrl)
+          return {
+            ...block,
+            animationData: response.data,
+          }
+        }
+        return block
+      })
+    ).then((result) => result)
 
-  await Promise.all(
-    richArticle.map(async (block) => {
-      if (block.typeHandle === 'animation' && block.animationUrl) {
-        const response = await axios.get(block.animationUrl)
-        // console.log('axios respnse ----', response)
-        // add the downloaded animation json data to the current block
-        // return {
-        return updatedRichArticle.push({
-          ...block,
-          animationData: response.data,
-        })
-        // ...block,
-        // animationData: response.data,
-        // }
-      }
-      // if the current block is not an animation block return the block without adding anything
-      return updatedRichArticle.push(block)
+    await actions.createPage({
+      path: '/home',
+      component: require.resolve('./src/pages/HomeTemplate.js'),
+      context: {
+        siteUrl,
+        entry: entry ? entry[0] : null,
+        richArticle: updatedRichArticle || null,
+      },
     })
-  )
-  // wait for all the promises to resolve before continuing to make sure the json files are ready
-  // await Promise.all(updatedRichArticle).catch((error) =>
-  // await Promise.all(updatedRichArticle).catch((error) =>
-  //   console.log('error is', error)
-  // )
-  // .then((finished) => {
-  console.log('all promises finished --, updates')
-  // await updatedRichArticle.map((el) =>
-  //   console.log('updated article block --', el)
-  // )
-  updatedRichArticle.map((el) => console.log('updated article block --', el))
-
-  // console.log('RESULTS == ', updatedRichArticle)
-
-  await actions.createPage({
-    path: '/home',
-    component: require.resolve('./src/pages/HomeTemplate.js'),
-    context: {
-      siteUrl,
-      entry: entry ? entry[0] : null,
-      richArticle: updatedRichArticle || null,
-    },
-  })
-  // })
+  }
 }
+
 exports.createPages = async ({ actions, graphql }) => {
   await createHomepage({ graphql, actions })
 
