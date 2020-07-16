@@ -1,6 +1,7 @@
 import React from 'react'
 import TextBlock from './blocks/TextBlock'
 import ImageBlock from './blocks/ImageBlock'
+import AnimationBlock from './blocks/AnimationBlock'
 
 const RichArticle = ({ richArticle, siteUrl, classes = '' }) => {
   // checks the blockType from the matrix field and loads the appropriate component
@@ -10,6 +11,8 @@ const RichArticle = ({ richArticle, siteUrl, classes = '' }) => {
         return <TextBlock block={block} />
       case 'fullWidthImage':
         return <ImageBlock block={block} siteUrl={siteUrl} />
+      case 'animation':
+        return <AnimationBlock block={block} />
       default:
         return null
     }

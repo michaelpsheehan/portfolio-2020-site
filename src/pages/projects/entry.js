@@ -1,7 +1,7 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 import SEO from '../../components/Seo'
-// import Layout from '../../components/Layout'
+import Layout from '../../components/Layout'
 import Section from '../../components/core/Section'
 import Image from '../../components/core/Image'
 import TechnologyList from '../../components/content/technologiesList'
@@ -40,8 +40,7 @@ const pageTemplate = ({ data }) => {
       </div>
     )
   return (
-    // <Layout>
-    <>
+    <Layout>
       {title && (
         <>
           <SEO title={title || ''} />
@@ -78,8 +77,7 @@ const pageTemplate = ({ data }) => {
       {richArticle && (
         <RichArticle richArticle={richArticle} siteUrl={siteUrl} />
       )}
-      {/* </Layout> */}
-    </>
+    </Layout>
   )
 }
 

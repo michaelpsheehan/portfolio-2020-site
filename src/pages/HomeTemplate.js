@@ -5,15 +5,12 @@ import Layout from '../components/Layout'
 import SEO from '../components/Seo'
 import Hero from '../components/content/hero/hero'
 import Image from '../components/core/Image'
-import LottieAnimation from '../components/content/Animation'
+import LottieAnimation from '../components/content/LottieAnimation'
+
+import RichArticle from '../components/content/rich-article/RichArticle'
 
 const HomeTemplate = (data) => {
   const { entry, siteUrl, richArticle } = data.pageContext
-  console.log('data ===', data)
-  console.log('entry dat ===', entry)
-  console.log('url ===', siteUrl)
-  console.log('richArticle ===', richArticle)
-  // console.log('entry.heroImage ', entry.heroImage)
 
   return (
     <Layout>
@@ -43,7 +40,7 @@ const HomeTemplate = (data) => {
           />
         )}
 
-        {richArticle &&
+        {/* {richArticle &&
           richArticle.map((block) =>
             block.typeHandle === 'animation' ? (
               <div key={block.id}>
@@ -57,13 +54,9 @@ const HomeTemplate = (data) => {
                 />
               </div>
             ) : null
-          )}
+          )} */}
 
-        {/* <LottieAnimation
-          lottieAnimationPath="https://assets2.lottiefiles.com/private_files/lf30_2u9Zt5.json"
-          artistName="Andrea Balbo"
-          artistLink="https://lottiefiles.com/andre94"
-        /> */}
+        {richArticle && <RichArticle richArticle={richArticle} />}
       </>
     </Layout>
   )

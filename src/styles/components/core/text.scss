@@ -4,4 +4,10 @@
   &__heading {
     @apply uppercase text-xl mb-4;
   }
+
+  &--animation {
+    .c-text__heading {
+      @apply uppercase text-4xl font-sans;
+    }
+  }
 }
