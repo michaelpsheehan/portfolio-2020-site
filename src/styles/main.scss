@@ -13,6 +13,7 @@ body {
 
 @import './elements/text.scss';
 @import './objects/container.scss';
+@import './objects/main-content.scss';
 @import './components/site-head.scss';
 @import './components/primary-nav.scss';
 @import './components/content/hero.scss';
@@ -20,6 +21,7 @@ body {
 @import './components/content/intro.scss';
 @import './components/core/text.scss';
 @import './components/content/technologies.scss';
+@import './components/content/lottie-animation.scss';
 @import './components/core/button.scss';
 @import './components/core/section.scss';
 @import './components/core/grid.scss';

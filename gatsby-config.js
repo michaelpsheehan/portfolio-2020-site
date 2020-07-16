@@ -28,10 +28,18 @@ module.exports = {
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        name: `images`,
-        path: `${__dirname}/src/images`,
+        // name: `images`,
+        // path: `${__dirname}/src/images`,
+        name: `src`,
+        path: `${__dirname}/src`,
       },
     },
+    // {
+    //   resolve: 'gatsby-plugin-transition-link',
+    //   options: {
+    //     layout: require.resolve(`./src/components/Layout.js`),
+    //   },
+    // },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {

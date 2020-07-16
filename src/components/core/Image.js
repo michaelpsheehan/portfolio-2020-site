@@ -21,18 +21,19 @@ const Image = ({ image, alt = '', classes = '' }) => {
 
   // checks a custom cache object to see if a
   const imageHasLoaded = checkImageCache(`${siteUrl}${image.src}`)
-
+  // (
   // checks if an image has been loaded before using a custom cache object.The lazyloaded blur-up image is only loaded the first time that exact image variation has been loaded
-  const imageComponent = imageHasLoaded ? (
-    <img
-      className={`c-image lazyload w-full ${classes}`}
-      sizes="100vw"
-      src={`${siteUrl}${image.src}`}
-      data-src={`${siteUrl}${image.src}`}
-      data-srcset={formattedSrcset}
-      alt={alt}
-    />
-  ) : (
+  // const imageComponent = imageHasLoaded ? (
+  //   <img
+  //     className={`c-image lazyload w-full ${classes}`}
+  //     sizes="100vw"
+  //     src={`${siteUrl}${image.src}`}
+  //     data-src={`${siteUrl}${image.src}`}
+  //     data-srcset={formattedSrcset}
+  //     alt={alt}
+  //   />
+  // ) :
+  const imageComponent = (
     <img
       className={`c-image w-full lazyload ${classes}`}
       sizes="100vw"
@@ -42,6 +43,7 @@ const Image = ({ image, alt = '', classes = '' }) => {
       alt={alt}
     />
   )
+  // )
 
   return imageComponent
 }

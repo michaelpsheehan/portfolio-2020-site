@@ -22,7 +22,6 @@ const homepageData = () => {
               url
               ... on Craft_images_Asset {
                 optimizedImagesFullWidth {
-                  # ... on Craft_optimizedImagesFullWidth_OptimizedImages {
                   ... on Craft_optimizedImagesFullWidth_OptimizedImages {
                     colorPalette
                     colorPaletteRgb
@@ -47,6 +46,63 @@ const homepageData = () => {
                     srcsetWebp
                     variantHeights
                     variantSourceWidths
+                  }
+                }
+              }
+            }
+
+            richArticle {
+              ... on Craft_richArticle_animation_BlockType {
+                id
+                alignAnimation(label: true)
+                animationUrl
+                animatorName
+                animatorUrl
+                fullWidthAnimation
+                body
+                heading
+              }
+
+              ... on Craft_richArticle_text_BlockType {
+                id
+                typeHandle
+                heading
+                body
+              }
+              ... on Craft_richArticle_fullWidthImage_BlockType {
+                id
+                imageCaption
+                typeHandle
+                constrainImage
+                image(optimizedImagesFullWidth: "") {
+                  ... on Craft_images_Asset {
+                    id
+                    url
+                    optimizedImagesFullWidth {
+                      colorPalette
+                      colorPaletteRgb
+                      focalPoint
+                      lightness
+                      maxSrcsetWidth
+                      optimizedImageUrls
+                      optimizedWebPImageUrls
+                      originalImageHeight
+                      originalImageWidth
+                      placeholder
+                      placeholderBox
+                      placeholderHeight
+                      placeholderImage
+                      placeholderSilhouette
+                      placeholderSvg
+                      placeholderWidth
+                      src
+                      srcUrls
+                      srcWebp
+                      srcset
+                      srcsetWebp
+                      variantHeights
+                      variantSourceWidths
+                    }
                   }
                 }
               }

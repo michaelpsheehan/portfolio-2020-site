@@ -4,7 +4,6 @@ import Image from '../../../core/Image'
 
 const ImageBlock = ({ block, classes = '' }) => {
   const { constrainImage, image, imageCaption } = block
-  console.log('IMAGE BLOCK ---', image[0])
   if (image === null || !image[0]) {
     return null
   }

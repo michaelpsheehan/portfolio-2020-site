@@ -1,13 +1,17 @@
 .c-hero {
-  @apply inset-0 bg-black min-h-screen absolute overflow-hidden flex justify-center items-center;
-  z-index: -1;
+  margin-top: -160px;
+  @apply relative  w-full h-screen overflow-hidden;
 
   &__media-content {
     @apply h-full w-full;
   }
 
+  &-image {
+    @apply h-full w-full object-cover object-center absolute;
+  }
+
   &__content {
-    @apply text-white z-20 absolute text-center;
+    @apply text-white inset-0 z-30 absolute text-center h-full w-full flex flex-col justify-center items-center;
   }
 
   &__text {
@@ -28,9 +32,5 @@
     @screen md {
       @apply flex-row w-full justify-center;
     }
-  }
-
-  &-image {
-    @apply h-full w-full object-cover object-center absolute;
   }
 }

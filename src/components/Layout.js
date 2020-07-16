@@ -25,12 +25,12 @@ const Layout = ({ children }) => {
 
   return (
     <>
-      <div>
+      <div className="min-h-screen flex flex-col justify-between">
         {/* <Header siteTitle={data.site.siteMetadata.title} /> */}
         <Header />
 
-        <main>{children}</main>
-        <footer />
+        <main className="o-main-content">{children}</main>
+        <footer className="mt-16 py-16 bg-brand-blue" />
       </div>
     </>
   )

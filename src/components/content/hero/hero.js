@@ -7,7 +7,8 @@ const Hero = ({ heroMediaContent, heroContent }) => {
   return (
     <div className="c-hero">
       <div className="c-hero__media-content">{heroMediaContent}</div>
-      <div className="c-hero__content container md:-mt-8">
+
+      <div className="c-hero__content">
         {heroTextBody && (
           <div
             className="c-hero__text"

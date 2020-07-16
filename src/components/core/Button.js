@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'gatsby'
+// import AniLink from 'gatsby-plugin-transition-link/AniLink'
 
 const Button = ({
   text = 'Read More',
@@ -24,9 +25,19 @@ const Button = ({
       </a>
     ) : (
       // if the button links to an internal page use a Gatsby Link component
+      // <AniLink
+      //   className={`test-class ${buttonClasses}`}
+      //   // cover
+      //   cover
+      //   // direction="left"
+      //   // top="exit"
+      //   to={url}
+      //   bg="#1a68af"
+      // >
       <Link to={url} className={buttonClasses}>
         {text}
       </Link>
+      // </AniLink>
     )
   }
 

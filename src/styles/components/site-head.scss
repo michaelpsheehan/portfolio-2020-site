@@ -1,5 +1,5 @@
 .c-site-head {
-  @apply bg-brand-blue py-12 font-sans;
+  @apply bg-brand-blue py-12 mb-12 font-sans absolute top-0 inset-x-0 w-full z-20;
 
   @screen md {
     @apply py-16;
