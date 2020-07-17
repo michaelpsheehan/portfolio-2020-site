@@ -9,10 +9,11 @@ const LottieAnimation = ({
 
   classes = '',
 }) => {
-  if (lottieAnimationPath === null) {
+  if (lottieAnimationPath === null || lottieAnimationData === null) {
     return
   }
-  const animationContainer = React.createRef()
+
+  const animationContainer = useRef(null)
 
   useEffect(() => {
     Lottie.loadAnimation({

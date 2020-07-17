@@ -2,46 +2,6 @@
   margin-top: -160px;
   @apply relative  w-full h-screen overflow-hidden;
 
-  background: linear-gradient(122deg, #1a68af, #3490dc, #5891c4);
-  background-size: 600% 600%;
-
-  -webkit-animation: AnimationName 0s ease infinite;
-  -moz-animation: AnimationName 0s ease infinite;
-  animation: AnimationName 0s ease infinite;
-
-  @-webkit-keyframes AnimationName {
-    0% {
-      background-position: 0% 17%;
-    }
-    50% {
-      background-position: 100% 84%;
-    }
-    100% {
-      background-position: 0% 17%;
-    }
-  }
-  @-moz-keyframes AnimationName {
-    0% {
-      background-position: 0% 17%;
-    }
-    50% {
-      background-position: 100% 84%;
-    }
-    100% {
-      background-position: 0% 17%;
-    }
-  }
-  @keyframes AnimationName {
-    0% {
-      background-position: 0% 17%;
-    }
-    50% {
-      background-position: 100% 84%;
-    }
-    100% {
-      background-position: 0% 17%;
-    }
-  }
   &__media-content {
     @apply h-full w-full;
   }
@@ -72,5 +32,40 @@
     @screen md {
       @apply flex-row w-full justify-center;
     }
+  }
+
+  &--dark-bg {
+    .c-hero {
+      &__text {
+        @apply text-white;
+      }
+    }
+    .c-button--hero {
+      &-primary {
+        @apply bg-white text-brand-blue border-white;
+      }
+
+      &-secondary {
+        @apply border-white text-white;
+      }
+    }
+  }
+
+  &--animated-bg {
+    background: linear-gradient(122deg, #1a68af, #3490dc, #5891c4);
+    background-size: 400% 400%;
+    animation: hero-background-animation 0s ease infinite;
+  }
+}
+
+@keyframes hero-background-animation {
+  0% {
+    background-position: 0% 17%;
+  }
+  50% {
+    background-position: 100% 84%;
+  }
+  100% {
+    background-position: 0% 17%;
   }
 }

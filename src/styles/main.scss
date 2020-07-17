@@ -6,12 +6,13 @@ html {
 body {
   @apply bg-background-gray;
 }
-
 @import './elements/text.scss';
 @import './objects/container.scss';
 @import './objects/main-content.scss';
-@tailwind components;
+@import './components/core/button.scss';
 @import './components/site-head.scss';
+
+@tailwind components;
 @import './components/primary-nav.scss';
 @import './components/content/hero.scss';
 @import './components/content/page-title.scss';
@@ -21,7 +22,6 @@ body {
 @import './components/core/scroll-icon.scss';
 @import './components/content/technologies.scss';
 @import './components/content/lottie-animation.scss';
-@import './components/core/button.scss';
 @import './components/core/section.scss';
 @import './components/core/grid.scss';
 @import './components/core/entry-card.scss';

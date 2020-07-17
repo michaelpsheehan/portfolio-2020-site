@@ -17,6 +17,7 @@ const HomeTemplate = (data) => {
         {entry && <SEO title={entry.title} />}
         {entry && (
           <Hero
+            classes="c-hero--dark-bg c-hero--animated-bg"
             heroContent={{
               heroTextBody: entry.heroTextBody,
               primaryButton: {
@@ -28,33 +29,8 @@ const HomeTemplate = (data) => {
                 url: entry.ctaButton2Link,
               },
             }}
-            // heroMediaContent={
-            //   entry.heroImage && (
-            //     <Image
-            //       image={entry.heroImage[0].optimizedImagesFullWidth}
-            //       classes="c-hero-image "
-            //     />
-            //   )
-            // }
           />
         )}
-
-        {/* {richArticle &&
-          richArticle.map((block) =>
-            block.typeHandle === 'animation' ? (
-              <div key={block.id}>
-                <LottieAnimation
-                  heading={block.heading}
-                  lottieAnimationPath={block.animationUrl}
-                  lottieAnimationData={block.animationData}
-                  alignAnimation={block.alignAnimation}
-                  artistName="Andrea Balbo"
-                  artistLink="https://lottiefiles.com/andre94"
-                />
-              </div>
-            ) : null
-          )} */}
-
         {richArticle && <RichArticle richArticle={richArticle} />}
       </>
     </Layout>
