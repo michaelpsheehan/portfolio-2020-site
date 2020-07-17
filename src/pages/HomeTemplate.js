@@ -5,7 +5,6 @@ import Layout from '../components/Layout'
 import SEO from '../components/Seo'
 import Hero from '../components/content/hero/hero'
 import Image from '../components/core/Image'
-import LottieAnimation from '../components/content/LottieAnimation'
 import RichArticle from '../components/content/rich-article/RichArticle'
 
 const HomeTemplate = (data) => {
