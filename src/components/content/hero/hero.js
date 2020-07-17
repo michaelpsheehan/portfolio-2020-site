@@ -26,8 +26,8 @@ const Hero = ({ heroMediaContent, heroContent, classes = '' }) => {
 
     tl.set(heroContentEl.current, { css: { visibility: 'visible' } })
     tl.set(heroScrollIconEl.current, { css: { visibility: 'visible' } })
-      .from(heroTextEl.current, 1, {
-        y: 10,
+      .from(heroTextEl.current, 1.2, {
+        y: 60,
         opacity: 0,
       })
       .from(
@@ -47,6 +47,52 @@ const Hero = ({ heroMediaContent, heroContent, classes = '' }) => {
         opacity: 0,
         delay: 0.2,
       })
+
+    const tlScroll = gsap.timeline({
+      scrollTrigger: {
+        start: 'top top',
+        scrub: 1,
+      },
+    })
+    tlScroll.to(heroTextEl.current, 1, {
+      y: '-300vh',
+      opacity: 0,
+    })
+    tlScroll.to(
+      heroSecondaryButtonEl.current,
+      1,
+      {
+        y: '-25vh',
+        x: '-100vw',
+        opacity: 0,
+        transformOrigin: '50% 50%',
+        rotation: -360,
+      },
+      0
+    )
+    tlScroll.to(
+      heroPrimaryButtonEl.current,
+      1,
+      {
+        y: '-25vh',
+        x: '100vw',
+        opacity: 0,
+        transformOrigin: '50% 50%',
+        rotation: 360,
+      },
+      0
+    )
+    tlScroll.to(
+      heroScrollIconEl.current,
+      1,
+      {
+        transformOrigin: '50% 50%',
+        y: '-100vh',
+        // rotation: 360,
+        opacity: 0,
+      },
+      0
+    )
   }, [])
 
   return (
