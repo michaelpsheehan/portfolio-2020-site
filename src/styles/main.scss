@@ -1,9 +1,5 @@
 @tailwind base;
-
-@tailwind components;
-
 @tailwind utilities;
-
 html {
   font-size: 20px;
 }
@@ -14,12 +10,15 @@ body {
 @import './elements/text.scss';
 @import './objects/container.scss';
 @import './objects/main-content.scss';
+@tailwind components;
 @import './components/site-head.scss';
 @import './components/primary-nav.scss';
 @import './components/content/hero.scss';
 @import './components/content/page-title.scss';
 @import './components/content/intro.scss';
+@import './components/content/rich-article.scss';
 @import './components/core/text.scss';
+@import './components/core/scroll-icon.scss';
 @import './components/content/technologies.scss';
 @import './components/content/lottie-animation.scss';
 @import './components/core/button.scss';

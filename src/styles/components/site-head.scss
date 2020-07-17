@@ -1,5 +1,5 @@
 .c-site-head {
-  @apply bg-brand-blue py-12 mb-12 font-sans absolute top-0 inset-x-0 w-full z-20;
+  @apply py-12 mb-12 font-sans absolute top-0 inset-x-0 w-full z-20;
 
   @screen md {
     @apply py-16;
@@ -16,7 +16,7 @@
   &__hamburger {
     @apply absolute z-20 right-0 h-12 w-12;
     @screen md {
-      @apply h-20 w-20;
+      @apply h-16 w-16;
     }
 
     span {

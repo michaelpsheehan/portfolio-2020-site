@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useRef, useEffect } from 'react'
 import Lottie from 'lottie-web'
 
 const LottieAnimation = ({
@@ -23,16 +23,8 @@ const LottieAnimation = ({
   }, [])
 
   return (
-    <div className={`c-lottie-animation  text-center ${classes} `}>
+    <div className={`c-lottie-animation text-center ${classes} `}>
       <div className="c-lottie-animation__svg" ref={animationContainer} />
-      {/* {animatorName && (
-        <div className="c-lottie-animation__animator-name">
-          Animation by{' '}
-          <a href={animatorLink} target="__blank">
-            {animatorName}
-          </a>
-        </div>
-      )} */}
     </div>
   )
 }

@@ -5,16 +5,16 @@ import LottieAnimation from '../../LottieAnimation'
 
 const AnimationBlock = ({ block, classes = '' }) => (
   <Section
-    classes="my-0 md:my-0 "
+    classes=" md:my-0 "
     content={
       <div
-        className={`md:flex items-center h-screen ${
+        className={`py-16 md:py-0 md:flex md:items-center md:h-screen  ${
           block.alignAnimation === 'Left' ? 'md:flex-row-reverse' : ''
         }`}
       >
         {(block.heading || block.body) && (
-          <div className="md:w-1/2 ">
-            <div className="max-w-sm mx-auto">
+          <div className="mb-8 md:mb-0 md:w-1/2 ">
+            <div className="max-w-sm mx-auto ">
               <Text
                 heading={block.heading}
                 body={block.body}

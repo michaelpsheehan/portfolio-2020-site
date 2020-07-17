@@ -7,7 +7,11 @@
 
   &--animation {
     .c-text__heading {
-      @apply uppercase text-4xl font-sans;
+      @applytext-4xl;
+
+      @screen md {
+        @apply text-4xl;
+      }
     }
   }
 }

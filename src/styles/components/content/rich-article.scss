@@ -1,0 +1,28 @@
+.c-rich-article {
+  &__block {
+    &--1 {
+      // @apply border;
+      background-color: #e3342f;
+
+      @apply text-white;
+    }
+    &--2 {
+      // @apply border;
+    }
+    &--3 {
+      background-color: #38c172;
+
+      @apply text-white;
+    }
+    &--4 {
+      // @apply border;
+    }
+    &--5 {
+      // @apply border;
+      @apply text-white bg-black;
+      // @apply border;
+    }
+    &--6 {
+    }
+  }
+}

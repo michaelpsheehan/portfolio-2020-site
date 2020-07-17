@@ -6,7 +6,6 @@ import SEO from '../components/Seo'
 import Hero from '../components/content/hero/hero'
 import Image from '../components/core/Image'
 import LottieAnimation from '../components/content/LottieAnimation'
-
 import RichArticle from '../components/content/rich-article/RichArticle'
 
 const HomeTemplate = (data) => {
@@ -29,14 +28,14 @@ const HomeTemplate = (data) => {
                 url: entry.ctaButton2Link,
               },
             }}
-            heroMediaContent={
-              entry.heroImage && (
-                <Image
-                  image={entry.heroImage[0].optimizedImagesFullWidth}
-                  classes="c-hero-image "
-                />
-              )
-            }
+            // heroMediaContent={
+            //   entry.heroImage && (
+            //     <Image
+            //       image={entry.heroImage[0].optimizedImagesFullWidth}
+            //       classes="c-hero-image "
+            //     />
+            //   )
+            // }
           />
         )}
 

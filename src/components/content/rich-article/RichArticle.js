@@ -21,7 +21,10 @@ const RichArticle = ({ richArticle, siteUrl, classes = '' }) => {
   return richArticle ? (
     <article className={`c-rich-article ${classes}`}>
       {richArticle.map((block, index) => (
-        <div className="c-rich-article__block" key={block.id}>
+        <div
+          className={`c-rich-article__block c-rich-article__block--${index}`}
+          key={block.id}
+        >
           {checkBlockType(block.typeHandle, block)}
         </div>
       ))}

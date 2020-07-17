@@ -30,7 +30,9 @@ const Layout = ({ children }) => {
         <Header />
 
         <main className="o-main-content">{children}</main>
-        <footer className="mt-16 py-16 bg-brand-blue" />
+        <footer className="mt-16 py-16 bg-brand-blue">
+          <div className="container text-white uppercase">Projects</div>
+        </footer>
       </div>
     </>
   )
