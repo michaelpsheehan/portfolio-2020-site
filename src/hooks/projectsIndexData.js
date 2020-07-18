@@ -40,18 +40,6 @@ const projectsIndexData = () => {
                 filename
                 url
 
-                # localFile {
-                #   childImageSharp {
-                #     fluid(maxWidth: 650) {
-                #       base64
-                #       aspectRatio
-                #       src
-                #       srcSet
-                #       sizes
-                #     }
-                #   }
-                # }
-
                 imageOptimizeSmallImage {
                   colorPalette
                   colorPaletteRgb

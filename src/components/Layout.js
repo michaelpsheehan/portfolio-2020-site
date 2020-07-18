@@ -5,7 +5,7 @@
  * See: https://www.gatsbyjs.org/docs/use-static-query/
  */
 
-import React from 'react'
+import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { useStaticQuery, graphql } from 'gatsby'
 import Header from './Header'
@@ -22,6 +22,12 @@ const Layout = ({ children }) => {
       }
     }
   `)
+
+  useEffect(() => {
+    // used to make the hero  100vh work properly on mobile devices.
+    const vh = window.innerHeight * 0.01
+    document.documentElement.style.setProperty('--vh', `${vh}px`)
+  }, [])
 
   return (
     <>
