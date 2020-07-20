@@ -115,7 +115,7 @@ class HeroNew extends Component {
     const tlScroll = gsap.timeline({
       scrollTrigger: {
         start: 'top top',
-        scrub: 1,
+        scrub: 0.3,
       },
     })
     tlScroll.to([...this.allWords[0], ...this.allWords[1]], {
