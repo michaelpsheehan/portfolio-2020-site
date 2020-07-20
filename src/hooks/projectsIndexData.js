@@ -20,6 +20,13 @@ const projectsIndexData = () => {
 
         entry: entries(id: 4) {
           title
+          ... on Craft_projects_projects_Entry {
+            id
+            featuredProjects {
+              id
+              title
+            }
+          }
         }
         entries(section: "project") {
           ... on Craft_project_project_Entry {

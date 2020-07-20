@@ -6,10 +6,11 @@ import PageTitle from '../../components/content/PageTitle'
 import Section from '../../components/core/Section'
 import Grid from '../../components/core/Grid'
 import EntryCard from '../../components/core/EntryCard'
+import IndexPage from '../../components/core/IndexPage'
 
 const ProjectsIndexPage = () => {
   const { projects, entry, siteUrl } = projectsIndexData()
-
+  console.log('projects entry  index feat entries ===', entry)
   return (
     <Layout>
       {entry && (
@@ -34,6 +35,11 @@ const ProjectsIndexPage = () => {
           container
         />
       )}
+
+      <IndexPage
+        featuredEntries={entry.featuredProjects}
+        allEntries={projects}
+      />
     </Layout>
   )
 }

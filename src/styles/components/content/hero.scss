@@ -62,6 +62,10 @@
     background-size: 600% 600%;
     animation: hero-background-animation 0s ease infinite;
   }
+
+  &__text-word {
+    // @apply border;
+  }
 }
 
 @keyframes hero-background-animation {

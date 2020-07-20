@@ -11,7 +11,10 @@ gsap.registerPlugin(CSSRulePlugin, ScrollToPlugin, ScrollTrigger)
 
 const Hero = ({ heroMediaContent, heroContent, classes = '' }) => {
   const { primaryButton, secondaryButton, heroTextBody } = heroContent
-  const heroTextLineEls = useRef([])
+  // const heroTextLineEls = useRef([])
+  const heroTextLineEls = createRef()
+
+  // const heroTextLineEls = []
 
   // const herTextLine
   // const heroTextLineEls = (el) => createRef(el)
@@ -29,12 +32,15 @@ const Hero = ({ heroMediaContent, heroContent, classes = '' }) => {
         key={index}
         // ref={(el) => (heroTextLineEls[index] = el)}
         // ref={(line) => (heroTextLineEls = line)}
-        // ref={heroTextLineEls}
+        // ref={heroTextLineEls.current[index]}
+        // ref={refArray.current[index]}
       >
         {words}
       </span>
     )
   })
+
+  // const refArray = useRef(updatedHeroTextBody.map(() => createRef()))
 
   const heroContentEl = useRef(null)
   const heroTextEl = useRef(null)
@@ -48,6 +54,8 @@ const Hero = ({ heroMediaContent, heroContent, classes = '' }) => {
     // console.log('created refs ==', createRefs)
     console.log('hero lines ref el==  ', heroTextLineEls)
     console.log('hero lines ref el current ==  ', heroTextLineEls.current)
+    // console.log('ref array ==', refArray)
+    // refArray.current.map((el) => console.log('el =>', el.current))
     const tl = gsap.timeline({
       defaults: { duration: 0.5, ease: 'Power3.out' },
     })
@@ -82,11 +90,23 @@ const Hero = ({ heroMediaContent, heroContent, classes = '' }) => {
         scrub: 1,
       },
     })
-    tlScroll.to(heroTextEl.current, 1, {
-      y: '-300vh',
-      opacity: 0,
-      ease: 'Power3.out',
-    })
+    tlScroll.to(
+      '.c-hero__text-line',
+      {
+        duration: 1,
+        y: '-300vh',
+        opacity: 0,
+        ease: 'Power3.out',
+        stagger: 0.3,
+      }
+      // '<-1'
+    )
+
+    // tlScroll.to(heroTextEl.current, 1, {
+    //   y: '-300vh',
+    //   opacity: 0,
+    //   ease: 'Power3.out',
+    // })
     tlScroll.to(
       heroSecondaryButtonEl.current,
       1,

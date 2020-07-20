@@ -4,6 +4,7 @@ import Section from '../components/core/Section'
 import Layout from '../components/Layout'
 import SEO from '../components/Seo'
 import Hero from '../components/content/hero/hero'
+import HeroNew from '../components/content/hero/HeroNew'
 import Image from '../components/core/Image'
 import RichArticle from '../components/content/rich-article/RichArticle'
 
@@ -15,7 +16,7 @@ const HomeTemplate = (data) => {
       <>
         {entry && <SEO title={entry.title} />}
         {entry && (
-          <Hero
+          <HeroNew
             classes="c-hero--dark-bg c-hero--animated-bg"
             heroContent={{
               heroTextBody: entry.heroTextBody,
