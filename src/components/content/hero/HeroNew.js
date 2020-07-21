@@ -7,6 +7,10 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Button from '../../core/Button'
 import ScrollIcon from '../../core/ScrollIcon'
 
+// const heroAnimations = () => {
+
+// }
+
 gsap.registerPlugin(CSSRulePlugin, ScrollToPlugin, ScrollTrigger)
 
 class HeroNew extends Component {
@@ -15,35 +19,28 @@ class HeroNew extends Component {
     // react refs needed to access dom elements for the gsap animations
     this.heroTextLineEls = []
     this.heroTextWordEls = []
-    this.heroContentEl = null
+    this.heroContentEl = createRef()
     this.allWords = []
     this.heroTextLineContainerEls = []
     this.heroSecondaryButtonEl = null
-    // this.heroPrimaryButtonEl = null
     this.heroPrimaryButtonEl = null
     this.heroScrollIconEl = null
   }
 
   componentDidMount() {
-    console.log('hero text lines = ', this.heroTextLineEls)
-    console.log('WORDS = ', this.heroTextWordEls)
-    console.log('content el = ', this.heroContentEl)
-    console.log('hero secondary button', this.heroSecondaryButtonEl)
-    console.log('hero scroll icon', this.heroScrollIconEl)
-    this.allWords = Array.from(
-      this.heroTextLineEls.map((currentLine) => currentLine.children)
-    )
-
-    // this.allWords = [...this.allWords.map((word) => word)]
-    console.log('ALL words ==', this.allWords)
+    this.allWords = Array.from(this.heroTextLineEls).map((currentLine, i) => [
+      ...this.allWords,
+      ...currentLine.children,
+    ])
 
     const tl = gsap.timeline({
       defaults: { duration: 1, ease: 'Power3.out' },
     })
-    tl.set(this.heroContentEl, { css: { visibility: 'visible' } })
+    tl.set(this.heroContentEl.current, { css: { visibility: 'visible' } })
     tl.set(this.heroScrollIconEl, { css: { visibility: 'visible' } })
 
     tl.from(this.heroTextLineEls, {
+      delay: 3.8,
       duration: 1,
       y: '140',
       ease: 'Power4.out',
@@ -52,14 +49,10 @@ class HeroNew extends Component {
         amount: 0.32,
       },
     })
-      .from(
-        this.heroPrimaryButtonEl,
-        {
-          y: 10,
-          opacity: 0,
-        }
-        // '-=0.3'
-      )
+      .from(this.heroPrimaryButtonEl, {
+        y: 10,
+        opacity: 0,
+      })
       .from(this.heroSecondaryButtonEl, {
         y: 10,
         opacity: 0,
@@ -76,41 +69,6 @@ class HeroNew extends Component {
       )
 
     tl.set(this.heroTextLineContainerEls, { css: { overflow: 'visible' } })
-
-    // tl.from([this.allWords[0], this.allWords[1]], {
-    //   duration: 1.8,
-    //   y: '120',
-    //   ease: 'Power4.out',
-    //   // delay: 1,
-    //   skewY: 7,
-    //   stagger: {
-    //     amount: 0.32,
-    //   },
-    // })
-    // tl.to(
-    //   this.heroTextWordEls,
-    //   {
-    //     // //   duration: 3,
-    //     // y: -200,
-    //     // //   ease: 'Power3.out',
-    //       stagger: 0.6,
-    //     // duration: 1.5,
-    //     // // scale: 0.5,
-    //     // // autoAlpha: 0,
-    //     // // ease: 'back',
-    //     stagger: 0.3,
-    //     duration: 1,
-    //     scale: 0.1,
-    //     y: 40,
-    //     // ease: "power1.inOut",
-    //     // stagger: {
-    //     // grid: [7, 9],
-    //     // from: 'random',
-    //     //   ease: "power3.inOut",
-    //     //   amount: 1.5
-    //   //  }
-    //   // '-=1'
-    // )
 
     const tlScroll = gsap.timeline({
       scrollTrigger: {
@@ -160,7 +118,6 @@ class HeroNew extends Component {
       {
         transformOrigin: '50% 50%',
         y: '-150vh',
-        // rotation: 360,
         opacity: 0,
         ease: 'Power3.out',
       },
@@ -211,10 +168,13 @@ class HeroNew extends Component {
 
     return (
       <div className={`c-hero ${classes}`}>
-        {/* {/* <div className="c-hero__media-content">{heroMediaContent}</div> */}
+        {/* show hero bg image or video if available */}
+        {heroMediaContent && (
+          <div className="c-hero__media-content">{heroMediaContent}</div>
+        )}
         <div
           className="c-hero__content"
-          ref={(div) => (this.heroContentEl = div)}
+          ref={(div) => (this.heroContentEl.current = div)}
         >
           {updatedHeroTextBody && (
             <>

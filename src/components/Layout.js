@@ -10,6 +10,11 @@ import PropTypes from 'prop-types'
 import { useStaticQuery, graphql } from 'gatsby'
 import Header from './Header'
 import '../styles/main.scss'
+
+import { gsap } from 'gsap'
+import { CSSRulePlugin } from 'gsap/CSSRulePlugin'
+import { ScrollToPlugin } from 'gsap/ScrollToPlugin'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import IntroOverlay from './core/IntroOverlay'
 
 const Layout = ({ children }) => {
@@ -25,6 +30,7 @@ const Layout = ({ children }) => {
   `)
 
   const introOverlayTopSectionEl = useRef(null)
+  const introOverlayBottomSectionEl = useRef(null)
 
   useEffect(() => {
     // console.log(
@@ -34,11 +40,34 @@ const Layout = ({ children }) => {
     // used to make the hero  100vh work properly on mobile devices.
     const vh = window.innerHeight * 0.01
     document.documentElement.style.setProperty('--vh', `${vh}px`)
+
+    const tl = gsap.timeline({
+      // defaults: { duration: 1, ease: 'Power3.out' },
+    })
+
+    tl.to(introOverlayTopSectionEl.current.children, 1.5, {
+      height: 0,
+      ease: 'expo.inOut',
+      stagger: 0.3,
+    })
+    tl.to(
+      introOverlayBottomSectionEl.current.children,
+      1.3,
+      {
+        width: 0,
+        ease: 'expo.inOut',
+        stagger: 0.3,
+      },
+      '-=0.3'
+    )
   }, [])
 
   return (
     <>
-      <IntroOverlay topSection={introOverlayTopSectionEl} />
+      <IntroOverlay
+        topSection={introOverlayTopSectionEl}
+        bottomSection={introOverlayBottomSectionEl}
+      />
       <div className="min-h-screen flex flex-col justify-between">
         {/* <Header siteTitle={data.site.siteMetadata.title} /> */}
         <Header />
