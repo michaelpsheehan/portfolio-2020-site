@@ -1,9 +1,9 @@
 .c-intro-overlay {
+  @apply pointer-events-none;
   &__left {
     &-section {
       @apply w-1/2 z-50 h-full;
-      // height: 100vh;
-      // height: calc(var(--vh, 1vh) * 100);
+      height: calc(var(--vh, 1vh) * 100);
     }
 
     &-item {
@@ -11,24 +11,18 @@
       transform: scaleY(1);
 
       &:nth-child(2) {
-        background-color: green;
       }
       &:nth-child(3) {
-        background-color: red;
       }
     }
   }
 
   &__right-section {
-    // @apply w-1/2  h-full z-50;
     @apply w-1/2 z-50 h-full;
-    // height: 100vh;
-    // height: calc(var(--vh, 1vh) * 100);
+    height: calc(var(--vh, 1vh) * 100);
 
     .c-intro-overlay__right-item {
-      @apply h-full;
-      z-index: 99999;
-      background-color: green;
+      @apply h-full bg-white;
     }
   }
 }

@@ -39,7 +39,7 @@ const Layout = ({ children }) => {
       }, ms)
     }
   }
-// set state for viewport height and width
+  // set state for viewport height and width
   const [dimensions, setDimensions] = useState({
     height: window.innerHeight,
     width: window.innerWidth,
@@ -72,15 +72,16 @@ const Layout = ({ children }) => {
     // used to make the hero  100vh work properly on mobile devices.
 
     const tl = gsap.timeline({
-      defaults: { duration: 1,  ease: 'expo.inOut', },
+      defaults: { duration: 1, ease: 'expo.inOut' },
     })
-.to(introOverlayTopSectionEl.current.children, 1, {
+    tl.to(introOverlayLeftSectionEl.current.children, 1, {
       scaleY: 0,
       stagger: 0.3,
       transformOrigin: 'bottom left',
-    }).to(introOverlayRightSectionEl,  {
+    })
+    tl.to(introOverlayRightSectionEl.current, {
       scaleX: 0,
-      transformOrigin: 'bottom left',
+      transformOrigin: 'bottom right',
     })
     // tl.to(
     //   introOverlayBottomSectionEl.current.children,
@@ -99,8 +100,8 @@ const Layout = ({ children }) => {
   return (
     <>
       <IntroOverlay
-        topSection={introOverlayTopSectionEl}
-        bottomSection={introOverlayBottomSectionEl}
+        leftSection={introOverlayLeftSectionEl}
+        rightSection={introOverlayRightSectionEl}
       />
       <div className="min-h-screen flex flex-col justify-between">
         {/* <Header siteTitle={data.site.siteMetadata.title} /> */}
