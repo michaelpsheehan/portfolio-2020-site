@@ -31,8 +31,7 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-helmet": "^6.1.0",
-    "react-refresh": "^0.8.3",
-    "typescript": "^3.9.7"
+    "react-refresh": "^0.8.3"
   },
   "devDependencies": {
     "babel-eslint": "^10.1.0",

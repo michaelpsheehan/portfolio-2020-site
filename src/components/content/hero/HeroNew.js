@@ -40,7 +40,7 @@ class HeroNew extends Component {
     tl.set(this.heroScrollIconEl, { css: { visibility: 'visible' } })
 
     tl.from(this.heroTextLineEls, {
-      delay: 3.8,
+      delay: 2.6,
       duration: 1,
       y: '140',
       ease: 'Power4.out',

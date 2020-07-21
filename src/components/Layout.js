@@ -5,7 +5,7 @@
  * See: https://www.gatsbyjs.org/docs/use-static-query/
  */
 
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import PropTypes from 'prop-types'
 import { useStaticQuery, graphql } from 'gatsby'
 import Header from './Header'
@@ -29,8 +29,40 @@ const Layout = ({ children }) => {
     }
   `)
 
-  const introOverlayTopSectionEl = useRef(null)
-  const introOverlayBottomSectionEl = useRef(null)
+  function debounce(fn, ms) {
+    let timer
+    return () => {
+      clearTimeout(timer)
+      timer = setTimeout(() => {
+        timer = null
+        fn.apply(this, arguments)
+      }, ms)
+    }
+  }
+// set state for viewport height and width
+  const [dimensions, setDimensions] = useState({
+    height: window.innerHeight,
+    width: window.innerWidth,
+  })
+  //  create refs so gsap can access the dom nodes
+  const introOverlayLeftSectionEl = useRef(null)
+  const introOverlayRightSectionEl = useRef(null)
+
+  useEffect(() => {
+    // makes 100vh work properly on modern mobile browsers. Fallsback to 100vh on older browsers
+    const vh = dimensions.height * 0.01
+    document.documentElement.style.setProperty('--vh', `${vh}px`)
+
+    // updates the calculated viewport height on resize. Is passed through the debounce function to so it will only run once per second to improve performance
+    const debouncedHandleResize = debounce(function handleResize() {
+      setDimensions({
+        height: window.innerHeight,
+        width: window.innerWidth,
+      })
+    }, 1000)
+    window.addEventListener('resize', debouncedHandleResize)
+    return () => window.removeEventListener('resize', debouncedHandleResize)
+  })
 
   useEffect(() => {
     // console.log(
@@ -38,28 +70,30 @@ const Layout = ({ children }) => {
     //   introOverlayTopSectionEl.current.children
     // )
     // used to make the hero  100vh work properly on mobile devices.
-    const vh = window.innerHeight * 0.01
-    document.documentElement.style.setProperty('--vh', `${vh}px`)
 
     const tl = gsap.timeline({
-      // defaults: { duration: 1, ease: 'Power3.out' },
+      defaults: { duration: 1,  ease: 'expo.inOut', },
     })
-
-    tl.to(introOverlayTopSectionEl.current.children, 1.5, {
-      height: 0,
-      ease: 'expo.inOut',
+.to(introOverlayTopSectionEl.current.children, 1, {
+      scaleY: 0,
       stagger: 0.3,
+      transformOrigin: 'bottom left',
+    }).to(introOverlayRightSectionEl,  {
+      scaleX: 0,
+      transformOrigin: 'bottom left',
     })
-    tl.to(
-      introOverlayBottomSectionEl.current.children,
-      1.3,
-      {
-        width: 0,
-        ease: 'expo.inOut',
-        stagger: 0.3,
-      },
-      '-=0.3'
-    )
+    // tl.to(
+    //   introOverlayBottomSectionEl.current.children,
+    //   1.3,
+    //   {
+    //     width: 0,
+    //     ease: 'expo.inOut',
+    //     stagger: 0.3,
+    //   },
+    //   '-=0.3'
+    // )
+
+    // return () => removeEventListener('resize', handleResize)
   }, [])
 
   return (
