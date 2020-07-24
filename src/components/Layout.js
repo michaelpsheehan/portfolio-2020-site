@@ -15,9 +15,19 @@ import { gsap } from 'gsap'
 import { CSSRulePlugin } from 'gsap/CSSRulePlugin'
 import { ScrollToPlugin } from 'gsap/ScrollToPlugin'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import Theme from './core/Theme'
+// import useWindowSize from '../hooks/useWindowSize'
+// context
+import {
+  useGlobalDispatchContext,
+  useGlobalStateContext,
+} from '../context/globalContext'
 import IntroOverlay from './core/IntroOverlay'
 
 const Layout = ({ children }) => {
+  const { currentTheme } = useGlobalStateContext()
+
+  console.log('current theme ---', currentTheme)
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
       craft {
@@ -99,19 +109,27 @@ const Layout = ({ children }) => {
 
   return (
     <>
+      {/* <Theme theme={currentTheme}> */}
       <IntroOverlay
         leftSection={introOverlayLeftSectionEl}
         rightSection={introOverlayRightSectionEl}
       />
-      <div className="min-h-screen flex flex-col justify-between">
+      <div
+        className={`c-site-container ${
+          currentTheme === 'f-dark-ui-items'
+            ? 'f-dark-ui-items'
+            : 'f-light-ui-items'
+        }`}
+      >
         {/* <Header siteTitle={data.site.siteMetadata.title} /> */}
-        <Header />
+        <Header isHomepage={location.pathname === '/home/'} />
 
         <main className="o-main-content">{children}</main>
         <footer className="mt-16 py-16 bg-brand-blue">
           <div className="container text-white uppercase">Projects</div>
         </footer>
       </div>
+      {/* </Theme> */}
     </>
   )
 }

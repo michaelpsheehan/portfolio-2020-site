@@ -16,6 +16,7 @@ const AnimationBlock = ({ block, classes = '' }) => {
   const animationBlockEl = useRef(null)
 
   useEffect(() => {
+    console.log('animation block ===', animationBlockEl.current)
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: animationBlockEl.current,
@@ -30,7 +31,7 @@ const AnimationBlock = ({ block, classes = '' }) => {
         x: '4vw',
         opacity: 0.6,
         transformOrigin: '50% 50%',
-        ease: 'Power3.out'
+        ease: 'Power3.out',
       },
       0
     )
@@ -41,7 +42,7 @@ const AnimationBlock = ({ block, classes = '' }) => {
         x: '- 4vw',
         opacity: 0.6,
         transformOrigin: '50% 50%',
-        ease: 'Power3.out'
+        ease: 'Power3.out',
       },
       0
     )
@@ -49,7 +50,7 @@ const AnimationBlock = ({ block, classes = '' }) => {
 
   return (
     <Section
-      classes=" md:my-0 overflow-hidden "
+      classes={`md:my-0 overflow-hidden  `}
       content={
         <div
           className={`c-animation-block py-16 md:py-0 md:flex md:items-center md:h-screen  ${

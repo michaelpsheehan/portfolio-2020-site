@@ -42,6 +42,7 @@ async function createHomepage({ graphql, actions }) {
             richArticle {
               ... on Craft_richArticle_animation_BlockType {
                 id
+                backgroundColour
                 typeHandle
                 alignAnimation(label: true)
                 animationUrl
@@ -57,12 +58,14 @@ async function createHomepage({ graphql, actions }) {
                 typeHandle
                 heading
                 body
+                backgroundColour
               }
               ... on Craft_richArticle_fullWidthImage_BlockType {
                 id
                 imageCaption
                 typeHandle
                 constrainImage
+                backgroundColour
                 image(optimizedImagesFullWidth: "") {
                   ... on Craft_images_Asset {
                     id

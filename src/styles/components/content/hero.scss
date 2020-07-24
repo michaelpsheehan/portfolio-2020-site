@@ -58,9 +58,10 @@
   }
 
   &--animated-bg {
-    background: linear-gradient(122deg, #1a68af, #3490dc, #5891c4);
-    background-size: 600% 600%;
-    animation: hero-background-animation 0s ease infinite;
+    @apply bg-brand-blue;
+    // background: linear-gradient(122deg, #1a68af, #3490dc, #5891c4);
+    // background-size: 600% 600%;
+    // animation: hero-background-animation 0s ease infinite;
   }
 
   &__text-word {

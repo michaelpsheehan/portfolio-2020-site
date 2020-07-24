@@ -20,7 +20,11 @@ class Header extends Component {
 
     return (
       <>
-        <header className="c-site-head">
+        <header
+          className={`c-site-head ${
+            this.props.isHomepage ? '' : 'bg-brand-blue'
+          }`}
+        >
           <div className="c-site-head__container container">
             <div className="c-site-head__components">
               <div className="c-site-head__hamburger" onClick={this.toggle}>

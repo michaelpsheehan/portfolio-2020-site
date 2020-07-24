@@ -10,6 +10,7 @@ import RichArticle from '../components/content/rich-article/RichArticle'
 
 const HomeTemplate = (data) => {
   const { entry, siteUrl, richArticle } = data.pageContext
+  console.log('data  ==', data)
 
   return (
     <Layout>

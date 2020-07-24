@@ -1,5 +1,5 @@
 .c-site-head {
-  @apply py-12 mb-12 font-sans fixed top-0 inset-x-0 w-full z-50;
+  @apply py-12 mb-12 font-sans absolute top-0 inset-x-0 w-full z-50;
 
   @screen md {
     @apply py-16;
@@ -24,6 +24,7 @@
       border-radius: 40px;
       top: 50%;
       transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      mix-blend-mode: difference;
     }
 
     span:first-child {
@@ -64,6 +65,49 @@
           top: 50%;
           transform: translate(-50%, -50%) rotate(135deg) scale(0.6);
         }
+      }
+    }
+  }
+}
+
+// change
+//   the
+//   hamburger
+//   ui
+//   to
+//   the
+//   brand
+//   blue
+//   while
+//   over
+//   a
+//   lightbackground
+.f-dark-ui-items {
+  .c-site-head {
+    &__hamburger {
+      span {
+        @apply bg-brand-blue;
+      }
+    }
+  }
+}
+change
+  the
+  hamburger
+  ui
+  to
+  the
+  brand
+  blue
+  while
+  over
+  a
+  lightbackground
+  .f-light-ui-items {
+  .c-site-head {
+    &__hamburger {
+      span {
+        @apply bg-white;
       }
     }
   }
