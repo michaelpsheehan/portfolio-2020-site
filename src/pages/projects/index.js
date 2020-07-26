@@ -10,7 +10,7 @@ import IndexPage from '../../components/core/IndexPage'
 
 const ProjectsIndexPage = () => {
   const { projects, entry, siteUrl } = projectsIndexData()
-  console.log('projects entry  index feat entries ===', entry)
+  // console.log('projects entry  index feat entries ===', entry)
   return (
     <Layout>
       {entry && (

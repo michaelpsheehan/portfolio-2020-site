@@ -27,7 +27,6 @@ import IntroOverlay from './core/IntroOverlay'
 const Layout = ({ children }) => {
   const { currentTheme } = useGlobalStateContext()
 
-  console.log('current theme ---', currentTheme)
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
       craft {
@@ -59,19 +58,18 @@ const Layout = ({ children }) => {
   const introOverlayRightSectionEl = useRef(null)
 
   useEffect(() => {
-    // makes 100vh work properly on modern mobile browsers. Fallsback to 100vh on older browsers
-    const vh = dimensions.height * 0.01
-    document.documentElement.style.setProperty('--vh', `${vh}px`)
-
-    // updates the calculated viewport height on resize. Is passed through the debounce function to so it will only run once per second to improve performance
-    const debouncedHandleResize = debounce(function handleResize() {
-      setDimensions({
-        height: window.innerHeight,
-        width: window.innerWidth,
-      })
-    }, 1000)
-    window.addEventListener('resize', debouncedHandleResize)
-    return () => window.removeEventListener('resize', debouncedHandleResize)
+    // // makes 100vh work properly on modern mobile browsers. Fallsback to 100vh on older browsers
+    // const vh = dimensions.height * 0.01
+    // document.documentElement.style.setProperty('--vh', `${vh}px`)
+    // // updates the calculated viewport height on resize. Is passed through the debounce function to so it will only run once per second to improve performance
+    // const debouncedHandleResize = debounce(function handleResize() {
+    //   setDimensions({
+    //     height: window.innerHeight,
+    //     width: window.innerWidth,
+    //   })
+    // }, 1000)
+    // window.addEventListener('resize', debouncedHandleResize)
+    // return () => window.removeEventListener('resize', debouncedHandleResize)
   })
 
   useEffect(() => {

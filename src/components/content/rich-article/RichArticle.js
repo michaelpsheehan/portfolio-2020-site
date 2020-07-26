@@ -33,10 +33,6 @@ class RichArticle extends Component {
   }
 
   componentDidMount() {
-    console.log('CONTEXT  =', this.context)
-    console.log('CONTEXT  =', this.context)
-    console.log('this state  =', this.state)
-    console.log('this  =', this)
     // console.log('this state  =', this.)
     // console.log('CONTEXT  =', this.GlobalStateContext)
     // const dispatch = useGlobalDispatchContext()
@@ -49,46 +45,45 @@ class RichArticle extends Component {
         trigger: this.richArticleBlockEl,
         start: 'top 100px',
         end: 'bottom 100px',
-        onEnter: ({ progress, direction, isActive }) =>
-          //  {
-          // trigger = this.richArticleBlockEl.curre
+        // onEnter: ({ progress, direction, isActive }) =>
+        //   //  {
+        //   // trigger = this.richArticleBlockEl.curre
 
-          console.log('TRIGGER is ---', this.richArticleBlockEl),
-        // this.context({ type: 'TOGGLE_THEME', theme: 'light-ui-items' })
-        // dispatch({ type: "TOGGLE_THEME", theme: "light" })
-        // console.log(
-        //   progress,
-        //   direction,
-        //   isActive,
-        //   'onEnter richArticle -- UI WHITE---',
-        //   this.richArticleBlockEl.current
-        // ),
-        // },
-        onLeave: ({ progress, direction, isActive }) =>
-          // this.context({ type: 'TOGGLE_THEME', theme: 'dark-ui-items' }),
-          console.log(
-            progress,
-            direction,
-            isActive,
-            'default ui',
-            this.richArticleBlockEl.current
-          ),
-        onEnterBack: ({ progress, direction, isActive }) =>
-          console.log(
-            progress,
-            direction,
-            isActive,
-            'WHITE UI again',
-            this.richArticleBlockEl.current
-          ),
-        onLeaveBack: ({ progress, direction, isActive }) =>
-          console.log(
-            progress,
-            direction,
-            isActive,
-            'back to start',
-            this.richArticleBlockEl.current
-          ),
+        // // this.context({ type: 'TOGGLE_THEME', theme: 'light-ui-items' })
+        // // dispatch({ type: "TOGGLE_THEME", theme: "light" })
+        // // console.log(
+        // //   progress,
+        // //   direction,
+        // //   isActive,
+        // //   'onEnter richArticle -- UI WHITE---',
+        // //   this.richArticleBlockEl.current
+        // // ),
+        // // },
+        // onLeave: ({ progress, direction, isActive }) =>
+        //   // this.context({ type: 'TOGGLE_THEME', theme: 'dark-ui-items' }),
+        //   console.log(
+        //     progress,
+        //     direction,
+        //     isActive,
+        //     'default ui',
+        //     this.richArticleBlockEl.current
+        //   ),
+        // onEnterBack: ({ progress, direction, isActive }) =>
+        //   console.log(
+        //     progress,
+        //     direction,
+        //     isActive,
+        //     'WHITE UI again',
+        //     this.richArticleBlockEl.current
+        //   ),
+        // onLeaveBack: ({ progress, direction, isActive }) =>
+        //   console.log(
+        //     progress,
+        //     direction,
+        //     isActive,
+        //     'back to start',
+        //     this.richArticleBlockEl.current
+        //   ),
 
         // markers: { startColor: 'green', endColor: 'red', fontSize: '12px' },
         // scrub: 0.5,
@@ -111,7 +106,7 @@ class RichArticle extends Component {
   }
 
   render() {
-    console.log('this.props')
+    // console.log('this.props')
     const { richArticle, classes = '' } = this.props
 
     return richArticle ? (

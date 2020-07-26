@@ -1,9 +1,21 @@
 // import PropTypes from 'prop-types'
 import React, { Component } from 'react'
-import NavBurger from './NavBurger'
+import { gsap } from 'gsap'
+import { CSSRulePlugin } from 'gsap/CSSRulePlugin'
+import { ScrollToPlugin } from 'gsap/ScrollToPlugin'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Menu from './Menu'
+import NavBurger from './NavBurger'
+
+gsap.registerPlugin(CSSRulePlugin, ScrollToPlugin, ScrollTrigger)
 
 class Header extends Component {
+  constructor() {
+    super()
+
+    this.menuItemEls = null
+  }
+
   state = {
     toggle: false,
   }
@@ -31,7 +43,7 @@ class Header extends Component {
                 <NavBurger isToggled={isToggled} />
               </div>
               <Menu isToggled={isToggled} />
-              <div className=" header navbar" />
+              {/* <div className=" header navbar" /> */}
             </div>
           </div>
         </header>

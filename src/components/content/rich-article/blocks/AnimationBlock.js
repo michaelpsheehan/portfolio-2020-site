@@ -16,7 +16,7 @@ const AnimationBlock = ({ block, classes = '' }) => {
   const animationBlockEl = useRef(null)
 
   useEffect(() => {
-    console.log('animation block ===', animationBlockEl.current)
+    // console.log('animation block ===', animationBlockEl.current)
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: animationBlockEl.current,

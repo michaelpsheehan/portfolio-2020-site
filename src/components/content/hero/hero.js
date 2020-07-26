@@ -52,8 +52,6 @@ const Hero = ({ heroMediaContent, heroContent, classes = '' }) => {
 
   useEffect(() => {
     // console.log('created refs ==', createRefs)
-    console.log('hero lines ref el==  ', heroTextLineEls)
-    console.log('hero lines ref el current ==  ', heroTextLineEls.current)
     // console.log('ref array ==', refArray)
     // refArray.current.map((el) => console.log('el =>', el.current))
     const tl = gsap.timeline({
