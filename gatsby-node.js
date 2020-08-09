@@ -112,8 +112,10 @@ async function createHomepage({ graphql, actions }) {
     ).then((result) => result)
 
     await actions.createPage({
-      path: '/home',
+      // path: '/home',
+      path: '/',
       component: require.resolve('./src/pages/HomeTemplate.js'),
+      // component: require.resolve('./src/pages/index.js'),
       context: {
         siteUrl,
         entry: entry ? entry[0] : null,

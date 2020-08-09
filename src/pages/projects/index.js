@@ -12,7 +12,8 @@ const ProjectsIndexPage = () => {
   const { projects, entry, siteUrl } = projectsIndexData()
   // console.log('projects entry  index feat entries ===', entry)
   return (
-    <Layout>
+    <>
+      {/* // <Layout> */}
       {entry && (
         <>
           <SEO title={entry.title ? entry.title : ''} />
@@ -40,7 +41,8 @@ const ProjectsIndexPage = () => {
         featuredEntries={entry.featuredProjects}
         allEntries={projects}
       />
-    </Layout>
+      {/* </Layout> */}
+    </>
   )
 }
 

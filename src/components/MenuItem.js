@@ -1,13 +1,19 @@
 import React from 'react'
+import AniLink from 'gatsby-plugin-transition-link/AniLink'
+import TransitionLink from 'gatsby-plugin-transition-link'
 
 import { Link } from 'gatsby'
 
 const MenuItem = ({ name, link, forwardedRef }) => (
-  <div ref={forwardedRef}>
-    <Link activeClassName="active-menu-item" to={link}>
-      <li className="c-primary-nav__list-item"> {name}</li>
-    </Link>
-  </div>
+  <li className="c-primary-nav__list-item">
+    <span className="block overflow-hidden">
+      <span className="block" ref={forwardedRef}>
+        <AniLink activeClassName="active-menu-item" paintDrip to={link}>
+          {name}
+        </AniLink>
+      </span>
+    </span>
+  </li>
 )
 
 export default MenuItem

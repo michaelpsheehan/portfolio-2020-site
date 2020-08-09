@@ -18,14 +18,14 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Theme from './core/Theme'
 // import useWindowSize from '../hooks/useWindowSize'
 // context
-import {
-  useGlobalDispatchContext,
-  useGlobalStateContext,
-} from '../context/globalContext'
+// import {
+//   useGlobalDispatchContext,
+//   useGlobalStateContext,
+// } from '../context/globalContext'
 import IntroOverlay from './core/IntroOverlay'
 
 const Layout = ({ children }) => {
-  const { currentTheme } = useGlobalStateContext()
+  // const { currentTheme } = useGlobalStateContext()
 
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
@@ -49,10 +49,10 @@ const Layout = ({ children }) => {
     }
   }
   // set state for viewport height and width
-  const [dimensions, setDimensions] = useState({
-    height: window.innerHeight,
-    width: window.innerWidth,
-  })
+  // const [dimensions, setDimensions] = useState({
+  //   height: window.innerHeight,
+  //   width: window.innerWidth,
+  // })
   //  create refs so gsap can access the dom nodes
   const introOverlayLeftSectionEl = useRef(null)
   const introOverlayRightSectionEl = useRef(null)
@@ -113,14 +113,18 @@ const Layout = ({ children }) => {
         rightSection={introOverlayRightSectionEl}
       />
       <div
-        className={`c-site-container ${
-          currentTheme === 'f-dark-ui-items'
-            ? 'f-dark-ui-items'
-            : 'f-light-ui-items'
-        }`}
+        className={`c-site-container `}
+        /// / ${
+        // //   currentTheme === 'f-dark-ui-items'
+        // //     ? 'f-dark-ui-items'
+        // //     : 'f-light-ui-items'
+        // // }
+
+        // `}
       >
         {/* <Header siteTitle={data.site.siteMetadata.title} /> */}
-        <Header isHomepage={location.pathname === '/home/'} />
+        {/* <Header isHomepage={location.pathname === '/home/'} /> */}
+        <Header isHomepage={false} />
 
         <main className="o-main-content">{children}</main>
         <footer className="mt-16 py-16 bg-brand-blue">

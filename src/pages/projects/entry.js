@@ -40,7 +40,8 @@ const pageTemplate = ({ data }) => {
       </div>
     )
   return (
-    <Layout>
+    // <Layout>
+    <>
       {title && (
         <>
           <SEO title={title || ''} />
@@ -77,7 +78,8 @@ const pageTemplate = ({ data }) => {
       {richArticle && (
         <RichArticle richArticle={richArticle} siteUrl={siteUrl} />
       )}
-    </Layout>
+      {/* </Layout> */}
+    </>
   )
 }
 

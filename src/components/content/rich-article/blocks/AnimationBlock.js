@@ -29,7 +29,7 @@ const AnimationBlock = ({ block, classes = '' }) => {
       0.5,
       {
         x: '4vw',
-        opacity: 0.6,
+        // opacity: 0.6,
         transformOrigin: '50% 50%',
         ease: 'Power3.out',
       },
@@ -40,7 +40,7 @@ const AnimationBlock = ({ block, classes = '' }) => {
       0.9,
       {
         x: '- 4vw',
-        opacity: 0.6,
+        // opacity: 0.6,
         transformOrigin: '50% 50%',
         ease: 'Power3.out',
       },

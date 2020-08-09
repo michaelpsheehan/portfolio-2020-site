@@ -1,7 +1,12 @@
-.c-intro-overlay {
-  @apply pointer-events-none  absolute flex w-screen h-screen overflow-hidden;
+// .c-page-transition {
+//   border: 10px solid green;
+// }
+
+.c-page-transition {
+  @apply pointer-events-none  fixed flex w-screen h-screen overflow-hidden bg-brand-light-blue;
   // border: 9px solid green;
-  // z-index: 999999999999;
+  background-color: yellow;
+  z-index: 99999999999999999;
   &__left {
     &-section {
       @apply w-1/2 z-50 h-full;
@@ -10,7 +15,7 @@
 
     &-item {
       // @apply h-full w-1/3 top-0 bg-brand-light-blue;
-      @apply h-full w-1/3 top-0 bg-brand-light-blue;
+      @apply h-full w-1/3 top-0 bg-white;
       transform: scaleY(1);
 
       &:nth-child(2) {
@@ -25,7 +30,7 @@
     height: calc(var(--vh, 1vh) * 100);
 
     .c-intro-overlay__right-item {
-      @apply h-full bg-brand-light-blue;
+      @apply h-full bg-white;
     }
   }
 }

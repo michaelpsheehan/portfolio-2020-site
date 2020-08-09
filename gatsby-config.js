@@ -34,12 +34,12 @@ module.exports = {
         path: `${__dirname}/src`,
       },
     },
-    // {
-    //   resolve: 'gatsby-plugin-transition-link',
-    //   options: {
-    //     layout: require.resolve(`./src/components/Layout.js`),
-    //   },
-    // },
+    {
+      resolve: 'gatsby-plugin-transition-link',
+      options: {
+        layout: require.resolve(`./src/components/Layout.js`),
+      },
+    },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {

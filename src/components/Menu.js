@@ -1,7 +1,4 @@
-import React, {
-  Component,
-  createRef,
-} from 'react'
+import React, { Component, createRef } from 'react'
 import { gsap } from 'gsap'
 import { CSSRulePlugin } from 'gsap/CSSRulePlugin'
 import { ScrollToPlugin } from 'gsap/ScrollToPlugin'
@@ -24,7 +21,7 @@ class Menu extends Component {
   }
 
   componentDidMount() {
-    this.tl = gsap.timeline(
+    this.tl = gsap.timeline()
   }
 
   componentDidUpdate() {
@@ -53,13 +50,14 @@ class Menu extends Component {
         >
           <ul className="c-primary-nav__list " ref={this.menuEl}>
             {this.links.map((item, index) => (
-              <span className=" overflow-hidden" key={item.id}>
-                <MenuItem
-                  name={item.name}
-                  link={item.link}
-                  forwardedRef={(el) => (this.menuItemEls[index] = el)}
-                />{' '}
-              </span>
+              // <span className=" overflow-hidden" key={item.id}>
+              <MenuItem
+                key={item.id}
+                name={item.name}
+                link={item.link}
+                forwardedRef={(el) => (this.menuItemEls[index] = el)}
+              />
+              // </span>
             ))}
           </ul>
         </div>

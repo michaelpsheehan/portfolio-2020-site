@@ -1,5 +1,7 @@
 import React from 'react'
 import { Link } from 'gatsby'
+import AniLink from 'gatsby-plugin-transition-link/AniLink'
+
 // import AniLink from 'gatsby-plugin-transition-link/AniLink'
 
 const Button = ({
@@ -34,10 +36,21 @@ const Button = ({
       //   to={url}
       //   bg="#1a68af"
       // >
-      <Link to={url} className={buttonClasses}>
+
+      <AniLink
+        // duration="0.3"
+        className={buttonClasses}
+        // cover
+        paintDrip
+        direction="right"
+        exit="cover"
+        // hex="#5891C4"
+        hex="#e3342f"
+        // hex="#1A68AF"
+        to={url}
+      >
         {text}
-      </Link>
-      // </AniLink>
+      </AniLink>
     )
   }
 
