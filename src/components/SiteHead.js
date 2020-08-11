@@ -7,6 +7,11 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import PrimaryNav from './PrimaryNav'
 import NavBurger from './NavBurger'
 
+import {
+  GlobalStateContext,
+  GlobalDispatchContext,
+} from '../context/globalContext'
+
 gsap.registerPlugin(CSSRulePlugin, ScrollToPlugin, ScrollTrigger)
 
 class SiteHead extends Component {
@@ -39,7 +44,16 @@ class SiteHead extends Component {
         >
           <div className="c-site-head__container container">
             <div className="c-site-head__components">
-              <div className="p-4 bg-black text-white">class toggle</div>
+              <GlobalStateContext.Consumer>
+                {(globalState) => {
+                  console.log(globalState)
+                  return (
+                    <div className="p-4 bg-black text-white">
+                      class toggle --- {globalState.currentTheme}
+                    </div>
+                  )
+                }}
+              </GlobalStateContext.Consumer>
 
               <div
                 className="c-site-head__hamburger"
