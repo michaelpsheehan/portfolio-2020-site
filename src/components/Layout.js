@@ -18,14 +18,15 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Theme from './core/Theme'
 // import useWindowSize from '../hooks/useWindowSize'
 // context
-// import {
-//   useGlobalDispatchContext,
-//   useGlobalStateContext,
-// } from '../context/globalContext'
+import {
+  useGlobalDispatchContext,
+  useGlobalStateContext,
+} from '../context/globalContext'
 import IntroOverlay from './core/IntroOverlay'
 
 const Layout = ({ children }) => {
-  // const { currentTheme } = useGlobalStateContext()
+  const { currentTheme } = useGlobalStateContext()
+  console.log('current theme in layout ===', currentTheme)
 
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
@@ -113,14 +114,10 @@ const Layout = ({ children }) => {
         rightSection={introOverlayRightSectionEl}
       />
       <div
-        className={`c-site-container `}
-        /// / ${
-        // //   currentTheme === 'f-dark-ui-items'
-        // //     ? 'f-dark-ui-items'
-        // //     : 'f-light-ui-items'
-        // // }
-
-        // `}
+        className={`c-site-container  
+      ${currentTheme === 'dark-ui-items' ? 'bg-black text-white' : ''}
+      
+      `}
       >
         {/* <Header siteTitle={data.site.siteMetadata.title} /> */}
         {/* <Header isHomepage={location.pathname === '/home/'} /> */}

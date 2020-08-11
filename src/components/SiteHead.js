@@ -39,7 +39,12 @@ class SiteHead extends Component {
         >
           <div className="c-site-head__container container">
             <div className="c-site-head__components">
-              <div className="c-site-head__hamburger" onClick={this.toggleOverlay}>
+              <div className="p-4 bg-black text-white">class toggle</div>
+
+              <div
+                className="c-site-head__hamburger"
+                onClick={this.toggleOverlay}
+              >
                 <NavBurger isToggled={isToggled} />
               </div>
               <PrimaryNav isToggled={isToggled} />

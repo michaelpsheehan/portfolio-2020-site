@@ -8,7 +8,7 @@ export const GlobalDispatchContext = createContext()
 
 const globalReducer = (state, action) => {
   switch (action.type) {
-    case 'TOGGLE_THEME': {
+    case 'CHANGE_THEME': {
       // console.log('context current theme ===', action.theme)
       return {
         ...state,
