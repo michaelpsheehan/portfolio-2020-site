@@ -9,18 +9,13 @@
   &__list {
     @apply flex flex-col items-center justify-center h-full;
 
-    .active {
-      transition: all 3.2s;
-
-      li {
-        transition: all 0.2s;
-        border-bottom: 5px solid #ffffff;
-      }
-    }
+ 
   }
 
   &__list-item {
-    @apply uppercase text-white text-5xl my-4 mx-0 p-4 whitespace-no-wrap;
+    @apply uppercase text-white text-3xl py-2 mx-0 p-4 whitespace-no-wrap;
+
+    // the background needed to achieve the hover state. Not visible as default
     background: linear-gradient(
       120deg,
       transparent 0%,
@@ -30,9 +25,26 @@
     background-size: 240%;
     transition: all 0.2s;
 
+    @screen sm {
+      @apply text-4xl my-4;
+    }
+    @screen md {
+      @apply text-5xl my-4;
+    }
+  
     &:hover {
-      @apply text-brand-light-blue;
-      background-position: 100%;
+      @screen lg {
+        // animate the background in on hover on large screens
+        @apply text-brand-light-blue;
+        background-position: 100%;
+      }
+    }
+
+    &-link {
+
+      &.is-current-page {
+        border-bottom: 5px solid #ffffff;
+      }
     }
   }
 }

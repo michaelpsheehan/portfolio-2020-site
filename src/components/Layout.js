@@ -8,7 +8,7 @@
 import React, { useEffect, useState, useRef } from 'react'
 import PropTypes from 'prop-types'
 import { useStaticQuery, graphql } from 'gatsby'
-import Header from './Header'
+import SiteHead from './SiteHead'
 import '../styles/main.scss'
 
 import { gsap } from 'gsap'
@@ -124,7 +124,7 @@ const Layout = ({ children }) => {
       >
         {/* <Header siteTitle={data.site.siteMetadata.title} /> */}
         {/* <Header isHomepage={location.pathname === '/home/'} /> */}
-        <Header isHomepage={false} />
+        <SiteHead isHomepage={false} />
 
         <main className="o-main-content">{children}</main>
         <footer className="mt-16 py-16 bg-brand-blue">

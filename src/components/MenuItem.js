@@ -8,7 +8,7 @@ const MenuItem = ({ name, link, forwardedRef }) => (
   <li className="c-primary-nav__list-item">
     <span className="block overflow-hidden">
       <span className="block" ref={forwardedRef}>
-        <AniLink activeClassName="active-menu-item" paintDrip to={link}>
+        <AniLink className="c-primary-nav__list-item-link" activeClassName="is-current-page" paintDrip to={link}>
           {name}
         </AniLink>
       </span>

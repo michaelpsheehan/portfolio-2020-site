@@ -7,7 +7,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import MenuItem from './MenuItem'
 
 gsap.registerPlugin(CSSRulePlugin, ScrollToPlugin, ScrollTrigger)
-class Menu extends Component {
+class PrimaryNav extends Component {
   constructor() {
     super()
     this.menuEl = createRef()
@@ -50,19 +50,19 @@ class Menu extends Component {
         >
           <ul className="c-primary-nav__list " ref={this.menuEl}>
             {this.links.map((item, index) => (
-              // <span className=" overflow-hidden" key={item.id}>
               <MenuItem
                 key={item.id}
                 name={item.name}
                 link={item.link}
                 forwardedRef={(el) => (this.menuItemEls[index] = el)}
               />
-              // </span>
             ))}
           </ul>
         </div>
       </>
+
+      
     ) : null
   }
 }
-export default Menu
+export default PrimaryNav

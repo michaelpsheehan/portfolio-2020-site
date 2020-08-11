@@ -4,12 +4,12 @@ import { gsap } from 'gsap'
 import { CSSRulePlugin } from 'gsap/CSSRulePlugin'
 import { ScrollToPlugin } from 'gsap/ScrollToPlugin'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import Menu from './Menu'
+import PrimaryNav from './PrimaryNav'
 import NavBurger from './NavBurger'
 
 gsap.registerPlugin(CSSRulePlugin, ScrollToPlugin, ScrollTrigger)
 
-class Header extends Component {
+class SiteHead extends Component {
   constructor() {
     super()
 
@@ -17,18 +17,18 @@ class Header extends Component {
   }
 
   state = {
-    toggle: false,
+    toggled: false,
   }
 
-  toggle = () => {
+  toggleOverlay = () => {
     this.setState({
-      toggle: !this.state.toggle,
+      toggled: !this.state.toggled,
     })
   }
 
   render() {
     // const siteTitle = this.props
-    const isToggled = this.state.toggle
+    const isToggled = this.state.toggled
 
     return (
       <>
@@ -39,10 +39,10 @@ class Header extends Component {
         >
           <div className="c-site-head__container container">
             <div className="c-site-head__components">
-              <div className="c-site-head__hamburger" onClick={this.toggle}>
+              <div className="c-site-head__hamburger" onClick={this.toggleOverlay}>
                 <NavBurger isToggled={isToggled} />
               </div>
-              <Menu isToggled={isToggled} />
+              <PrimaryNav isToggled={isToggled} />
               {/* <div className=" header navbar" /> */}
             </div>
           </div>
@@ -59,4 +59,4 @@ class Header extends Component {
 //   siteTitle: ``,
 // }
 
-export default Header
+export default SiteHead
