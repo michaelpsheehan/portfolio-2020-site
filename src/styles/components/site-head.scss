@@ -14,17 +14,17 @@
   }
 
   &__hamburger {
-    @apply absolute z-20 right-0 h-12 w-12;
+    @apply absolute z-20 right-0 h-12 w-12 cursor-pointer;
     @screen md {
       @apply h-16 w-16;
     }
 
     span {
-      @apply block absolute w-full bg-white opacity-100 right-0 z-50 h-1 translate-x-0 translate-y-1/2;
+      @apply block absolute w-full bg-white opacity-100 right-0 z-50 h-1 translate-x-0 translate-y-1/2 cursor-pointer;
       border-radius: 40px;
       top: 50%;
       transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-      mix-blend-mode: difference;
+      // mix-blend-mode: difference;
     }
 
     span:first-child {

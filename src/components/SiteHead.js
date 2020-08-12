@@ -1,77 +1,48 @@
 // import PropTypes from 'prop-types'
-import React, { Component } from 'react'
-import { gsap } from 'gsap'
-import { CSSRulePlugin } from 'gsap/CSSRulePlugin'
-import { ScrollToPlugin } from 'gsap/ScrollToPlugin'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import React from 'react'
 import PrimaryNav from './PrimaryNav'
-import NavBurger from './NavBurger'
-import changeTheme from './utilities/changeTheme'
+import SiteHeadBurger from './SiteHeadBurger'
 import {
-  GlobalStateContext,
-  GlobalDispatchContext,
+  useGlobalStateContext,
+  useGlobalDispatchContext,
 } from '../context/globalContext'
 
-gsap.registerPlugin(CSSRulePlugin, ScrollToPlugin, ScrollTrigger)
+import ThemeButton from './ThemeButton'
 
-class SiteHead extends Component {
-  constructor() {
-    super()
+const SiteHead = () => {
+  const dispatch = useGlobalDispatchContext()
+  const { overlayStatus } = useGlobalStateContext()
 
-    this.menuItemEls = null
+
+ const toggleOverlay = () => {
+    if(overlayStatus === 'open') {
+      dispatch({
+        type: 'CHANGE_OVERLAY',
+        newStatus: 'closed',
+      }) }
+      else {
+        dispatch({
+          type: 'CHANGE_OVERLAY',
+          newStatus: 'open',
+        })
+      }
   }
 
-  state = { 
-      toggled: !this.state.toggled,
-    })
-  }
-
-  render() {
-    // const siteTitle = this.props
-    const isToggled = this.state.toggled
+    const isOverlayOpen = overlayStatus === 'open' ? true : false
 
     return (
       <>
-        <header
-          className={`c-site-head fixed `}
-          // //${
-          //   this.props.isHomepage ? '' : 'bg-brand-blue'
-          // }
-          
-          // `}
-        >
+        <header className={`c-site-head fixed `}>
           <div className="c-site-head__container container">
             <div className="c-site-head__components">
-              <GlobalStateContext.Consumer>
-                {(globalState) => (
-                  <GlobalDispatchContext.Consumer>
-                    {(dispatch) => {
-                      const { currentTheme } = globalState
-                      return (
-                        <div
-                          className="p-4 bg-brand-red text-white"
-                          onClick={() => changeTheme(currentTheme, dispatch)}
-                        >
-                          {currentTheme}
-                        </div>
-                      )
-                    }}
-                  </GlobalDispatchContext.Consumer>
-                )}
-              </GlobalStateContext.Consumer>
-              <div
-                className="c-site-head__hamburger"
-                onClick={this.toggleOverlay}
-              >
-                <NavBurger isToggled={isToggled} />
+              <ThemeButton />
+                <SiteHeadBurger overlayStatus={overlayStatus} toggleOverlay={toggleOverlay} />
               </div>
-              <PrimaryNav isToggled={isToggled} />
+              <PrimaryNav isOverlayOpen={isOverlayOpen} />
             </div>
-          </div>
         </header>
       </>
     )
-  }
 }
 
 export default SiteHead

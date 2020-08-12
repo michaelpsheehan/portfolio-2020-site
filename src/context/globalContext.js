@@ -9,10 +9,16 @@ export const GlobalDispatchContext = createContext()
 const globalReducer = (state, action) => {
   switch (action.type) {
     case 'CHANGE_THEME': {
-      // console.log('context current theme ===', action.theme)
       return {
         ...state,
         currentTheme: action.theme,
+      }
+    }
+    case 'CHANGE_OVERLAY': {
+      // console.log('context current theme ===', action.theme)
+      return {
+        ...state,
+        overlayStatus: action.newStatus,
       }
     }
     default: {
@@ -24,6 +30,7 @@ const globalReducer = (state, action) => {
 export const GlobalProvider = ({ children }) => {
   const [state, dispatch] = useReducer(globalReducer, {
     currentTheme: 'light-ui-items',
+    overlayStatus: 'closed'
   })
 
   return (

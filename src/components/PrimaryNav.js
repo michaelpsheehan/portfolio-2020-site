@@ -25,7 +25,7 @@ class PrimaryNav extends Component {
   }
 
   componentDidUpdate() {
-    if (this.props.isToggled === true) {
+    if (this.props.isOverlayOpen === true) {
       this.tl.from(this.menuItemEls, {
         duration: 0.8,
         y: 140,
@@ -39,13 +39,13 @@ class PrimaryNav extends Component {
   }
 
   render() {
-    const { isToggled } = this.props
+    const { isOverlayOpen } = this.props
 
-    return isToggled ? (
+    return isOverlayOpen ? (
       <>
         <div
           className={`c-primary-nav__background ${
-            isToggled ? 'c-primary-nav__background--open' : ''
+            isOverlayOpen ? 'c-primary-nav__background--open' : ''
           } `}
         >
           <ul className="c-primary-nav__list " ref={this.menuEl}>
