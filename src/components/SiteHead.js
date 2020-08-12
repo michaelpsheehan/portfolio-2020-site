@@ -45,16 +45,33 @@ class SiteHead extends Component {
           <div className="c-site-head__container container">
             <div className="c-site-head__components">
               <GlobalStateContext.Consumer>
-                {(globalState) => {
-                  console.log(globalState)
-                  return (
-                    <div className="p-4 bg-black text-white">
-                      class toggle --- {globalState.currentTheme}
-                    </div>
-                  )
-                }}
+                {(globalState) => (
+                  <GlobalDispatchContext.Consumer>
+                    {(dispatch) => (
+                      <div
+                        className="p-4 bg-brand-red text-white"
+                        onClick={() => {
+                          console.log('GLOBAL STATE ==', globalState)
+                          const { currentTheme } = globalState
+                          if (currentTheme === 'dark-ui-items') {
+                            dispatch({
+                              type: 'CHANGE_THEME',
+                              theme: 'light-ui-items',
+                            })
+                          } else {
+                            dispatch({
+                              type: 'CHANGE_THEME',
+                              theme: 'dark-ui-items',
+                            })
+                          }
+                        }}
+                      >
+                        {globalState.currentTheme}
+                      </div>
+                    )}
+                  </GlobalDispatchContext.Consumer>
+                )}
               </GlobalStateContext.Consumer>
-
               <div
                 className="c-site-head__hamburger"
                 onClick={this.toggleOverlay}
@@ -62,7 +79,6 @@ class SiteHead extends Component {
                 <NavBurger isToggled={isToggled} />
               </div>
               <PrimaryNav isToggled={isToggled} />
-              {/* <div className=" header navbar" /> */}
             </div>
           </div>
         </header>
@@ -70,12 +86,5 @@ class SiteHead extends Component {
     )
   }
 }
-// Header.propTypes = {
-// siteTitle: PropTypes.string,
-// }
-
-// Header.defaultProps = {
-//   siteTitle: ``,
-// }
 
 export default SiteHead
