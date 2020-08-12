@@ -21,12 +21,7 @@ class SiteHead extends Component {
     this.menuItemEls = null
   }
 
-  state = {
-    toggled: false,
-  }
-
-  toggleOverlay = () => {
-    this.setState({
+  state = { 
       toggled: !this.state.toggled,
     })
   }
@@ -38,9 +33,12 @@ class SiteHead extends Component {
     return (
       <>
         <header
-          className={`c-site-head ${
-            this.props.isHomepage ? '' : 'bg-brand-blue'
-          }`}
+          className={`c-site-head fixed `}
+          // //${
+          //   this.props.isHomepage ? '' : 'bg-brand-blue'
+          // }
+          
+          // `}
         >
           <div className="c-site-head__container container">
             <div className="c-site-head__components">

@@ -23,7 +23,9 @@
       #ffffff 50%
     );
     background-size: 240%;
-    transition: all 0.2s;
+    transition: all 0.2s ;
+    // cubic-bezier(.6, -0.5,.1,.99);
+    // 
 
     @screen sm {
       @apply text-4xl my-4;

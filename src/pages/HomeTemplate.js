@@ -1,21 +1,55 @@
-import React from 'react'
+import React, {useRef, useEffect, useState} from 'react'
 import { Link } from 'gatsby'
 import Section from '../components/core/Section'
-import Layout from '../components/Layout'
 import SEO from '../components/Seo'
 import Hero from '../components/content/hero/hero'
 import HeroNew from '../components/content/hero/HeroNew'
 import Image from '../components/core/Image'
 import RichArticle from '../components/content/rich-article/RichArticle'
+import IntroOverlay from '../components/core/IntroOverlay'
+import { gsap } from 'gsap'
+
+// set gsap timeline defaults
+const tl = gsap.timeline({
+  defaults: { duration: 1, ease: 'expo.inOut' },
+})
+
+const introOverlayAnimation = (leftSection,rightSection, completeAnimation) => {
+  tl.to(leftSection.children, 1, {
+    scaleY: 0,
+    stagger: 0.3,
+    transformOrigin: 'bottom left',
+  })
+  tl.to(rightSection, {
+    scaleX: 0,
+    transformOrigin: 'bottom right',
+    onComplete: completeAnimation
+  })
+}
 
 const HomeTemplate = (data) => {
   const { entry, siteUrl, richArticle } = data.pageContext
-  // console.log('data  ==', data)
+  const [animationComplete, setAnimationComplete] = useState(false)
+  const introOverlayLeftSectionEl = useRef(null)
+  const introOverlayRightSectionEl = useRef(null)
+
+  const completeAnimation = () => {
+    setAnimationComplete(true)
+  }
+
+  useEffect(() => {
+    // create and start intro overlay animation timeline
+    introOverlayAnimation(introOverlayLeftSectionEl.current, introOverlayRightSectionEl.current, completeAnimation)
+  }, [])
 
   return (
-    // <Layout>
     <>
       {entry && <SEO title={entry.title} />}
+      {animationComplete === false ?  <IntroOverlay
+        leftSection={introOverlayLeftSectionEl}
+        rightSection={introOverlayRightSectionEl}
+      />  : '' }
+     
       {entry && (
         <HeroNew
           classes="c-hero--dark-bg c-hero--animated-bg"
@@ -34,7 +68,6 @@ const HomeTemplate = (data) => {
       )}
       {richArticle && <RichArticle richArticle={richArticle} />}
     </>
-    // </Layout>
   )
 }
 

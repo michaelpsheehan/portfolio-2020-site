@@ -1,5 +1,5 @@
 .c-site-head {
-  @apply py-12 mb-12 font-sans absolute top-0 inset-x-0 w-full z-50;
+  @apply py-12 mb-12 font-sans fixed top-0 inset-x-0 w-full z-50;
 
   @screen md {
     @apply py-16;

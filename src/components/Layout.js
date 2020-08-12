@@ -16,7 +16,7 @@ import { CSSRulePlugin } from 'gsap/CSSRulePlugin'
 import { ScrollToPlugin } from 'gsap/ScrollToPlugin'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Theme from './core/Theme'
-// import useWindowSize from '../hooks/useWindowSize'
+import useWindowSize from '../hooks/useWindowSize'
 // context
 import {
   useGlobalDispatchContext,
@@ -28,17 +28,18 @@ const Layout = ({ children }) => {
   const { currentTheme } = useGlobalStateContext()
   console.log('current theme in layout ===', currentTheme)
 
-  const data = useStaticQuery(graphql`
-    query SiteTitleQuery {
-      craft {
-        entries(section: "homepage") {
-          title
-          id
-        }
-      }
-    }
-  `)
+  // const data = useStaticQuery(graphql`
+  //   query SiteTitleQuery {
+  //     craft {
+  //       entries(section: "homepage") {
+  //         title
+  //         id
+  //       }
+  //     }
+  //   }
+  // `)
 
+const siteContainerEl = useRef(null)
   function debounce(fn, ms) {
     let timer
     return () => {
@@ -55,10 +56,17 @@ const Layout = ({ children }) => {
   //   width: window.innerWidth,
   // })
   //  create refs so gsap can access the dom nodes
-  const introOverlayLeftSectionEl = useRef(null)
-  const introOverlayRightSectionEl = useRef(null)
+  // const introOverlayLeftSectionEl = useRef(null)
+  // const introOverlayRightSectionEl = useRef(null)
 
   useEffect(() => {
+    
+    const tl = gsap.timeline()
+    // stops body flashing from happening
+    tl.set(siteContainerEl.current, { css: { visibility: 'visible' } })
+
+    // const currentWindowSize = useWindowSize()
+    // console.log('current window size in use effect is --', currentWindowSize)
     // // makes 100vh work properly on modern mobile browsers. Fallsback to 100vh on older browsers
     // const vh = dimensions.height * 0.01
     // document.documentElement.style.setProperty('--vh', `${vh}px`)
@@ -71,64 +79,26 @@ const Layout = ({ children }) => {
     // }, 1000)
     // window.addEventListener('resize', debouncedHandleResize)
     // return () => window.removeEventListener('resize', debouncedHandleResize)
-  })
-
-  useEffect(() => {
-    // console.log(
-    //   'intro overlay ref ==',
-    //   introOverlayTopSectionEl.current.children
-    // )
-    // used to make the hero  100vh work properly on mobile devices.
-
-    const tl = gsap.timeline({
-      defaults: { duration: 1, ease: 'expo.inOut' },
-    })
-    tl.to(introOverlayLeftSectionEl.current.children, 1, {
-      scaleY: 0,
-      stagger: 0.3,
-      transformOrigin: 'bottom left',
-    })
-    tl.to(introOverlayRightSectionEl.current, {
-      scaleX: 0,
-      transformOrigin: 'bottom right',
-    })
-    // tl.to(
-    //   introOverlayBottomSectionEl.current.children,
-    //   1.3,
-    //   {
-    //     width: 0,
-    //     ease: 'expo.inOut',
-    //     stagger: 0.3,
-    //   },
-    //   '-=0.3'
-    // )
-
-    // return () => removeEventListener('resize', handleResize)
-  }, [])
+  },[])
 
   return (
     <>
-      {/* <Theme theme={currentTheme}> */}
-      <IntroOverlay
-        leftSection={introOverlayLeftSectionEl}
-        rightSection={introOverlayRightSectionEl}
-      />
+    
       <div
         className={`c-site-container  
       ${currentTheme === 'dark-ui-items' ? 'bg-black text-white' : ''}
       
       `}
-      >
+     
+     ref={siteContainerEl}
+     >
         {/* <Header siteTitle={data.site.siteMetadata.title} /> */}
-        {/* <Header isHomepage={location.pathname === '/home/'} /> */}
         <SiteHead isHomepage={false} />
-
         <main className="o-main-content">{children}</main>
         <footer className="mt-16 py-16 bg-brand-blue">
           <div className="container text-white uppercase">Projects</div>
         </footer>
       </div>
-      {/* </Theme> */}
     </>
   )
 }
