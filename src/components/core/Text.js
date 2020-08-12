@@ -4,18 +4,11 @@ import {
   useGlobalDispatchContext,
 } from '../../context/globalContext'
 
+import changeTheme from '../utilities/changeTheme'
+
 const Text = ({ heading, body, classes = '' }) => {
   const dispatch = useGlobalDispatchContext()
   const { currentTheme } = useGlobalStateContext()
-
-  const toggleTheme = (themeToUpdate) => {
-    console.log('the theme to update in the dispatch --- ', themeToUpdate)
-    if (currentTheme === 'dark-ui-items') {
-      dispatch({ type: 'CHANGE_THEME', theme: 'light-ui-items' })
-    } else {
-      dispatch({ type: 'CHANGE_THEME', theme: 'dark-ui-items' })
-    }
-  }
 
   return (
     <div className={`c-text ${classes}`}>
@@ -23,8 +16,7 @@ const Text = ({ heading, body, classes = '' }) => {
       <div className="c-text__body">{body}</div>
       <div
         className="p-4 bg-black text-white"
-        onClick={toggleTheme}
-        // onKeyDown={toggleTheme}
+        onClick={() => changeTheme(currentTheme, dispatch)}
       >
         func toggle
       </div>

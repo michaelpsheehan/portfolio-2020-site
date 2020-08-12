@@ -6,7 +6,7 @@ import { ScrollToPlugin } from 'gsap/ScrollToPlugin'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import PrimaryNav from './PrimaryNav'
 import NavBurger from './NavBurger'
-
+import changeTheme from './utilities/changeTheme'
 import {
   GlobalStateContext,
   GlobalDispatchContext,
@@ -47,28 +47,17 @@ class SiteHead extends Component {
               <GlobalStateContext.Consumer>
                 {(globalState) => (
                   <GlobalDispatchContext.Consumer>
-                    {(dispatch) => (
-                      <div
-                        className="p-4 bg-brand-red text-white"
-                        onClick={() => {
-                          console.log('GLOBAL STATE ==', globalState)
-                          const { currentTheme } = globalState
-                          if (currentTheme === 'dark-ui-items') {
-                            dispatch({
-                              type: 'CHANGE_THEME',
-                              theme: 'light-ui-items',
-                            })
-                          } else {
-                            dispatch({
-                              type: 'CHANGE_THEME',
-                              theme: 'dark-ui-items',
-                            })
-                          }
-                        }}
-                      >
-                        {globalState.currentTheme}
-                      </div>
-                    )}
+                    {(dispatch) => {
+                      const { currentTheme } = globalState
+                      return (
+                        <div
+                          className="p-4 bg-brand-red text-white"
+                          onClick={() => changeTheme(currentTheme, dispatch)}
+                        >
+                          {currentTheme}
+                        </div>
+                      )
+                    }}
                   </GlobalDispatchContext.Consumer>
                 )}
               </GlobalStateContext.Consumer>
