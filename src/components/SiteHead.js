@@ -13,36 +13,37 @@ const SiteHead = () => {
   const dispatch = useGlobalDispatchContext()
   const { overlayStatus } = useGlobalStateContext()
 
-
- const toggleOverlay = () => {
-    if(overlayStatus === 'open') {
+  const toggleOverlay = () => {
+    if (overlayStatus === 'open') {
       dispatch({
         type: 'CHANGE_OVERLAY',
         newStatus: 'closed',
-      }) }
-      else {
-        dispatch({
-          type: 'CHANGE_OVERLAY',
-          newStatus: 'open',
-        })
-      }
+      })
+    } else {
+      dispatch({
+        type: 'CHANGE_OVERLAY',
+        newStatus: 'open',
+      })
+    }
   }
 
-    const isOverlayOpen = overlayStatus === 'open' ? true : false
-
-    return (
-      <>
-        <header className={`c-site-head fixed `}>
-          <div className="c-site-head__container container">
-            <div className="c-site-head__components">
-              <ThemeButton />
-                <SiteHeadBurger overlayStatus={overlayStatus} toggleOverlay={toggleOverlay} />
-              </div>
-              <PrimaryNav isOverlayOpen={isOverlayOpen} />
-            </div>
-        </header>
-      </>
-    )
+  const isOverlayOpen = overlayStatus === 'open'
+  return (
+    <>
+      <header className={`c-site-head fixed `}>
+        <div className="c-site-head__container container">
+          <div className="c-site-head__components">
+            <ThemeButton />
+            <SiteHeadBurger
+              overlayStatus={overlayStatus}
+              toggleOverlay={toggleOverlay}
+            />
+          </div>
+          <PrimaryNav isOverlayOpen={isOverlayOpen} />
+        </div>
+      </header>
+    </>
+  )
 }
 
 export default SiteHead
