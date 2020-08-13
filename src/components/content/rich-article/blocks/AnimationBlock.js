@@ -14,42 +14,53 @@ const AnimationBlock = ({ block, classes = '' }) => {
   const animationEl = useRef(null)
   const textEl = useRef(null)
   const animationBlockEl = useRef(null)
-  const forwardedRef = useRef(null)
+  // const forwardedRef = useRef(null)
 
   useEffect(() => {
+    console.log('animation el --', animationEl.current)
     // console.log('forwarded ref --', forwardedRef)
-    console.log('animation el --', animationEl.current.children)
+    // console.log('animation el --', animationEl.current.children)
     // console.log('animation block ===', animationBlockEl.current)
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: animationBlockEl.current,
+        // start: 'top bottom',
         start: 'top bottom',
+        end:'25vh',
+        // start: 'bottom top',
         scrub: 0.1,
+        // pin: true,
+        // pinSpacing: false
+        // once: true,
+        // markers: {startColor: "black", endColor: "black", fontSize: "20px"}
       },
     })
     tl.from(
       animationEl.current,
-      0.5,
+      0.1,
       {
-        x: '4vw',
+        x: '50vw',
+        y:'100vh',
         // opacity: 0.6,
         transformOrigin: '50% 50%',
         ease: 'Power3.out',
-      },
-      0
+      }
+      // 0
     )
     tl.from(
       textEl.current,
-      0.9,
+      0.1,
       {
-        x: '- 4vw',
-        // opacity: 0.6,
+        // x: '100px',
+        x: '-5vw',
+        y:'-15vh',
+        opacity:0.6,
         transformOrigin: '50% 50%',
         ease: 'Power3.out',
       },
       0
     )
-  })
+  },[])
 
   return (
     <Section
