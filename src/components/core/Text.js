@@ -6,12 +6,12 @@ import {
 
 import changeTheme from '../utilities/changeTheme'
 
-const Text = ({ heading, body, classes = '' }) => {
+const Text = ({ heading, body, forwardedRef, classes = '' }) => {
   const dispatch = useGlobalDispatchContext()
   const { currentTheme } = useGlobalStateContext()
 
   return (
-    <div className={`c-text ${classes}`}>
+    <div className={`c-text ${classes}`} ref={forwardedRef}>
       <h2 className="c-text__heading">{heading}</h2>
       <div className="c-text__body">{body}</div>
       <div

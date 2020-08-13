@@ -17,7 +17,8 @@ const AnimationBlock = ({ block, classes = '' }) => {
   // const forwardedRef = useRef(null)
 
   useEffect(() => {
-    console.log('animation el --', animationEl.current)
+    // console.log('animation el --', animationEl.current)
+    console.log('text els ==', [...textEl.current.children])
     // console.log('forwarded ref --', forwardedRef)
     // console.log('animation el --', animationEl.current.children)
     // console.log('animation block ===', animationBlockEl.current)
@@ -32,15 +33,15 @@ const AnimationBlock = ({ block, classes = '' }) => {
         // pin: true,
         // pinSpacing: false
         // once: true,
-        // markers: {startColor: "black", endColor: "black", fontSize: "20px"}
+        markers: {startColor: "black", endColor: "black", fontSize: "20px"}
       },
     })
     tl.from(
       animationEl.current,
       0.1,
       {
-        x: '50vw',
-        y:'100vh',
+        x: '25vw',
+        y:'50vh',
         // opacity: 0.6,
         transformOrigin: '50% 50%',
         ease: 'Power3.out',
@@ -48,7 +49,7 @@ const AnimationBlock = ({ block, classes = '' }) => {
       // 0
     )
     tl.from(
-      textEl.current,
+      [...textEl.current.children].reverse(),
       0.1,
       {
         // x: '100px',
@@ -57,9 +58,13 @@ const AnimationBlock = ({ block, classes = '' }) => {
         opacity:0.6,
         transformOrigin: '50% 50%',
         ease: 'Power3.out',
+        stagger: {
+          amount: 0.03,
+        },
       },
+      // ">-0.5"
       0
-    )
+      )
   },[])
 
   return (
@@ -74,12 +79,14 @@ const AnimationBlock = ({ block, classes = '' }) => {
         >
           {(block.heading || block.body) && (
             <div className="mb-8 md:mb-0 md:w-1/2 ">
-              <div className="c-animation-block__animation" ref={textEl}>
-                <div className="max-w-sm mx-auto ">
+              <div className="c-animation-block__animation" >
+                <div className="max-w-sm mx-auto " >
                   <Text
                     heading={block.heading}
                     body={block.body}
                     classes="c-text--animation"
+
+                    forwardedRef={textEl}
                   />
                   {block.animatorName && (
                     <div className="text-xs opacity-50 mt-4">
