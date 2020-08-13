@@ -14,14 +14,17 @@ const AnimationBlock = ({ block, classes = '' }) => {
   const animationEl = useRef(null)
   const textEl = useRef(null)
   const animationBlockEl = useRef(null)
+  const forwardedRef = useRef(null)
 
   useEffect(() => {
+    // console.log('forwarded ref --', forwardedRef)
+    console.log('animation el --', animationEl.current.children)
     // console.log('animation block ===', animationBlockEl.current)
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: animationBlockEl.current,
         start: 'top bottom',
-        scrub: 0.5,
+        scrub: 0.1,
       },
     })
     tl.from(
@@ -92,6 +95,7 @@ const AnimationBlock = ({ block, classes = '' }) => {
                 alignAnimation={block.alignAnimation}
                 animatorName={block.animatorName}
                 animatorLink={block.animatorUrl}
+                // forwardedRef={forwardedRef}
               />
             </div>
           </div>

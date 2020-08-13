@@ -6,6 +6,7 @@ const LottieAnimation = ({
   lottieAnimationPath,
   animatorName,
   animatorLink,
+  forwardedRef,
 
   classes = '',
 }) => {
@@ -20,12 +21,17 @@ const LottieAnimation = ({
       container: animationContainer.current,
       animationData: lottieAnimationData,
       path: lottieAnimationPath,
+      autoplay: false,
     })
   }, [])
 
   return (
     <div className={`c-lottie-animation text-center ${classes} `}>
-      <div className="c-lottie-animation__svg" ref={animationContainer} />
+      <div
+        className="c-lottie-animation__svg"
+        ref={animationContainer}
+        // forwardedRef={forwardedRef}
+      />
     </div>
   )
 }

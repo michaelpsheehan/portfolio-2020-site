@@ -33,62 +33,60 @@ class RichArticle extends Component {
   }
 
   componentDidMount() {
-    // console.log('this state  =', this.)
-    // console.log('CONTEXT  =', this.GlobalStateContext)
-    // const dispatch = useGlobalDispatchContext()
-    // const dispatch = useGlobalStateContext()
-    // const richArticleBlockEl = useRef(null)
-
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        // trigger: '.js-dark-background',
-        trigger: this.richArticleBlockEl,
-        start: 'top 100px',
-        end: 'bottom 100px',
-        // onEnter: ({ progress, direction, isActive }) =>
-        //   //  {
-        //   // trigger = this.richArticleBlockEl.curre
-
-        // // this.context({ type: 'TOGGLE_THEME', theme: 'light-ui-items' })
-        // // dispatch({ type: "TOGGLE_THEME", theme: "light" })
-        // // console.log(
-        // //   progress,
-        // //   direction,
-        // //   isActive,
-        // //   'onEnter richArticle -- UI WHITE---',
-        // //   this.richArticleBlockEl.current
-        // // ),
-        // // },
-        // onLeave: ({ progress, direction, isActive }) =>
-        //   // this.context({ type: 'TOGGLE_THEME', theme: 'dark-ui-items' }),
-        //   console.log(
-        //     progress,
-        //     direction,
-        //     isActive,
-        //     'default ui',
-        //     this.richArticleBlockEl.current
-        //   ),
-        // onEnterBack: ({ progress, direction, isActive }) =>
-        //   console.log(
-        //     progress,
-        //     direction,
-        //     isActive,
-        //     'WHITE UI again',
-        //     this.richArticleBlockEl.current
-        //   ),
-        // onLeaveBack: ({ progress, direction, isActive }) =>
-        //   console.log(
-        //     progress,
-        //     direction,
-        //     isActive,
-        //     'back to start',
-        //     this.richArticleBlockEl.current
-        //   ),
-
-        // markers: { startColor: 'green', endColor: 'red', fontSize: '12px' },
-        // scrub: 0.5,
-      },
-    })
+    // // console.log('this state  =', this.)
+    // // console.log('CONTEXT  =', this.GlobalStateContext)
+    // // const dispatch = useGlobalDispatchContext()
+    // // const dispatch = useGlobalStateContext()
+    // // const richArticleBlockEl = useRef(null)
+    // console.log('this article block el ==', this.richArticleBlockEl)
+    // const tl = gsap.timeline({
+    //   scrollTrigger: {
+    //     // trigger: '.js-dark-background',
+    //     trigger: this.richArticleBlockEl,
+    //     start: 'top 100px',
+    //     end: 'bottom 100px',
+    //     // onEnter: ({ progress, direction, isActive }) =>
+    //     //   //  {
+    //     //   // trigger = this.richArticleBlockEl.curre
+    //     // // this.context({ type: 'TOGGLE_THEME', theme: 'light-ui-items' })
+    //     // // dispatch({ type: "TOGGLE_THEME", theme: "light" })
+    //     // // console.log(
+    //     // //   progress,
+    //     // //   direction,
+    //     // //   isActive,
+    //     // //   'onEnter richArticle -- UI WHITE---',
+    //     // //   this.richArticleBlockEl.current
+    //     // // ),
+    //     // // },
+    //     // onLeave: ({ progress, direction, isActive }) =>
+    //     //   // this.context({ type: 'TOGGLE_THEME', theme: 'dark-ui-items' }),
+    //     //   console.log(
+    //     //     progress,
+    //     //     direction,
+    //     //     isActive,
+    //     //     'default ui',
+    //     //     this.richArticleBlockEl.current
+    //     //   ),
+    //     // onEnterBack: ({ progress, direction, isActive }) =>
+    //     //   console.log(
+    //     //     progress,
+    //     //     direction,
+    //     //     isActive,
+    //     //     'WHITE UI again',
+    //     //     this.richArticleBlockEl.current
+    //     //   ),
+    //     // onLeaveBack: ({ progress, direction, isActive }) =>
+    //     //   console.log(
+    //     //     progress,
+    //     //     direction,
+    //     //     isActive,
+    //     //     'back to start',
+    //     //     this.richArticleBlockEl.current
+    //     //   ),
+    //     // markers: { startColor: 'green', endColor: 'red', fontSize: '12px' },
+    //     // scrub: 0.5,
+    //   },
+    // })
   }
 
   // checks the blockType from the matrix field and loads the appropriate component
