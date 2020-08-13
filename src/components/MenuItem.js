@@ -7,7 +7,14 @@ import {
 
 const MenuItem = ({ name, link, forwardedRef }) => {
   const dispatch = useGlobalDispatchContext()
+const closeMenu = ()=> {
+console.log('close menu now')
+  dispatch({
+    type: 'CHANGE_OVERLAY',
+    newStatus: 'closed',
+  }) 
 
+}
   return (
   <li className="c-primary-nav__list-item">
     <span className="block overflow-hidden">
@@ -22,12 +29,23 @@ const MenuItem = ({ name, link, forwardedRef }) => {
         // hex="#e3342f"
 
       
-
+        // exit={{
+        //   length: length,
+        //   trigger: ({ exit, node }) =>
+        //     // someCustomDefinedAnimation({ exit, node, direction: "out" }),
+        //     ()=> console.log({ exit, node, direction: "out" }),
+        // }}
         to={link} 
-      //   onClick={()=> dispatch({
-      //   type: 'CHANGE_OVERLAY',
-      //   newStatus: 'closed',
-      // }) }
+        // onExit={()=> console.log('on exit fired')}
+        // exit={{
+        //   trigger: ()=>  dispatch({
+        //       type: 'CHANGE_OVERLAY',
+        //       newStatus: 'closed',
+        //     })}
+        // }
+        onClick={()=> closeMenu() 
+    
+    }
       
       
       >

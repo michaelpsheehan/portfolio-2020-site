@@ -28,6 +28,7 @@ const introOverlayAnimation = (leftSection,rightSection, completeAnimation) => {
 }
 
 const HomeTemplate = (data) => {
+  // console.log('TRANSITION STATUS IS', data.transitionStatus)
   const { entry, siteUrl, richArticle } = data.pageContext
   const [animationComplete, setAnimationComplete] = useState(false)
   const introOverlayLeftSectionEl = useRef(null)

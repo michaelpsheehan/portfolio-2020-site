@@ -28,59 +28,17 @@ class HeroNew extends Component {
     // this.tl = null
   }
 
-  componentDidMount() {
-    this.allWords = Array.from(this.heroTextLineEls).map((currentLine, i) => [
-      ...this.allWords,
-      ...currentLine.children,
-    ])
-
-    console.log('hero text lines --', this.heroTextLineContainerEl)
-    const tl = gsap.timeline({
-      defaults: { duration: 1, ease: 'Power3.out' },
-    })
-    tl.set(this.heroContentEl.current, { css: { visibility: 'visible' } })
-    tl.set(this.heroScrollIconEl.current, { css: { visibility: 'visible' } })
-
-    tl.from(this.heroTextLineEls, {
-      delay: 2.6,
-      duration: 1,
-      y: '140',
-      ease: 'Power4.out',
-      skewY: 7,
-      stagger: {
-        amount: 0.32,
-      },
-    })
-      .from(this.heroPrimaryButtonEl.current, {
-        y: 10,
-        opacity: 0,
-      })
-      .from(this.heroSecondaryButtonEl.current, {
-        y: 10,
-        opacity: 0,
-      })
-      .from(
-        this.heroScrollIconEl.current,
-        1,
-        {
-          y: 10,
-          opacity: 0,
-          delay: 0.2,
-        },
-        '-=0.5'
-      )
-
-    tl.set(this.heroTextLineContainerEls, {
-      css: { overflow: 'visible' },
-    })
-
+  animateTextOnScroll(allWords) {
+    console.log('animate on Scroll')
     const tlScroll = gsap.timeline({
       scrollTrigger: {
         start: 'top top',
         scrub: 0.1,
+        // toggleActions: "complete complete complete complete"
+        // markers: true
       },
     })
-    tlScroll.to([...this.allWords[0], ...this.allWords[1]], {
+    tlScroll.to([allWords[0], allWords[1]], {
       duration: 0.2,
       y: '-300vh',
       ease: 'Power4.out',
@@ -127,6 +85,109 @@ class HeroNew extends Component {
       },
       0
     )
+  }
+
+  componentDidMount() {
+    this.allWords = Array.from(this.heroTextLineEls).map((currentLine, i) => [
+      ...this.allWords,
+      ...currentLine.children,
+    ])
+
+    console.log('hero text lines --', this.heroTextLineContainerEl)
+    const tl = gsap.timeline({
+      defaults: { duration: 1, ease: 'Power3.out' },
+      onComplete: this.animateTextOnScroll(this.allWords)
+    })
+    tl.set(this.heroContentEl.current, { css: { visibility: 'visible' } })
+    tl.set(this.heroScrollIconEl.current, { css: { visibility: 'visible' } })
+
+    tl.from(this.heroTextLineEls, {
+      delay: 2.6,
+      duration: 1,
+      y: '140',
+      ease: 'Power4.out',
+      skewY: 7,
+      stagger: {
+        amount: 0.32,
+      },
+    })
+      .from(this.heroPrimaryButtonEl.current, {
+        y: 10,
+        opacity: 0,
+      })
+      .from(this.heroSecondaryButtonEl.current, {
+        y: 10,
+        opacity: 0,
+      })
+      .from(
+        this.heroScrollIconEl.current,
+        1,
+        {
+          y: 10,
+          opacity: 0,
+          delay: 0.2,
+        },
+        '-=0.5'
+      )
+
+    tl.set(this.heroTextLineContainerEls, {
+      css: { overflow: 'visible' },
+
+    })
+
+    // const tlScroll = gsap.timeline({
+    //   scrollTrigger: {
+    //     start: 'top top',
+    //     scrub: 0.1,
+    //   },
+    // })
+    // tlScroll.to([...this.allWords[0], ...this.allWords[1]], {
+    //   duration: 0.2,
+    //   y: '-300vh',
+    //   ease: 'Power4.out',
+    //   rotation: -360,
+    //   skewY: 7,
+    //   stagger: {
+    //     amount: 0.01,
+    //   },
+    // })
+    // tlScroll.to(
+    //   this.heroSecondaryButtonEl.current,
+    //   1,
+    //   {
+    //     y: '-25vh',
+    //     x: '-100vw',
+    //     opacity: 0,
+    //     transformOrigin: '50% 50%',
+    //     rotation: -360,
+    //     ease: 'Power3.out',
+    //   },
+    //   0
+    // )
+    // tlScroll.to(
+    //   this.heroPrimaryButtonEl.current,
+    //   1,
+    //   {
+    //     y: '-25vh',
+    //     x: '100vw',
+    //     opacity: 0,
+    //     transformOrigin: '50% 50%',
+    //     rotation: 360,
+    //     ease: 'Power3.out',
+    //   },
+    //   0
+    // )
+    // tlScroll.to(
+    //   this.heroScrollIconEl.current,
+    //   0.5,
+    //   {
+    //     transformOrigin: '50% 50%',
+    //     y: '-150vh',
+    //     opacity: 0,
+    //     ease: 'Power3.out',
+    //   },
+    //   0
+    // )
   }
 
   render() {

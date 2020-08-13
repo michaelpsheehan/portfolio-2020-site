@@ -16,32 +16,26 @@ const AnimationBlock = ({ block, classes = '' }) => {
   const animationBlockEl = useRef(null)
   // const forwardedRef = useRef(null)
 
+  // const defaultAnimation = () =>
+
   useEffect(() => {
-    // console.log('animation el --', animationEl.current)
-    console.log('text els ==', [...textEl.current.children])
-    // console.log('forwarded ref --', forwardedRef)
-    // console.log('animation el --', animationEl.current.children)
-    // console.log('animation block ===', animationBlockEl.current)
+
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: animationBlockEl.current,
-        // start: 'top bottom',
+        scrub: 1,
         start: 'top bottom',
-        end:'25vh',
-        // start: 'bottom top',
-        scrub: 0.1,
-        // pin: true,
-        // pinSpacing: false
-        // once: true,
+        end: 'top 25%',
         markers: {startColor: "black", endColor: "black", fontSize: "20px"}
+ 
       },
     })
     tl.from(
       animationEl.current,
       0.1,
       {
-        x: '25vw',
-        y:'50vh',
+        x: '17vw',
+        y:'25vh',
         // opacity: 0.6,
         transformOrigin: '50% 50%',
         ease: 'Power3.out',
@@ -52,10 +46,8 @@ const AnimationBlock = ({ block, classes = '' }) => {
       [...textEl.current.children].reverse(),
       0.1,
       {
-        // x: '100px',
         x: '-5vw',
         y:'-15vh',
-        opacity:0.6,
         transformOrigin: '50% 50%',
         ease: 'Power3.out',
         stagger: {
