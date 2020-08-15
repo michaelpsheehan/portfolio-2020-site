@@ -16,47 +16,133 @@ const AnimationBlock = ({ block, classes = '' }) => {
   const animationBlockEl = useRef(null)
   // const forwardedRef = useRef(null)
 
-  // const defaultAnimation = () =>
+  const defaultAnimation = () =>{
+  const tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: animationBlockEl.current,
+      scrub: 1,
+      start: 'top bottom',
+      end: 'top 25%',
+      markers: {startColor: "black", endColor: "black", fontSize: "20px"},
 
+    },
+  })
+  tl.from(
+    animationEl.current,
+    0.1,
+    {
+      x: '17vw',
+      y:'25vh',
+      // opacity: 0.6,
+      transformOrigin: '50% 50%',
+      ease: 'Power3.out',
+    }
+    // 0
+  )
+  tl.from(
+    [...textEl.current.children].reverse(),
+    0.1,
+    {
+      x: '-5vw',
+      y:'-15vh',
+      transformOrigin: '50% 50%',
+      ease: 'Power3.out',
+      stagger: {
+        amount: 0.03,
+      },
+    },
+    // ">-0.5"
+    0
+    )
+}
+
+
+const newAnimation = () =>{
+  const tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: animationBlockEl.current,
+      scrub: 1,
+      start: 'top bottom',
+      end: ' top 25%',
+      // end: 'top 10%',
+      markers: {startColor: "black", endColor: "black", fontSize: "20px"},
+      pin:true,
+      anticipatePin: true,
+      // pinSpacing:false
+
+
+    },
+  })
+  tl.from(
+    animationEl.current,
+    1,
+    {
+      x: '17vw',
+      y:'10vh',
+      // opacity: 0.6,
+      transformOrigin: '50% 50%',
+      ease: 'Power3.out',
+    }
+    // 0
+  )
+  tl.from(
+    [...textEl.current.children].reverse(),
+    0.1,
+    {
+      x: '-5vw',
+      y:'-10vh',
+      transformOrigin: '50% 50%',
+      ease: 'Power3.out',
+      stagger: {
+        amount: 0.03,
+      },
+    },
+    // ">-0.5"
+    0
+    )
+}
   useEffect(() => {
 
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: animationBlockEl.current,
-        scrub: 1,
-        start: 'top bottom',
-        end: 'top 25%',
-        markers: {startColor: "black", endColor: "black", fontSize: "20px"}
+    defaultAnimation()
+    // newAnimation()
+
+    // const tl = gsap.timeline({
+    //   scrollTrigger: {
+    //     trigger: animationBlockEl.current,
+    //     scrub: 1,
+    //     start: 'top bottom',
+    //     end: 'top 25%',
+    //     markers: {startColor: "black", endColor: "black", fontSize: "20px"},
  
-      },
-    })
-    tl.from(
-      animationEl.current,
-      0.1,
-      {
-        x: '17vw',
-        y:'25vh',
-        // opacity: 0.6,
-        transformOrigin: '50% 50%',
-        ease: 'Power3.out',
-      }
-      // 0
-    )
-    tl.from(
-      [...textEl.current.children].reverse(),
-      0.1,
-      {
-        x: '-5vw',
-        y:'-15vh',
-        transformOrigin: '50% 50%',
-        ease: 'Power3.out',
-        stagger: {
-          amount: 0.03,
-        },
-      },
-      // ">-0.5"
-      0
-      )
+    //   },
+    // })
+    // tl.from(
+    //   animationEl.current,
+    //   0.1,
+    //   {
+    //     x: '17vw',
+    //     y:'25vh',
+    //     // opacity: 0.6,
+    //     transformOrigin: '50% 50%',
+    //     ease: 'Power3.out',
+    //   }
+    //   // 0
+    // )
+    // tl.from(
+    //   [...textEl.current.children].reverse(),
+    //   0.1,
+    //   {
+    //     x: '-5vw',
+    //     y:'-15vh',
+    //     transformOrigin: '50% 50%',
+    //     ease: 'Power3.out',
+    //     stagger: {
+    //       amount: 0.03,
+    //     },
+    //   },
+    //   // ">-0.5"
+    //   0
+    //   )
   },[])
 
   return (
