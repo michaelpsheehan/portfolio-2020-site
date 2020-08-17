@@ -11,6 +11,7 @@ import { useStaticQuery, graphql } from 'gatsby'
 import SiteHead from './SiteHead'
 import '../styles/main.scss'
 
+import TransitionCover from '../components/core/transitions/TransitionCover'
 import { gsap } from 'gsap'
 import { CSSRulePlugin } from 'gsap/CSSRulePlugin'
 import { ScrollToPlugin } from 'gsap/ScrollToPlugin'
@@ -92,6 +93,7 @@ const siteContainerEl = useRef(null)
      
      ref={siteContainerEl}
      >
+       <TransitionCover />
         {/* <Header siteTitle={data.site.siteMetadata.title} /> */}
         <SiteHead isHomepage={false} />
         <main className="o-main-content">{children}</main>

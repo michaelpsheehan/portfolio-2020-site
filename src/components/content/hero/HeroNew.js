@@ -28,8 +28,8 @@ class HeroNew extends Component {
     // this.tl = null
   }
 
-  animateTextOnScroll(allWords) {
-    console.log('animate on Scroll')
+  animateTextOnScroll = (allWords) => {
+    console.log('animate on Scroll this --', this)
     const tlScroll = gsap.timeline({
       scrollTrigger: {
         start: 'top top',
@@ -85,6 +85,8 @@ class HeroNew extends Component {
       },
       0
     )
+
+    return tlScroll
   }
 
   componentDidMount() {
@@ -96,7 +98,7 @@ class HeroNew extends Component {
     console.log('hero text lines --', this.heroTextLineContainerEl)
     const tl = gsap.timeline({
       defaults: { duration: 1, ease: 'Power3.out' },
-      onComplete: this.animateTextOnScroll(this.allWords)
+      onComplete: this.animateTextOnScroll, onCompleteParams: [this.allWords]
     })
     tl.set(this.heroContentEl.current, { css: { visibility: 'visible' } })
     tl.set(this.heroScrollIconEl.current, { css: { visibility: 'visible' } })

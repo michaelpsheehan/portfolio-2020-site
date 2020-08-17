@@ -43,8 +43,8 @@ const AnimationBlock = ({ block, classes = '' }) => {
     [...textEl.current.children].reverse(),
     0.1,
     {
-      x: '-5vw',
-      y:'-15vh',
+      x: '-20vw',
+      // y:'-15vh',
       transformOrigin: '50% 50%',
       ease: 'Power3.out',
       stagger: {
@@ -54,6 +54,25 @@ const AnimationBlock = ({ block, classes = '' }) => {
     // ">-0.5"
     0
     )
+  tl.from(
+    [...textEl.current.children].reverse(),
+    0.1,
+    {
+      y:'-20vh',
+      ease: 'Power1.out',
+    },
+    // ">-0.5"
+    '<'
+    )
+    tl.from(
+      [...textEl.current.children].reverse(),
+      0.1,
+      {
+      opacity: 0,
+        ease: 'Power1.out',
+      },
+          '<'
+      )
 }
 
 

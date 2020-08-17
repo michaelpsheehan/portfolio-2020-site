@@ -1,5 +1,8 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import AniLink from 'gatsby-plugin-transition-link/AniLink'
+import TransitionLink from 'gatsby-plugin-transition-link'
+import {transitionStandard, exitTransition}  from '../components/core/transitions/TransitionCover'
+
 import {
 
   useGlobalDispatchContext,
@@ -7,7 +10,7 @@ import {
 
 const MenuItem = ({ name, link, forwardedRef }) => {
   const dispatch = useGlobalDispatchContext()
-const closeMenu = ()=> {
+const closeOverlay = ()=> {
 console.log('close menu now')
   dispatch({
     type: 'CHANGE_OVERLAY',
@@ -15,42 +18,50 @@ console.log('close menu now')
   }) 
 
 }
+
+const interestingExitAnimation = (exit, node, e, entry) => {
+  console.log('exit animation call')
+  console.log('node -- ',node, )
+  console.log('e -- ',e, )
+  console.log('exit -- ',exit, )
+  console.log('entry -- ',entry, )
+  // console.log('page enter',node, e, exit, entry)
+transitionStandard()
+}
+
+const onPageEnter = (node, e, exit, entry ) => {
+    // console.log('page enter',node, e, exit, entry)
+    console.log('page enter')
+    console.log('node -- ',node, )
+    console.log('e -- ',e, )
+    console.log('exit -- ',exit, )
+    console.log('entry -- ',entry, )
+    exitTransition()
+    closeOverlay()
+
+
+}
+
   return (
   <li className="c-primary-nav__list-item">
     <span className="block overflow-hidden">
       <span className="block" ref={forwardedRef}>
-        <AniLink className="c-primary-nav__list-item-link" activeClassName="is-current-page"
-        // cover direction='right' top="entry" entryOffset={80} bg="#663399" 
+<TransitionLink
+  to={link}
+  className="c-primary-nav__list-item-link"
+  activeClassName="is-current-page"
+  exit={{
+    trigger: ({ node, e, exit, entry }) => interestingExitAnimation(exit, node, e, entry),
+    length: 1
+  }}
+  entry={{
+       delay: 1,
+    trigger: ({ node, e, exit, entry }) => onPageEnter(node, e, exit, entry )
+  }}
 
-        cover
-        direction="up"
-        // duration={3}
-        bg="#e3342f"
-        // hex="#e3342f"
-
-      
-        // exit={{
-        //   length: length,
-        //   trigger: ({ exit, node }) =>
-        //     // someCustomDefinedAnimation({ exit, node, direction: "out" }),
-        //     ()=> console.log({ exit, node, direction: "out" }),
-        // }}
-        to={link} 
-        // onExit={()=> console.log('on exit fired')}
-        // exit={{
-        //   trigger: ()=>  dispatch({
-        //       type: 'CHANGE_OVERLAY',
-        //       newStatus: 'closed',
-        //     })}
-        // }
-        onClick={()=> closeMenu() 
-    
-    }
-      
-      
-      >
+>
           {name}
-        </AniLink>
+</TransitionLink>
       </span>
     </span>
   </li>
