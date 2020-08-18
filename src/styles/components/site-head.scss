@@ -2,7 +2,6 @@
   @apply py-12 mb-12 font-sans fixed top-0 inset-x-0 w-full z-50;
 
   @screen md {
-    @apply py-16;
   }
 
   &__container {
@@ -14,9 +13,9 @@
   }
 
   &__hamburger {
-    @apply absolute z-20 right-0 h-12 w-12 cursor-pointer;
+    @apply absolute z-20 right-0 h-8 w-12 cursor-pointer;
     @screen md {
-      @apply h-16 w-16;
+      @apply w-16;
     }
 
     span {
@@ -28,7 +27,7 @@
     }
 
     span:first-child {
-      top: 20%;
+      top:0;
     }
 
     span:nth-of-type(2) {
@@ -37,7 +36,7 @@
     }
 
     span:last-child {
-      top: 80%;
+      top:100%;
     }
 
     &:hover {

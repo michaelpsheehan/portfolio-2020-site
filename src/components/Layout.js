@@ -82,6 +82,18 @@ const siteContainerEl = useRef(null)
     // return () => window.removeEventListener('resize', debouncedHandleResize)
   },[])
 
+  let isHomepage = null
+console.log('LOCATION ____ in layout', location)
+  useEffect(()=> {
+    if (typeof window === 'undefined') {
+      return;
+    }
+   isHomepage = location.pathname === '/' ? true : false
+   console.log('location.pathname', location.pathname)
+   console.log('change si homepage to', isHomepage)
+
+  })
+  // console.log('path name --', location.pathname)
   return (
     <>
     
@@ -95,7 +107,7 @@ const siteContainerEl = useRef(null)
      >
        <TransitionCover />
         {/* <Header siteTitle={data.site.siteMetadata.title} /> */}
-        <SiteHead isHomepage={false} />
+        <SiteHead isHomepage={isHomepage} />
         <main className="o-main-content">{children}</main>
         <footer className="mt-16 py-16 bg-brand-blue">
           <div className="container text-white uppercase">Projects</div>

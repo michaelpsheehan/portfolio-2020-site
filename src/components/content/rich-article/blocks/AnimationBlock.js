@@ -23,7 +23,7 @@ const AnimationBlock = ({ block, classes = '' }) => {
       scrub: 1,
       start: 'top bottom',
       end: 'top 25%',
-      markers: {startColor: "black", endColor: "black", fontSize: "20px"},
+      // markers: {startColor: "black", endColor: "black", fontSize: "20px"},
 
     },
   })

@@ -30,13 +30,14 @@ transitionStandard()
 }
 
 const onPageEnter = (node, e, exit, entry ) => {
+  
     // console.log('page enter',node, e, exit, entry)
     console.log('page enter')
     console.log('node -- ',node, )
     console.log('e -- ',e, )
     console.log('exit -- ',exit, )
     console.log('entry -- ',entry, )
-    exitTransition()
+    exitTransition(node)
     closeOverlay()
 
 

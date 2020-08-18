@@ -238,7 +238,6 @@ class HeroNew extends Component {
         )}
         <div
           className="c-hero__content"
-          // ref={(div) => (this.heroContentEl.current = div)}
           ref={this.heroContentEl}
         >
           {updatedHeroTextBody && (
@@ -247,9 +246,9 @@ class HeroNew extends Component {
             </>
           )}
           <div className="c-hero__buttons">
-            {primaryButton.text && (
+            {secondaryButton.text && (
               <div
-                className="c-hero__secondary-button"
+                className="c-hero__secondary-button mb-8 md:mb-0"
                 ref={this.heroSecondaryButtonEl}
               >
                 <Button
@@ -259,9 +258,9 @@ class HeroNew extends Component {
                 />
               </div>
             )}
-            {secondaryButton.text && (
+            {primaryButton.text && (
               <div
-                className="c-hero__secondary-button"
+                className="c-hero__primary-button "
                 ref={this.heroPrimaryButtonEl}
               >
                 <Button

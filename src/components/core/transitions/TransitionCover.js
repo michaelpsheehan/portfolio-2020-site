@@ -34,10 +34,10 @@ export const transitionStandard = () => {
 
      transitionCoverRightSectionEl.current, {
         duration:1,
-        x: '50vw',
+        x: '49vw',
         y:'100vh',
         yPercent:0,
-        width:'50vw',
+        width:'51vw',
         height:'100vh'
   
       },
@@ -51,8 +51,8 @@ export const transitionStandard = () => {
   }
 }
 
-export const exitTransition = () => {
-
+export const exitTransition = (nextPage) => {
+console.log('nextpage -- ',  nextPage)
   if(transitionCoverEl) {
   const  tl = gsap.timeline()
     tl.to(transitionCoverEl.current.children, {
@@ -63,10 +63,14 @@ export const exitTransition = () => {
    
 }
     
-    )  
-    .set(transitionCoverEl.current, {
-      autoAlpha: 0
-    })
+    )  .from(nextPage, {
+      y: '100vh',
+      duration:0.5,
+      ease: "power1.out",
+    }, '<')
+    // .set(transitionCoverEl.current, {
+    //   autoAlpha: 0
+    // })
   }
 }
 

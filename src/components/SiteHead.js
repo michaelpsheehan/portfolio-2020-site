@@ -9,7 +9,7 @@ import {
 
 import ThemeButton from './ThemeButton'
 
-const SiteHead = () => {
+const SiteHead = ({isHomepage}) => {
   const dispatch = useGlobalDispatchContext()
   const { overlayStatus } = useGlobalStateContext()
 
@@ -30,10 +30,10 @@ const SiteHead = () => {
   const isOverlayOpen = overlayStatus === 'open'
   return (
     <>
-      <header className={`c-site-head fixed `}>
+      <header className={`c-site-head fixed ${isHomepage === true ? '' : 'bg-brand-blue'} `}>
         <div className="c-site-head__container container">
           <div className="c-site-head__components">
-            <ThemeButton />
+            {/* <ThemeButton /> */}
             <SiteHeadBurger
               overlayStatus={overlayStatus}
               toggleOverlay={toggleOverlay}
