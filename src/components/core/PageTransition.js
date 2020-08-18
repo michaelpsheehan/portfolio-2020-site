@@ -18,7 +18,7 @@ const PageTransition = () => {
       transformOrigin: 'bottom right',
     })
 
-    console.log('transition left section', transitionRightSectionEl)
+    // console.log('transition left section', transitionRightSectionEl)
   })
 
   return (

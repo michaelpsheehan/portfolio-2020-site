@@ -20,11 +20,11 @@ console.log('close menu now')
 }
 
 const interestingExitAnimation = (exit, node, e, entry) => {
-  console.log('exit animation call')
-  console.log('node -- ',node, )
-  console.log('e -- ',e, )
-  console.log('exit -- ',exit, )
-  console.log('entry -- ',entry, )
+  // console.log('exit animation call')
+  // console.log('node -- ',node, )
+  // console.log('e -- ',e, )
+  // console.log('exit -- ',exit, )
+  // console.log('entry -- ',entry, )
   // console.log('page enter',node, e, exit, entry)
 transitionStandard()
 }
@@ -32,11 +32,11 @@ transitionStandard()
 const onPageEnter = (node, e, exit, entry ) => {
   
     // console.log('page enter',node, e, exit, entry)
-    console.log('page enter')
-    console.log('node -- ',node, )
-    console.log('e -- ',e, )
-    console.log('exit -- ',exit, )
-    console.log('entry -- ',entry, )
+    // console.log('page enter')
+    // console.log('node -- ',node, )
+    // console.log('e -- ',e, )
+    // console.log('exit -- ',exit, )
+    // console.log('entry -- ',entry, )
     exitTransition(node)
     closeOverlay()
 

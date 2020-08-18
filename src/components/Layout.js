@@ -25,8 +25,21 @@ import {
 } from '../context/globalContext'
 import IntroOverlay from './core/IntroOverlay'
 
-const Layout = ({ children }) => {
+
+
+
+const Layout = ({ children,  path }) => {
   const { currentTheme } = useGlobalStateContext()
+  const isHomepage = path === '/' ? true : false
+  // const path = children.props.path
+  // const path = children.props.uri
+  // const path = children.location.pathname
+  // const path = children.location
+  // const path = children.props.location.pathname
+  // const path = props.location.pathname
+  // console.log('LOCATION --', Location)
+  console.log('layout props children ---', children)
+  console.log('layout path -- ---', path)
   console.log('current theme in layout ===', currentTheme)
 
   // const data = useStaticQuery(graphql`
@@ -82,18 +95,18 @@ const siteContainerEl = useRef(null)
     // return () => window.removeEventListener('resize', debouncedHandleResize)
   },[])
 
-  let isHomepage = null
-console.log('LOCATION ____ in layout', location)
-  useEffect(()=> {
-    if (typeof window === 'undefined') {
-      return;
-    }
-   isHomepage = location.pathname === '/' ? true : false
-   console.log('location.pathname', location.pathname)
-   console.log('change si homepage to', isHomepage)
+//   let isHomepage 
+// console.log('LOCATION ____ in layout', location)
+//   useEffect(()=> {
+//     if (typeof window === 'undefined') {
+//       return;
+//     }
+//   //  isHomepage = window.location.pathname === '/' ? true : false
+//    isHomepage = window.location.pathname 
+//    console.log('location.pathname', window.location.pathname)
+//    console.log('change si homepage to', isHomepage)
 
-  })
-  // console.log('path name --', location.pathname)
+//   })
   return (
     <>
     
@@ -104,11 +117,14 @@ console.log('LOCATION ____ in layout', location)
       `}
      
      ref={siteContainerEl}
-     >
+     > 
        <TransitionCover />
         {/* <Header siteTitle={data.site.siteMetadata.title} /> */}
-        <SiteHead isHomepage={isHomepage} />
+        <SiteHead
+        isHomepage={isHomepage}
+         />
         <main className="o-main-content">{children}</main>
+
         <footer className="mt-16 py-16 bg-brand-blue">
           <div className="container text-white uppercase">Projects</div>
         </footer>

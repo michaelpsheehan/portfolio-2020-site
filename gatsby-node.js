@@ -120,6 +120,7 @@ async function createHomepage({ graphql, actions }) {
         siteUrl,
         entry: entry ? entry[0] : null,
         richArticle: updatedRichArticle || null,
+        // currentPath: path
       },
     })
   }

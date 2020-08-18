@@ -1,5 +1,5 @@
 // import PropTypes from 'prop-types'
-import React from 'react'
+import React, {useEffect} from 'react'
 import PrimaryNav from './PrimaryNav'
 import SiteHeadBurger from './SiteHeadBurger'
 import {
@@ -9,7 +9,7 @@ import {
 
 import ThemeButton from './ThemeButton'
 
-const SiteHead = ({isHomepage}) => {
+const SiteHead = ({ classes, isHomepage}) => {
   const dispatch = useGlobalDispatchContext()
   const { overlayStatus } = useGlobalStateContext()
 
@@ -26,11 +26,23 @@ const SiteHead = ({isHomepage}) => {
       })
     }
   }
+  // let isHomepage
+
+  // useEffect(()=> {
+  //   if (typeof window === 'undefined') {
+  //     return;
+  //   }
+  // //  isHomepage = window.location.pathname === '/' ? true : false
+  //  isHomepage = window.location.pathname 
+  // //  console.log('location.pathname', window.location.pathname)
+  // //  console.log('change si homepage to', isHomepage)
+
+  // })
 
   const isOverlayOpen = overlayStatus === 'open'
   return (
     <>
-      <header className={`c-site-head fixed ${isHomepage === true ? '' : 'bg-brand-blue'} `}>
+      <header className={`c-site-head fixed ${isHomepage === true ? '' : 'bg-brand-blue'} ${classes}`}>
         <div className="c-site-head__container container">
           <div className="c-site-head__components">
             {/* <ThemeButton /> */}
