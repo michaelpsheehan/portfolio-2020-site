@@ -63,14 +63,17 @@ console.log('nextpage -- ',  nextPage)
    
 }
     
-    )  .from(nextPage, {
-      y: '100vh',
+    )  
+    .fromTo(nextPage, {
+      x: '-100vw',
       duration:0.5,
       ease: "power1.out",
-    }, '<')
-    // .set(transitionCoverEl.current, {
-    //   autoAlpha: 0
-    // })
+    },{
+      x: 0
+    },
+    
+    '<')
+ 
   }
 }
 

@@ -97,28 +97,26 @@ class RichArticle extends Component {
       case 'fullWidthImage':
         return <ImageBlock block={block} />
       case 'animation':
-        return <AnimationBlock block={block} 
-      //   sectionColor={` ${
-      //     block.backgroundColour && block.backgroundColour !== 'default'
-      //       ? `js-dark-background text-white ${block.backgroundColour} `
-      //       : ''
-      //   } 
-      // `}
-      classes={'js-animation-block-dark-bg'}
-      />
+        return <AnimationBlock block={block} />
       default:
         return null
     }
   }
 
   render() {
+    // console.log('this.props')
     const { richArticle, classes = '' } = this.props
 
     return richArticle ? (
       <article className={`c-rich-article ${classes}`}>
         {richArticle.map((block, index) => (
           <div
-       
+            className={`c-rich-article__block  ${
+              block.backgroundColour && block.backgroundColour !== 'default'
+                ? `js-dark-background text-white ${block.backgroundColour} `
+                : ''
+            }
+          `}
             key={block.id}
             ref={
               block.backgroundColour !== 'default'

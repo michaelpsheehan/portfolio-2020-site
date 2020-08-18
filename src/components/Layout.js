@@ -38,9 +38,9 @@ const Layout = ({ children,  path }) => {
   // const path = children.props.location.pathname
   // const path = props.location.pathname
   // console.log('LOCATION --', Location)
-  console.log('layout props children ---', children)
-  console.log('layout path -- ---', path)
-  console.log('current theme in layout ===', currentTheme)
+  // console.log('layout props children ---', children)
+  // console.log('layout path -- ---', path)
+  // console.log('current theme in layout ===', currentTheme)
 
   // const data = useStaticQuery(graphql`
   //   query SiteTitleQuery {
