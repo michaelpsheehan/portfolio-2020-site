@@ -14,6 +14,7 @@
 
   &__hamburger {
     @apply absolute z-20 right-0 h-8 w-12 cursor-pointer;
+
     @screen md {
       @apply w-16;
     }
@@ -81,8 +82,8 @@
 //   over
 //   a
 //   lightbackground
-.f-dark-ui-items {
-  .c-site-head {
+.ui-style-dark-on-white {
+  &.c-site-head {
     &__hamburger {
       span {
         @apply bg-brand-blue;
@@ -102,8 +103,8 @@
 //   over
 //   a
 //   lightbackground
-.f-light-ui-items {
-  .c-site-head {
+.ui-style-white-on-dark {
+  &.c-site-head {
     &__hamburger {
       span {
         @apply bg-white;

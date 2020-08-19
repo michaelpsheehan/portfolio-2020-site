@@ -83,6 +83,43 @@ class HeroNew extends Component {
 
   }
 
+  splitText(text) {
+    if(text) {
+   return text.split(/[\n]/g)
+    .map((line, index) => {
+      const words = line.split(/[\s]/g).map((word, wordIndex) => (
+        // split and return every word from the hero text wrapped in a span to allow it to be targeted and animated by gsap
+        <span
+          className="c-hero__text-word inline-block"
+          key={wordIndex}
+          ref={(currentWord) =>
+            (this.heroTextWordEls[wordIndex] = currentWord)
+          }
+        >
+          {word}{' '}
+        </span>
+      ))
+
+      return (
+        // maintain the line breaks from the CMS. wrap the array of words in each line of text
+        <span
+          className="c-hero__line-container overflow-hidden relative  w-full block"
+          key={index}
+          ref={(el) => (this.heroTextLineContainerEls[index] = el)}
+        >
+          <span
+            className="c-hero__text-line block"
+            ref={(el) => (this.heroTextLineEls[index] = el)}
+          >
+            {words}
+          </span>
+        </span>
+      )
+    })
+  }
+    
+  }
+
   componentDidMount() {
     this.allWords = Array.from(this.heroTextLineEls).map((currentLine, i) => [
       ...this.allWords,
@@ -145,41 +182,8 @@ class HeroNew extends Component {
   render() {
     const { heroMediaContent, heroContent, classes = '' } = this.props
     const { primaryButton, secondaryButton, heroTextBody } = heroContent
-
-    const updatedHeroTextBody = heroTextBody
-      // split the text on each new line /n
-      .split(/[\n]/g)
-      .map((line, index) => {
-        const words = line.split(/[\s]/g).map((word, wordIndex) => (
-          // split and return every word from the hero text wrapped in a span to allow it to be targeted and animated by gsap
-          <span
-            className="c-hero__text-word inline-block"
-            key={wordIndex}
-            ref={(currentWord) =>
-              (this.heroTextWordEls[wordIndex] = currentWord)
-            }
-          >
-            {word}{' '}
-          </span>
-        ))
-
-        return (
-          // maintain the line breaks from the CMS. wrap the array of words in each line
-          <span
-            className="c-hero__line-container overflow-hidden relative  w-full block"
-            key={index}
-            ref={(el) => (this.heroTextLineContainerEls[index] = el)}
-          >
-            <span
-              className="c-hero__text-line block"
-              ref={(el) => (this.heroTextLineEls[index] = el)}
-            >
-              {words}
-            </span>
-          </span>
-        )
-      })
-
+    const updatedHeroTextBody = this.splitText(heroTextBody)
+     
     return (
       <div className={`c-hero ${classes}`}
       ref={this.heroEl}

@@ -25,39 +25,39 @@ const AnimationBlock = ({ block, sectionColor, classes = '' }) => {
   ?  backgroundColor = `js-dark-background text-white ${block.backgroundColour} `
   : null
 
+const setUiDark = () => {
+  dispatch(
+    {type: 'CHANGE_UI_STYLE',
+    newUiStyle: 'ui-style-dark-on-white',
+  })
+}
+
+const setUiLight = () => {
+  dispatch(
+    {type: 'CHANGE_UI_STYLE',
+    newUiStyle: 'ui-style-white-on-dark',
+  })
+}
+
+// console.log('end ---', el.end)
+// console.log('scroll Y --', el.scroller.scrollY)
+// console.log('dif === --',  el.end - el.scroller.scrollY )
+// let progressTarget = 0.95
+
+
+
   const onScrollDown = (el) => {
-    if(el.direction === -1) {
-      return
-    }
-
     if(el.progress > 0.95 ) {
-      console.log('animation updated ',el, el.progress, el.direction, el.isActive)
       const remainingScroll =  el.end - el.scroller.scrollY 
-if( remainingScroll  < hamburgerHeight &&  remainingScroll > 0 ) {
-  console.log('end ---', el.end)
-  console.log('scroll Y --', el.scroller.scrollY)
-  console.log('dif === --',  el.end - el.scroller.scrollY )
-  
-  
-  if(el.trigger.classList.contains('js-dark-bg')) {
-    console.log('DARK BG') 
-    dispatch(
-      {type: 'CHANGE_THEME',
-      theme: 'light-ui-items',
-    })
-  } else {
-    console.log('white') 
-    dispatch(
-      {type: 'CHANGE_THEME',
-      theme: 'dark-ui-items',
+      if( remainingScroll  < hamburgerHeight &&  remainingScroll > 0 ) {
+        if(el.trigger.classList.contains('js-dark-bg')) {
+         el.direction === 1 ? setUiLight() :  setUiDark()
+        } else {
+         el.direction === 1 ?  setUiDark() : setUiLight()
+          
+        }
+      }
     }
-    ) 
-    
-    // console.log('classList',el.trigger.classList)
-  }
-}
-}
-
   }
 
 

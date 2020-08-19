@@ -29,7 +29,12 @@ import IntroOverlay from './core/IntroOverlay'
 
 
 const Layout = ({ children,  path }) => {
-  const { currentTheme } = useGlobalStateContext()
+  const dispatch = useGlobalDispatchContext()
+  
+  const { currentTheme, currentUiStyle } = useGlobalStateContext()
+
+
+  console.log('current ui style ===', currentUiStyle)
   const isHomepage = path === '/' ? true : false
   // const path = children.props.path
   // const path = children.props.uri
@@ -79,6 +84,12 @@ const siteContainerEl = useRef(null)
     // stops body flashing from happening
     tl.set(siteContainerEl.current, { css: { visibility: 'visible' } })
 
+    dispatch(
+      {type: 'CHANGE_UI_STYLE',
+      newUiStyle: 'ui-style-white-on-dark',
+    })
+  
+
     // const currentWindowSize = useWindowSize()
     // console.log('current window size in use effect is --', currentWindowSize)
     // // makes 100vh work properly on modern mobile browsers. Fallsback to 100vh on older browsers
@@ -109,13 +120,7 @@ const siteContainerEl = useRef(null)
 //   })
   return (
     <>
-    
-      <div
-        className={`c-site-container  
-      ${currentTheme === 'dark-ui-items' ? 'bg-black text-white' : ''}
-      
-      `}
-     
+    <div className={`c-site-container ${currentUiStyle} ${currentTheme === 'dark-ui-items' ? 'bg-black text-white' : ''}`} 
      ref={siteContainerEl}
      > 
        <TransitionCover />

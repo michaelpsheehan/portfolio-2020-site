@@ -21,6 +21,13 @@ const globalReducer = (state, action) => {
         overlayStatus: action.newStatus,
       }
     }
+    case 'CHANGE_UI_STYLE': {
+      // console.log('context current theme ===', action.theme)
+      return {
+        ...state,
+        currentUiStyle: action.newUiStyle,
+      }
+    }
     default: {
       throw new Error(`unhandled action type: ${action.type}`)
     }
@@ -30,7 +37,8 @@ const globalReducer = (state, action) => {
 export const GlobalProvider = ({ children }) => {
   const [state, dispatch] = useReducer(globalReducer, {
     currentTheme: 'light-ui-items',
-    overlayStatus: 'closed'
+    overlayStatus: 'closed',
+    currentUiStyle: 'ui-style-white-on-dark'
   })
 
   return (
@@ -42,7 +50,7 @@ export const GlobalProvider = ({ children }) => {
   )
 }
 
-// custom hooks for when we want to use our global state
+// custom hooks for when we want to use global state or dispatch an action to update state
 export const useGlobalStateContext = () => useContext(GlobalStateContext)
 
 export const useGlobalDispatchContext = () => useContext(GlobalDispatchContext)

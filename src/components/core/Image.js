@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
 import {
   addImageToCache,
@@ -20,6 +20,7 @@ const Image = ({ image, alt = '', classes = '' }) => {
     .join()
 
   // checks a custom cache object to see if a
+  
   const imageHasLoaded = checkImageCache(`${siteUrl}${image.src}`)
   // (
   // checks if an image has been loaded before using a custom cache object.The lazyloaded blur-up image is only loaded the first time that exact image variation has been loaded

@@ -11,7 +11,7 @@ import ThemeButton from './ThemeButton'
 
 const SiteHead = ({ classes, isHomepage}) => {
   const dispatch = useGlobalDispatchContext()
-  const { overlayStatus } = useGlobalStateContext()
+  const { overlayStatus, currentUiStyle } = useGlobalStateContext()
 
   const toggleOverlay = () => {
     if (overlayStatus === 'open') {
@@ -49,6 +49,7 @@ const SiteHead = ({ classes, isHomepage}) => {
             <SiteHeadBurger
               overlayStatus={overlayStatus}
               toggleOverlay={toggleOverlay}
+              uiStyle={currentUiStyle}
             />
           </div>
           <PrimaryNav isOverlayOpen={isOverlayOpen} />
