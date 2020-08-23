@@ -140,7 +140,7 @@ const {geometry} = currentMesh;
     const {clock} = frame;
     console.log('mesh ref --', meshRef)
     matRef.current.uniforms.explosion.value =
-    Math.sin((clock.elapsedTime *0.8  ) - Math.PI / 4) * (hovered ?   1.4  : 0.2);
+    Math.sin((clock.elapsedTime *0.8  ) - Math.PI / 4) * (hovered ?   0.002  : 0.2);
 
     
     matRef.current.uniforms.time.value =(clock.elapsedTime *0.8  - Math.PI / 4) * 0.2 + 0.2;
@@ -148,7 +148,7 @@ const {geometry} = currentMesh;
 
       meshRef.current.rotation.z += 0.001
       meshRef.current.rotation.x += 0.001
-      meshRef.current.rotation.y += 0.001
+      meshRef.current.rotation.y += 0.003
     }
 
   })
@@ -167,7 +167,7 @@ const {geometry} = currentMesh;
   position={position ? position : [0,0,0]}
   >
   
-  <icosahedronBufferGeometry attach="geometry" args={[1,5]} ref={geoRef}
+  <icosahedronBufferGeometry attach="geometry" args={[1,4]} ref={geoRef}
   
   uniforms={{
     explosion: {type: 'f', value: 1 },
