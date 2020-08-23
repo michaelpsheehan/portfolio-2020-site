@@ -8,6 +8,7 @@ import Image from '../components/core/Image'
 import RichArticle from '../components/content/rich-article/RichArticle'
 import IntroOverlay from '../components/core/IntroOverlay'
 import { gsap } from 'gsap'
+import ThreeSphere from '../components/3d/sphere-breaking/index.js'
 
 // set gsap timeline defaults
 const tl = gsap.timeline({
@@ -68,6 +69,18 @@ const HomeTemplate = (data) => {
         />
       )}
       {richArticle && <RichArticle richArticle={richArticle} />}
+
+      <div>
+        <div className="container">
+          <div className="h-screen w-full flex" >
+<div className="w-full md:w-1/2"></div>
+<div className="w-full md:w-1/2 hover:cursor-move ">
+  
+        <ThreeSphere />
+</div>
+        </div>
+        </div>
+      </div>
     </>
   )
 }

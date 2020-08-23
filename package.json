@@ -8,6 +8,7 @@
   "dependencies": {
     "acorn": "^7.4.0",
     "axios": "^0.19.2",
+    "drei": "^1.2.0",
     "gatsby": "^2.24.26",
     "gatsby-image": "^2.4.14",
     "gatsby-plugin-manifest": "^2.4.21",
@@ -32,7 +33,9 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-helmet": "^6.1.0",
-    "react-refresh": "^0.8.3"
+    "react-refresh": "^0.8.3",
+    "react-three-fiber": "^4.2.20",
+    "three": "^0.119.1"
   },
   "devDependencies": {
     "babel-eslint": "^10.1.0",
