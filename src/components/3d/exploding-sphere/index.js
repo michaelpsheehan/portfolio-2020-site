@@ -82,7 +82,7 @@ vec3 pos = position.xyz;
 const {geometry} = currentMesh;
      const positions = geometry.getAttribute("position");
      const vertexCount = positions.count;
-     const triangleCount = vertexCount / 9;
+     const triangleCount = vertexCount / 3;
    
      const randomDirections = [];
      const randomStrengths = [];

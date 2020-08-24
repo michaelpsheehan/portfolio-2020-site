@@ -22,7 +22,6 @@ const RichArticle = ({richArticle, classes = '' }) => {
     }
   }
 
-  
 return richArticle && (
   <article className={`c-rich-article ${classes}`}>
       {richArticle.map((block) => {
@@ -30,7 +29,7 @@ return richArticle && (
         const fullHeightSection = block.typeHandle === 'animation' || block.typeHandle === 'webgl' ? true : false;
         return (
           <Section 
-            content = {currentBlock}
+            content={currentBlock}
             key={block.id}
             classes={fullHeightSection ? 'c-section--screen-height' : ''}
           />
