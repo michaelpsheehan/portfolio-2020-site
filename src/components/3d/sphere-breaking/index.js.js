@@ -56,7 +56,7 @@ vec3 pos = position.xyz;
     vec3 colorA = vec3(1,0,0);
   // vec3 colorB = vec3(1.000,0.833,0.224);
   // vec3 colorB = normalize(vOriginalPosition * cos(time)) * 0.5 + 0.5;
-  vec3 colorB = normalize( sin(vOriginalPosition) * sin(time)) * 0.5 + 0.5;
+  vec3 colorB = normalize( sin(vOriginalPosition) * sin(time )) * 0.5 + 0.5;
   // vec3 colorB = vec3(num, num, num);
 
 
@@ -68,7 +68,7 @@ vec3 pos = position.xyz;
     // Mix uses pct (a value from 0-1) to
     // mix the two colors
     // color = mix(colorA, colorB, pct);
-    // color = mix(colorA, colorB, pct);
+    color = mix(colorA, colorB, pct);
 
     gl_FragColor = vec4(colorB,1.0);
 }
@@ -82,7 +82,7 @@ vec3 pos = position.xyz;
 const {geometry} = currentMesh;
      const positions = geometry.getAttribute("position");
      const vertexCount = positions.count;
-     const triangleCount = vertexCount / 3;
+     const triangleCount = vertexCount / 9;
    
      const randomDirections = [];
      const randomStrengths = [];
@@ -97,7 +97,7 @@ const {geometry} = currentMesh;
          .toArray();
    
        // Triplicate it and turn into a flat list of x, y, z, x, y, z...
-       const directions = [dir, dir, dir].flat();
+       const directions = [dir, dir, dir, dir, dir, dir, dir, dir, dir].flat();
    
        // Concat into array
        randomDirections.push(...directions);

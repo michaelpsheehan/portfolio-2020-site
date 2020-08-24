@@ -52,6 +52,15 @@ async function createHomepage({ graphql, actions }) {
                 body
                 heading
               }
+              ... on Craft_richArticle_webgl_BlockType {
+                id
+                typeHandle
+                heading
+                body
+                backgroundColour
+                alignCanvas(label: true)
+                selectedScene
+              }
 
               ... on Craft_richArticle_text_BlockType {
                 id

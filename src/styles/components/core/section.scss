@@ -1,12 +1,14 @@
 .c-section {
   @apply my-16 relative;
 
-  // .container {
-  //   @apply border;
-  // }
-
   @screen md {
-    // @apply my-20;
     @apply my-40;
+  }
+
+  &.c-section--screen-height {
+    @apply my-0;
+    @screen md {
+      @apply my-0;
+    }
   }
 }

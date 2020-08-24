@@ -70,17 +70,17 @@ const HomeTemplate = (data) => {
       )}
       {richArticle && <RichArticle richArticle={richArticle} />}
 
-      <div>
+      {/* <div >
         <div className="container">
           <div className="h-screen w-full flex" >
-<div className="w-full md:w-1/2"></div>
-<div className="w-full md:w-1/2 hover:cursor-move ">
+        <div className="w-full md:w-1/2"></div>
+        <div className="w-full md:w-1/2 hover:cursor-move ">
   
         <ThreeSphere />
-</div>
+          </div>
         </div>
-        </div>
-      </div>
+        </div> */}
+      {/* </div> */}
     </>
   )
 }

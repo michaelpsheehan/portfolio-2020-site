@@ -142,7 +142,7 @@ const setUiLight = () => {
         >
           {(block.heading || block.body) && (
             <div className="mb-8 md:mb-0 md:w-1/2 ">
-              <div className="c-animation-block__animation" >
+              <div className="c-animation-block__text" >
                 <div className="max-w-sm mx-auto " >
                   <Text
                     heading={block.heading}
