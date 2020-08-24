@@ -6,9 +6,9 @@ import { Canvas, useThree, useFrame, extend, useUpdate } from 'react-three-fiber
 import {OrbitControls,} from "drei";
 import {gsap} from 'gsap'
 // import './style.css'
+import { Controls, useControl } from 'react-three-gui';
 
-
-
+// const GROUP = 'Extra';
 const Box = ({position}) => {
   const geoRef = useRef()
   const matRef = useRef()
@@ -138,7 +138,7 @@ const {geometry} = currentMesh;
        const end = hovered ?   3.2 : 0.2;
        const speed = hovered ? 0.0000001 : 1;
     const {clock} = frame;
-    console.log('mesh ref --', meshRef)
+    // console.log('mesh ref --', meshRef)
     matRef.current.uniforms.explosion.value =
     Math.sin((clock.elapsedTime *0.8  ) - Math.PI / 4) * (hovered ?   0.002  : 0.2);
 
@@ -153,6 +153,28 @@ const {geometry} = currentMesh;
 
   })
   console.log('BOX  ')
+
+  const posX = useControl('Pos X', {
+    type: 'number',
+    scrub: true,
+    min: -200,
+    max: 200
+  });
+  const scalex = useControl('scale x', {
+    type: 'number',
+    scrub: true,
+    min: -10,
+    max: 10
+  });
+ 
+  // const posY = useControl('Pos Y', {
+  //   type: 'number',
+  //   scrub: true,
+  //   min: -200,
+  //   max: 200
+  // });
+ 
+
   return(
     <>
     
@@ -165,6 +187,12 @@ const {geometry} = currentMesh;
   onPointerOver={(e) => setHover(true)}
   onPointerOut={(e) => setHover(false)}
   position={position ? position : [0,0,0]}
+
+
+  // position-x={posX}
+  // position-x={-2.7}
+  // scale-xyz={scalex}
+  // position-y={posY}
   >
   
   <icosahedronBufferGeometry attach="geometry" args={[1,4]} ref={geoRef}
@@ -211,12 +239,29 @@ export default function BreakingSphere() {
 return (
   <>
   { isBrowser && (
+    <>
   <Canvas >
 <Box  />
 <OrbitControls 
 
+mouseButtons= {{
+	LEFT: THREE.MOUSE.ROTATE,
+	MIDDLE: THREE.MOUSE.DOLLY,
+  RIGHT: THREE.MOUSE.PAN
+}
+}
+
+touches = {{
+	// ONE: THREE.TOUCH.ROTATE,
+	ONE: false,
+	TWO: THREE.TOUCH.ROTATE
+}}
+enableZoom={false}
+
  />
   </Canvas>
+   {/* <Controls /> */}
+   </>
 )
 }
 </> 

@@ -8,7 +8,7 @@ import LottieAnimation from '../../LottieAnimation'
 import Text from '../../../core/Text'
 import Section from '../../../core/Section'
 import {useGlobalDispatchContext} from '../../../../context/globalContext'
-
+import slideInOnScroll from './slideInOnScroll'
 gsap.registerPlugin(CSSRulePlugin, ScrollToPlugin, ScrollTrigger)
 
 const AnimationBlock = ({ block, sectionColor, classes = '' }) => {
@@ -39,11 +39,6 @@ const setUiLight = () => {
   })
 }
 
-// console.log('end ---', el.end)
-// console.log('scroll Y --', el.scroller.scrollY)
-// console.log('dif === --',  el.end - el.scroller.scrollY )
-// let progressTarget = 0.95
-
 
 
   const onScrollDown = (el) => {
@@ -64,59 +59,59 @@ const setUiLight = () => {
 
 
   useEffect(() => {
-
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: animationBlockEl.current,
-          scrub: 1,
-          start: 'top bottom',
-          end: 'top top',
-          // markers: {startColor: "black", endColor: "black", fontSize: "20px"},
-          onUpdate: (el) => onScrollDown(el)
+const tl = slideInOnScroll(animationBlockEl.current, animationEl.current,  textEl.current, onScrollDown, dispatch)
+      // const tl = gsap.timeline({
+      //   scrollTrigger: {
+      //     trigger: animationBlockEl.current,
+      //     scrub: 1,
+      //     start: 'top bottom',
+      //     end: 'top top',
+      //     markers: {startColor: "black", endColor: "black", fontSize: "20px"},
+      //     onUpdate: (el) => onScrollDown(el)
     
-        },
-      })
-      tl.from(
-        animationEl.current,
-        0.1,
-        {
-          x: '17vw',
-          y:'25vh',
-          transformOrigin: '50% 50%',
-          ease: 'Power3.out',
-        }
-      )
-      tl.from(
-        [...textEl.current.children].reverse(),
-        0.1,
-        {
-          x: '-20vw',
-          transformOrigin: '50% 50%',
-          ease: 'Power3.out',
-          stagger: {
-            amount: 0.03,
-          },
-        },
-        0
-        )
-      tl.from(
-        [...textEl.current.children].reverse(),
-        0.1,
-        {
-          y:'-20vh',
-          ease: 'Power1.out',
-        },
-        '<'
-        )
-        tl.from(
-          [...textEl.current.children].reverse(),
-          0.1,
-          {
-          opacity: 0,
-            ease: 'Power1.out',
-          },
-              '<'
-          )
+      //   },
+      // })
+      // tl.from(
+      //   animationEl.current,
+      //   0.1,
+      //   {
+      //     x: '17vw',
+      //     y:'25vh',
+      //     transformOrigin: '50% 50%',
+      //     ease: 'Power3.out',
+      //   }
+      // )
+      // tl.from(
+      //   [...textEl.current.children].reverse(),
+      //   0.1,
+      //   {
+      //     x: '-20vw',
+      //     transformOrigin: '50% 50%',
+      //     ease: 'Power3.out',
+      //     stagger: {
+      //       amount: 0.03,
+      //     },
+      //   },
+      //   0
+      //   )
+      // tl.from(
+      //   [...textEl.current.children].reverse(),
+      //   0.1,
+      //   {
+      //     y:'-20vh',
+      //     ease: 'Power1.out',
+      //   },
+      //   '<'
+      //   )
+      //   tl.from(
+      //     [...textEl.current.children].reverse(),
+      //     0.1,
+      //     {
+      //     opacity: 0,
+      //       ease: 'Power1.out',
+      //     },
+      //         '<'
+      //     )
 
   return () => {
     tl.kill()
