@@ -33,7 +33,9 @@ float stretch = time;
 vec3 pos = position.xyz;
  pos += randomDirection * randomStrength * explosion;
     // Here we scale X and Z of the geometry by some modifier
+    // pos.xz *= sin(pos.y + stretch);
     pos.xz *= sin(pos.y + stretch);
+    // pos.y -=  sin(pos.y +  stretch);
     gl_Position = projectionMatrix * modelViewMatrix * vec4(pos.xyz, 1.0);
   }
   `
@@ -112,13 +114,13 @@ const {geometry} = currentMesh;
        new Float32Array(randomDirections),
        3
      );
-     geometry.addAttribute("randomDirection", randomDirectionsAttribute);
+     geometry.setAttribute("randomDirection", randomDirectionsAttribute);
    
      const randomStrengthsAttribute = new THREE.BufferAttribute(
        new Float32Array(randomStrengths),
        1
      );
-     geometry.addAttribute("randomStrength", randomStrengthsAttribute);
+     geometry.setAttribute("randomStrength", randomStrengthsAttribute);
 
 
 
@@ -138,7 +140,6 @@ const {geometry} = currentMesh;
        const end = hovered ?   3.2 : 0.2;
        const speed = hovered ? 0.0000001 : 1;
 
-       console.log('USER SCALE -------------===-=-=-==-=', userScale)
     const {clock} = frame;
     // console.log('mesh ref --', meshRef)
     matRef.current.uniforms.explosion.value =
@@ -154,7 +155,6 @@ const {geometry} = currentMesh;
     }
 
   })
-  console.log('BOX  ')
 
   const posX = useControl('Pos X', {
     type: 'number',
@@ -177,7 +177,6 @@ const {geometry} = currentMesh;
   // });
  
 
-  console.log('BOXXXXXXXXXXXXX')
 
   return(
     <>

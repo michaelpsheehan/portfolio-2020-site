@@ -32,7 +32,7 @@ class HeroNew extends Component {
     this.scrollTimeline = gsap.timeline({
       scrollTrigger: {
         start: 'top top',
-        scrub: 1,
+        scrub: 0.1,
         trigger: this.heroEl.current,
         // markers: true
       },

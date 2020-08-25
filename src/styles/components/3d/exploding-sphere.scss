@@ -2,20 +2,27 @@
 
 }
 
-.c-scale-buttons {
-  // width:300px;
+.c-scale-model {
   pointer-events: all;;
-  // border:4px solid green;
   @apply absolute;
   right:2rem;
-  // left:50%;
-  // transform: translate3d(-50%);
   bottom:2rem;
+  
+  &__title {
+    @apply uppercase  text-xs leading-loose text-center;
+  }
+  
+  &__buttons {
+    @apply flex justify-between;
 
-  .c-button {
+}
+&__button {
     // @apply px-8;
+    @apply text-2xl ;
     &:hover {
-      @apply cursor-pointer;
+      @apply cursor-pointer ;
+      
     }
+   
   }
 }

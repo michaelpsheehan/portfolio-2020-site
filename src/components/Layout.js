@@ -34,19 +34,8 @@ const Layout = ({ children,  path }) => {
   const { currentTheme, currentUiStyle } = useGlobalStateContext()
 
 
-  console.log('current ui style ===', currentUiStyle)
   const isHomepage = path === '/' ? true : false
-  // const path = children.props.path
-  // const path = children.props.uri
-  // const path = children.location.pathname
-  // const path = children.location
-  // const path = children.props.location.pathname
-  // const path = props.location.pathname
-  // console.log('LOCATION --', Location)
-  // console.log('layout props children ---', children)
-  // console.log('layout path -- ---', path)
-  // console.log('current theme in layout ===', currentTheme)
-
+ 
   // const data = useStaticQuery(graphql`
   //   query SiteTitleQuery {
   //     craft {

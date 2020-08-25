@@ -11,6 +11,9 @@ import {useGlobalDispatchContext} from '../../../../context/globalContext'
 import slideInOnScroll from './slideInOnScroll'
 gsap.registerPlugin(CSSRulePlugin, ScrollToPlugin, ScrollTrigger)
 
+
+
+
 const AnimationBlock = ({ block, sectionColor, classes = '' }) => {
   const dispatch = useGlobalDispatchContext()
 
@@ -19,11 +22,14 @@ const AnimationBlock = ({ block, sectionColor, classes = '' }) => {
   const animationBlockEl = useRef(null)
   const hamburgerHeight = 50
 
- let backgroundColor = null
+ let backgroundColor = null;
 
   block.backgroundColour && block.backgroundColour !== 'default'
   ?  backgroundColor = `js-dark-background text-white ${block.backgroundColour} `
   : null
+
+  const isReversed = block.alignAnimation === 'Left' ?  true : false
+  console.log('IS REVERSED --', isReversed)
 
 const setUiDark = () => {
   dispatch(
@@ -60,58 +66,7 @@ const setUiLight = () => {
 
   useEffect(() => {
 const tl = slideInOnScroll(animationBlockEl.current, animationEl.current,  textEl.current, onScrollDown, dispatch)
-      // const tl = gsap.timeline({
-      //   scrollTrigger: {
-      //     trigger: animationBlockEl.current,
-      //     scrub: 1,
-      //     start: 'top bottom',
-      //     end: 'top top',
-      //     markers: {startColor: "black", endColor: "black", fontSize: "20px"},
-      //     onUpdate: (el) => onScrollDown(el)
-    
-      //   },
-      // })
-      // tl.from(
-      //   animationEl.current,
-      //   0.1,
-      //   {
-      //     x: '17vw',
-      //     y:'25vh',
-      //     transformOrigin: '50% 50%',
-      //     ease: 'Power3.out',
-      //   }
-      // )
-      // tl.from(
-      //   [...textEl.current.children].reverse(),
-      //   0.1,
-      //   {
-      //     x: '-20vw',
-      //     transformOrigin: '50% 50%',
-      //     ease: 'Power3.out',
-      //     stagger: {
-      //       amount: 0.03,
-      //     },
-      //   },
-      //   0
-      //   )
-      // tl.from(
-      //   [...textEl.current.children].reverse(),
-      //   0.1,
-      //   {
-      //     y:'-20vh',
-      //     ease: 'Power1.out',
-      //   },
-      //   '<'
-      //   )
-      //   tl.from(
-      //     [...textEl.current.children].reverse(),
-      //     0.1,
-      //     {
-      //     opacity: 0,
-      //       ease: 'Power1.out',
-      //     },
-      //         '<'
-      //     )
+   
 
   return () => {
     tl.kill()
@@ -122,23 +77,29 @@ const tl = slideInOnScroll(animationBlockEl.current, animationEl.current,  textE
   },[])
 
   return (
-    <Section
-      classes={`md:my-0 overflow-hidden ${backgroundColor !== null ? backgroundColor : ''}  `}
+    // <Section
+    //   classes={`md:my-0 overflow-hidden ${backgroundColor !== null ? backgroundColor : ''}  `}
    
-      content={
+    //   content={
         <div
-          className={`c-animation-block py-16 md:py-0 md:flex md:items-center md:h-screen  ${
-            block.alignAnimation === 'Left' ? 'md:flex-row-reverse' : ''
-          } 
-          ${backgroundColor !== null ? 'js-dark-bg' : 'js-white-bg'} 
-          `
+          className={`c-animation-block  py-16 md:py-0
+          ${backgroundColor !== null ? `${backgroundColor} js-dark-bg` : 'js-white-bg'} 
+          
+          overflow-hidden    `
         }
           ref={animationBlockEl}
         >
+          <div className="container">
+
+<div className={`md:flex md:items-center md:h-screen  
+${isReversed ? 'md:flex-row-reverse' : ''}
+           `}>
+
+
           {(block.heading || block.body) && (
             <div className="mb-8 md:mb-0 md:w-1/2 ">
-              <div className="c-animation-block__text" >
-                <div className="max-w-sm mx-auto " >
+              <div className={`c-animation-block__text ${isReversed ? 'md:flex md:flex-row-reverse' : ''}` }>
+                <div className="max-w-sm  " >
                   <Text
                     heading={block.heading}
                     body={block.body}
@@ -159,9 +120,10 @@ const tl = slideInOnScroll(animationBlockEl.current, animationEl.current,  textE
             </div>
           )}
           <div
-            className={`c-lottie-animation md:w-1/2  text-center ${
-              block.alignAnimation === 'Left' ? 'md:pr-8' : 'md:pl-8'
-            }`}
+            className={`c-lottie-animation md:w-1/2  text-center 
+            ${isReversed ? 'md:pr-8' : 'md:pl-8'}
+            `
+          }
           >
             <div className="c-animation-block__animation" ref={animationEl}>
               <LottieAnimation
@@ -175,10 +137,15 @@ const tl = slideInOnScroll(animationBlockEl.current, animationEl.current,  textE
               />
             </div>
           </div>
+
+
+
+</div>
+
+
         </div>
-      }
-      container
-    />
+        </div>
+  
   )
 }
 export default AnimationBlock

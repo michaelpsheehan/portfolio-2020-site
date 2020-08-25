@@ -7,7 +7,6 @@ let transitionCoverLeftSectionEl = null
 let transitionCoverRightSectionEl = null
 
 export const transitionStandard = () => {
-  console.log('children --', transitionCoverEl.current.children)
 
   if(transitionCoverLeftSectionEl) {
     let tl = gsap.timeline()
@@ -52,7 +51,6 @@ export const transitionStandard = () => {
 }
 
 export const exitTransition = (nextPage) => {
-console.log('nextpage -- ',  nextPage)
   if(transitionCoverEl) {
   const  tl = gsap.timeline()
     tl.to(transitionCoverEl.current.children, {

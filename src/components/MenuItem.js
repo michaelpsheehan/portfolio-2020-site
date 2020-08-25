@@ -11,7 +11,6 @@ import {
 const MenuItem = ({ name, link, forwardedRef }) => {
   const dispatch = useGlobalDispatchContext()
 const closeOverlay = ()=> {
-console.log('close menu now')
   dispatch({
     type: 'CHANGE_OVERLAY',
     newStatus: 'closed',

@@ -43,8 +43,6 @@ const onScrollDown = (el, dispatch) => {
   }
 }
 const slideInOnScroll = (elementContainer, element1, element2, onScrollCallback, dispatch) => {
-  console.log('element 1 --', element1)
-  console.log('element 2 --', element2)
 
   const tl = gsap.timeline({
     scrollTrigger: {

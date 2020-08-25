@@ -7,16 +7,13 @@ import Button from '../../../core/Button'
 const webGLBlock = ({ block, sectionColor, classes = '' }) => {
   const [userDefinedScale, setScale] = useState(1.5)
 
-  console.log(userDefinedScale)
-  console.log('block --', block)
+  
   let backgroundColor = null
 let reversed = block.alignCanvas === 'Left' ? true : false;
 
   if(block.backgroundColour)  {
-    console.log('block  color ---', block.backgroundColour)
     backgroundColor = block.backgroundColour !== 'default' ? `js-dark-background text-white ${block.backgroundColour}` : block.backgroundColour
   }
-  console.log('bg color ---', backgroundColor)
   
   
 
@@ -40,8 +37,6 @@ const webGLSection = <WebGlBase sceneName={block.selectedScene} userScale={userD
 
   return (
     <div className={`c-webgl-block ${backgroundColor ? backgroundColor : ''}`} >
-  {/* <div className="container relative"> */}
-
 
   <div className={`c-webgl py-16 xl:py-0 xl:flex xl:items-center xl:h-screen  relative ${backgroundColor !== null ? 'js-dark-bg' : 'js-white-bg'} `}>
    <div className="container">
@@ -55,24 +50,23 @@ const webGLSection = <WebGlBase sceneName={block.selectedScene} userScale={userD
       {webGLSection}
     </div>
   </div>
-{/* </div> */}
-    {/* <SplitSection primarySection={textSection} secondarySection={webGLSection}   reversed={reversed} /> */}
-  {/* </div> */}
 <div className="container relative">
 
- <div className="c-scale-buttons" >
-    <div className="mb-4 text-center">
+ <div className="c-scale-model" >
+    <div className="c-scale-model__title">
       zoom
-      </div>
-      <div onClick={()=> setScale(userDefinedScale +0.5)} className="mb-2 border" >
-    in
+    </div>
+    <div className="c-scale-model__buttons" >
+      <div onClick={()=> setScale(userDefinedScale +0.5)} className="c-scale-model__button"  >
+        +
     </div>
     {userDefinedScale > 0.25 && (
-      <div onClick={()=> userDefinedScale <=  0.5 ? null : setScale(userDefinedScale -0.5)} className="border" >
-      out
-   </div>
+      <div onClick={()=> userDefinedScale <=  0.5 ? null : setScale(userDefinedScale -0.5)}  className="c-scale-model__button" >
+        -
+      </div>
   )
 }
+  </div>
   </div>
  
     </div>
