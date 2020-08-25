@@ -15,29 +15,28 @@ gsap.registerPlugin(CSSRulePlugin, ScrollToPlugin, ScrollTrigger)
 class ThemeButton extends Component {
   constructor() {
     super()
-
   }
 
   render() {
     return (
       <>
-              <GlobalStateContext.Consumer>
-                {(globalState) => (
-                  <GlobalDispatchContext.Consumer>
-                    {(dispatch) => {
-                      const { currentTheme } = globalState
-                      return (
-                        <div
-                          className="p-4 bg-brand-red text-white"
-                          onClick={() => changeTheme(currentTheme, dispatch)}
-                        >
-                          {currentTheme}
-                        </div>
-                      )
-                    }}
-                  </GlobalDispatchContext.Consumer>
-                )}
-              </GlobalStateContext.Consumer>
+        <GlobalStateContext.Consumer>
+          {(globalState) => (
+            <GlobalDispatchContext.Consumer>
+              {(dispatch) => {
+                const { currentTheme } = globalState
+                return (
+                  <div
+                    className="p-4 bg-brand-red text-white"
+                    onClick={() => changeTheme(currentTheme, dispatch)}
+                  >
+                    {currentTheme}
+                  </div>
+                )
+              }}
+            </GlobalDispatchContext.Consumer>
+          )}
+        </GlobalStateContext.Consumer>
       </>
     )
   }

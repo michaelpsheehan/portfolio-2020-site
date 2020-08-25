@@ -1,4 +1,4 @@
-import React, {useRef, useEffect, useState} from 'react'
+import React, { useRef, useEffect, useState } from 'react'
 import { Link } from 'gatsby'
 import Section from '../components/core/Section'
 import SEO from '../components/Seo'
@@ -15,7 +15,11 @@ const tl = gsap.timeline({
   defaults: { duration: 1, ease: 'expo.inOut' },
 })
 
-const introOverlayAnimation = (leftSection,rightSection, completeAnimation) => {
+const introOverlayAnimation = (
+  leftSection,
+  rightSection,
+  completeAnimation
+) => {
   tl.to(leftSection.children, 1, {
     scaleY: 0,
     stagger: 0.3,
@@ -24,7 +28,7 @@ const introOverlayAnimation = (leftSection,rightSection, completeAnimation) => {
   tl.to(rightSection, {
     scaleX: 0,
     transformOrigin: 'bottom right',
-    onComplete: completeAnimation
+    onComplete: completeAnimation,
   })
 }
 
@@ -41,17 +45,25 @@ const HomeTemplate = (data) => {
 
   useEffect(() => {
     // create and start intro overlay animation timeline
-    introOverlayAnimation(introOverlayLeftSectionEl.current, introOverlayRightSectionEl.current, completeAnimation)
+    introOverlayAnimation(
+      introOverlayLeftSectionEl.current,
+      introOverlayRightSectionEl.current,
+      completeAnimation
+    )
   }, [])
 
   return (
     <>
       {entry && <SEO title={entry.title} />}
-      {animationComplete === false ?  <IntroOverlay
-        leftSection={introOverlayLeftSectionEl}
-        rightSection={introOverlayRightSectionEl}
-      />  : '' }
-     
+      {animationComplete === false ? (
+        <IntroOverlay
+          leftSection={introOverlayLeftSectionEl}
+          rightSection={introOverlayRightSectionEl}
+        />
+      ) : (
+        ''
+      )}
+
       {entry && (
         <HeroNew
           classes="c-hero--dark-bg c-hero--animated-bg"

@@ -38,7 +38,7 @@ export const GlobalProvider = ({ children }) => {
   const [state, dispatch] = useReducer(globalReducer, {
     currentTheme: 'light-ui-items',
     overlayStatus: 'closed',
-    currentUiStyle: 'ui-style-white-on-dark'
+    currentUiStyle: 'ui-style-white-on-dark',
   })
 
   return (

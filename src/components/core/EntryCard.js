@@ -3,19 +3,11 @@ import AniLink from 'gatsby-plugin-transition-link/AniLink'
 import Button from './Button'
 import Image from './Image'
 
-
-
 const EntryCard = ({ item, itemSection = '', classes = '' }) => {
-  const {
-    slug,
-    title,
-    thumbnailDescription,
-    imageCaption,
-  } = item
+  const { slug, title, thumbnailDescription, imageCaption } = item
   const entryCardImage = item.heroImage[0]
     ? item.heroImage[0].imageOptimizeSmallImage
     : null
-
 
   return (
     <div className={`c-entry-card ${classes}`}>

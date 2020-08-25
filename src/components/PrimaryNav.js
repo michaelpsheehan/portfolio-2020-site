@@ -60,8 +60,6 @@ class PrimaryNav extends Component {
           </ul>
         </div>
       </>
-
-      
     ) : null
   }
 }

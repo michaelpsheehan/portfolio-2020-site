@@ -1,22 +1,26 @@
 // import ReactDOM from 'react-dom'
-import * as THREE from "three"
+import * as THREE from 'three'
 
 import React, { useRef, useState, useEffect, useMemo } from 'react'
-import { Canvas, useThree, useFrame, extend, useUpdate } from 'react-three-fiber'
-import {OrbitControls,Html } from "drei";
-import {gsap} from 'gsap'
+import {
+  Canvas,
+  useThree,
+  useFrame,
+  extend,
+  useUpdate,
+} from 'react-three-fiber'
+import { OrbitControls, Html } from 'drei'
+import { gsap } from 'gsap'
 // import './style.css'
-import { Controls, useControl } from 'react-three-gui';
+import { Controls, useControl } from 'react-three-gui'
 import Button from '../../core/Button'
 // const GROUP = 'Extra';
-const Box = ({position, userScale}) => {
+const Box = ({ position, userScale }) => {
   const geoRef = useRef()
   const matRef = useRef()
   const cam = useRef()
 
-
-  const [hovered, setHover] = useState(false);
-
+  const [hovered, setHover] = useState(false)
 
   const vertexShader = `
 
@@ -39,7 +43,7 @@ vec3 pos = position.xyz;
     gl_Position = projectionMatrix * modelViewMatrix * vec4(pos.xyz, 1.0);
   }
   `
-  
+
   const fragmentShader = `
   varying vec3 vOriginalPosition;
 
@@ -76,200 +80,164 @@ vec3 pos = position.xyz;
 }
   
   `
-  
 
-     const meshRef = useUpdate((currentMesh) => 
-     
-     {
-const {geometry} = currentMesh;
-     const positions = geometry.getAttribute("position");
-     const vertexCount = positions.count;
-     const triangleCount = vertexCount / 3;
-   
-     const randomDirections = [];
-     const randomStrengths = [];
-     for (let i = 0; i < triangleCount; i++) {
-       // Get a random unit vector
-       const dir = new THREE.Vector3(
-         Math.random() * 2 - 1,
-         Math.random() * 2 - 1,
-         Math.random() * 2 - 1
-       )
-         .normalize()
-         .toArray();
-   
-       // Triplicate it and turn into a flat list of x, y, z, x, y, z...
-       const directions = [dir, dir, dir, dir, dir, dir, dir, dir, dir].flat();
-   
-       // Concat into array
-       randomDirections.push(...directions);
-   
-       // Do the same but with the 1 random strength float
-       const str = Math.random();
-       randomStrengths.push(str, str, str);
-     }
-   
-     // Define the attributes
-     const randomDirectionsAttribute = new THREE.BufferAttribute(
-       new Float32Array(randomDirections),
-       3
-     );
-     geometry.setAttribute("randomDirection", randomDirectionsAttribute);
-   
-     const randomStrengthsAttribute = new THREE.BufferAttribute(
-       new Float32Array(randomStrengths),
-       1
-     );
-     geometry.setAttribute("randomStrength", randomStrengthsAttribute);
+  const meshRef = useUpdate((currentMesh) => {
+    const { geometry } = currentMesh
+    const positions = geometry.getAttribute('position')
+    const vertexCount = positions.count
+    const triangleCount = vertexCount / 3
 
+    const randomDirections = []
+    const randomStrengths = []
+    for (let i = 0; i < triangleCount; i++) {
+      // Get a random unit vector
+      const dir = new THREE.Vector3(
+        Math.random() * 2 - 1,
+        Math.random() * 2 - 1,
+        Math.random() * 2 - 1
+      )
+        .normalize()
+        .toArray()
 
+      // Triplicate it and turn into a flat list of x, y, z, x, y, z...
+      const directions = [dir, dir, dir, dir, dir, dir, dir, dir, dir].flat()
 
+      // Concat into array
+      randomDirections.push(...directions)
 
+      // Do the same but with the 1 random strength float
+      const str = Math.random()
+      randomStrengths.push(str, str, str)
     }
-    
-     )
-  
 
-     
+    // Define the attributes
+    const randomDirectionsAttribute = new THREE.BufferAttribute(
+      new Float32Array(randomDirections),
+      3
+    )
+    geometry.setAttribute('randomDirection', randomDirectionsAttribute)
 
+    const randomStrengthsAttribute = new THREE.BufferAttribute(
+      new Float32Array(randomStrengths),
+      1
+    )
+    geometry.setAttribute('randomStrength', randomStrengthsAttribute)
+  })
 
-     
-     
-     useFrame((frame)=> {
-       const start = hovered ?  0.2 : 3.2;
-       const end = hovered ?   3.2 : 0.2;
-       const speed = hovered ? 0.0000001 : 1;
+  useFrame((frame) => {
+    const start = hovered ? 0.2 : 3.2
+    const end = hovered ? 3.2 : 0.2
+    const speed = hovered ? 0.0000001 : 1
 
-    const {clock} = frame;
+    const { clock } = frame
     // console.log('mesh ref --', meshRef)
     matRef.current.uniforms.explosion.value =
-    Math.sin((clock.elapsedTime *0.8  ) - Math.PI / 4) * (hovered ?   0.002  : 0.2);
+      Math.sin(clock.elapsedTime * 0.8 - Math.PI / 4) * (hovered ? 0.002 : 0.2)
 
-    
-    matRef.current.uniforms.time.value =(clock.elapsedTime *0.8  - Math.PI / 4) * 0.2 + 0.2;
-    if(!hovered) {
-
+    matRef.current.uniforms.time.value =
+      (clock.elapsedTime * 0.8 - Math.PI / 4) * 0.2 + 0.2
+    if (!hovered) {
       meshRef.current.rotation.z += 0.001
       meshRef.current.rotation.x += 0.001
       meshRef.current.rotation.y += 0.003
     }
-
   })
 
   const posX = useControl('Pos X', {
     type: 'number',
     scrub: true,
     min: -200,
-    max: 200
-  });
+    max: 200,
+  })
   const scalex = useControl('scale x', {
     type: 'number',
     scrub: true,
     min: -10,
-    max: 10
-  });
- 
+    max: 10,
+  })
+
   // const posY = useControl('Pos Y', {
   //   type: 'number',
   //   scrub: true,
   //   min: -200,
   //   max: 200
   // });
- 
 
-
-  return(
+  return (
     <>
-    
-  <mesh ref={meshRef} 
-  uniforms={{
-    explosion: {type: 'f', value: 1 },
-    time: {type: 'f', value: 0}
-  }}
-  scale={[userScale, userScale, userScale]}
-  onPointerOver={(e) => setHover(true)}
-  onPointerOut={(e) => setHover(false)}
-  position={position ? position : [0,0,0]}
+      <mesh
+        ref={meshRef}
+        uniforms={{
+          explosion: { type: 'f', value: 1 },
+          time: { type: 'f', value: 0 },
+        }}
+        scale={[userScale, userScale, userScale]}
+        onPointerOver={(e) => setHover(true)}
+        onPointerOut={(e) => setHover(false)}
+        position={position ? position : [0, 0, 0]}
 
-
-  // position-x={posX}
-  // position-x={-2.7}
-  // scale-xyz={scalex}
-  // position-y={posY}
-  >
-  
-  <icosahedronBufferGeometry attach="geometry" args={[1,4]} ref={geoRef}
-  
-  uniforms={{
-    explosion: {type: 'f', value: 1 },
-    time: {type: 'f', value: 0}
-  }}
-
-
-  vertexShader={vertexShader}
-  />
-  <shaderMaterial attach="material" color="hotpink" 
-
-  args={[{
-    vertexShader,
-    fragmentShader,
-    uniforms:{
-      explosion: {type: 'f', value: 1 },
-      time: {type: 'f', value: 0}
-  },
-  side: THREE.DoubleSide
-
-}
-  ]
-}
-
-  ref={matRef}
-
-
-
-  
-  />
-</mesh>
-
-</>
+        // position-x={posX}
+        // position-x={-2.7}
+        // scale-xyz={scalex}
+        // position-y={posY}
+      >
+        <icosahedronBufferGeometry
+          attach="geometry"
+          args={[1, 4]}
+          ref={geoRef}
+          uniforms={{
+            explosion: { type: 'f', value: 1 },
+            time: { type: 'f', value: 0 },
+          }}
+          vertexShader={vertexShader}
+        />
+        <shaderMaterial
+          attach="material"
+          color="hotpink"
+          args={[
+            {
+              vertexShader,
+              fragmentShader,
+              uniforms: {
+                explosion: { type: 'f', value: 1 },
+                time: { type: 'f', value: 0 },
+              },
+              side: THREE.DoubleSide,
+            },
+          ]}
+          ref={matRef}
+        />
+      </mesh>
+    </>
   )
 }
 
-const isBrowser = typeof window !== "undefined"
+const isBrowser = typeof window !== 'undefined'
 
-
-export default function BreakingSphere({userScale}) {
-return (
-  <>
-  { isBrowser && (
+export default function BreakingSphere({ userScale }) {
+  return (
     <>
-  <Canvas >
-<Box userScale={userScale} />
-<OrbitControls 
-
-mouseButtons= {{
-	LEFT: THREE.MOUSE.ROTATE,
-	MIDDLE: THREE.MOUSE.DOLLY,
-  RIGHT: THREE.MOUSE.PAN
-}
-}
-
-// touches = {{
-// 	// ONE: THREE.TOUCH.ROTATE,
-// 	ONE: false,
-// 	TWO: THREE.TOUCH.ROTATE
-// }}
-enableZoom={false}
-
- />
-
-
-  </Canvas> 
-   {/* <Controls /> */}
-   </>
-)
-}
-</> 
-)
-
+      {isBrowser && (
+        <>
+          <Canvas>
+            <Box userScale={userScale} />
+            <OrbitControls
+              mouseButtons={{
+                LEFT: THREE.MOUSE.ROTATE,
+                MIDDLE: THREE.MOUSE.DOLLY,
+                RIGHT: THREE.MOUSE.PAN,
+              }}
+              // touches = {{
+              // 	// ONE: THREE.TOUCH.ROTATE,
+              // 	ONE: false,
+              // 	TWO: THREE.TOUCH.ROTATE
+              // }}
+              enableZoom={false}
+            />
+          </Canvas>
+          {/* <Controls /> */}
+        </>
+      )}
+    </>
+  )
 }

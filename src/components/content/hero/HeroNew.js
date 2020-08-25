@@ -29,95 +29,93 @@ class HeroNew extends Component {
 
   animateTextOnScroll = (allWords) => {
     console.log('animate on Scroll this --', this)
-    this.scrollTimeline = gsap.timeline({
-      scrollTrigger: {
-        start: 'top top',
-        scrub: 0.1,
-        trigger: this.heroEl.current,
-        // markers: true
-      },
-    })
-    .to([allWords[0], allWords[1]], {
-      y: '-300vh',
-      ease: 'Power4.out',
-      rotation: -360,
-      skewY: 7,
-      stagger: {
-        amount: 0.01,
-      },
-    })
-    .to(
-      this.heroSecondaryButtonEl.current,
-      {
-        y: '-25vh',
-        x: '-100vw',
-        opacity: 0,
-        transformOrigin: '50% 50%',
+    this.scrollTimeline = gsap
+      .timeline({
+        scrollTrigger: {
+          start: 'top top',
+          scrub: 0.1,
+          trigger: this.heroEl.current,
+          // markers: true
+        },
+      })
+      .to([allWords[0], allWords[1]], {
+        y: '-300vh',
+        ease: 'Power4.out',
         rotation: -360,
-        ease: 'Power3.out',
-      },
-      0
-    )
-    .to(
-      this.heroPrimaryButtonEl.current,
-      {
-        y: '-25vh',
-        x: '100vw',
-        opacity: 0,
-        transformOrigin: '50% 50%',
-        rotation: 360,
-        ease: 'Power3.out',
-      },
-      0
-    )
-    .to(
-      this.heroScrollIconEl.current,
-      {
-        transformOrigin: '50% 50%',
-        y: '-150vh',
-        opacity: 0,
-        ease: 'Power3.out',
-      },
-      0
-    )
-
+        skewY: 7,
+        stagger: {
+          amount: 0.01,
+        },
+      })
+      .to(
+        this.heroSecondaryButtonEl.current,
+        {
+          y: '-25vh',
+          x: '-100vw',
+          opacity: 0,
+          transformOrigin: '50% 50%',
+          rotation: -360,
+          ease: 'Power3.out',
+        },
+        0
+      )
+      .to(
+        this.heroPrimaryButtonEl.current,
+        {
+          y: '-25vh',
+          x: '100vw',
+          opacity: 0,
+          transformOrigin: '50% 50%',
+          rotation: 360,
+          ease: 'Power3.out',
+        },
+        0
+      )
+      .to(
+        this.heroScrollIconEl.current,
+        {
+          transformOrigin: '50% 50%',
+          y: '-150vh',
+          opacity: 0,
+          ease: 'Power3.out',
+        },
+        0
+      )
   }
 
   splitText(text) {
-    if(text) {
-   return text.split(/[\n]/g)
-    .map((line, index) => {
-      const words = line.split(/[\s]/g).map((word, wordIndex) => (
-        // split and return every word from the hero text wrapped in a span to allow it to be targeted and animated by gsap
-        <span
-          className="c-hero__text-word inline-block"
-          key={wordIndex}
-          ref={(currentWord) =>
-            (this.heroTextWordEls[wordIndex] = currentWord)
-          }
-        >
-          {word}{' '}
-        </span>
-      ))
-
-      return (
-        // maintain the line breaks from the CMS. wrap the array of words in each line of text
-        <span
-          className="c-hero__line-container overflow-hidden relative  w-full block"
-          key={index}
-          ref={(el) => (this.heroTextLineContainerEls[index] = el)}
-        >
+    if (text) {
+      return text.split(/[\n]/g).map((line, index) => {
+        const words = line.split(/[\s]/g).map((word, wordIndex) => (
+          // split and return every word from the hero text wrapped in a span to allow it to be targeted and animated by gsap
           <span
-            className="c-hero__text-line block"
-            ref={(el) => (this.heroTextLineEls[index] = el)}
+            className="c-hero__text-word inline-block"
+            key={wordIndex}
+            ref={(currentWord) =>
+              (this.heroTextWordEls[wordIndex] = currentWord)
+            }
           >
-            {words}
+            {word}{' '}
           </span>
-        </span>
-      )
-    })
-  }
-    
+        ))
+
+        return (
+          // maintain the line breaks from the CMS. wrap the array of words in each line of text
+          <span
+            className="c-hero__line-container overflow-hidden relative  w-full block"
+            key={index}
+            ref={(el) => (this.heroTextLineContainerEls[index] = el)}
+          >
+            <span
+              className="c-hero__text-line block"
+              ref={(el) => (this.heroTextLineEls[index] = el)}
+            >
+              {words}
+            </span>
+          </span>
+        )
+      })
+    }
   }
 
   componentDidMount() {
@@ -126,24 +124,27 @@ class HeroNew extends Component {
       ...currentLine.children,
     ])
 
-      this.tl = gsap.timeline({
-      defaults: { duration: 1, ease: 'Power3.out' },
-      // create the scrollTrigger timeline after the intro completes to stop any early scroll bugs
-      onComplete: this.animateTextOnScroll, onCompleteParams: [this.allWords], onCompleteScope: this 
-    })
-    .set(this.heroContentEl.current, { css: { visibility: 'visible' } })
-    .set(this.heroScrollIconEl.current, { css: { visibility: 'visible' } })
+    this.tl = gsap
+      .timeline({
+        defaults: { duration: 1, ease: 'Power3.out' },
+        // create the scrollTrigger timeline after the intro completes to stop any early scroll bugs
+        onComplete: this.animateTextOnScroll,
+        onCompleteParams: [this.allWords],
+        onCompleteScope: this,
+      })
+      .set(this.heroContentEl.current, { css: { visibility: 'visible' } })
+      .set(this.heroScrollIconEl.current, { css: { visibility: 'visible' } })
 
-    .from(this.heroTextLineEls, {
-      delay: 2.6,
-      duration: 1,
-      y: '140',
-      ease: 'Power4.out',
-      skewY: 7,
-      stagger: {
-        amount: 0.32,
-      },
-    })
+      .from(this.heroTextLineEls, {
+        delay: 2.6,
+        duration: 1,
+        y: '140',
+        ease: 'Power4.out',
+        skewY: 7,
+        stagger: {
+          amount: 0.32,
+        },
+      })
       .from(this.heroPrimaryButtonEl.current, {
         y: 10,
         opacity: 0,
@@ -163,12 +164,9 @@ class HeroNew extends Component {
         '-=0.5'
       )
 
-    .set(this.heroTextLineContainerEls, {
-      css: { overflow: 'visible' },
-
-    })
-
-
+      .set(this.heroTextLineContainerEls, {
+        css: { overflow: 'visible' },
+      })
   }
 
   componentWillUnmount() {
@@ -176,26 +174,20 @@ class HeroNew extends Component {
     this.tl.kill()
     this.scrollTimeline.kill()
     this.scrollTimeline.scrollTrigger.kill()
-
   }
 
   render() {
     const { heroMediaContent, heroContent, classes = '' } = this.props
     const { primaryButton, secondaryButton, heroTextBody } = heroContent
     const updatedHeroTextBody = this.splitText(heroTextBody)
-     
+
     return (
-      <div className={`c-hero ${classes}`}
-      ref={this.heroEl}
-      >
+      <div className={`c-hero ${classes}`} ref={this.heroEl}>
         {/* show hero bg image or video if available */}
         {heroMediaContent && (
           <div className="c-hero__media-content">{heroMediaContent}</div>
         )}
-        <div
-          className="c-hero__content"
-          ref={this.heroContentEl}
-        >
+        <div className="c-hero__content" ref={this.heroContentEl}>
           {updatedHeroTextBody && (
             <>
               <div className="c-hero__text ">{updatedHeroTextBody}</div>

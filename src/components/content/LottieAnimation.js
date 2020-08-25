@@ -27,11 +27,11 @@ const LottieAnimation = ({
 
   return (
     // <div className={`c-lottie-animation text-center ${classes} `}>
-      <div
-        className="c-lottie-animation__svg"
-        ref={animationContainer}
-        // forwardedRef={forwardedRef}
-      />
+    <div
+      className="c-lottie-animation__svg"
+      ref={animationContainer}
+      // forwardedRef={forwardedRef}
+    />
     // </div>
   )
 }

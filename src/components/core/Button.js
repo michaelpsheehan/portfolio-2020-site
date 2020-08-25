@@ -26,7 +26,6 @@ const Button = ({
         {text}
       </a>
     ) : (
-
       <AniLink
         className={buttonClasses}
         paintDrip
