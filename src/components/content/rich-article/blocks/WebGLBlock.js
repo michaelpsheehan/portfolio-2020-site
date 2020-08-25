@@ -1,9 +1,13 @@
-import React from 'react'
+import React, {useState} from 'react'
 import SplitSection from '../../splitSection'
 import Text from '../../../core/Text'
 import WebGlBase from '../../../3d/WebGLBase'
+import Button from '../../../core/Button'
 
 const webGLBlock = ({ block, sectionColor, classes = '' }) => {
+  const [userDefinedScale, setScale] = useState(1.5)
+
+  console.log(userDefinedScale)
   console.log('block --', block)
   let backgroundColor = null
 let reversed = block.alignCanvas === 'Left' ? true : false;
@@ -31,7 +35,8 @@ const textSection =   (block.heading || block.body) && (
 
 
 
-const webGLSection = <WebGlBase sceneName={block.selectedScene} />
+
+const webGLSection = <WebGlBase sceneName={block.selectedScene} userScale={userDefinedScale} />
 
   return (
     <div className={`c-webgl-block ${backgroundColor ? backgroundColor : ''}`} >
@@ -53,6 +58,24 @@ const webGLSection = <WebGlBase sceneName={block.selectedScene} />
 {/* </div> */}
     {/* <SplitSection primarySection={textSection} secondarySection={webGLSection}   reversed={reversed} /> */}
   {/* </div> */}
+<div className="container relative">
+
+ <div className="c-scale-buttons" >
+    <div className="mb-4 text-center">
+      zoom
+      </div>
+      <div onClick={()=> setScale(userDefinedScale +0.5)} className="mb-2 border" >
+    in
+    </div>
+    {userDefinedScale > 0.25 && (
+      <div onClick={()=> userDefinedScale <=  0.5 ? null : setScale(userDefinedScale -0.5)} className="border" >
+      out
+   </div>
+  )
+}
+  </div>
+ 
+    </div>
     </div>
   
   )

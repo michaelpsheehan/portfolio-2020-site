@@ -3,13 +3,13 @@ import * as THREE from "three"
 
 import React, { useRef, useState, useEffect, useMemo } from 'react'
 import { Canvas, useThree, useFrame, extend, useUpdate } from 'react-three-fiber'
-import {OrbitControls,} from "drei";
+import {OrbitControls,Html } from "drei";
 import {gsap} from 'gsap'
 // import './style.css'
 import { Controls, useControl } from 'react-three-gui';
-
+import Button from '../../core/Button'
 // const GROUP = 'Extra';
-const Box = ({position}) => {
+const Box = ({position, userScale}) => {
   const geoRef = useRef()
   const matRef = useRef()
   const cam = useRef()
@@ -137,6 +137,8 @@ const {geometry} = currentMesh;
        const start = hovered ?  0.2 : 3.2;
        const end = hovered ?   3.2 : 0.2;
        const speed = hovered ? 0.0000001 : 1;
+
+       console.log('USER SCALE -------------===-=-=-==-=', userScale)
     const {clock} = frame;
     // console.log('mesh ref --', meshRef)
     matRef.current.uniforms.explosion.value =
@@ -175,6 +177,8 @@ const {geometry} = currentMesh;
   // });
  
 
+  console.log('BOXXXXXXXXXXXXX')
+
   return(
     <>
     
@@ -183,7 +187,7 @@ const {geometry} = currentMesh;
     explosion: {type: 'f', value: 1 },
     time: {type: 'f', value: 0}
   }}
-  scale={[1.5, 1.5, 1.5]}
+  scale={[userScale, userScale, userScale]}
   onPointerOver={(e) => setHover(true)}
   onPointerOut={(e) => setHover(false)}
   position={position ? position : [0,0,0]}
@@ -235,13 +239,13 @@ const {geometry} = currentMesh;
 const isBrowser = typeof window !== "undefined"
 
 
-export default function BreakingSphere() {
+export default function BreakingSphere({userScale}) {
 return (
   <>
   { isBrowser && (
     <>
   <Canvas >
-<Box  />
+<Box userScale={userScale} />
 <OrbitControls 
 
 mouseButtons= {{
@@ -251,15 +255,17 @@ mouseButtons= {{
 }
 }
 
-touches = {{
-	// ONE: THREE.TOUCH.ROTATE,
-	ONE: false,
-	TWO: THREE.TOUCH.ROTATE
-}}
+// touches = {{
+// 	// ONE: THREE.TOUCH.ROTATE,
+// 	ONE: false,
+// 	TWO: THREE.TOUCH.ROTATE
+// }}
 enableZoom={false}
 
  />
-  </Canvas>
+
+
+  </Canvas> 
    {/* <Controls /> */}
    </>
 )

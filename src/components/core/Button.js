@@ -26,27 +26,13 @@ const Button = ({
         {text}
       </a>
     ) : (
-      // if the button links to an internal page use a Gatsby Link component
-      // <AniLink
-      //   className={`test-class ${buttonClasses}`}
-      //   // cover
-      //   cover
-      //   // direction="left"
-      //   // top="exit"
-      //   to={url}
-      //   bg="#1a68af"
-      // >
 
       <AniLink
-        // duration="0.3"
         className={buttonClasses}
-        // cover
         paintDrip
         direction="right"
         exit="cover"
-        // hex="#5891C4"
         hex="#e3342f"
-        // hex="#1A68AF"
         to={url}
       >
         {text}

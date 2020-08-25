@@ -3,12 +3,12 @@ import React from 'react'
 import ExplodingSphere from './exploding-sphere/index'
 
 
-const WebGlBase = ({sceneName}) => {
+const WebGlBase = ({sceneName, userScale}) => {
   console.log('web scene run scene name ---', sceneName)
 const getScene = (scene) => {
   switch(scene) {
     case 'exploding-sphere':
-      return <ExplodingSphere />
+      return <ExplodingSphere userScale={userScale}/>
   }
 }
 

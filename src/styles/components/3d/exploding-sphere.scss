@@ -1,0 +1,21 @@
+.c-exploding-sphere  {
+
+}
+
+.c-scale-buttons {
+  // width:300px;
+  pointer-events: all;;
+  // border:4px solid green;
+  @apply absolute;
+  right:2rem;
+  // left:50%;
+  // transform: translate3d(-50%);
+  bottom:2rem;
+
+  .c-button {
+    // @apply px-8;
+    &:hover {
+      @apply cursor-pointer;
+    }
+  }
+}
