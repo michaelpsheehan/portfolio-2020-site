@@ -27,19 +27,11 @@ const LottieAnimation = ({
       // isPaused: playAnimation
       
     })
-    console.log('current animation', currentAnimation)
+    // console.log('current animation', currentAnimation)
     // return currentAnimation
   }, [])
   
-  // useEffect(()=> {
-  //   setTimeout(() => {
-  //     if(playAnimation === true) {
-        
-  //       console.log('about to playn', currentAnimation)
-  //       currentAnimation.play()
-  //     }
-  //   },5000);
-  // },[playAnimation])
+
 
   return (
     // <div className={`c-lottie-animation text-center ${classes} `}>

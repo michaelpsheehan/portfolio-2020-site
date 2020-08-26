@@ -32,8 +32,7 @@ const RichArticle = ({ richArticle, classes = '' }) => {
               ? true
               : false;
 
-            const bgColor = block.backgroundColour   && block.backgroundColour !==  'default' ? `${block.backgroundColour} js-dark-bg text-white` : 'bg-default js-white-bg'
-
+            let bgColor = block.backgroundColour   && block.backgroundColour !==  'default' ? `${block.backgroundColour} js-dark-bg text-white` : 'bg-default js-white-bg'
             
           return (
             <Section

@@ -172,8 +172,10 @@ class HeroNew extends Component {
   componentWillUnmount() {
     //  cleanup gsap animations and scroll trigger
     this.tl.kill()
-    this.scrollTimeline.kill()
-    this.scrollTimeline.scrollTrigger.kill()
+    if(this.scrollTimeline) {
+      this.scrollTimeline.kill()
+      this.scrollTimeline.scrollTrigger.kill()
+    }
   }
 
   render() {

@@ -7,53 +7,47 @@ import { useGlobalDispatchContext, useGlobalStateContext } from '../../context/g
 const Section = ({ content, container, classes = '' }) =>{
   let sectionRef = useRef(null)
   const dispatch = useGlobalDispatchContext()
-  const globalState = useGlobalStateContext()
-  const {currentUiStyle} = globalState
-  console.log('CLOSURE COLOR', globalState.currentUiStyle)
-
-  const [currentTheme, toggleTheme] = useState(currentUiStyle)
-  // const toggleTheme = () => {
-  //   const globalState = useGlobalStateContext()
-
-  // }
 
   const setUiDark = () => {
-    console.log('set ui dark')
     dispatch({ type: 'CHANGE_UI_STYLE', newUiStyle: 'ui-style-dark-on-white' })
-    // toggleTheme('ui-style-dark-on-white')
   }
   
   const setUiLight = () => {
-    console.log('set ui light')
     dispatch({ type: 'CHANGE_UI_STYLE', newUiStyle: 'ui-style-white-on-dark' })
-    // toggleTheme('ui-style-white-on-dark')
   }
-  let toggleSiteHeadUiColor = null
+
+const handleScroll = (el) => {
+  if(el.trigger.classList.contains('js-dark-bg')) {
+    setUiLight()
+  }
+  else {setUiDark()} 
+}
+
+const handleScrollBackToStart = (scrollTrigger) => {
+  const scrollPosition = scrollTrigger.scroller.scrollY
+  const windowHeight =  scrollTrigger.scroller.innerHeight
   
-useEffect(()=> {
+  if(scrollPosition <= windowHeight) {
+    setUiLight()
+  } 
 
-  //  toggleSiteHeadUiColor = (el) => {
-  //   console.log(el.trigger, el.progress)
-  //   console.log('current ui style --', currentUiStyle)
-  //     currentUiStyle === 'ui-style-white-on-dark' ? setUiDark() : setUiLight()
-  // }
-},[currentUiStyle])
+  }
 
 useEffect(()=> {
-        let scrollTrigger = ScrollTrigger.create({
+        let scroller = ScrollTrigger.create({
         trigger: sectionRef.current,
         start: "top 70",
-        // end: "bottom 70",
         // markers: {startColor: "black", endColor: "black", fontSize: "20px"},
-        // onEnter: (el)=> toggleSiteHeadUiColor(el), 
-        // onLeave: (el)=> toggleSiteHeadUiColor(el), 
-        // onToggle: (el)=> toggleSiteHeadUiColor(el), 
+        onEnter: (el)=> handleScroll(el),
+        onEnterBack: (el)=> handleScroll(el), 
+        onLeaveBack: (el) => handleScrollBackToStart(el)
 
       });
 
       return ()=> {
-     scrollTrigger.kill()
+        scroller.kill()
       }
+   
 },[])
 
   return container ? (
@@ -64,15 +58,3 @@ useEffect(()=> {
     <section className={`c-section ${classes}`} ref={sectionRef}>{content}</section>
   )}
 export default Section
-
-
-  // if (el.progress > 0.95) {
-    //   const remainingScroll = el.end - el.scroller.scrollY
-    //   if (remainingScroll < hamburgerHeight && remainingScroll > 0) {
-    //     if (el.trigger.classList.contains('js-dark-bg')) {
-    //       el.direction === 1 ? setUiLight() : setUiDark()
-    //     } else if (el.trigger.classList.contains('js-white-bg')) {
-    //       el.direction === 1 ? setUiDark() : setUiLight()
-    //     }
-    //   }
-    // }
