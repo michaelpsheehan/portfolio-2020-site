@@ -30,12 +30,16 @@ const RichArticle = ({ richArticle, classes = '' }) => {
           const fullHeightSection =
             block.typeHandle === 'animation' || block.typeHandle === 'webgl'
               ? true
-              : false
+              : false;
+
+            const bgColor = block.backgroundColour   && block.backgroundColour !==  'default' ? `${block.backgroundColour} js-dark-bg text-white` : 'bg-default js-white-bg'
+
+            
           return (
             <Section
               content={currentBlock}
               key={block.id}
-              classes={fullHeightSection ? 'c-section--screen-height' : ''}
+              classes={`${fullHeightSection ? 'c-section--screen-height' : ''} ${bgColor ? bgColor : ''  }  `}
             />
           )
         })}

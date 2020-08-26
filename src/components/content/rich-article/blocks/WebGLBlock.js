@@ -1,13 +1,15 @@
-import React, { useState } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import SplitSection from '../../splitSection'
 import Text from '../../../core/Text'
 import WebGlBase from '../../../3d/WebGLBase'
 import Button from '../../../core/Button'
-import SlideInOnScroll from '../../../../animations/slideInOnScroll'
+import slideInOnScroll from '../../../../animations/slideInOnScroll'
 
 const webGLBlock = ({ block, sectionColor, classes = '' }) => {
   const [userDefinedScale, setScale] = useState(1.5)
-
+const scrollContainerRef = useRef(null)
+const webGLSectionRef = useRef(null)
+const textSectionRef = useRef(null)
   let backgroundColor = null
   let reversed = block.alignCanvas === 'Left' ? true : false
 
@@ -22,35 +24,57 @@ const webGLBlock = ({ block, sectionColor, classes = '' }) => {
         body={block.body}
         classes="c-text--animation"
 
-        // forwardedRef={textEl}
+        forwardedRef={textSectionRef}
       />
     </div>
   )
+  const onEnterScroll = () => {
+   console.log('scroll enter')
+  }
+
+
+  
+  useEffect(() => {
+      
+    const tl = slideInOnScroll(
+      scrollContainerRef.current,
+      webGLSectionRef.current,
+      textSectionRef.current,
+onEnterScroll
+  
+      )
+
+      // console.log('refs are')
+      // console.log('animationBlockEl --', animationBlockEl.current)
+      // console.log('aanim el --', animationEl.current)
+      // console.log('aanim el --', animationEl.current)
+      
+  return ()=> {
+    tl.kill()
+    tl.scrollTrigger.kill()
+  }
+  }, [])
+
 
   const webGLSection = (
-    <WebGlBase sceneName={block.selectedScene} userScale={userDefinedScale} />
+    <WebGlBase sceneName={block.selectedScene} userScale={userDefinedScale}  />
   )
 
   return (
-    <div className={`c-webgl-block   ${
-      backgroundColor !== null
-        ? `${backgroundColor} js-dark-bg`
-        : 'js-white-bg'
-    } `}>
+    <div className={`c-webgl-block py-16 md:py-0 overflow-hidden `} ref={scrollContainerRef}>
       <div
-        className={`c-webgl py-16 xl:py-0 xl:flex xl:items-center xl:h-screen  relative ${
-          backgroundColor !== null ? 'js-dark-bg' : 'js-white-bg'
-        } `}
+        className={`c-webgl py-16 xl:py-0 xl:flex xl:items-center xl:h-screen  relative `}
       >
         <div className="container">
           <div className={`${reversed ? 'xl:flex xl:flex-row-reverse' : ''} `}>
-            <div className="c-webgl--primary xl:h-full mb-8 xl:mb-0 xl:w-1/2 flex  items-center  ">
+            <div className="c-webgl--primary xl:h-full mb-8 xl:mb-0 xl:w-1/2 flex  items-center  z-40 ">
               {textSection}
             </div>
           </div>
         </div>
         <div
           className={`c-webgl--secondary  xl:h-full flex items-center text-center `}
+          ref={webGLSectionRef} 
         >
           {webGLSection}
         </div>

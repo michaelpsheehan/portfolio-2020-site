@@ -7,6 +7,7 @@ const LottieAnimation = ({
   animatorName,
   animatorLink,
   forwardedRef,
+  playAnimation,
 
   classes = '',
 }) => {
@@ -15,22 +16,37 @@ const LottieAnimation = ({
   }
 
   const animationContainer = useRef(null)
-
+// let currentAnimation = null
   useEffect(() => {
-    Lottie.loadAnimation({
+   let currentAnimation = Lottie.loadAnimation({
       container: animationContainer.current,
       animationData: lottieAnimationData,
       path: lottieAnimationPath,
-      // autoplay: false,
+      // autoplay: playAnimation,
+      autoplay:false,
+      // isPaused: playAnimation
+      
     })
+    console.log('current animation', currentAnimation)
+    // return currentAnimation
   }, [])
+  
+  // useEffect(()=> {
+  //   setTimeout(() => {
+  //     if(playAnimation === true) {
+        
+  //       console.log('about to playn', currentAnimation)
+  //       currentAnimation.play()
+  //     }
+  //   },5000);
+  // },[playAnimation])
 
   return (
     // <div className={`c-lottie-animation text-center ${classes} `}>
     <div
       className="c-lottie-animation__svg"
       ref={animationContainer}
-      // forwardedRef={forwardedRef}
+      // ref={forwardedRef}
     />
     // </div>
   )

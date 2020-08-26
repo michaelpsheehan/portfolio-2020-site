@@ -27,6 +27,7 @@
     "gatsby-transformer-sharp": "^2.5.12",
     "gsap": "^3.4.2",
     "lazysizes": "^5.2.2",
+    "lottie-react-web": "^2.2.2",
     "lottie-web": "^5.7.1",
     "node-sass": "^4.14.1",
     "prop-types": "^15.7.2",
