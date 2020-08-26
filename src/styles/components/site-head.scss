@@ -45,8 +45,8 @@
     }
 
     &--open {
-      // burger nav toggle animations
-      span {
+        span {
+      
         &:first-child {
           left: 50%;
           top: 50%;
@@ -66,43 +66,24 @@
           transform: translate(-50%, -50%) rotate(135deg) scale(0.6);
         }
       }
+
+
     }
   }
 }
 
-// change
-//   the
-//   hamburger
-//   ui
-//   to
-//   the
-//   brand
-//   blue
-//   while
-//   over
-//   a
-//   lightbackground
+
 .ui-style-dark-on-white {
-  &.c-site-head {
+  &:not(.f-overlay-open)
+{  &.c-site-head {
     &__hamburger {
       span {
         @apply bg-brand-blue;
       }
     }
-  }
+  }}
 }
-// change
-//   the
-//   hamburger
-//   ui
-//   to
-//   the
-//   brand
-//   blue
-//   while
-//   over
-//   a
-//   lightbackground
+
 .ui-style-white-on-dark {
   &.c-site-head {
     &__hamburger {
@@ -111,4 +92,5 @@
       }
     }
   }
+
 }

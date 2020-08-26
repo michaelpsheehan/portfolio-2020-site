@@ -5,7 +5,7 @@ const SiteHeadBurger = ({ overlayStatus, toggleOverlay, uiStyle }) => {
     <div
       className={`c-site-head__hamburger ${uiStyle} ${
         overlayStatus === 'open'
-          ? 'c-site-head__hamburger--open'
+          ? 'c-site-head__hamburger--open f-overlay-open'
           : 'c-site-head__hamburger--closed'
       }`}
       onClick={() => toggleOverlay()}
