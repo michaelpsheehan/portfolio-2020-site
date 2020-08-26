@@ -4,10 +4,11 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 gsap.registerPlugin( ScrollTrigger)
 import { useGlobalDispatchContext, useGlobalStateContext } from '../../context/globalContext'
 
-const Section = ({ content, container, classes = '' }) =>{
+const Section = ({ content, container, isHomepage, classes = '' }) =>{
   let sectionRef = useRef(null)
   const dispatch = useGlobalDispatchContext()
 
+  console.log('IS HOOOOOMEPAGE on section -----', isHomepage)
   const setUiDark = () => {
     dispatch({ type: 'CHANGE_UI_STYLE', newUiStyle: 'ui-style-dark-on-white' })
   }
@@ -34,21 +35,27 @@ const handleScrollBackToStart = (scrollTrigger) => {
   }
 
 useEffect(()=> {
-        let scroller = ScrollTrigger.create({
-        trigger: sectionRef.current,
-        start: "top 70",
-        // markers: {startColor: "black", endColor: "black", fontSize: "20px"},
-        onEnter: (el)=> handleScroll(el),
-        onEnterBack: (el)=> handleScroll(el), 
-        onLeaveBack: (el) => handleScrollBackToStart(el)
+  let scroller = null
+  if(isHomepage) {
 
-      });
+     scroller = ScrollTrigger.create({
+      trigger: sectionRef.current,
+      start: "top 70",
+      // markers: {startColor: "black", endColor: "black", fontSize: "20px"},
+      onEnter: (el)=> handleScroll(el),
+      onEnterBack: (el)=> handleScroll(el), 
+      onLeaveBack: (el) => handleScrollBackToStart(el)
+      
+    });
+  }
+    if(isHomepage && scroller) {
 
       return ()=> {
-        scroller.kill()
+        scroller.kill() 
       }
+    }
    
-},[])
+},[isHomepage])
 
   return container ? (
     <section className={`c-section ${classes}`} ref={sectionRef}>

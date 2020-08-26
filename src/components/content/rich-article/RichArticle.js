@@ -5,7 +5,7 @@ import TextBlock from './blocks/TextBlock'
 import WebGLBlock from './blocks/WebGLBlock'
 import Section from '../../core/Section'
 
-const RichArticle = ({ richArticle, classes = '' }) => {
+const RichArticle = ({ richArticle, isHomepage, classes = '',  }) => {
   // checks the blockType from the matrix field and loads the appropriate component
   const checkBlockType = (blockType, block) => {
     switch (blockType) {
@@ -38,6 +38,7 @@ const RichArticle = ({ richArticle, classes = '' }) => {
             <Section
               content={currentBlock}
               key={block.id}
+              isHomepage={isHomepage}
               classes={`${fullHeightSection ? 'c-section--screen-height' : ''} ${bgColor ? bgColor : ''  }  `}
             />
           )

@@ -38,6 +38,7 @@ const HomeTemplate = (data) => {
   const [animationComplete, setAnimationComplete] = useState(false)
   const introOverlayLeftSectionEl = useRef(null)
   const introOverlayRightSectionEl = useRef(null)
+  console.log('homepage data --', data)
 
   const completeAnimation = () => {
     setAnimationComplete(true)
@@ -80,7 +81,7 @@ const HomeTemplate = (data) => {
           }}
         />
       )}
-      {richArticle && <RichArticle richArticle={richArticle} />}
+      {richArticle && <RichArticle richArticle={richArticle} isHomepage={true} />}
     </>
   )
 }
