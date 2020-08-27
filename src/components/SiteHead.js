@@ -26,20 +26,12 @@ const SiteHead = ({ classes, isHomepage }) => {
       })
     }
   }
-  // let isHomepage
+  //  only allow the burger nav to change colour on scroll on the homepage. All other pages have the blue header bar with white ui items
+ const burgerUiStyle = isHomepage ? currentUiStyle : 'ui-style-white-on-dark'
 
-  // useEffect(()=> {
-  //   if (typeof window === 'undefined') {
-  //     return;
-  //   }
-  // //  isHomepage = window.location.pathname === '/' ? true : false
-  //  isHomepage = window.location.pathname
-  // //  console.log('location.pathname', window.location.pathname)
-  // //  console.log('change si homepage to', isHomepage)
-
-  // })
-
+ // checks if the overlay is open. If it is it sets the ui icons back to white
   const isOverlayOpen = overlayStatus === 'open'
+
   return (
     <>
       <header
@@ -53,7 +45,7 @@ const SiteHead = ({ classes, isHomepage }) => {
             <SiteHeadBurger
               overlayStatus={overlayStatus}
               toggleOverlay={toggleOverlay}
-              uiStyle={currentUiStyle}
+              uiStyle={burgerUiStyle}
             />
           </div>
           <PrimaryNav isOverlayOpen={isOverlayOpen} />

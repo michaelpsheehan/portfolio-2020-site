@@ -1,7 +1,8 @@
 .o-main-content {
   @apply relative flex-grow;
   // margin-top: 160px;
-  &:not(f-is-homepage) {
+  &:not(.f-is-homepage) {
     padding-top: 120px;
+    
   }
 }

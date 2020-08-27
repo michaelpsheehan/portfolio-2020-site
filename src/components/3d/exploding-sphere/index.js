@@ -15,7 +15,7 @@ import { gsap } from 'gsap'
 import { Controls, useControl } from 'react-three-gui'
 import Button from '../../core/Button'
 // const GROUP = 'Extra';
-const Box = ({ position, userScale }) => {
+const Box = ({ position, userScale =1.5 }) => {
   const geoRef = useRef()
   const matRef = useRef()
   const cam = useRef()
@@ -122,7 +122,7 @@ vec3 pos = position.xyz;
       1
     )
     geometry.setAttribute('randomStrength', randomStrengthsAttribute)
-  })
+  },[])
 
   useFrame((frame) => {
     const start = hovered ? 0.2 : 3.2
@@ -143,26 +143,6 @@ vec3 pos = position.xyz;
     }
   })
 
-  const posX = useControl('Pos X', {
-    type: 'number',
-    scrub: true,
-    min: -200,
-    max: 200,
-  })
-  const scalex = useControl('scale x', {
-    type: 'number',
-    scrub: true,
-    min: -10,
-    max: 10,
-  })
-
-  // const posY = useControl('Pos Y', {
-  //   type: 'number',
-  //   scrub: true,
-  //   min: -200,
-  //   max: 200
-  // });
-
   return (
     <>
       <mesh
@@ -174,12 +154,7 @@ vec3 pos = position.xyz;
         scale={[userScale, userScale, userScale]}
         onPointerOver={(e) => setHover(true)}
         onPointerOut={(e) => setHover(false)}
-        position={position ? position : [0, 0, 0]}
-
-        // position-x={posX}
-        // position-x={-2.7}
-        // scale-xyz={scalex}
-        // position-y={posY}
+        position={position ? position : [2, 0, 0]}
       >
         <icosahedronBufferGeometry
           attach="geometry"
@@ -227,11 +202,11 @@ export default function BreakingSphere({ userScale }) {
                 MIDDLE: THREE.MOUSE.DOLLY,
                 RIGHT: THREE.MOUSE.PAN,
               }}
-              // touches = {{
-              // 	// ONE: THREE.TOUCH.ROTATE,
-              // 	ONE: false,
-              // 	TWO: THREE.TOUCH.ROTATE
-              // }}
+              touches = {{
+              	// ONE: THREE.TOUCH.ROTATE,
+              	ONE: false,
+              	TWO: THREE.TOUCH.ROTATE
+              }}
               enableZoom={false}
             />
           </Canvas>

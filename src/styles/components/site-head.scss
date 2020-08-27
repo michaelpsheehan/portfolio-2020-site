@@ -75,12 +75,11 @@
 
 .ui-style-dark-on-white {
   &:not(.f-overlay-open)
-{  &.c-site-head {
-    &__hamburger {
+{  &.c-site-head__hamburger {
       span {
         @apply bg-brand-blue;
       }
-    }
+    
   }}
 }
 

@@ -7,10 +7,10 @@ import slideInOnScroll from '../../../../animations/slideInOnScroll'
 
 const webGLBlock = ({ block, sectionColor, classes = '' }) => {
   const [userDefinedScale, setScale] = useState(1.5)
+  const amountToChangeScaleBy = 0.5
 const scrollContainerRef = useRef(null)
 const webGLSectionRef = useRef(null)
 const textSectionRef = useRef(null)
-  let backgroundColor = null
   let reversed = block.alignCanvas === 'Left' ? true : false
 
   block.backgroundColour && block.backgroundColour !== 'default'
@@ -18,7 +18,7 @@ const textSectionRef = useRef(null)
     : null
 
   const textSection = (block.heading || block.body) && (
-    <div className={`max-w-sm mx-auto   ${reversed ? 'mr-0' : ''} `}>
+    <div className={`max-w-sm   z-40 ${reversed ? 'mr-0' : ''} `}>
       <Text
         heading={block.heading}
         body={block.body}
@@ -32,7 +32,15 @@ const textSectionRef = useRef(null)
    console.log('scroll enter')
   }
 
-
+const handleScaleIncrease = () => {
+  setScale(userDefinedScale + amountToChangeScaleBy)
+}
+  
+const handleScaleDecrease = () => {
+  userDefinedScale <= amountToChangeScaleBy
+                    ? null
+                    : setScale(userDefinedScale - amountToChangeScaleBy)
+}
   
   useEffect(() => {
       
@@ -40,14 +48,9 @@ const textSectionRef = useRef(null)
       scrollContainerRef.current,
       webGLSectionRef.current,
       textSectionRef.current,
-onEnterScroll
+      onEnterScroll
   
       )
-
-      // console.log('refs are')
-      // console.log('animationBlockEl --', animationBlockEl.current)
-      // console.log('aanim el --', animationEl.current)
-      // console.log('aanim el --', animationEl.current)
       
   return ()=> {
     tl.kill()
@@ -62,9 +65,7 @@ onEnterScroll
 
   return (
     <div className={`c-webgl-block py-16 md:py-0 overflow-hidden `} ref={scrollContainerRef}>
-      <div
-        className={`c-webgl py-16 xl:py-0 xl:flex xl:items-center xl:h-screen  relative `}
-      >
+      <div className={`c-webgl py-16 xl:py-0 xl:flex xl:items-center xl:h-screen  relative `} >
         <div className="container">
           <div className={`${reversed ? 'xl:flex xl:flex-row-reverse' : ''} `}>
             <div className="c-webgl--primary xl:h-full mb-8 xl:mb-0 xl:w-1/2 flex  items-center  z-40 ">
@@ -84,17 +85,14 @@ onEnterScroll
           <div className="c-scale-model__title">zoom</div>
           <div className="c-scale-model__buttons">
             <div
-              onClick={() => setScale(userDefinedScale + 0.5)}
+              onClick={() => handleScaleIncrease()}
               className="c-scale-model__button"
             >
               +
             </div>
             {userDefinedScale > 0.25 && (
               <div
-                onClick={() =>
-                  userDefinedScale <= 0.5
-                    ? null
-                    : setScale(userDefinedScale - 0.5)
+                onClick={() => handleScaleDecrease()
                 }
                 className="c-scale-model__button"
               >
