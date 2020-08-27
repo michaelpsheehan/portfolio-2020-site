@@ -1,8 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react'
-import { Link } from 'gatsby'
 import Section from '../components/core/Section'
 import SEO from '../components/Seo'
-import Hero from '../components/content/hero/hero'
 import HeroNew from '../components/content/hero/HeroNew'
 import Image from '../components/core/Image'
 import RichArticle from '../components/content/rich-article/RichArticle'

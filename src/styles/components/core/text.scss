@@ -7,7 +7,7 @@
 
   &--animation {
     .c-text__heading {
-      @applytext-4xl;
+      @apply text-4xl;
 
       @screen md {
         @apply text-4xl;

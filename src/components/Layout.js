@@ -109,7 +109,7 @@ const Layout = ({ children, path }) => {
         <TransitionCover />
         {/* <Header siteTitle={data.site.siteMetadata.title} /> */}
         <SiteHead isHomepage={isHomepage} />
-        <main className="o-main-content" >{children}</main>
+        <main className={`o-main-content ${isHomepage ? 'f-is-homepage' : ''}`} >{children}</main>
 
         <footer className="mt-16 py-16 bg-brand-blue">
           <div className="container text-white uppercase">Projects</div>
