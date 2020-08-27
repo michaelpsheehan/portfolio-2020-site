@@ -5,7 +5,7 @@ import { ScrollToPlugin } from 'gsap/ScrollToPlugin'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Button from '../../core/Button'
 import ScrollIcon from '../../core/ScrollIcon'
-
+import useWindowSize from '../../../hooks/useWindowSize'
 gsap.registerPlugin(CSSRulePlugin, ScrollToPlugin, ScrollTrigger)
 
 class HeroNew extends Component {

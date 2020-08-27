@@ -54,14 +54,16 @@ const Layout = ({ children, path }) => {
       }, ms)
     }
   }
-  // set state for viewport height and width
-  // const [dimensions, setDimensions] = useState({
-  //   height: window.innerHeight,
-  //   width: window.innerWidth,
-  // })
-  //  create refs so gsap can access the dom nodes
-  // const introOverlayLeftSectionEl = useRef(null)
-  // const introOverlayRightSectionEl = useRef(null)
+
+
+  const windowSize = useWindowSize()
+  useEffect(()=> {
+
+    const vh = windowSize.height * 0.01
+    document.documentElement.style.setProperty('--vh', `${vh}px`)
+    console.log('window size is ', windowSize)
+  })
+  
 
   useEffect(() => {
     const tl = gsap.timeline()
@@ -86,18 +88,7 @@ const Layout = ({ children, path }) => {
     // return () => window.removeEventListener('resize', debouncedHandleResize)
   }, [])
 
-  //   let isHomepage
-  // console.log('LOCATION ____ in layout', location)
-  //   useEffect(()=> {
-  //     if (typeof window === 'undefined') {
-  //       return;
-  //     }
-  //   //  isHomepage = window.location.pathname === '/' ? true : false
-  //    isHomepage = window.location.pathname
-  //    console.log('location.pathname', window.location.pathname)
-  //    console.log('change si homepage to', isHomepage)
 
-  //   })
   return (
     <>
       <div

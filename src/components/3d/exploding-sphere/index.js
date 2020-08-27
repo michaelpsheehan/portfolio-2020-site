@@ -202,11 +202,12 @@ export default function BreakingSphere({ userScale }) {
                 MIDDLE: THREE.MOUSE.DOLLY,
                 RIGHT: THREE.MOUSE.PAN,
               }}
-              touches = {{
-              	// ONE: THREE.TOUCH.ROTATE,
-              	ONE: false,
-              	TWO: THREE.TOUCH.ROTATE
-              }}
+              // touches = {{
+              // 	// ONE: THREE.TOUCH.ROTATE,
+              // 	ONE: false,
+              // 	TWO: THREE.TOUCH.ROTATE
+              // }}
+              // autorotate={true}
               enableZoom={false}
             />
           </Canvas>
