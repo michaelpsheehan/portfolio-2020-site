@@ -25,24 +25,25 @@ import {
 } from '../context/globalContext'
 import IntroOverlay from './core/IntroOverlay'
 
-const Layout = ({ children, path }) => {
+const Layout = ({ children, path, uri }) => {
   const dispatch = useGlobalDispatchContext()
+console.log('uri --', uri)
+const { currentTheme, currentUiStyle } = useGlobalStateContext()
 
-  const { currentTheme, currentUiStyle } = useGlobalStateContext()
-
-  let isHomepage;
+ let isHomepage = uri === '/' ? true : false
+ 
   console.log('is homepage on layout --', isHomepage)
   // const data = useStaticQuery(graphql`
   //   query SiteTitleQuery {
   //     craft {
   //       entries(section: "homepage") {
-  //         title
+    //         title
   //         id
   //       }
   //     }
   //   }
   // `)
-
+  
   const siteContainerEl = useRef(null)
   function debounce(fn, ms) {
     let timer
@@ -54,11 +55,12 @@ const Layout = ({ children, path }) => {
       }, ms)
     }
   }
-
-
+  
+  
   const windowSize = useWindowSize()
   useEffect(()=> {
-    isHomepage = path === '/' ? true : false
+    console.log('use effect uri --', uri)
+    isHomepage = uri === '/' ? true : false
     console.log('is hoepage in useeffect is', isHomepage)
 
     const vh = windowSize.height * 0.01
@@ -88,7 +90,7 @@ const Layout = ({ children, path }) => {
     // }, 1000)
     // window.addEventListener('resize', debouncedHandleResize)
     // return () => window.removeEventListener('resize', debouncedHandleResize)
-  }, [])
+  }, [isHomepage])
 
 
   return (
