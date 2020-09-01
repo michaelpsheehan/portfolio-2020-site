@@ -9,7 +9,7 @@ import {
 
 import ThemeButton from './ThemeButton'
 
-const SiteHead = ({ classes, isHomepage }) => {
+const SiteHead = ({ classes ='', isHomepage }) => {
   const dispatch = useGlobalDispatchContext()
   const { overlayStatus, currentUiStyle } = useGlobalStateContext()
 

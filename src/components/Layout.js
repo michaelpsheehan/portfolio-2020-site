@@ -30,8 +30,8 @@ const Layout = ({ children, path }) => {
 
   const { currentTheme, currentUiStyle } = useGlobalStateContext()
 
-  const isHomepage = path === '/' ? true : false
-
+  let isHomepage;
+  console.log('is homepage on layout --', isHomepage)
   // const data = useStaticQuery(graphql`
   //   query SiteTitleQuery {
   //     craft {
@@ -58,6 +58,8 @@ const Layout = ({ children, path }) => {
 
   const windowSize = useWindowSize()
   useEffect(()=> {
+    isHomepage = path === '/' ? true : false
+    console.log('is hoepage in useeffect is', isHomepage)
 
     const vh = windowSize.height * 0.01
     document.documentElement.style.setProperty('--vh', `${vh}px`)
