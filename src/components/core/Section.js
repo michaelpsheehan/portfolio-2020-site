@@ -6,6 +6,8 @@ import { useGlobalDispatchContext, useGlobalStateContext } from '../../context/g
 
 const Section = ({ content, container, isHomepage, classes = '' }) =>{
   let sectionRef = useRef(null)
+  // const { currentTheme, currentUiStyle } = useGlobalStateContext()
+
   const dispatch = useGlobalDispatchContext()
 
   console.log('IS HOOOOOMEPAGE on section -----', isHomepage)

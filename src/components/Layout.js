@@ -19,19 +19,11 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Theme from './core/Theme'
 import useWindowSize from '../hooks/useWindowSize'
 // context
-import {
-  useGlobalDispatchContext,
-  useGlobalStateContext,
-} from '../context/globalContext'
+
 import IntroOverlay from './core/IntroOverlay'
 
-const Layout = ({ children, path, uri }) => {
-  const dispatch = useGlobalDispatchContext()
-console.log('uri --', uri)
-const { currentTheme, currentUiStyle } = useGlobalStateContext()
-
+const Layout = ({ children, uri }) => {
  let isHomepage = uri === '/' ? true : false
- 
   console.log('is homepage on layout --', isHomepage)
   // const data = useStaticQuery(graphql`
   //   query SiteTitleQuery {
@@ -66,7 +58,7 @@ const { currentTheme, currentUiStyle } = useGlobalStateContext()
     const vh = windowSize.height * 0.01
     document.documentElement.style.setProperty('--vh', `${vh}px`)
     console.log('window size is ', windowSize)
-  })
+  },[])
   
 
   useEffect(() => {
@@ -74,31 +66,14 @@ const { currentTheme, currentUiStyle } = useGlobalStateContext()
     // stops body flashing from happening
     tl.set(siteContainerEl.current, { css: { visibility: 'visible' } })
 
-    dispatch({ type: 'CHANGE_UI_STYLE', newUiStyle: 'ui-style-white-on-dark' })
-
-    // const currentWindowSize = useWindowSize()
-    // console.log('current window size in use effect is --', currentWindowSize)
-    // // makes 100vh work properly on modern mobile browsers. Fallsback to 100vh on older browsers
-    // const vh = dimensions.height * 0.01
-    // document.documentElement.style.setProperty('--vh', `${vh}px`)
-    // // updates the calculated viewport height on resize. Is passed through the debounce function to so it will only run once per second to improve performance
-    // const debouncedHandleResize = debounce(function handleResize() {
-    //   setDimensions({
-    //     height: window.innerHeight,
-    //     width: window.innerWidth,
-    //   })
-    // }, 1000)
-    // window.addEventListener('resize', debouncedHandleResize)
-    // return () => window.removeEventListener('resize', debouncedHandleResize)
   }, [isHomepage])
+
+  console.log('layout re rendered')
 
 
   return (
     <>
-      <div
-        className={`c-site-container ${currentUiStyle} ${
-          currentTheme === 'dark-ui-items' ? 'bg-black text-white' : ''
-        }`}
+      <div className={`c-site-container`}
         ref={siteContainerEl}
       >
         <TransitionCover />

@@ -37,7 +37,7 @@ const SiteHead = ({ classes ='', isHomepage }) => {
       <header
         className={`c-site-head fixed ${
           isHomepage === true ? '' : 'bg-brand-blue'
-        } ${classes}`}
+        }  ${currentUiStyle} ${classes}`}
       >
         <div className="c-site-head__container container">
           <div className="c-site-head__components">
