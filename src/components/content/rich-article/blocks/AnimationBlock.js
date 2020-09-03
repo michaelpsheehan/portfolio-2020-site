@@ -19,25 +19,24 @@ const AnimationBlock = ({ block,  classes = '' }) => {
   let backgroundColor = null
   const isReversed = block.alignAnimation === 'Left' ? true : false
   const forwardedRef = useRef(null)
-  const [isAnimationPlaying, togglePlay] = useState(false)
+  const [isPaused, togglePlay] = useState(true)
 
-
-
-const onEnterScroll = () => {
-  setTimeout(() => {
-    
-    togglePlay(true)
-  }, 3000);
-}
-
+// useEffect(()=> {
+//   togglePlay(false)
+// },[])
+  // const onEnterScroll = (el) => ()=> togglePlay(false)
+  // const onExitScroll = (el) => ()=> togglePlay(true)
+  
+  
   useEffect(() => {
       
       const tl = slideInOnScroll(
         animationBlockEl.current,
         animationEl.current,
         textEl.current,
- onEnterScroll
-    
+        togglePlay
+        // onEnterScroll,
+        // onExitScroll
         )
 
         // console.log('refs are')
@@ -51,7 +50,9 @@ const onEnterScroll = () => {
     }
     }, [])
 
-  return (
+    console.log('animation block rendered')
+    console.log('animation block state of paused ===', isPaused)
+    return (
    
     <div
       className={`c-animation-block  py-16 md:py-0 overflow-hidden`}
@@ -96,14 +97,14 @@ const onEnterScroll = () => {
           >
             <div className="c-animation-block__animation" ref={animationEl}>
               <LottieAnimation
-                heading={block.heading}
-                lottieAnimationPath={block.animationData}
+                // heading={block.heading}
+                // lottieAnimationPath={block.animationData}
                 lottieAnimationData={block.animationData}
-                alignAnimation={block.alignAnimation}
-                animatorName={block.animatorName}
-                animatorLink={block.animatorUrl}
+                // alignAnimation={block.alignAnimation}
+                // animatorName={block.animatorName}
+                // animatorLink={block.animatorUrl}
                 forwardedRef={forwardedRef}
-                playAnimation={isAnimationPlaying}
+                isPaused={isPaused}
               />
             </div>
           </div>

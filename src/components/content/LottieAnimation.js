@@ -1,46 +1,48 @@
 import React, { useRef, useEffect } from 'react'
-import Lottie from 'lottie-web'
+// import Lottie from 'lottie-web'
+import Lottie from 'lottie-react-web'
+
 
 const LottieAnimation = ({
   lottieAnimationData,
-  lottieAnimationPath,
-  animatorName,
-  animatorLink,
+  // lottieAnimationPath,
   forwardedRef,
-  playAnimation,
+  isPaused,
 
   classes = '',
 }) => {
-  if (lottieAnimationPath === null || lottieAnimationData === null) {
+  // if (lottieAnimationPath === null || lottieAnimationData === null) {
+  if ( lottieAnimationData === null) {
     return
   }
 
   const animationContainer = useRef(null)
-// let currentAnimation = null
-  useEffect(() => {
-   let currentAnimation = Lottie.loadAnimation({
-      container: animationContainer.current,
-      animationData: lottieAnimationData,
-      path: lottieAnimationPath,
-      // autoplay: playAnimation,
-      autoplay:false,
-      // isPaused: playAnimation
-      
-    })
-    // console.log('current animation', currentAnimation)
-    // return currentAnimation
-  }, [])
+  // useEffect(() => {
+  //  let currentAnimation = Lottie.loadAnimation({
+  //     container: animationContainer.current,
+  //     animationData: lottieAnimationData,
+  //     path: lottieAnimationPath,
+  //     autoplay:false,
+  //   })
+ 
+  // }, [])
   
 
-
+console.log('IS PAUSED ---', isPaused)
   return (
-    // <div className={`c-lottie-animation text-center ${classes} `}>
-    <div
-      className="c-lottie-animation__svg"
-      ref={animationContainer}
-      // ref={forwardedRef}
+    // <div
+    //   className="c-lottie-animation__svg"
+    //   ref={animationContainer}
+    // />
+    <Lottie
+     options={{
+      animationData: lottieAnimationData,
+    }}
+    isPaused={isPaused}
+
+    // ref={animationContainer}
+    ref={forwardedRef}
     />
-    // </div>
   )
 }
 

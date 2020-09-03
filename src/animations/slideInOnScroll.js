@@ -15,8 +15,10 @@ const slideInOnScroll = (
       scrub: 1,
       start: 'top 80%',
       end: 'top 40%',
-      // markers: {startColor: "black", endColor: "black", fontSize: "20px"},
-      onEnter: onEnterCallback ? (el) => onEnterCallback(el) : null,
+      markers: {startColor: "black", endColor: "black", fontSize: "20px"},
+      // onEnter: onEnterCallback ? (el) => onEnterCallback(false) : null,
+      // onLeave: onExitCallback ? (el) => onExitCallback(true) : null,
+      // onLeave: onEnterCallback ? (el) => onEnterCallback(true) : null
     },
   })
   .from(element1, 0.1, {
