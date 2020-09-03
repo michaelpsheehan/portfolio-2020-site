@@ -5,7 +5,7 @@ import TextBlock from './blocks/TextBlock'
 import WebGLBlock from './blocks/WebGLBlock'
 import Section from '../../core/Section'
 
-const RichArticle = ({ richArticle, isHomepage, classes = '',  }) => {
+const RichArticle = ({ richArticle, isHomepage, classes = '' }) => {
   // checks the blockType from the matrix field and loads the appropriate component
   const checkBlockType = (blockType, block) => {
     switch (blockType) {
@@ -30,16 +30,21 @@ const RichArticle = ({ richArticle, isHomepage, classes = '',  }) => {
           const fullHeightSection =
             block.typeHandle === 'animation' || block.typeHandle === 'webgl'
               ? true
-              : false;
+              : false
 
-            let bgColor = block.backgroundColour   && block.backgroundColour !==  'default' ? `${block.backgroundColour} js-dark-bg text-white` : 'bg-default js-white-bg'
-            
+          let bgColor =
+            block.backgroundColour && block.backgroundColour !== 'default'
+              ? `${block.backgroundColour} js-dark-bg text-white`
+              : 'bg-default js-white-bg'
+
           return (
             <Section
               content={currentBlock}
               key={block.id}
               isHomepage={isHomepage}
-              classes={`${fullHeightSection ? 'c-section--screen-height' : ''} ${bgColor ? bgColor : ''  }  `}
+              classes={`${
+                fullHeightSection ? 'c-section--screen-height' : ''
+              } ${bgColor ? bgColor : ''}  `}
             />
           )
         })}

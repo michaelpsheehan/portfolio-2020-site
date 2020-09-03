@@ -1,69 +1,68 @@
-import React, {useRef, useEffect, useState} from 'react'
+import React, { useRef, useEffect, useState } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-gsap.registerPlugin( ScrollTrigger)
-import { useGlobalDispatchContext, useGlobalStateContext } from '../../context/globalContext'
+gsap.registerPlugin(ScrollTrigger)
+import {
+  useGlobalDispatchContext,
+  useGlobalStateContext,
+} from '../../context/globalContext'
 
-const Section = ({ content, container, isHomepage, classes = '' }) =>{
+const Section = ({ content, container, isHomepage, classes = '' }) => {
   let sectionRef = useRef(null)
-  // const { currentTheme, currentUiStyle } = useGlobalStateContext()
-
   const dispatch = useGlobalDispatchContext()
 
-  console.log('IS HOOOOOMEPAGE on section -----', isHomepage)
   const setUiDark = () => {
     dispatch({ type: 'CHANGE_UI_STYLE', newUiStyle: 'ui-style-dark-on-white' })
   }
-  
+
   const setUiLight = () => {
     dispatch({ type: 'CHANGE_UI_STYLE', newUiStyle: 'ui-style-white-on-dark' })
   }
 
-const handleScroll = (el) => {
-  if(el.trigger.classList.contains('js-dark-bg')) {
-    setUiLight()
-  }
-  else {setUiDark()} 
-}
-
-const handleScrollBackToStart = (scrollTrigger) => {
-  const scrollPosition = scrollTrigger.scroller.scrollY
-  const windowHeight =  scrollTrigger.scroller.innerHeight
-  
-  if(scrollPosition <= windowHeight) {
-    setUiLight()
-  } 
-
+  const handleScroll = (el) => {
+    if (el.trigger.classList.contains('js-dark-bg')) {
+      setUiLight()
+    } else {
+      setUiDark()
+    }
   }
 
-useEffect(()=> {
-  let scroller = null
-  if(isHomepage) {
+  const handleScrollBackToStart = (scrollTrigger) => {
+    const scrollPosition = scrollTrigger.scroller.scrollY
+    const windowHeight = scrollTrigger.scroller.innerHeight
 
-     scroller = ScrollTrigger.create({
-      trigger: sectionRef.current,
-      start: "top 70",
-      // markers: {startColor: "black", endColor: "black", fontSize: "20px"},
-      onEnter: (el)=> handleScroll(el),
-      onEnterBack: (el)=> handleScroll(el), 
-      onLeaveBack: (el) => handleScrollBackToStart(el)
-      
-    });
+    if (scrollPosition <= windowHeight) {
+      setUiLight()
+    }
   }
-    if(isHomepage && scroller) {
 
-      return ()=> {
-        scroller.kill() 
+  useEffect(() => {
+    let scroller = null
+    if (isHomepage) {
+      scroller = ScrollTrigger.create({
+        trigger: sectionRef.current,
+        start: 'top 70',
+        // markers: {startColor: "black", endColor: "black", fontSize: "20px"},
+        onEnter: (el) => handleScroll(el),
+        onEnterBack: (el) => handleScroll(el),
+        onLeaveBack: (el) => handleScrollBackToStart(el),
+      })
+    }
+    if (isHomepage && scroller) {
+      return () => {
+        scroller.kill()
       }
     }
-   
-},[isHomepage])
+  }, [isHomepage])
 
   return container ? (
     <section className={`c-section ${classes}`} ref={sectionRef}>
       <div className="container">{content}</div>
     </section>
   ) : (
-    <section className={`c-section ${classes}`} ref={sectionRef}>{content}</section>
-  )}
+    <section className={`c-section ${classes}`} ref={sectionRef}>
+      {content}
+    </section>
+  )
+}
 export default Section

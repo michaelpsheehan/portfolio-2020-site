@@ -15,7 +15,7 @@ import { gsap } from 'gsap'
 import { Controls, useControl } from 'react-three-gui'
 import Button from '../../core/Button'
 // const GROUP = 'Extra';
-const Box = ({ position, userScale =1.5 }) => {
+const Box = ({ position, userScale = 1.5 }) => {
   const geoRef = useRef()
   const matRef = useRef()
   const cam = useRef()
@@ -122,7 +122,7 @@ vec3 pos = position.xyz;
       1
     )
     geometry.setAttribute('randomStrength', randomStrengthsAttribute)
-  },[])
+  }, [])
 
   useFrame((frame) => {
     const start = hovered ? 0.2 : 3.2

@@ -9,7 +9,7 @@ import {
 
 import ThemeButton from './ThemeButton'
 
-const SiteHead = ({ classes ='', isHomepage }) => {
+const SiteHead = ({ classes = '', isHomepage }) => {
   const dispatch = useGlobalDispatchContext()
   const { overlayStatus, currentUiStyle } = useGlobalStateContext()
 
@@ -27,9 +27,9 @@ const SiteHead = ({ classes ='', isHomepage }) => {
     }
   }
   //  only allow the burger nav to change colour on scroll on the homepage. All other pages have the blue header bar with white ui items
- const burgerUiStyle = isHomepage ? currentUiStyle : 'ui-style-white-on-dark'
+  const burgerUiStyle = isHomepage ? currentUiStyle : 'ui-style-white-on-dark'
 
- // checks if the overlay is open. If it is it sets the ui icons back to white
+  // checks if the overlay is open. If it is it sets the ui icons back to white
   const isOverlayOpen = overlayStatus === 'open'
 
   return (

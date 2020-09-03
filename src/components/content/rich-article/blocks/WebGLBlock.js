@@ -8,9 +8,9 @@ import slideInOnScroll from '../../../../animations/slideInOnScroll'
 const webGLBlock = ({ block, sectionColor, classes = '' }) => {
   const [userDefinedScale, setScale] = useState(1.5)
   const amountToChangeScaleBy = 0.5
-const scrollContainerRef = useRef(null)
-const webGLSectionRef = useRef(null)
-const textSectionRef = useRef(null)
+  const scrollContainerRef = useRef(null)
+  const webGLSectionRef = useRef(null)
+  const textSectionRef = useRef(null)
   let reversed = block.alignCanvas === 'Left' ? true : false
 
   block.backgroundColour && block.backgroundColour !== 'default'
@@ -23,49 +23,50 @@ const textSectionRef = useRef(null)
         heading={block.heading}
         body={block.body}
         classes="c-text--animation"
-
         forwardedRef={textSectionRef}
       />
     </div>
   )
   const onEnterScroll = () => {
-   console.log('scroll enter')
+    console.log('scroll enter')
   }
 
-const handleScaleIncrease = () => {
-  setScale(userDefinedScale + amountToChangeScaleBy)
-}
-  
-const handleScaleDecrease = () => {
-  userDefinedScale <= amountToChangeScaleBy
-                    ? null
-                    : setScale(userDefinedScale - amountToChangeScaleBy)
-}
-  
+  const handleScaleIncrease = () => {
+    setScale(userDefinedScale + amountToChangeScaleBy)
+  }
+
+  const handleScaleDecrease = () => {
+    userDefinedScale <= amountToChangeScaleBy
+      ? null
+      : setScale(userDefinedScale - amountToChangeScaleBy)
+  }
+
   useEffect(() => {
-      
     const tl = slideInOnScroll(
       scrollContainerRef.current,
       webGLSectionRef.current,
       textSectionRef.current,
       onEnterScroll
-  
-      )
-      
-  return ()=> {
-    tl.kill()
-    tl.scrollTrigger.kill()
-  }
+    )
+
+    return () => {
+      tl.kill()
+      tl.scrollTrigger.kill()
+    }
   }, [])
 
-
   const webGLSection = (
-    <WebGlBase sceneName={block.selectedScene} userScale={userDefinedScale}  />
+    <WebGlBase sceneName={block.selectedScene} userScale={userDefinedScale} />
   )
 
   return (
-    <div className={`c-webgl-block py-16 md:py-0 overflow-hidden `} ref={scrollContainerRef}>
-      <div className={`c-webgl py-16 xl:py-0 xl:flex xl:items-center xl:h-screen  relative `} >
+    <div
+      className={`c-webgl-block py-16 md:py-0 overflow-hidden `}
+      ref={scrollContainerRef}
+    >
+      <div
+        className={`c-webgl py-16 xl:py-0 xl:flex xl:items-center xl:h-screen  relative `}
+      >
         <div className="container">
           <div className={`${reversed ? 'xl:flex xl:flex-row-reverse' : ''} `}>
             <div className="c-webgl--primary xl:h-full mb-8 xl:mb-0 xl:w-1/2 flex  items-center  z-40 ">
@@ -75,7 +76,7 @@ const handleScaleDecrease = () => {
         </div>
         <div
           className={`c-webgl--secondary  xl:h-full flex items-center text-center `}
-          ref={webGLSectionRef} 
+          ref={webGLSectionRef}
         >
           {webGLSection}
         </div>
@@ -92,8 +93,7 @@ const handleScaleDecrease = () => {
             </div>
             {userDefinedScale > 0.25 && (
               <div
-                onClick={() => handleScaleDecrease()
-                }
+                onClick={() => handleScaleDecrease()}
                 className="c-scale-model__button"
               >
                 -

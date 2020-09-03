@@ -79,7 +79,9 @@ const HomeTemplate = (data) => {
           }}
         />
       )}
-      {richArticle && <RichArticle richArticle={richArticle} isHomepage={true} />}
+      {richArticle && (
+        <RichArticle richArticle={richArticle} isHomepage={true} />
+      )}
     </>
   )
 }

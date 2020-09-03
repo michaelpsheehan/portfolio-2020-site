@@ -1,48 +1,41 @@
-import React, { useRef, useEffect } from 'react'
-// import Lottie from 'lottie-web'
+import React, { useRef, useEffect, useState } from 'react'
 import Lottie from 'lottie-react-web'
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+gsap.registerPlugin(ScrollTrigger)
 
-
-const LottieAnimation = ({
-  lottieAnimationData,
-  // lottieAnimationPath,
-  forwardedRef,
-  isPaused,
-
-  classes = '',
-}) => {
-  // if (lottieAnimationPath === null || lottieAnimationData === null) {
-  if ( lottieAnimationData === null) {
+const LottieAnimation = ({ lottieAnimationData, classes = '' }) => {
+  if (lottieAnimationData === null) {
     return
   }
+  const [isPaused, setPause] = useState(true)
+  const lottieAnimationRef = useRef(null)
 
-  const animationContainer = useRef(null)
-  // useEffect(() => {
-  //  let currentAnimation = Lottie.loadAnimation({
-  //     container: animationContainer.current,
-  //     animationData: lottieAnimationData,
-  //     path: lottieAnimationPath,
-  //     autoplay:false,
-  //   })
- 
-  // }, [])
-  
+  useEffect(() => {
+    const tlScroll = gsap.timeline({
+      scrollTrigger: {
+        trigger: lottieAnimationRef.current,
+        onEnter: () => setPause(false),
+        onLeave: () => setPause(true),
+        onEnterBack: () => setPause(false),
+        onLeaveBack: () => setPause(true),
+      },
+    })
+    return () => {
+      tlScroll.kill()
+      tlScroll.scrollTrigger.kill()
+    }
+  }, [])
 
-console.log('IS PAUSED ---', isPaused)
   return (
-    // <div
-    //   className="c-lottie-animation__svg"
-    //   ref={animationContainer}
-    // />
-    <Lottie
-     options={{
-      animationData: lottieAnimationData,
-    }}
-    isPaused={isPaused}
-
-    // ref={animationContainer}
-    ref={forwardedRef}
-    />
+    <div className={`c-lottie-animation ${classes}`} ref={lottieAnimationRef}>
+      <Lottie
+        options={{
+          animationData: lottieAnimationData,
+        }}
+        isPaused={isPaused}
+      />
+    </div>
   )
 }
 

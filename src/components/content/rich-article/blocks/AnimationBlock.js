@@ -6,54 +6,29 @@ import { ScrollToPlugin } from 'gsap/ScrollToPlugin'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import LottieAnimation from '../../LottieAnimation'
 import Text from '../../../core/Text'
-import Section from '../../../core/Section'
-import { useGlobalDispatchContext, useGlobalStateContext } from '../../../../context/globalContext'
 import slideInOnScroll from '../../../../animations/slideInOnScroll'
 gsap.registerPlugin(CSSRulePlugin, ScrollToPlugin, ScrollTrigger)
 
-const AnimationBlock = ({ block,  classes = '' }) => {
+const AnimationBlock = ({ block, classes = '' }) => {
   const animationEl = useRef(null)
   const textEl = useRef(null)
   const animationBlockEl = useRef(null)
-  const hamburgerHeight = 50
-  let backgroundColor = null
   const isReversed = block.alignAnimation === 'Left' ? true : false
-  const forwardedRef = useRef(null)
-  const [isPaused, togglePlay] = useState(true)
 
-// useEffect(()=> {
-//   togglePlay(false)
-// },[])
-  // const onEnterScroll = (el) => ()=> togglePlay(false)
-  // const onExitScroll = (el) => ()=> togglePlay(true)
-  
-  
   useEffect(() => {
-      
-      const tl = slideInOnScroll(
-        animationBlockEl.current,
-        animationEl.current,
-        textEl.current,
-        togglePlay
-        // onEnterScroll,
-        // onExitScroll
-        )
+    const tl = slideInOnScroll(
+      animationBlockEl.current,
+      animationEl.current,
+      textEl.current
+    )
 
-        // console.log('refs are')
-        // console.log('animationBlockEl --', animationBlockEl.current)
-        // console.log('aanim el --', animationEl.current)
-        // console.log('aanim el --', animationEl.current)
-        
-    return ()=> {
+    return () => {
       tl.kill()
       tl.scrollTrigger.kill()
     }
-    }, [])
+  }, [])
 
-    console.log('animation block rendered')
-    console.log('animation block state of paused ===', isPaused)
-    return (
-   
+  return (
     <div
       className={`c-animation-block  py-16 md:py-0 overflow-hidden`}
       ref={animationBlockEl}
@@ -96,16 +71,7 @@ const AnimationBlock = ({ block,  classes = '' }) => {
             `}
           >
             <div className="c-animation-block__animation" ref={animationEl}>
-              <LottieAnimation
-                // heading={block.heading}
-                // lottieAnimationPath={block.animationData}
-                lottieAnimationData={block.animationData}
-                // alignAnimation={block.alignAnimation}
-                // animatorName={block.animatorName}
-                // animatorLink={block.animatorUrl}
-                forwardedRef={forwardedRef}
-                isPaused={isPaused}
-              />
+              <LottieAnimation lottieAnimationData={block.animationData} />
             </div>
           </div>
         </div>

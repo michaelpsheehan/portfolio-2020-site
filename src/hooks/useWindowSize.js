@@ -13,9 +13,9 @@ import { useState, useEffect } from 'react'
 
 export default function useWindowSize() {
   const isBrowser = typeof window !== 'undefined'
-if(!isBrowser) {
-  return
-}
+  if (!isBrowser) {
+    return
+  }
   console.log('get window size function ran')
   function getSize() {
     return {

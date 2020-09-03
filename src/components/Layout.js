@@ -23,19 +23,19 @@ import useWindowSize from '../hooks/useWindowSize'
 import IntroOverlay from './core/IntroOverlay'
 
 const Layout = ({ children, uri }) => {
- let isHomepage = uri === '/' ? true : false
+  let isHomepage = uri === '/' ? true : false
   console.log('is homepage on layout --', isHomepage)
   // const data = useStaticQuery(graphql`
   //   query SiteTitleQuery {
   //     craft {
   //       entries(section: "homepage") {
-    //         title
+  //         title
   //         id
   //       }
   //     }
   //   }
   // `)
-  
+
   const siteContainerEl = useRef(null)
   function debounce(fn, ms) {
     let timer
@@ -47,10 +47,9 @@ const Layout = ({ children, uri }) => {
       }, ms)
     }
   }
-  
-  
+
   const windowSize = useWindowSize()
-  useEffect(()=> {
+  useEffect(() => {
     console.log('use effect uri --', uri)
     isHomepage = uri === '/' ? true : false
     console.log('is hoepage in useeffect is', isHomepage)
@@ -58,28 +57,25 @@ const Layout = ({ children, uri }) => {
     const vh = windowSize.height * 0.01
     document.documentElement.style.setProperty('--vh', `${vh}px`)
     console.log('window size is ', windowSize)
-  },[])
-  
+  }, [])
 
   useEffect(() => {
     const tl = gsap.timeline()
     // stops body flashing from happening
     tl.set(siteContainerEl.current, { css: { visibility: 'visible' } })
-
   }, [isHomepage])
 
   console.log('layout re rendered')
 
-
   return (
     <>
-      <div className={`c-site-container`}
-        ref={siteContainerEl}
-      >
+      <div className={`c-site-container`} ref={siteContainerEl}>
         <TransitionCover />
         {/* <Header siteTitle={data.site.siteMetadata.title} /> */}
         <SiteHead isHomepage={isHomepage} />
-        <main className={`o-main-content ${isHomepage ? 'f-is-homepage' : ''}`} >{children}</main>
+        <main className={`o-main-content ${isHomepage ? 'f-is-homepage' : ''}`}>
+          {children}
+        </main>
 
         <footer className="mt-16 py-16 bg-brand-blue">
           <div className="container text-white uppercase">Projects</div>
