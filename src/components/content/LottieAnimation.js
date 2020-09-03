@@ -30,6 +30,7 @@ const LottieAnimation = ({ lottieAnimationData, classes = '' }) => {
   return (
     <div className={`c-lottie-animation ${classes}`} ref={lottieAnimationRef}>
       <Lottie
+      className='cursor-auto'
         options={{
           animationData: lottieAnimationData,
         }}

@@ -1,23 +1,18 @@
 .c-webgl {
-  &--primary {
-    // z-index:999;
+  &__primary {
     pointer-events: none;
 
     .c-text {
       z-index:999;
       mix-blend-mode: multiply;
-      // mix-blend-mode: difference;
     }
   }
   
-  &--secondary {
-    // border: 3px solid green; 
-    // border:20px solid red;
-    // mix-blend-mode: difference;
+  &__secondary {
+ 
     @apply w-full;
-    // min-height:50vh;
-    @screen xl {
-min-height: auto;
+    @screen md {
+      min-height: auto;
       position: absolute;
       cursor:pointer;
       width:100%;
@@ -25,21 +20,16 @@ min-height: auto;
       left:0;
     }
     canvas {
-      // height:50vh;
-      min-height:25vh;
+      min-height:100vh;
       mix-blend-mode: multiply;
       &:focus {
         outline: none;
       }
 
-      @screen xl {
+      @screen md {
         height: unset;
       }
     }
-    // @apply mx-auto;
-    // top:0;
-    // left:0;
-    // cursor:pointer;
 
   }
 }
