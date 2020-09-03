@@ -54,9 +54,9 @@ const Layout = ({ children, uri }) => {
     isHomepage = uri === '/' ? true : false
     console.log('is hoepage in useeffect is', isHomepage)
 
-    const vh = windowSize.height * 0.01
-    document.documentElement.style.setProperty('--vh', `${vh}px`)
-    console.log('window size is ', windowSize)
+    // const vh = windowSize.height * 0.01
+    // document.documentElement.style.setProperty('--vh', `${vh}px`)
+    // console.log('window size is ', windowSize)
   }, [])
 
   useEffect(() => {
