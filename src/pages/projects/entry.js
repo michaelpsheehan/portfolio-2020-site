@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useRef, useEffect} from 'react'
 import { graphql } from 'gatsby'
 import SEO from '../../components/Seo'
 import Layout from '../../components/Layout'
@@ -10,6 +10,7 @@ import PageTitle from '../../components/content/PageTitle'
 import HeroImage from '../../components/content/hero/HeroImage'
 import Intro from '../../components/content/Intro'
 import RichArticle from '../../components/content/rich-article/RichArticle'
+import staggerItemsIn from '../../animations/staggerItemsIn'
 
 const pageTemplate = ({ data }) => {
   const {
@@ -39,12 +40,25 @@ const pageTemplate = ({ data }) => {
         </a>
       </div>
     )
+
+    const projectEntryRef = useRef(null)
+
+    useEffect(()=> {
+      const tl = staggerItemsIn(projectEntryRef.current.children, 'Power3.out', 0.9)
+      return () => { 
+        tl.kill()
+      }
+      },[])
+
+
+
   return (
-    // <Layout>
     <>
+          <div className="overflow-hidden" ref={projectEntryRef} >
       {title && (
         <>
           <SEO title={title || ''} />
+
           <Section
             content={<PageTitle title={title} subtitle={currentProjectType} />}
             container
@@ -79,6 +93,7 @@ const pageTemplate = ({ data }) => {
         <RichArticle richArticle={richArticle} siteUrl={siteUrl} />
       )}
       {/* </Layout> */}
+      </div>
     </>
   )
 }

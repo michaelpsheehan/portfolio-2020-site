@@ -1,20 +1,6 @@
 import React, {useRef, useEffect} from 'react'
-import { gsap } from 'gsap'
-const staggerItemsIn = (items, currentEase) => {
+import staggerItemsIn from '../../animations/staggerItemsIn'
 
-  if(items) {
-    let tl = gsap.timeline()
-    .from(items, {
-      y:100,
-      opacity:0,
-      ease: currentEase ? currentEase : 'Power2.out',
-      stagger: {
-        amount: 1,
-      },
-    } )
-    return tl;
-  }
-}
 const Grid = ({
   items,
   itemTemplatePath,
@@ -26,7 +12,7 @@ const Grid = ({
   const gridContainerRef = useRef(null) 
 
   useEffect(()=> {
-  const tl = staggerItemsIn(gridContainerRef.current.children, 'back.out(3.8)')
+  const tl = staggerItemsIn(gridContainerRef.current.children, 'back.out(2)', 1)
 
   return () => { 
     tl.kill()

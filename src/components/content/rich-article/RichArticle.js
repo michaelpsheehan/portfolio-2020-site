@@ -5,6 +5,8 @@ import TextBlock from './blocks/TextBlock'
 import WebGLBlock from './blocks/WebGLBlock'
 import Section from '../../core/Section'
 
+import staggerItemsIn from '../../../animations/staggerItemsIn'
+
 const RichArticle = ({ richArticle, isHomepage, classes = '' }) => {
   // checks the blockType from the matrix field and loads the appropriate component
   const checkBlockType = (blockType, block) => {
@@ -22,9 +24,18 @@ const RichArticle = ({ richArticle, isHomepage, classes = '' }) => {
     }
   }
 
+  const richArticleRef = useRef(null)
+
+  // useEffect(()=> {
+  //   const tl = staggerItemsIn(richArticleRef.current.children,)
+  //   return () => { 
+  //     tl.kill()
+  //   }
+  //   },[])
+
   return (
     richArticle && (
-      <article className={`c-rich-article ${classes}`}>
+      <article className={`c-rich-article ${classes}`} ref={richArticleRef}>
         {richArticle.map((block) => {
           const currentBlock = checkBlockType(block.typeHandle, block, block.id)
           const fullHeightSection =

@@ -44,7 +44,7 @@ const Layout = ({ children, uri }) => {
         <TransitionCover />
         {/* <Header siteTitle={data.site.siteMetadata.title} /> */}
         <SiteHead isHomepage={isHomepage} />
-        <main className={`o-main-content ${isHomepage ? 'f-is-homepage' : ''}`}>
+        <main className={`o-main-content  ${isHomepage ? 'f-is-homepage' : ''}`}>
           {children}
         </main>
 
