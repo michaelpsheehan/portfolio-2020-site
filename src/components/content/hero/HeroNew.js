@@ -124,58 +124,58 @@ class HeroNew extends Component {
       ...currentLine.children,
     ])
 
-    this.tl = gsap
-      .timeline({
-        defaults: { duration: 1, ease: 'Power3.out' },
-        // create the scrollTrigger timeline after the intro completes to stop any early scroll bugs
-        onComplete: this.animateTextOnScroll,
-        onCompleteParams: [this.allWords],
-        onCompleteScope: this,
-      })
-      .set(this.heroContentEl.current, { css: { visibility: 'visible' } })
-      .set(this.heroScrollIconEl.current, { css: { visibility: 'visible' } })
+    // this.tl = gsap
+    //   .timeline({
+    //     defaults: { duration: 1, ease: 'Power3.out' },
+    //     // create the scrollTrigger timeline after the intro completes to stop any early scroll bugs
+    //     onComplete: this.animateTextOnScroll,
+    //     onCompleteParams: [this.allWords],
+    //     onCompleteScope: this,
+    //   })
+    //   .set(this.heroContentEl.current, { css: { visibility: 'visible' } })
+    //   .set(this.heroScrollIconEl.current, { css: { visibility: 'visible' } })
 
-      .from(this.heroTextLineEls, {
-        delay: 2.6,
-        duration: 1,
-        y: '140',
-        ease: 'Power4.out',
-        skewY: 7,
-        stagger: {
-          amount: 0.32,
-        },
-      })
-      .from(this.heroPrimaryButtonEl.current, {
-        y: 10,
-        opacity: 0,
-      })
-      .from(this.heroSecondaryButtonEl.current, {
-        y: 10,
-        opacity: 0,
-      })
-      .from(
-        this.heroScrollIconEl.current,
-        1,
-        {
-          y: 10,
-          opacity: 0,
-          delay: 0.2,
-        },
-        '-=0.5'
-      )
+    //   .from(this.heroTextLineEls, {
+    //     delay: 2.6,
+    //     duration: 1,
+    //     y: '140',
+    //     ease: 'Power4.out',
+    //     skewY: 7,
+    //     stagger: {
+    //       amount: 0.32,
+    //     },
+    //   })
+    //   .from(this.heroPrimaryButtonEl.current, {
+    //     y: 10,
+    //     opacity: 0,
+    //   })
+    //   .from(this.heroSecondaryButtonEl.current, {
+    //     y: 10,
+    //     opacity: 0,
+    //   })
+    //   .from(
+    //     this.heroScrollIconEl.current,
+    //     1,
+    //     {
+    //       y: 10,
+    //       opacity: 0,
+    //       delay: 0.2,
+    //     },
+    //     '-=0.5'
+    //   )
 
-      .set(this.heroTextLineContainerEls, {
-        css: { overflow: 'visible' },
-      })
+    //   .set(this.heroTextLineContainerEls, {
+    //     css: { overflow: 'visible' },
+    //   })
   }
 
   componentWillUnmount() {
     //  cleanup gsap animations and scroll trigger
-    this.tl.kill()
-    if (this.scrollTimeline) {
-      this.scrollTimeline.kill()
-      this.scrollTimeline.scrollTrigger.kill()
-    }
+    // this.tl.kill()
+    // if (this.scrollTimeline) {
+    //   this.scrollTimeline.kill()
+    //   this.scrollTimeline.scrollTrigger.kill()
+    // }
   }
 
   render() {
