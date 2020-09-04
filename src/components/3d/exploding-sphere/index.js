@@ -91,7 +91,7 @@ const Sphere = ({ spherePosition, userScale = 1.5 }) => {
     const { clock } = frame
 // update the uniforms on the shaders every second
 
-// the explosion value is differnt depending if the hovered state is true
+// the explosion value is different depending if the hovered state is true
     matRef.current.uniforms.explosion.value =
       Math.sin(clock.elapsedTime * 0.8 - Math.PI / 4) * (hovered ? 0.002 : 0.2)
 
@@ -151,19 +151,24 @@ const isBrowser = typeof window !== 'undefined'
 
 export default function BreakingSphere({ userScale }) {
   const [spherePosition, setPosition] = useState([0, 0, 1])
-  const windowSize = useWindowSize()
-  const {width} = windowSize
 
-  useEffect(() => {
-    if(width > 768) {
-      setPosition([2, 0, -1])
-    }
-    if(width > 1024) {
-      setPosition([2, 0, 0])
-    }
-  }, [width])
+  if(isBrowser) {
 
-console.log('window width in sphere ==', width)
+    const windowSize = useWindowSize()
+    const {width} = windowSize
+    
+    useEffect(() => {
+      if(width > 768) {
+        setPosition([2, 0, -1])
+      }
+      if(width > 1024) {
+        setPosition([2, 0, 0])
+      }
+    }, [width])
+  
+    console.log('window width in sphere ==', width)
+  }
+
 
   return (
     <>
