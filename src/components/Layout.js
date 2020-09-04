@@ -23,7 +23,7 @@ const Layout = ({ children, uri }) => {
   const siteContainerEl = useRef(null)
 
 
-  const windowSize = useWindowSize()
+  let windowSize = useWindowSize()
 
   useEffect(() => {
     isHomepage = uri === '/' ? true : false
@@ -38,6 +38,7 @@ const Layout = ({ children, uri }) => {
   console.log('layout re rendered')
 
   return (
+    // windowSize &&
     <>
       <div className={`c-site-container`} ref={siteContainerEl}>
         <TransitionCover />

@@ -55,6 +55,7 @@ const Section = ({ content, container, isHomepage, classes = '' }) => {
     }
   }, [isHomepage])
 
+  console.log(' SECTION Rendered')
   return container ? (
     <section className={`c-section ${classes}`} ref={sectionRef}>
       <div className="container">{content}</div>

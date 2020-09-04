@@ -15,18 +15,18 @@ const AnimationBlock = ({ block, classes = '' }) => {
   const animationBlockEl = useRef(null)
   const isReversed = block.alignAnimation === 'Left' ? true : false
 
-  useEffect(() => {
-    const tl = slideInOnScroll(
-      animationBlockEl.current,
-      animationEl.current,
-      textEl.current
-    )
+  // useEffect(() => {
+  //   const tl = slideInOnScroll(
+  //     animationBlockEl.current,
+  //     animationEl.current,
+  //     textEl.current
+  //   )
 
-    return () => {
-      tl.kill()
-      tl.scrollTrigger.kill()
-    }
-  }, [])
+  //   return () => {
+  //     tl.kill()
+  //     tl.scrollTrigger.kill()
+  //   }
+  // }, [])
 
   return (
     <div

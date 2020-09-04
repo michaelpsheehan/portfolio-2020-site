@@ -3,6 +3,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 gsap.registerPlugin(ScrollTrigger)
 
 const slideInOnScroll = (elementContainer, element1, element2) => {
+  console.log('slide in on scroll started')
   const tl = gsap
     .timeline({
       scrollTrigger: {

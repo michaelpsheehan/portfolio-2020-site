@@ -183,6 +183,7 @@ class HeroNew extends Component {
     const { primaryButton, secondaryButton, heroTextBody } = heroContent
     const updatedHeroTextBody = this.splitText(heroTextBody)
 
+    console.log('hero re render')
     return (
       <div className={`c-hero ${classes}`} ref={this.heroEl}>
         {/* show hero bg image or video if available */}
