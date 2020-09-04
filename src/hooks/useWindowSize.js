@@ -25,18 +25,7 @@ let prevHeight = null;
     return () => window.removeEventListener('resize', handleResize)
   }, [])
 
-  useEffect(()=> {
-    const vh = windowSize.height * 0.01
-    // update the value for the vh css custom property on resize. 
-    // This ensures mobile devices have a true 100vh on mobile without the address bar making 100vh incorrect. falls back to standard 100vh if the browser does not support custom properties
-    
-    if(prevHeight = null || prevHeight !== windowSize.height) {
-
-      document.documentElement.style.setProperty('--vh', `${vh}px`)
-      prevHeight = windowSize.height
-      console.log('CHANGE HEIGHT VH VARIABle')
-    }
-  },[windowSize.height])
+ 
   
   return isBrowser ? windowSize : null
 }

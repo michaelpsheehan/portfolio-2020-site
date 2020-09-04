@@ -1,15 +1,11 @@
 .c-intro-overlay {
   @apply pointer-events-none  absolute flex w-screen h-screen overflow-hidden;
-  // border: 9px solid green;
-  // z-index: 999999999999;
   &__left {
     &-section {
       @apply w-1/2 z-50 h-full;
-      height: calc(var(--vh, 1vh) * 100);
     }
 
     &-item {
-      // @apply h-full w-1/3 top-0 bg-brand-light-blue;
       @apply h-full w-1/3 top-0 bg-white;
       transform: scaleY(1);
 
@@ -22,7 +18,6 @@
 
   &__right-section {
     @apply w-1/2 z-50 h-full;
-    height: calc(var(--vh, 1vh) * 100);
 
     .c-intro-overlay__right-item {
       @apply h-full bg-white;

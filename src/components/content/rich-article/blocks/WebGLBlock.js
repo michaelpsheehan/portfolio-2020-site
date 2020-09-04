@@ -38,18 +38,18 @@ const webGLBlock = ({ block, sectionColor, classes = '' }) => {
       : setScale(userDefinedScale - amountToChangeScaleBy)
   }
 
-  // useEffect(() => {
-  //   const tl = slideInOnScroll(
-  //     scrollContainerRef.current,
-  //     webGLSectionRef.current,
-  //     textSectionRef.current,
-  //   )
+  useEffect(() => {
+    const tl = slideInOnScroll(
+      scrollContainerRef.current,
+      webGLSectionRef.current,
+      textSectionRef.current,
+    )
 
-  //   return () => {
-  //     tl.kill()
-  //     tl.scrollTrigger.kill()
-  //   }
-  // }, [])
+    return () => {
+      tl.kill()
+      tl.scrollTrigger.kill()
+    }
+  }, [])
 
   const webGLSection = (
     <WebGlBase sceneName={block.selectedScene} userScale={userDefinedScale} />
