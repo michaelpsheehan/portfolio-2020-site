@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react'
-import debounce from '../helpers/debounce'
 
 export default function useWindowSize() {
   // isBrowser check stops gatsby trying to run this on ssr where the window does not exist
@@ -16,13 +15,13 @@ export default function useWindowSize() {
 
   const [windowSize, setWindowSize] = useState(getSize)
 
+
   useEffect(() => {
     // listen for window resizes and run the function again to update the values
     function handleResize() {
       setWindowSize(getSize())
     }
-    // run through a debounce function to slow it down
-    window.addEventListener('resize', debounce(handleResize))
+    window.addEventListener('resize', handleResize)
     return () => window.removeEventListener('resize', handleResize)
   }, [])
 
