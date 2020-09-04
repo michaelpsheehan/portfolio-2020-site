@@ -35,11 +35,11 @@ class HeroNew extends Component {
           start: 'top top',
           scrub: 0.1,
           trigger: this.heroEl.current,
-          // markers: true
+          markers: true
         },
       })
       .to([allWords[0], allWords[1]], {
-        y: '-300vh',
+        y: '-900px',
         ease: 'Power4.out',
         rotation: -360,
         skewY: 7,
@@ -50,9 +50,9 @@ class HeroNew extends Component {
       .to(
         this.heroSecondaryButtonEl.current,
         {
-          y: '-25vh',
-          x: '-100vw',
-          opacity: 0,
+          y: '-250%',
+          x: '-500%',
+          // opacity: 0,
           transformOrigin: '50% 50%',
           rotation: -360,
           ease: 'Power3.out',
@@ -62,9 +62,9 @@ class HeroNew extends Component {
       .to(
         this.heroPrimaryButtonEl.current,
         {
-          y: '-25vh',
-          x: '100vw',
-          opacity: 0,
+          y: '-250%',
+          x: '500%',
+          // opacity: 0,
           transformOrigin: '50% 50%',
           rotation: 360,
           ease: 'Power3.out',
@@ -75,7 +75,7 @@ class HeroNew extends Component {
         this.heroScrollIconEl.current,
         {
           transformOrigin: '50% 50%',
-          y: '-150vh',
+          y: '-1500',
           opacity: 0,
           ease: 'Power3.out',
         },
