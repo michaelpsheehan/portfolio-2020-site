@@ -41,7 +41,7 @@ const successTextRef = useRef(null)
                     </div>
         </div>
       <div class="max-w-sm flex justify-center mx-auto">
-      <LottieAnimation lottieAnimationData={successAnimation}  startPaused={false} />
+      <LottieAnimation lottieAnimationData={successAnimation}  startPaused={false} shouldLoop={false} />
       </div>
     </div>
       }

@@ -24,45 +24,26 @@ const [formState, setFormState ] = useState({
       [e.target.id]: e.target.value
     })
   }
-  const formSuccessMessage = <Section 
-    content={
-    <div className="text-center pb-32">
-      <Text heading='Thank you for your message' />
-      <div class="max-w-sm flex justify-center mx-auto">
-      <LottieAnimation lottieAnimationData={successAnimation}  startPaused={false} />
-      </div>
-    </div>
-      }
-    container
-    />
-
-  // let messageSent = formSuccessMessage
-  let messageSent = null
-  let formError = false
 
   const handleSubmit = (e) => {
+    e.preventDefault();
     fetch("/", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: encode({ "form-name": "contact", ...formState })
     })
       .then(() =>{
-        formError = false
-      messageSent = formSuccessMessage
-        alert("Success!")
+  
       }
       )
       .catch(error =>  {
-        alert(error)
-        formError = 'error'
+        alert(`There was an error submitting the form ${error}. Please try again.`)
       }
         );
 
-    e.preventDefault();
   }
   useEffect(()=> {
     if(messageSent === null) {
-
       const tl = staggerItemsIn(formRef.current.children,  )
       return () => { 
         tl.kill()
@@ -77,8 +58,13 @@ const [formState, setFormState ] = useState({
           .join("&");
     }
 
-
-    const form =   <Section
+  return  (
+  <>
+    <Section
+      container
+      content={<PageTitle title="Contact Me" underline subtitle />}
+    />
+<Section
     container
     content={
       <>
@@ -143,17 +129,6 @@ const [formState, setFormState ] = useState({
        </>
     } 
  />  
-
- const formPageContent = messageSent === null ? form : messageSent
-
-  return  (
-    
-  <>
-    <Section
-      container
-      content={<PageTitle title="Contact Me" underline subtitle />}
-    />
-  {formPageContent}
   </>
 )
 

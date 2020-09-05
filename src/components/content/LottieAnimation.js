@@ -33,7 +33,7 @@ const LottieAnimation = ({ lottieAnimationData, startPaused = true, shouldLoop =
       className='cursor-auto border'
         options={{
           animationData: lottieAnimationData,
-          loop: false,
+          loop: shouldLoop,
         }}
         isPaused={isPaused}
       />

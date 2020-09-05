@@ -1,5 +1,5 @@
 .c-text {
-  @apply max-w-2xl mx-auto mb-8;
+  @apply max-w-3xl mx-auto mb-8 ;
 
   &__heading {
     @apply uppercase text-xl mb-4;
@@ -7,10 +7,10 @@
 
   &--animation {
     .c-text__heading {
-      @apply text-4xl;
+      @apply text-2xl;
 
       @screen md {
-        @apply text-4xl;
+        @apply text-3xl;
       }
     }
   }

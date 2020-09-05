@@ -29,24 +29,22 @@ const AnimationBlock = ({ block, classes = '' }) => {
   }, [])
 
   return (
-    <div
-      className={`c-animation-block  py-16 md:py-0 overflow-hidden`}
-      ref={animationBlockEl}
-    >
-      <div className="container">
-        <div
-          className={`md:flex md:items-center md:h-screen  
-    ${isReversed ? 'md:flex-row-reverse' : ''}
-           `}
+    <div className="container h-full">
+      <div className={`c-animation-block`}
+        ref={animationBlockEl}
+      >
+        <div className={`c-animation-block__content ${isReversed ? 'md:flex-row-reverse' : ''}`}
         >
           {(block.heading || block.body) && (
-            <div className="mb-8 md:mb-0 md:w-1/2 ">
+            <div className={`c-animation-block__section ${
+              isReversed ? 'md:flex md:flex-row-reverse' : ''
+            }`}>
               <div
-                className={`c-animation-block__text ${
+                className={`c-animation-block__text-container ${
                   isReversed ? 'md:flex md:flex-row-reverse' : ''
                 }`}
               >
-                <div className="max-w-sm  ">
+                <div className="c-animation-block__text">
                   <Text
                     heading={block.heading}
                     body={block.body}
@@ -54,7 +52,7 @@ const AnimationBlock = ({ block, classes = '' }) => {
                     forwardedRef={textEl}
                   />
                   {block.animatorName && (
-                    <div className="text-xs opacity-50 mt-4">
+                    <div className="c-animation-block__attribution">
                       Animation by{' '}
                       <a href={block.animatorUrl} target="__blank">
                         {block.animatorName}
@@ -65,15 +63,12 @@ const AnimationBlock = ({ block, classes = '' }) => {
               </div>
             </div>
           )}
-          <div
-            className={`c-lottie-animation md:w-1/2  text-center 
-            ${isReversed ? 'md:pr-8' : 'md:pl-8'}
-            `}
-          >
-            <div className="c-animation-block__animation" ref={animationEl}>
+          <div className="c-animation-block__section" >
+            <div className={`c-animation-block__animation`} ref={animationEl}>
               <LottieAnimation lottieAnimationData={block.animationData} />
             </div>
           </div>
+          {/* </div> */}
         </div>
       </div>
     </div>
