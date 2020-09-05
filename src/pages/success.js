@@ -25,7 +25,7 @@ const successTextRef = useRef(null)
   <>
     <Section
       container
-      content={<PageTitle title="Form Sent" underline subtitle />}
+      content={<PageTitle title="Success" underline subtitle />}
       />
     <Section 
     content={
@@ -33,6 +33,12 @@ const successTextRef = useRef(null)
         <div ref={successTextRef}>
 
       <Text heading='Thank you for your message' />
+      <div className="text-xs opacity-50 mt-8">
+                      Animation by{' '}
+                      <a href="https://lottiefiles.com/18781-email-sent-by-todd-rocheford" target="__blank">
+                      Todd Rocheford
+                      </a>
+                    </div>
         </div>
       <div class="max-w-sm flex justify-center mx-auto">
       <LottieAnimation lottieAnimationData={successAnimation}  startPaused={false} />
