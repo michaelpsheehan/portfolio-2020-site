@@ -90,6 +90,7 @@ const [formState, setFormState ] = useState({
             data-netlify="true"
             data-netlify-honeypot="bot-field"
             ref={formRef}
+            action="/pages/success"
           >
               <input type="hidden" name="form-name" value="contact-form" />
             <label className="c-form__label" htmlFor="name">
