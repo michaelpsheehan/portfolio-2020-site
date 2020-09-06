@@ -4,7 +4,7 @@ import { Helmet } from "react-helmet"
 import { useLocation } from "@reach/router"
 import { useStaticQuery, graphql } from "gatsby"
 
-const SEO = ({ title, description, image, article }) => {
+const SEO = ({ title, description, image, social, article }) => {
   const { pathname } = useLocation()
   const { site } = useStaticQuery(query)
 
@@ -16,6 +16,16 @@ const SEO = ({ title, description, image, article }) => {
     // defaultImage,
     twitterUsername,
   } = site.siteMetadata
+  let facebook;
+  let twitter;
+  if(social) {
+
+  facebook = social.facebook;
+  
+  twitter = social.twitter
+
+  }
+  console.log('social is', facebook, twitter)
 
   const seo = {
     title: title || defaultTitle,
@@ -24,6 +34,8 @@ const SEO = ({ title, description, image, article }) => {
     image: `${siteUrl}${image}`,
     url: `${siteUrl}${pathname}`,
   }
+
+
 
   return (
     <Helmet title={seo.title} titleTemplate={titleTemplate}>
@@ -34,15 +46,15 @@ const SEO = ({ title, description, image, article }) => {
 
       {seo.url && <meta property="og:url" content={seo.url} />}
 
-      {(article ? true : null) && <meta property="og:type" content="article" />}
+      {/* {(article ? true : null) && <meta property="og:type" content="article" />} */}
 
-      {seo.title && <meta property="og:title" content={seo.title} />}
+      {facebook.title && <meta property="og:title" content={facebook.title} />}
 
-      {seo.description && (
-        <meta property="og:description" content={seo.description} />
+      {facebook.description && (
+        <meta property="og:description" content={facebook.description} />
       )}
 
-      {seo.image && <meta property="og:image" content={seo.image} />}
+      {facebook.image.optimizedImagesGridThumbnail && <meta property="og:image" content={`${siteUrl}${facebook.image.optimizedImagesGridThumbnail.src}`} />}
 
       <meta name="twitter:card" content="summary_large_image" />
 
@@ -50,13 +62,13 @@ const SEO = ({ title, description, image, article }) => {
         <meta name="twitter:creator" content={twitterUsername} />
       )}
 
-      {seo.title && <meta name="twitter:title" content={seo.title} />}
+      {twitter.title && <meta name="twitter:title" content={twitter.title} />}
 
-      {seo.description && (
-        <meta name="twitter:description" content={seo.description} />
+      {twitter.description && (
+        <meta name="twitter:description" content={twitter.description} />
       )}
 
-      {seo.image && <meta name="twitter:image" content={seo.image} />}
+      {twitter.image.optimizedImagesGridThumbnail && <meta name="twitter:image" content={`${siteUrl}${twitter.image.optimizedImagesGridThumbnail.src}`} />}
     </Helmet>
   )
 }

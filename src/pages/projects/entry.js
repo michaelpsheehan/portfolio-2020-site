@@ -59,7 +59,7 @@ const pageTemplate = ({ data }) => {
           <div className="overflow-hidden" ref={projectEntryRef} >
       {title && (
         <>
-          <SEO title={title || null} image={imageOptimizedHeroImage.src} />
+          <SEO title={seoMeta.title || title} description={ seoMeta.description } social={seoMeta.social}  />
 
           <Section
             content={<PageTitle title={title} subtitle={currentProjectType} />}
