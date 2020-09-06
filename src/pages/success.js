@@ -5,6 +5,7 @@ import LottieAnimation from '../components/content/LottieAnimation'
 import successAnimation from '../animations/lottie/email-sent-by-todd-rocheford'
 import Text from '../components/core/Text'
 import {gsap} from 'gsap'
+import SEO from '../components/Seo'
 
 const Success = () => {
 const successTextRef = useRef(null)
@@ -23,6 +24,7 @@ const successTextRef = useRef(null)
 
   return  (
   <>
+  <SEO title='title' description='this is the description' />
     <Section
       container
       content={<PageTitle title="Success" underline subtitle />}

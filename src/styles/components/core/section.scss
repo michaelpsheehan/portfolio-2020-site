@@ -6,9 +6,9 @@
   }
 
   &.c-section--screen-height {
-    @apply my-0 h-screen;
+    @apply my-0 ;
     @screen md {
-      @apply my-0;
+      @apply my-0 h-screen ;
     }
   }
 }
