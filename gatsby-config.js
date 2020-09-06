@@ -1,10 +1,11 @@
 module.exports = {
   siteMetadata: {
-    title: `Code By Sheen`,
+    title: `Code By Sheen local name`,
+    titleTemplate: `%s · local title template`,
     description: `Michael Sheehan web development portfolio`,
     // siteUrl: 'http://157.245.46.3',
     siteUrl: 'https://www.michaelsheehan.dev',
-    // author: `@gatsbyjs`,
+    twitterUsername: '@testLocalUser'
   },
   plugins: [
     {

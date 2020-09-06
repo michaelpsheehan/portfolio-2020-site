@@ -6,27 +6,106 @@ const fetch = require(`node-fetch`)
 
 async function createHomepage({ graphql, actions }) {
   const { errors, data } = await graphql(`
-    query HomepageQuery {
-      site {
-        siteMetadata {
-          siteUrl
-        }
+  query HomepageQuery {
+    site {
+      siteMetadata {
+        siteUrl
       }
-
-      craft {
-        entry: entries(section: "homepage") {
-          title
-          ... on Craft_homepage_homepage_Entry {
-            heroTextBody
-            ctaButton1Text
-            ctaButton1Link
-            ctaButton2Text
-            ctaButton2Link
-            heroImage {
-              url
-              ... on Craft_images_Asset {
-                optimizedImagesFullWidth {
-                  ... on Craft_optimizedImagesFullWidth_OptimizedImages {
+    }
+    craft {
+      entry: entries(section: "homepage") {
+        title
+        ... on Craft_homepage_homepage_Entry {
+          heroTextBody
+          ctaButton1Text
+          ctaButton1Link
+          ctaButton2Text
+          ctaButton2Link
+          seoMeta {
+            title
+            description
+            social {
+              facebook {
+                description
+                image {
+                  ... on Craft_images_Asset {
+                    id
+                    optimizedImagesGridThumbnail {
+                      src
+                    }
+                  }
+                }
+              }
+              twitter {
+                description
+                title
+                image {
+                  ... on Craft_images_Asset {
+                    id
+                    optimizedImagesGridThumbnail {
+                      src
+                    }
+                  }
+                }
+              }
+            }
+          }
+          heroImage {
+            url
+            ... on Craft_images_Asset {
+              optimizedImagesFullWidth {
+                ... on Craft_optimizedImagesFullWidth_OptimizedImages {
+                  focalPoint
+                  lightness
+                  placeholder
+                  src
+                  srcUrls
+                  srcWebp
+                  srcset
+                }
+              }
+            }
+          }
+          richArticle {
+            ... on Craft_richArticle_animation_BlockType {
+              id
+              backgroundColour
+              typeHandle
+              alignAnimation(label: true)
+              animationUrl
+              animatorName
+              animatorUrl
+              fullWidthAnimation
+              body
+              heading
+            }
+            ... on Craft_richArticle_webgl_BlockType {
+              id
+              typeHandle
+              heading
+              body
+              backgroundColour
+              alignCanvas(label: true)
+              selectedScene
+            }
+            ... on Craft_richArticle_text_BlockType {
+              id
+              typeHandle
+              heading
+              body
+              backgroundColour
+            }
+            ... on Craft_richArticle_fullWidthImage_BlockType {
+              id
+              imageCaption
+              typeHandle
+              constrainImage
+              backgroundColour
+              image(optimizedImagesFullWidth: "") {
+                ... on Craft_images_Asset {
+                  id
+                  url
+                  optimizedImagesFullWidth {
                     focalPoint
                     lightness
                     placeholder
@@ -38,64 +117,12 @@ async function createHomepage({ graphql, actions }) {
                 }
               }
             }
-
-            richArticle {
-              ... on Craft_richArticle_animation_BlockType {
-                id
-                backgroundColour
-                typeHandle
-                alignAnimation(label: true)
-                animationUrl
-                animatorName
-                animatorUrl
-                fullWidthAnimation
-                body
-                heading
-              }
-              ... on Craft_richArticle_webgl_BlockType {
-                id
-                typeHandle
-                heading
-                body
-                backgroundColour
-                alignCanvas(label: true)
-                selectedScene
-              }
-
-              ... on Craft_richArticle_text_BlockType {
-                id
-                typeHandle
-                heading
-                body
-                backgroundColour
-              }
-              ... on Craft_richArticle_fullWidthImage_BlockType {
-                id
-                imageCaption
-                typeHandle
-                constrainImage
-                backgroundColour
-                image(optimizedImagesFullWidth: "") {
-                  ... on Craft_images_Asset {
-                    id
-                    url
-                    optimizedImagesFullWidth {
-                      focalPoint
-                      lightness
-                      placeholder
-                      src
-                      srcUrls
-                      srcWebp
-                      srcset
-                    }
-                  }
-                }
-              }
-            }
           }
         }
       }
     }
+  }
+  
   `)
 
   if (errors) {

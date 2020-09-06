@@ -24,8 +24,10 @@ const pageTemplate = ({ data }) => {
     codeRepoUrl,
     siteUrl: liveProjectUrl,
     richArticle,
+    seoMeta
   } = data.craft.entries[0]
 
+  console.log('entry grapph ql dat ==', seoMeta)
   const { siteUrl } = data.site.siteMetadata
   const imageOptimizedHeroImage = heroImage[0].optimizedImagesFullWidth
 
@@ -57,7 +59,7 @@ const pageTemplate = ({ data }) => {
           <div className="overflow-hidden" ref={projectEntryRef} >
       {title && (
         <>
-          <SEO title={title || null} socialImage={imageOptimizedHeroImage.src} />
+          <SEO title={title || null} image={imageOptimizedHeroImage.src} />
 
           <Section
             content={<PageTitle title={title} subtitle={currentProjectType} />}
@@ -124,6 +126,42 @@ export const projectEntryQuery = graphql`
           codeRepoUrl
           siteUrl
           imageCaption
+
+
+          
+        seoMeta {
+            title
+            description
+            social {
+              facebook {
+                description
+                image {
+                  ... on Craft_images_Asset {
+                    id
+                    optimizedImagesGridThumbnail {
+                      src
+                    }
+                  }
+                }
+              }
+              twitter {
+                description
+                title
+                image {
+                  ... on Craft_images_Asset {
+                    id
+                    optimizedImagesGridThumbnail {
+                      src
+                    }
+                  }
+                }
+              }
+            }
+          }
+
+
+
+
           richArticle {
             ... on Craft_richArticle_text_BlockType {
               id
@@ -209,6 +247,8 @@ export const projectEntryQuery = graphql`
             }
           }
         }
+
+
       }
     }
   }
