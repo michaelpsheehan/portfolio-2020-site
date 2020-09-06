@@ -48,13 +48,13 @@ const SEO = ({ title, description, image, social, article }) => {
 
       {/* {(article ? true : null) && <meta property="og:type" content="article" />} */}
 
-      {facebook.title && <meta property="og:title" content={facebook.title} />}
+      {(facebook && facebook.title) && <meta property="og:title" content={facebook.title} />}
 
-      {facebook.description && (
+      {(facebook && facebook.description) && (
         <meta property="og:description" content={facebook.description} />
       )}
 
-      {facebook.image.optimizedImagesGridThumbnail && <meta property="og:image" content={`${siteUrl}${facebook.image.optimizedImagesGridThumbnail.src}`} />}
+      {(facebook && facebook.image.optimizedImagesGridThumbnail) && <meta property="og:image" content={`${siteUrl}${facebook.image.optimizedImagesGridThumbnail.src}`} />}
 
       <meta name="twitter:card" content="summary_large_image" />
 
@@ -62,13 +62,13 @@ const SEO = ({ title, description, image, social, article }) => {
         <meta name="twitter:creator" content={twitterUsername} />
       )}
 
-      {twitter.title && <meta name="twitter:title" content={twitter.title} />}
+      {(twitter && twitter.title) && <meta name="twitter:title" content={twitter.title} />}
 
-      {twitter.description && (
+      {(twitter && twitter.description) && (
         <meta name="twitter:description" content={twitter.description} />
       )}
 
-      {twitter.image.optimizedImagesGridThumbnail && <meta name="twitter:image" content={`${siteUrl}${twitter.image.optimizedImagesGridThumbnail.src}`} />}
+      {(twitter && twitter.image.optimizedImagesGridThumbnail) && <meta name="twitter:image" content={`${siteUrl}${twitter.image.optimizedImagesGridThumbnail.src}`} />}
     </Helmet>
   )
 }

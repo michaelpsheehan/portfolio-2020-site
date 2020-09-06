@@ -29,7 +29,7 @@ const pageTemplate = ({ data }) => {
 
   console.log('entry grapph ql dat ==', seoMeta)
   const { siteUrl } = data.site.siteMetadata
-  const imageOptimizedHeroImage = heroImage[0].optimizedImagesFullWidth
+  const imageOptimizedHeroImage = heroImage ?  heroImage[0].optimizedImagesFullWidth : null
 
   const currentProjectType =
     projectType === 'Demo Project' ? (
@@ -59,7 +59,7 @@ const pageTemplate = ({ data }) => {
           <div className="overflow-hidden" ref={projectEntryRef} >
       {title && (
         <>
-          <SEO title={seoMeta.title || title} description={ seoMeta.description } social={seoMeta.social}  />
+        {seoMeta &&   <SEO title={seoMeta.title || title} description={ seoMeta.description } social={seoMeta.social}  /> }
 
           <Section
             content={<PageTitle title={title} subtitle={currentProjectType} />}
