@@ -10,10 +10,8 @@ const SEO = ({ title, description, image, social, article }) => {
 
   const {
     defaultTitle,
-    // titleTemplate,
     defaultDescription,
     siteUrl,
-    // defaultImage,
     twitterUsername,
   } = site.siteMetadata
   let facebook;
@@ -21,7 +19,6 @@ const SEO = ({ title, description, image, social, article }) => {
   if(social) {
 
   facebook = social.facebook;
-  
   twitter = social.twitter
 
   }
@@ -30,17 +27,14 @@ const SEO = ({ title, description, image, social, article }) => {
   const seo = {
     title: title || defaultTitle,
     description: description || defaultDescription,
-    // image: `${siteUrl}${image || defaultImage}`,
 
     url: `${siteUrl}${pathname}`,
   }
 
 
-  // const social image =  `${siteUrl}${image.src}`,
 
   return (
     <Helmet title={seo.title}
-    //  titleTemplate={titleTemplate}
     >
       <meta name="description" content={seo.description} />
     
@@ -48,8 +42,6 @@ const SEO = ({ title, description, image, social, article }) => {
       }
 
       {seo.url && <meta property="og:url" content={seo.url} />}
-
-      {/* {(article ? true : null) && <meta property="og:type" content="article" />} */}
 
       {(facebook && facebook.title) && <meta property="og:title" content={facebook.title} />}
 
@@ -81,14 +73,12 @@ export default SEO
 SEO.propTypes = {
   title: PropTypes.string,
   description: PropTypes.string,
-  // image: PropTypes.string,
   article: PropTypes.bool,
 }
 
 SEO.defaultProps = {
   title: null,
   description: null,
-  // image: null,
   article: false,
 }
 
@@ -97,10 +87,8 @@ const query = graphql`
     site {
       siteMetadata {
         defaultTitle: title
-        # titleTemplate
         defaultDescription: description
         siteUrl: siteUrl
-        # defaultImage: image
         twitterUsername
       }
     }
