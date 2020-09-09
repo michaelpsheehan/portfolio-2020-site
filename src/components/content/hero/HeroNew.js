@@ -35,7 +35,7 @@ class HeroNew extends Component {
           start: 'top top',
           scrub: 0.1,
           trigger: this.heroEl.current,
-          markers: true
+          // markers: true
         },
       })
       .to([allWords[0], allWords[1]], {

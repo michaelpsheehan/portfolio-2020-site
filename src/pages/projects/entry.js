@@ -26,6 +26,9 @@ const pageTemplate = ({ data }) => {
     richArticle,
     seoMeta
   } = data.craft.entries[0]
+  const [fallbacks, socialLinks] = data.craft.globalSets
+  console.log('fallbacks -----', fallbacks)
+  console.log('social links -----', socialLinks)
 
   console.log('entry grapph ql dat ==', seoMeta)
   const { siteUrl } = data.site.siteMetadata
@@ -59,7 +62,7 @@ const pageTemplate = ({ data }) => {
           <div className="overflow-hidden" ref={projectEntryRef} >
       {title && (
         <>
-        {seoMeta &&   <SEO title={seoMeta.title || title} description={ seoMeta.description } social={seoMeta.social}  /> }
+        {seoMeta &&   <SEO title={seoMeta.title || title} description={ seoMeta.description } socialMeta={seoMeta.social} fallbackImage={fallbacks.fallbackImage} twitterHandle={socialLinks.twitterUsername}  /> }
 
           <Section
             content={<PageTitle title={title} subtitle={currentProjectType} />}
@@ -247,9 +250,22 @@ export const projectEntryQuery = graphql`
             }
           }
         }
-
-
       }
+      globalSets {
+      ... on Craft_fallbacks_GlobalSet {
+        id
+        fallbackImage(optimizedImagesGridThumbnail: "") {
+          id
+          url
+        }
+      }
+      ... on Craft_socialLinks_GlobalSet {
+        id
+        twitterUsername
+        githubUrl
+        linkedinUrl
+      }
+    }
     }
   }
 `

@@ -38,7 +38,7 @@ const Sphere = ({ spherePosition, userScale = 1.5 }) => {
     uniform float time;
   
     void main() {
-      vec3 color = normalize( sin(vOriginalPosition) * sin(time )) * 0.5 + 0.5;
+      vec3 color = normalize( sin(vOriginalPosition)) * 0.5 + 0.5;
       gl_FragColor = vec4(color,1.0);
     }`
 

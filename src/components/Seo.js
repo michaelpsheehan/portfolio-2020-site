@@ -4,7 +4,7 @@ import { Helmet } from "react-helmet"
 import { useLocation } from "@reach/router"
 import { useStaticQuery, graphql } from "gatsby"
 
-const SEO = ({ title, description, image, social, article }) => {
+const SEO = ({ title, description, image, socialMeta, article, fallbackImage, twitterHandle }) => {
   const { pathname } = useLocation()
   const { site } = useStaticQuery(query)
 
@@ -12,17 +12,51 @@ const SEO = ({ title, description, image, social, article }) => {
     defaultTitle,
     defaultDescription,
     siteUrl,
-    twitterUsername,
+  
   } = site.siteMetadata
+
+  let twitterUsername = twitterHandle ? twitterHandle : site.siteMetadata.twitterUsername;
   let facebook;
   let twitter;
-  if(social) {
 
-  facebook = social.facebook;
-  twitter = social.twitter
+  // global fallback social share image is used if no custom share image has been added to the entry. Returns null if no global share image is added
+  let fallbackShareImage = fallbackImage ? `${siteUrl}${fallbackImage[0].url}` : null
+
+  if(socialMeta) {
+  facebook = {
+   title: socialMeta.facebook.title ? socialMeta.facebook.title : title,
+   description: socialMeta.facebook.description ? socialMeta.facebook.description : description,
+   socialImage: socialMeta.facebook.image.optimizedImagesGridThumbnail ? `${siteUrl}${socialMeta.facebook.image.optimizedImagesGridThumbnail.src}` : fallbackShareImage
+  };
+  twitter = socialMeta.twitter
 
   }
-  console.log('social is', facebook, twitter)
+
+  let socialAccounts = {
+    facebook: {
+
+    },
+    twitter: {}
+  } ;
+   for(let socialAccount in socialMeta) {
+    let currentSocialAccount = socialMeta[socialAccount]
+
+    let updatedSocialMeta = {}
+// console.log('obj --',socialMeta[socialAccount])
+    updatedSocialMeta = {
+      title: currentSocialAccount.title ? currentSocialAccount.title : title,
+      description: currentSocialAccount.description ? currentSocialAccount.description : description,
+      socialImage: currentSocialAccount.image ? `${siteUrl}${currentSocialAccount.image.optimizedImagesGridThumbnail.src}` : fallbackShareImage
+     };
+
+
+    //  console.log('updated social meta --', updatedSocialMeta)
+       socialAccounts[socialAccount]  = updatedSocialMeta
+  }
+
+  console.log('social accounts after loop --', socialAccounts)
+  // console.log('fallback image in SEO ---', fallbackImage)
+  // console.log('twitter handle in SEO ---', twitterHandle)
 
   const seo = {
     title: title || defaultTitle,
@@ -31,7 +65,9 @@ const SEO = ({ title, description, image, social, article }) => {
     url: `${siteUrl}${pathname}`,
   }
 
-
+// console.log('title from plugin ==', title)
+console.log('Social OBJ --==', socialMeta)
+// console.log('FACEBOOK OBJ --==', facebook)
 
   return (
     <Helmet title={seo.title}
@@ -49,7 +85,8 @@ const SEO = ({ title, description, image, social, article }) => {
         <meta property="og:description" content={facebook.description} />
       )}
 
-      {(facebook && facebook.image.optimizedImagesGridThumbnail) && <meta property="og:image" content={`${siteUrl}${facebook.image.optimizedImagesGridThumbnail.src}`} />}
+      {/* {(facebook && facebook.image.optimizedImagesGridThumbnail) && <meta property="og:image" content={`${siteUrl}${facebook.image.optimizedImagesGridThumbnail.src}`} />} */}
+      {(facebook && facebook.socialImage) && <meta property="og:image" content={facebook.socialImage} />}
 
       <meta name="twitter:card" content="summary_large_image" />
 
