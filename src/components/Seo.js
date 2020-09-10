@@ -7,6 +7,8 @@ import { useStaticQuery, graphql } from "gatsby"
 const SEO = ({ title, description, image, socialMeta, article, fallbackImage, twitterHandle }) => {
   const { pathname } = useLocation()
   const { site } = useStaticQuery(query)
+  console.log('description in the seo --', description, typeof description, description === '')
+
 
   const {
     defaultTitle,
@@ -15,22 +17,11 @@ const SEO = ({ title, description, image, socialMeta, article, fallbackImage, tw
   
   } = site.siteMetadata
 
+  let finalDescription = description === '' ? defaultDescription : description
+
   let twitterUsername = twitterHandle ? twitterHandle : site.siteMetadata.twitterUsername;
-  let facebook;
-  let twitter;
 
-  // global fallback social share image is used if no custom share image has been added to the entry. Returns null if no global share image is added
   let fallbackShareImage = fallbackImage ? `${siteUrl}${fallbackImage[0].url}` : null
-
-  if(socialMeta) {
-  facebook = {
-   title: socialMeta.facebook.title ? socialMeta.facebook.title : title,
-   description: socialMeta.facebook.description ? socialMeta.facebook.description : description,
-   socialImage: socialMeta.facebook.image.optimizedImagesGridThumbnail ? `${siteUrl}${socialMeta.facebook.image.optimizedImagesGridThumbnail.src}` : fallbackShareImage
-  };
-  twitter = socialMeta.twitter
-
-  }
 
   let socialAccounts = {
     facebook: {
@@ -38,6 +29,8 @@ const SEO = ({ title, description, image, socialMeta, article, fallbackImage, tw
     },
     twitter: {}
   } ;
+
+  if(socialMeta) {
    for(let socialAccount in socialMeta) {
     let currentSocialAccount = socialMeta[socialAccount]
 
@@ -45,7 +38,7 @@ const SEO = ({ title, description, image, socialMeta, article, fallbackImage, tw
 // console.log('obj --',socialMeta[socialAccount])
     updatedSocialMeta = {
       title: currentSocialAccount.title ? currentSocialAccount.title : title,
-      description: currentSocialAccount.description ? currentSocialAccount.description : description,
+      description: currentSocialAccount.description ? currentSocialAccount.description : finalDescription,
       socialImage: currentSocialAccount.image ? `${siteUrl}${currentSocialAccount.image.optimizedImagesGridThumbnail.src}` : fallbackShareImage
      };
 
@@ -53,6 +46,7 @@ const SEO = ({ title, description, image, socialMeta, article, fallbackImage, tw
     //  console.log('updated social meta --', updatedSocialMeta)
        socialAccounts[socialAccount]  = updatedSocialMeta
   }
+}
 
   console.log('social accounts after loop --', socialAccounts)
   // console.log('fallback image in SEO ---', fallbackImage)
@@ -64,6 +58,8 @@ const SEO = ({ title, description, image, socialMeta, article, fallbackImage, tw
 
     url: `${siteUrl}${pathname}`,
   }
+
+  const {facebook, twitter } = socialAccounts
 
 // console.log('title from plugin ==', title)
 console.log('Social OBJ --==', socialMeta)
@@ -100,7 +96,7 @@ console.log('Social OBJ --==', socialMeta)
         <meta name="twitter:description" content={twitter.description} />
       )}
 
-      {(twitter && twitter.image.optimizedImagesGridThumbnail) && <meta name="twitter:image" content={`${siteUrl}${twitter.image.optimizedImagesGridThumbnail.src}`} />}
+      {(twitter && twitter.socialImage) && <meta name="twitter:image" content={twitter.socialImage} />}
     </Helmet>
   )
 }
