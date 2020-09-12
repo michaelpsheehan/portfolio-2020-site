@@ -30,15 +30,18 @@ const AnimationBlock = ({ block, classes = '' }) => {
 
   return (
     <div className="container h-full">
-      <div className={`c-animation-block`}
-        ref={animationBlockEl}
-      >
-        <div className={`c-animation-block__content ${isReversed ? 'md:flex-row-reverse' : ''}`}
+      <div className={`c-animation-block`} ref={animationBlockEl}>
+        <div
+          className={`c-animation-block__content ${
+            isReversed ? 'md:flex-row-reverse' : ''
+          }`}
         >
           {(block.heading || block.body) && (
-            <div className={`c-animation-block__section ${
-              isReversed ? 'md:flex md:flex-row-reverse' : ''
-            }`}>
+            <div
+              className={`c-animation-block__section ${
+                isReversed ? 'md:flex md:flex-row-reverse' : ''
+              }`}
+            >
               <div
                 className={`c-animation-block__text-container ${
                   isReversed ? 'md:flex md:flex-row-reverse' : ''
@@ -63,7 +66,7 @@ const AnimationBlock = ({ block, classes = '' }) => {
               </div>
             </div>
           )}
-          <div className="c-animation-block__section" >
+          <div className="c-animation-block__section">
             <div className={`c-animation-block__animation`} ref={animationEl}>
               <LottieAnimation lottieAnimationData={block.animationData} />
             </div>

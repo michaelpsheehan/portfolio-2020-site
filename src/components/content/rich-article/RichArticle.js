@@ -28,7 +28,7 @@ const RichArticle = ({ richArticle, isHomepage, classes = '' }) => {
 
   // useEffect(()=> {
   //   const tl = staggerItemsIn(richArticleRef.current.children,)
-  //   return () => { 
+  //   return () => {
   //     tl.kill()
   //   }
   //   },[])

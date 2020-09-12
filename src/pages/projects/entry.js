@@ -1,4 +1,4 @@
-import React, {useRef, useEffect} from 'react'
+import React, { useRef, useEffect } from 'react'
 import { graphql } from 'gatsby'
 import SEO from '../../components/Seo'
 import Layout from '../../components/Layout'
@@ -24,15 +24,13 @@ const pageTemplate = ({ data }) => {
     codeRepoUrl,
     siteUrl: liveProjectUrl,
     richArticle,
-    seoMeta
+    seoMeta,
   } = data.craft.entries[0]
   const [fallbacks, socialLinks] = data.craft.globalSets
-  console.log('fallbacks -----', fallbacks)
-  console.log('social links -----', socialLinks)
-
-  console.log('entry grapph ql dat ==', seoMeta)
   const { siteUrl } = data.site.siteMetadata
-  const imageOptimizedHeroImage = heroImage ?  heroImage[0].optimizedImagesFullWidth : null
+  const imageOptimizedHeroImage = heroImage
+    ? heroImage[0].optimizedImagesFullWidth
+    : null
 
   const currentProjectType =
     projectType === 'Demo Project' ? (
@@ -46,58 +44,72 @@ const pageTemplate = ({ data }) => {
       </div>
     )
 
-    const projectEntryRef = useRef(null)
+  const projectEntryRef = useRef(null)
 
-    useEffect(()=> {
-      const tl = staggerItemsIn(projectEntryRef.current.children, 'Power3.out', 0.9)
-      return () => { 
-        tl.kill()
-      }
-      },[])
-
-
+  useEffect(() => {
+    const tl = staggerItemsIn(
+      projectEntryRef.current.children,
+      'Power3.out',
+      0.9
+    )
+    return () => {
+      tl.kill()
+    }
+  }, [])
 
   return (
     <>
-          <div className="overflow-hidden" ref={projectEntryRef} >
-      {title && (
-        <>
-        {seoMeta &&   <SEO title={seoMeta.title || title} description={ seoMeta.description } socialMeta={seoMeta.social} fallbackImage={fallbacks.fallbackImage} twitterHandle={socialLinks.twitterUsername}  /> }
+      <div className="overflow-hidden" ref={projectEntryRef}>
+        {title && (
+          <>
+            {seoMeta && (
+              <SEO
+                title={seoMeta.title || title}
+                description={seoMeta.description}
+                socialMeta={seoMeta.social}
+                fallbackImage={fallbacks.fallbackImage}
+                twitterHandle={socialLinks.twitterUsername}
+              />
+            )}
 
+            <Section
+              content={
+                <PageTitle title={title} subtitle={currentProjectType} />
+              }
+              container
+            />
+          </>
+        )}
+        <div />
+        {imageOptimizedHeroImage && (
           <Section
-            content={<PageTitle title={title} subtitle={currentProjectType} />}
+            content={
+              <Image image={imageOptimizedHeroImage} alt={imageCaption} />
+            }
             container
           />
-        </>
-      )}
-      <div />
-      {imageOptimizedHeroImage && (
-        <Section
-          content={<Image image={imageOptimizedHeroImage} alt={imageCaption} />}
-          container
-        />
-      )}
-      {technologyentries && (
-        <Section
-          content={<TechnologyList currentList={technologyentries} />}
-          container
-        />
-      )}
-      <Section
-        content={
-          <Intro
-            introHeading={introHeading}
-            introBody={introBody}
-            viewSiteLink={liveProjectUrl}
-            viewCodeLink={codeRepoUrl}
+        )}
+        {technologyentries && (
+          <Section
+            content={<TechnologyList currentList={technologyentries} />}
+            container
           />
-        }
-        container
-      />
-      {richArticle && (
-        <RichArticle richArticle={richArticle} siteUrl={siteUrl} />
-      )}
-      {/* </Layout> */}
+        )}
+        <Section
+          content={
+            <Intro
+              introHeading={introHeading}
+              introBody={introBody}
+              viewSiteLink={liveProjectUrl}
+              viewCodeLink={codeRepoUrl}
+            />
+          }
+          container
+        />
+        {richArticle && (
+          <RichArticle richArticle={richArticle} siteUrl={siteUrl} />
+        )}
+        {/* </Layout> */}
       </div>
     </>
   )
@@ -130,9 +142,7 @@ export const projectEntryQuery = graphql`
           siteUrl
           imageCaption
 
-
-          
-        seoMeta {
+          seoMeta {
             title
             description
             social {
@@ -162,9 +172,6 @@ export const projectEntryQuery = graphql`
             }
           }
 
-
-
-
           richArticle {
             ... on Craft_richArticle_text_BlockType {
               id
@@ -181,29 +188,12 @@ export const projectEntryQuery = graphql`
                 ... on Craft_images_Asset {
                   id
                   optimizedImagesFullWidth {
-                    colorPalette
-                    colorPaletteRgb
                     focalPoint
-                    lightness
-                    maxSrcsetWidth
-                    optimizedImageUrls
-                    optimizedWebPImageUrls
-                    originalImageHeight
-                    originalImageWidth
                     placeholder
-                    placeholderBox
-                    placeholderHeight
-                    placeholderImage
-                    placeholderSilhouette
-                    placeholderSvg
-                    placeholderWidth
                     src
                     srcUrls
                     srcWebp
                     srcset
-                    srcsetWebp
-                    variantHeights
-                    variantSourceWidths
                   }
                   url
                 }
@@ -223,49 +213,32 @@ export const projectEntryQuery = graphql`
               id
               # optimizedImagesFullWidth {
               optimizedImagesFullWidth {
-                colorPalette
-                colorPaletteRgb
                 focalPoint
-                lightness
-                maxSrcsetWidth
-                optimizedImageUrls
-                optimizedWebPImageUrls
-                originalImageHeight
-                originalImageWidth
                 placeholder
-                placeholderBox
-                placeholderHeight
-                placeholderImage
-                placeholderSilhouette
-                placeholderSvg
-                placeholderWidth
                 src
                 srcUrls
                 srcWebp
                 srcset
-                srcsetWebp
-                variantHeights
-                variantSourceWidths
               }
             }
           }
         }
       }
       globalSets {
-      ... on Craft_fallbacks_GlobalSet {
-        id
-        fallbackImage(optimizedImagesGridThumbnail: "") {
+        ... on Craft_fallbacks_GlobalSet {
           id
-          url
+          fallbackImage(optimizedImagesGridThumbnail: "") {
+            id
+            url
+          }
+        }
+        ... on Craft_socialLinks_GlobalSet {
+          id
+          twitterUsername
+          githubUrl
+          linkedinUrl
         }
       }
-      ... on Craft_socialLinks_GlobalSet {
-        id
-        twitterUsername
-        githubUrl
-        linkedinUrl
-      }
-    }
     }
   }
 `

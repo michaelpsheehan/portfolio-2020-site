@@ -6,7 +6,6 @@ import TransitionCover from '../components/core/transitions/TransitionCover'
 import { gsap } from 'gsap'
 import useWindowSize from '../hooks/useWindowSize'
 
-
 const Layout = ({ children, uri }) => {
   let isHomepage = uri === '/' ? true : false
   // const data = useStaticQuery(graphql`
@@ -21,7 +20,6 @@ const Layout = ({ children, uri }) => {
   // `)
 
   const siteContainerEl = useRef(null)
-
 
   let windowSize = useWindowSize()
 
@@ -44,7 +42,9 @@ const Layout = ({ children, uri }) => {
         <TransitionCover />
         {/* <Header siteTitle={data.site.siteMetadata.title} /> */}
         <SiteHead isHomepage={isHomepage} />
-        <main className={`o-main-content  ${isHomepage ? 'f-is-homepage' : ''}`}>
+        <main
+          className={`o-main-content  ${isHomepage ? 'f-is-homepage' : ''}`}
+        >
           {children}
         </main>
 

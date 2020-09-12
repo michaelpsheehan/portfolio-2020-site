@@ -1,88 +1,93 @@
-import React from "react"
-import PropTypes from "prop-types"
-import { Helmet } from "react-helmet"
-import { useLocation } from "@reach/router"
-import { useStaticQuery, graphql } from "gatsby"
+import React from 'react'
+import PropTypes from 'prop-types'
+import { Helmet } from 'react-helmet'
+import { useLocation } from '@reach/router'
+import { useStaticQuery, graphql } from 'gatsby'
+import { ImageUtils } from 'three'
 
-const SEO = ({ title, description, image, socialMeta, article, fallbackImage, twitterHandle }) => {
+const SEO = ({
+  title,
+  description,
+  image,
+  socialMeta,
+  fallbackImage,
+  twitterHandle,
+}) => {
   const { pathname } = useLocation()
   const { site } = useStaticQuery(query)
-  console.log('description in the seo --', description, typeof description, description === '')
+  console.log(
+    'description in the seo --',
+    description,
+    typeof description,
+    description === ''
+  )
 
+  const { defaultTitle, defaultDescription, siteUrl } = site.siteMetadata
 
-  const {
-    defaultTitle,
-    defaultDescription,
-    siteUrl,
-  
-  } = site.siteMetadata
+  // checks for CMS data and uses fallbacks if not present
 
+  // checks if there is a description from the SEO component in the CMS. If not it uses a fallback from the gatsby-config.js file
   let finalDescription = description === '' ? defaultDescription : description
+  // checks if the twitter handle exists in the CMS. If not it uses a fallback from the gatsby-config.js file
+  let twitterUsername = twitterHandle
+    ? twitterHandle
+    : site.siteMetadata.twitterUsername
+  // checks if a custom social share image has been added in the CSSMediaRule.  If not it uses a standard fallback image from the CMS
+  let fallbackShareImage = fallbackImage
+    ? `${siteUrl}${fallbackImage[0].url}`
+    : null
 
-  let twitterUsername = twitterHandle ? twitterHandle : site.siteMetadata.twitterUsername;
-
-  let fallbackShareImage = fallbackImage ? `${siteUrl}${fallbackImage[0].url}` : null
-
+  // creates the object that will store the final facebook and twitter share data
   let socialAccounts = {
-    facebook: {
-
-    },
-    twitter: {}
-  } ;
-
-  if(socialMeta) {
-   for(let socialAccount in socialMeta) {
-    let currentSocialAccount = socialMeta[socialAccount]
-
-    let updatedSocialMeta = {}
-// console.log('obj --',socialMeta[socialAccount])
-    updatedSocialMeta = {
-      title: currentSocialAccount.title ? currentSocialAccount.title : title,
-      description: currentSocialAccount.description ? currentSocialAccount.description : finalDescription,
-      socialImage: currentSocialAccount.image ? `${siteUrl}${currentSocialAccount.image.optimizedImagesGridThumbnail.src}` : fallbackShareImage
-     };
-
-
-    //  console.log('updated social meta --', updatedSocialMeta)
-       socialAccounts[socialAccount]  = updatedSocialMeta
+    facebook: {},
+    twitter: {},
   }
-}
 
-  console.log('social accounts after loop --', socialAccounts)
-  // console.log('fallback image in SEO ---', fallbackImage)
-  // console.log('twitter handle in SEO ---', twitterHandle)
+  if (socialMeta) {
+    for (let socialAccount in socialMeta) {
+      //  checks the facebook and twitter data to see if they have custom data and Images. If not the standard description is used. The final socialAccounts object is updated with the new data and this is used to create the social meta tags in the render function
+      let currentSocialAccount = socialMeta[socialAccount]
+
+      let updatedSocialMeta = {}
+      updatedSocialMeta = {
+        title: currentSocialAccount.title ? currentSocialAccount.title : title,
+        description: currentSocialAccount.description
+          ? currentSocialAccount.description
+          : finalDescription,
+        socialImage: currentSocialAccount.image
+          ? `${siteUrl}${currentSocialAccount.image.optimizedImagesGridThumbnail.src}`
+          : fallbackShareImage,
+      }
+      socialAccounts[socialAccount] = updatedSocialMeta
+    }
+  }
 
   const seo = {
     title: title || defaultTitle,
     description: description || defaultDescription,
-
     url: `${siteUrl}${pathname}`,
   }
 
-  const {facebook, twitter } = socialAccounts
-
-// console.log('title from plugin ==', title)
-console.log('Social OBJ --==', socialMeta)
-// console.log('FACEBOOK OBJ --==', facebook)
+  const { facebook, twitter } = socialAccounts
 
   return (
-    <Helmet title={seo.title}
-    >
+    <Helmet title={seo.title}>
       <meta name="description" content={seo.description} />
-    
-     {image &&  <meta name="image" content={seo.image} /> }
-      }
+      {image && <meta name="image" content={seo.image} />}
 
       {seo.url && <meta property="og:url" content={seo.url} />}
 
-      {(facebook && facebook.title) && <meta property="og:title" content={facebook.title} />}
+      {facebook && facebook.title && (
+        <meta property="og:title" content={facebook.title} />
+      )}
 
-      {(facebook && facebook.description) && (
+      {facebook && facebook.description && (
         <meta property="og:description" content={facebook.description} />
       )}
 
-      {/* {(facebook && facebook.image.optimizedImagesGridThumbnail) && <meta property="og:image" content={`${siteUrl}${facebook.image.optimizedImagesGridThumbnail.src}`} />} */}
-      {(facebook && facebook.socialImage) && <meta property="og:image" content={facebook.socialImage} />}
+      {facebook && facebook.socialImage && (
+        <meta property="og:image" content={facebook.socialImage} />
+      )}
 
       <meta name="twitter:card" content="summary_large_image" />
 
@@ -90,13 +95,16 @@ console.log('Social OBJ --==', socialMeta)
         <meta name="twitter:creator" content={twitterUsername} />
       )}
 
-      {(twitter && twitter.title) && <meta name="twitter:title" content={twitter.title} />}
-
-      {(twitter && twitter.description) && (
-        <meta name="twitter:description" content={twitter.description} />
+      {twitter && twitter.title && (
+        <meta name="twitter:title" content={twitter.title} />
       )}
 
-      {(twitter && twitter.socialImage) && <meta name="twitter:image" content={twitter.socialImage} />}
+      {twitter && twitter.description && (
+        <meta name="twitter:description" content={twitter.description} />
+      )}
+      {twitter && twitter.socialImage && (
+        <meta name="twitter:image" content={twitter.socialImage} />
+      )}
     </Helmet>
   )
 }
@@ -106,13 +114,11 @@ export default SEO
 SEO.propTypes = {
   title: PropTypes.string,
   description: PropTypes.string,
-  article: PropTypes.bool,
 }
 
 SEO.defaultProps = {
   title: null,
   description: null,
-  article: false,
 }
 
 const query = graphql`

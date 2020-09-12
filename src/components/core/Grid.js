@@ -1,4 +1,4 @@
-import React, {useRef, useEffect} from 'react'
+import React, { useRef, useEffect } from 'react'
 import staggerItemsIn from '../../animations/staggerItemsIn'
 
 const Grid = ({
@@ -9,16 +9,19 @@ const Grid = ({
   classes = '',
 }) => {
   const Item = itemTemplatePath
-  const gridContainerRef = useRef(null) 
+  const gridContainerRef = useRef(null)
 
-  useEffect(()=> {
-  const tl = staggerItemsIn(gridContainerRef.current.children, 'back.out(2)', 1)
+  useEffect(() => {
+    const tl = staggerItemsIn(
+      gridContainerRef.current.children,
+      'back.out(2)',
+      1
+    )
 
-  return () => { 
-    tl.kill()
-  }
-
-  },[])
+    return () => {
+      tl.kill()
+    }
+  }, [])
 
   return (
     <div className={`c-grid ${classes}`} ref={gridContainerRef}>

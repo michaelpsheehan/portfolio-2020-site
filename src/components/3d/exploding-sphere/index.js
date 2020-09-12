@@ -1,11 +1,7 @@
 // import ReactDOM from 'react-dom'
 import * as THREE from 'three'
 import React, { useRef, useState, useEffect } from 'react'
-import {
-  Canvas,
-  useFrame,
-  useUpdate,
-} from 'react-three-fiber'
+import { Canvas, useFrame, useUpdate } from 'react-three-fiber'
 import { OrbitControls } from 'drei'
 
 import useWindowSize from '../../../hooks/useWindowSize'
@@ -42,7 +38,7 @@ const Sphere = ({ spherePosition, userScale = 1.5 }) => {
       gl_FragColor = vec4(color,1.0);
     }`
 
-    // useUpdate allows me to do some of the initial sphere mesh setup imperatively
+  // useUpdate allows me to do some of the initial sphere mesh setup imperatively
   const meshRef = useUpdate((currentMesh) => {
     const { geometry } = currentMesh
     const positions = geometry.getAttribute('position')
@@ -89,16 +85,16 @@ const Sphere = ({ spherePosition, userScale = 1.5 }) => {
   //  useFrame works similar to request animation frame and allows me to make updates at 60fps
   useFrame((frame) => {
     const { clock } = frame
-// update the uniforms on the shaders every second
+    // update the uniforms on the shaders every second
 
-// the explosion value is different depending if the hovered state is true
+    // the explosion value is different depending if the hovered state is true
     matRef.current.uniforms.explosion.value =
       Math.sin(clock.elapsedTime * 0.8 - Math.PI / 4) * (hovered ? 0.002 : 0.2)
 
     matRef.current.uniforms.time.value =
       (clock.elapsedTime * 0.8 - Math.PI / 4) * 0.2 + 0.2
-      
-      // only rotate the sphere automatically when it is not hovered
+
+    // only rotate the sphere automatically when it is not hovered
     if (!hovered) {
       meshRef.current.rotation.z += 0.001
       meshRef.current.rotation.x += 0.001
@@ -152,23 +148,21 @@ const isBrowser = typeof window !== 'undefined'
 export default function BreakingSphere({ userScale }) {
   const [spherePosition, setPosition] = useState([0, 0, 1])
 
-  if(isBrowser) {
-
+  if (isBrowser) {
     const windowSize = useWindowSize()
-    const {width} = windowSize
-    
+    const { width } = windowSize
+
     useEffect(() => {
-      if(width > 768) {
+      if (width > 768) {
         setPosition([2, 0, -1])
       }
-      if(width > 1024) {
+      if (width > 1024) {
         setPosition([2, 0, 0])
       }
     }, [width])
-  
+
     console.log('window width in sphere ==', width)
   }
-
 
   return (
     <>

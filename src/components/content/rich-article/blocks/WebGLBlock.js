@@ -27,7 +27,7 @@ const webGLBlock = ({ block, sectionColor, classes = '' }) => {
       />
     </div>
   )
- 
+
   const handleScaleIncrease = () => {
     setScale(userDefinedScale + amountToChangeScaleBy)
   }
@@ -42,7 +42,7 @@ const webGLBlock = ({ block, sectionColor, classes = '' }) => {
     const tl = slideInOnScroll(
       scrollContainerRef.current,
       webGLSectionRef.current,
-      textSectionRef.current,
+      textSectionRef.current
     )
 
     return () => {

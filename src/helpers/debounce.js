@@ -5,7 +5,7 @@ function debounce(fn, ms = 500) {
     timer = setTimeout(() => {
       timer = null
       fn.apply(this, arguments)
-    }, ms) 
+    }, ms)
   }
 }
 

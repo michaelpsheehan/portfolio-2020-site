@@ -14,7 +14,7 @@ export default function useWindowSize() {
   }
 
   const [windowSize, setWindowSize] = useState(getSize)
-let prevHeight = null;
+  let prevHeight = null
 
   useEffect(() => {
     // listen for window resizes and run the function again to update the values
@@ -25,7 +25,5 @@ let prevHeight = null;
     return () => window.removeEventListener('resize', handleResize)
   }, [])
 
- 
-  
   return isBrowser ? windowSize : null
 }

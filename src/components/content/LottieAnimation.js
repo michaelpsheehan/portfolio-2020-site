@@ -4,7 +4,12 @@ import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 gsap.registerPlugin(ScrollTrigger)
 
-const LottieAnimation = ({ lottieAnimationData, startPaused = true, shouldLoop = true, classes = '' }) => {
+const LottieAnimation = ({
+  lottieAnimationData,
+  startPaused = true,
+  shouldLoop = true,
+  classes = '',
+}) => {
   if (lottieAnimationData === null) {
     return
   }
@@ -30,7 +35,7 @@ const LottieAnimation = ({ lottieAnimationData, startPaused = true, shouldLoop =
   return (
     <div className={`c-lottie-animation ${classes}`} ref={lottieAnimationRef}>
       <Lottie
-      className='cursor-auto border'
+        className="cursor-auto border"
         options={{
           animationData: lottieAnimationData,
           loop: shouldLoop,

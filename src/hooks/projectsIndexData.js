@@ -26,6 +26,35 @@ const projectsIndexData = () => {
               id
               title
             }
+            seoMeta {
+              title
+              description
+              social {
+                facebook {
+                  description
+                  image {
+                    ... on Craft_images_Asset {
+                      id
+                      optimizedImagesGridThumbnail {
+                        src
+                      }
+                    }
+                  }
+                }
+                twitter {
+                  description
+                  title
+                  image {
+                    ... on Craft_images_Asset {
+                      id
+                      optimizedImagesGridThumbnail {
+                        src
+                      }
+                    }
+                  }
+                }
+              }
+            }
           }
         }
         entries(section: "project") {
@@ -48,32 +77,30 @@ const projectsIndexData = () => {
                 url
 
                 imageOptimizeSmallImage {
-                  colorPalette
-                  colorPaletteRgb
                   focalPoint
-                  lightness
-                  maxSrcsetWidth
-                  optimizedImageUrls
-                  optimizedWebPImageUrls
-                  originalImageHeight
-                  originalImageWidth
                   placeholder
-                  placeholderBox
-                  placeholderHeight
-                  placeholderImage
-                  placeholderSilhouette
-                  placeholderSvg
-                  placeholderWidth
                   src
                   srcUrls
                   srcWebp
                   srcset
-                  srcsetWebp
-                  variantHeights
-                  variantSourceWidths
                 }
               }
             }
+          }
+        }
+        globalSets {
+          ... on Craft_fallbacks_GlobalSet {
+            id
+            fallbackImage(optimizedImagesGridThumbnail: "") {
+              id
+              url
+            }
+          }
+          ... on Craft_socialLinks_GlobalSet {
+            id
+            twitterUsername
+            githubUrl
+            linkedinUrl
           }
         }
       }
@@ -84,6 +111,7 @@ const projectsIndexData = () => {
     entry: data.craft.entry ? data.craft.entry[0] : null,
     projects: data.craft.entries,
     siteUrl: data.site.siteMetadata.siteUrl,
+    globalSets: data.craft.globalSets,
   }
 }
 
