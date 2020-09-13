@@ -26,6 +26,7 @@ async function createHomepage({ graphql, actions }) {
               description
               social {
                 facebook {
+                  title
                   description
                   image {
                     ... on Craft_images_Asset {
@@ -37,8 +38,8 @@ async function createHomepage({ graphql, actions }) {
                   }
                 }
                 twitter {
-                  description
                   title
+                  description
                   image {
                     ... on Craft_images_Asset {
                       id
@@ -120,7 +121,6 @@ async function createHomepage({ graphql, actions }) {
           }
         }
 
-
         globalSets {
           ... on Craft_fallbacks_GlobalSet {
             id
@@ -136,7 +136,6 @@ async function createHomepage({ graphql, actions }) {
             linkedinUrl
           }
         }
-
       }
     }
   `)
@@ -146,7 +145,7 @@ async function createHomepage({ graphql, actions }) {
   }
 
   const { siteUrl } = data.site.siteMetadata
-  const { entry } = data.craft
+  const { entry, globalSets } = data.craft
   const richArticle = entry ? data.craft.entry[0].richArticle : null
 
   if (richArticle) {
@@ -172,6 +171,7 @@ async function createHomepage({ graphql, actions }) {
         siteUrl,
         entry: entry ? entry[0] : null,
         richArticle: updatedRichArticle || null,
+        globalSets: globalSets,
         // currentPath: path
       },
     })

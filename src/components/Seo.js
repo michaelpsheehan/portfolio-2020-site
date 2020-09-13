@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import PropTypes from 'prop-types'
 import { Helmet } from 'react-helmet'
 import { useLocation } from '@reach/router'
@@ -8,19 +8,22 @@ import { ImageUtils } from 'three'
 const SEO = ({
   title,
   description,
-  image,
   socialMeta,
   fallbackImage,
   twitterHandle,
 }) => {
   const { pathname } = useLocation()
   const { site } = useStaticQuery(query)
-  console.log('default description passed to seo ===', description)
-  
-  const { defaultTitle, defaultDescription, siteUrl, frontendSiteUrl } = site.siteMetadata
-  console.log('seo meta --', socialMeta)
-  // console.log('PATHNAME=', pathname)
-
+  const {
+    defaultTitle,
+    defaultDescription,
+    siteUrl,
+    frontendSiteUrl,
+  } = site.siteMetadata
+  //   console.log('title in SEO --', title)
+  // console.log('homepage description passed to SEO --', description)
+  // console.log('socialMeta in SEO --', socialMeta)
+  // console.log('twitter handle --', twitterHandle)
 
   // checks for CMS data and uses fallbacks if not present
 
@@ -30,7 +33,7 @@ const SEO = ({
   let twitterUsername = twitterHandle
     ? twitterHandle
     : site.siteMetadata.twitterUsername
-  // checks if a custom social share image has been added in the CSSMediaRule.  If not it uses a standard fallback image from the CMS
+  // checks if a custom social share image has been added in the CMS.  If not it uses a standard fallback image from the CMS
   let fallbackShareImage = fallbackImage
     ? `${siteUrl}${fallbackImage[0].url}`
     : null
@@ -45,7 +48,6 @@ const SEO = ({
     for (let socialAccount in socialMeta) {
       //  checks the facebook and twitter data to see if they have custom data and Images. If not the standard description is used. The final socialAccounts object is updated with the new data and this is used to create the social meta tags in the render function
       let currentSocialAccount = socialMeta[socialAccount]
-console.log('current social account ==', currentSocialAccount)
       let updatedSocialMeta = {}
       updatedSocialMeta = {
         title: currentSocialAccount.title ? currentSocialAccount.title : title,
@@ -70,10 +72,14 @@ console.log('current social account ==', currentSocialAccount)
 
   return (
     <Helmet title={seo.title}>
-      <meta name="description" content={seo.description} />
-      {image && <meta name="image" content={seo.image} />}
+      <meta name="description" content={finalDescription} />
+      {twitter && twitter.socialImage && (
+        <meta name="image" content={twitter.socialImage} />
+      )}
 
-      {(pathname && frontendSiteUrl) && <meta property="og:url" content={`${frontendSiteUrl}${pathname}`} />}
+      {pathname && frontendSiteUrl && (
+        <meta property="og:url" content={`${frontendSiteUrl}${pathname}`} />
+      )}
 
       {facebook && facebook.title && (
         <meta property="og:title" content={facebook.title} />
@@ -107,7 +113,7 @@ console.log('current social account ==', currentSocialAccount)
   )
 }
 
-export default SEO
+export default memo(SEO)
 
 SEO.propTypes = {
   title: PropTypes.string,
@@ -125,8 +131,8 @@ const query = graphql`
       siteMetadata {
         defaultTitle: title
         defaultDescription: description
-        siteUrl: siteUrl,
-        frontendSiteUrl,
+        siteUrl: siteUrl
+        frontendSiteUrl
         twitterUsername
       }
     }

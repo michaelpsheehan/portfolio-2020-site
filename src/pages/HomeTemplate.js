@@ -31,15 +31,15 @@ const introOverlayAnimation = (
 const HomeTemplate = (data) => {
   // console.log('TRANSITION STATUS IS', data.transitionStatus)
   const { entry, siteUrl, richArticle, globalSets } = data.pageContext
-  // const [fallbacks, socialLinks] = globalSets
-
-  const {seoMeta} = entry
+  const [fallbacks, socialLinks] = globalSets
+  // console.log('global sets in the homepage are', globalSets)
+  const { seoMeta } = entry
   const [animationComplete, setAnimationComplete] = useState(false)
   const introOverlayLeftSectionEl = useRef(null)
   const introOverlayRightSectionEl = useRef(null)
-  console.log('homepage data --', data)
-  console.log('global sets --', globalSets)
-  console.log('seoMeta ==', seoMeta)
+  // console.log('homepage data --', data)
+  // console.log('global sets --', globalSets)
+  // console.log('seoMeta ==', seoMeta)
 
   const completeAnimation = () => {
     setAnimationComplete(true)
@@ -53,16 +53,19 @@ const HomeTemplate = (data) => {
       completeAnimation
     )
   }, [])
+  console.log('seo meta --', seoMeta)
+  console.log('home globalSets --', globalSets)
 
   return (
     <>
-        <SEO
-            title={seoMeta.title || title}
-            description={seoMeta.description}
-            socialMeta={seoMeta.social}
-            // fallbackImage={fallbacks.fallbackImage}
-            // twitterHandle={socialLinks.twitterUsername}
-          />
+      <SEO
+        title={seoMeta.title || title}
+        description={seoMeta.description}
+        socialMeta={seoMeta.social}
+        fallbackImage={fallbacks.fallbackImage}
+        twitterHandle={socialLinks.twitterUsername}
+      />
+
       {entry && <SEO title={entry.title} />}
       {animationComplete === false ? (
         <IntroOverlay

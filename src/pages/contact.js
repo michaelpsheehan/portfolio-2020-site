@@ -1,13 +1,71 @@
 import React, { useState, useRef, useEffect } from 'react'
-// import SEO from '../components/seo'
+import SEO from '../components/seo'
 import staggerItemsIn from '../animations/staggerItemsIn'
 import Section from '../components/core/Section'
 import PageTitle from '../components/content/PageTitle'
-import LottieAnimation from '../components/content/LottieAnimation'
-import successAnimation from '../animations/lottie/email-sent-by-todd-rocheford'
-import Text from '../components/core/Text'
+import { graphql, useStaticQuery } from 'gatsby'
 
 const ContactPage = () => {
+  const pageData = useStaticQuery(graphql`
+    query contactQuery {
+      craft {
+        entry {
+          ... on Craft_contact_contact_Entry {
+            id
+            title
+            seoMeta {
+              title
+              description
+              social {
+                facebook {
+                  title
+                  description
+                  image {
+                    ... on Craft_images_Asset {
+                      id
+                      optimizedImagesGridThumbnail {
+                        src
+                      }
+                    }
+                  }
+                }
+                twitter {
+                  title
+                  description
+                  image {
+                    ... on Craft_images_Asset {
+                      id
+                      optimizedImagesGridThumbnail {
+                        src
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+        globalSets {
+          ... on Craft_socialLinks_GlobalSet {
+            id
+            name
+            twitterUsername
+            linkedinUrl
+            handle
+          }
+        }
+      }
+    }
+  `)
+
+  const { entry, globalSets } = pageData.craft
+  const { seoMeta } = entry
+  const [fallbacks, socialLinks] = globalSets
+
+  console.log('data on the contact page ==', pageData)
+  console.log('globalSets', globalSets)
+  console.log('social links', socialLinks)
+
   const formRef = useRef(null)
   const [formState, setFormState] = useState({
     name: '',
@@ -38,11 +96,9 @@ const ContactPage = () => {
       })
   }
   useEffect(() => {
-    if (messageSent === null) {
-      const tl = staggerItemsIn(formRef.current.children)
-      return () => {
-        tl.kill()
-      }
+    const tl = staggerItemsIn(formRef.current.children)
+    return () => {
+      tl.kill()
     }
   }, [])
 
@@ -56,6 +112,12 @@ const ContactPage = () => {
 
   return (
     <>
+      <SEO
+        title={seoMeta.title || title}
+        description={seoMeta.description}
+        socialMeta={seoMeta.social}
+        twitterHandle={socialLinks.twitterUsername}
+      />
       <Section
         container
         content={<PageTitle title="Contact Me" underline subtitle />}
