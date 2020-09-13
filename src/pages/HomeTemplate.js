@@ -1,13 +1,11 @@
 import React, { useRef, useEffect, useState } from 'react'
 import Section from '../components/core/Section'
-import SEO from '../components/Seo'
 import HeroNew from '../components/content/hero/HeroNew'
 import Image from '../components/core/Image'
 import RichArticle from '../components/content/rich-article/RichArticle'
 import IntroOverlay from '../components/core/IntroOverlay'
 import { gsap } from 'gsap'
-import ThreeSphere from '../components/3d/exploding-sphere/index.js'
-
+import SEO from '../components/Seo'
 // set gsap timeline defaults
 const tl = gsap.timeline({
   defaults: { duration: 1, ease: 'expo.inOut' },
@@ -32,11 +30,16 @@ const introOverlayAnimation = (
 
 const HomeTemplate = (data) => {
   // console.log('TRANSITION STATUS IS', data.transitionStatus)
-  const { entry, siteUrl, richArticle } = data.pageContext
+  const { entry, siteUrl, richArticle, globalSets } = data.pageContext
+  // const [fallbacks, socialLinks] = globalSets
+
+  const {seoMeta} = entry
   const [animationComplete, setAnimationComplete] = useState(false)
   const introOverlayLeftSectionEl = useRef(null)
   const introOverlayRightSectionEl = useRef(null)
   console.log('homepage data --', data)
+  console.log('global sets --', globalSets)
+  console.log('seoMeta ==', seoMeta)
 
   const completeAnimation = () => {
     setAnimationComplete(true)
@@ -53,6 +56,13 @@ const HomeTemplate = (data) => {
 
   return (
     <>
+        <SEO
+            title={seoMeta.title || title}
+            description={seoMeta.description}
+            socialMeta={seoMeta.social}
+            // fallbackImage={fallbacks.fallbackImage}
+            // twitterHandle={socialLinks.twitterUsername}
+          />
       {entry && <SEO title={entry.title} />}
       {animationComplete === false ? (
         <IntroOverlay

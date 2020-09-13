@@ -31,6 +31,7 @@ const projectsIndexData = () => {
               description
               social {
                 facebook {
+                  title
                   description
                   image {
                     ... on Craft_images_Asset {

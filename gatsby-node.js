@@ -119,6 +119,24 @@ async function createHomepage({ graphql, actions }) {
             }
           }
         }
+
+
+        globalSets {
+          ... on Craft_fallbacks_GlobalSet {
+            id
+            fallbackImage(optimizedImagesGridThumbnail: "") {
+              id
+              url
+            }
+          }
+          ... on Craft_socialLinks_GlobalSet {
+            id
+            twitterUsername
+            githubUrl
+            linkedinUrl
+          }
+        }
+
       }
     }
   `)

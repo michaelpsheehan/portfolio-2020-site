@@ -147,6 +147,7 @@ export const projectEntryQuery = graphql`
             description
             social {
               facebook {
+                title
                 description
                 image {
                   ... on Craft_images_Asset {
@@ -158,8 +159,8 @@ export const projectEntryQuery = graphql`
                 }
               }
               twitter {
-                description
                 title
+                description
                 image {
                   ... on Craft_images_Asset {
                     id

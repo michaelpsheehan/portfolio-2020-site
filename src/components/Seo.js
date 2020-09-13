@@ -15,14 +15,12 @@ const SEO = ({
 }) => {
   const { pathname } = useLocation()
   const { site } = useStaticQuery(query)
-  console.log(
-    'description in the seo --',
-    description,
-    typeof description,
-    description === ''
-  )
+  console.log('default description passed to seo ===', description)
+  
+  const { defaultTitle, defaultDescription, siteUrl, frontendSiteUrl } = site.siteMetadata
+  console.log('seo meta --', socialMeta)
+  // console.log('PATHNAME=', pathname)
 
-  const { defaultTitle, defaultDescription, siteUrl } = site.siteMetadata
 
   // checks for CMS data and uses fallbacks if not present
 
@@ -47,7 +45,7 @@ const SEO = ({
     for (let socialAccount in socialMeta) {
       //  checks the facebook and twitter data to see if they have custom data and Images. If not the standard description is used. The final socialAccounts object is updated with the new data and this is used to create the social meta tags in the render function
       let currentSocialAccount = socialMeta[socialAccount]
-
+console.log('current social account ==', currentSocialAccount)
       let updatedSocialMeta = {}
       updatedSocialMeta = {
         title: currentSocialAccount.title ? currentSocialAccount.title : title,
@@ -75,7 +73,7 @@ const SEO = ({
       <meta name="description" content={seo.description} />
       {image && <meta name="image" content={seo.image} />}
 
-      {seo.url && <meta property="og:url" content={seo.url} />}
+      {(pathname && frontendSiteUrl) && <meta property="og:url" content={`${frontendSiteUrl}${pathname}`} />}
 
       {facebook && facebook.title && (
         <meta property="og:title" content={facebook.title} />
@@ -127,7 +125,8 @@ const query = graphql`
       siteMetadata {
         defaultTitle: title
         defaultDescription: description
-        siteUrl: siteUrl
+        siteUrl: siteUrl,
+        frontendSiteUrl,
         twitterUsername
       }
     }

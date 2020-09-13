@@ -5,6 +5,8 @@ module.exports = {
     description: `Michael Sheehan web development portfolio`,
     // siteUrl: 'http://157.245.46.3',
     siteUrl: 'https://www.michaelsheehan.dev',
+    frontendSiteUrl: 'https://www.michaelsheehan.codes',
+
     twitterUsername: '@testLocalUser',
   },
   plugins: [
