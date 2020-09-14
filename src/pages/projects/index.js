@@ -11,15 +11,13 @@ const ProjectsIndexPage = () => {
   const { projects, entry, siteUrl, globalSets } = projectsIndexData()
   const { seoMeta } = entry
   const [fallbacks, socialLinks] = globalSets
-console.log('entry card in index ---', EntryCard)
+  console.log('entry card in index ---', EntryCard)
 
+  const finaleEntries = mergeEntries(entry.featuredProjects, projects)
 
-const finaleEntries = mergeEntries(entry.featuredProjects, projects)
-
-
-console.log('MEGA FINAL entries', finaleEntries)
-console.log('projects', projects)
-return (
+  console.log('MEGA FINAL entries', finaleEntries)
+  console.log('projects', projects)
+  return (
     <>
       {entry && (
         <>
@@ -49,7 +47,7 @@ return (
           container
         />
       )}
-{/* 
+      {/* 
       <IndexPage
         featuredEntries={entry.featuredProjects}
         allEntries={projects}
@@ -62,7 +60,6 @@ return (
       >
         <div>test child</div>
         </IndexPage> */}
-
     </>
   )
 }
