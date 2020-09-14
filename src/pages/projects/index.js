@@ -6,13 +6,20 @@ import Section from '../../components/core/Section'
 import Grid from '../../components/core/Grid'
 import EntryCard from '../../components/core/EntryCard'
 import IndexPage from '../../components/core/IndexPage'
-
+import mergeEntries from '../../helpers/mergeEntries'
 const ProjectsIndexPage = () => {
   const { projects, entry, siteUrl, globalSets } = projectsIndexData()
   const { seoMeta } = entry
   const [fallbacks, socialLinks] = globalSets
+console.log('entry card in index ---', EntryCard)
 
-  return (
+
+const finaleEntries = mergeEntries(entry.featuredProjects, projects)
+
+
+console.log('MEGA FINAL entries', finaleEntries)
+console.log('projects', projects)
+return (
     <>
       {entry && (
         <>
@@ -33,7 +40,7 @@ const ProjectsIndexPage = () => {
         <Section
           content={
             <Grid
-              items={projects}
+              items={finaleEntries}
               itemTemplatePath={EntryCard}
               itemSection="projects"
               siteUrl={siteUrl}
@@ -42,11 +49,20 @@ const ProjectsIndexPage = () => {
           container
         />
       )}
-
+{/* 
       <IndexPage
         featuredEntries={entry.featuredProjects}
         allEntries={projects}
-      />
+        itemSection="projects"
+        itemTemplatePath={EntryCard}
+
+        siteUrl={siteUrl}
+
+
+      >
+        <div>test child</div>
+        </IndexPage> */}
+
     </>
   )
 }
