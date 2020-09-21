@@ -5,9 +5,17 @@ import '../styles/main.scss'
 import TransitionCover from '../components/core/transitions/TransitionCover'
 import { gsap } from 'gsap'
 import useWindowSize from '../hooks/useWindowSize'
+import { useLocation } from '@reach/router'
+
 
 const Layout = ({ children, uri }) => {
-  let isHomepage = uri === '/' ? true : false
+  console.log('USE LOCATION ========', useLocation)
+  const { pathname } = useLocation()
+  console.log('PATH NAME +++', pathname)
+
+  // let isHomepage = uri === '/' ? true : false
+  let isHomepage = pathname === '/' ? true : false
+  console.log('isHOMEPAGE =-=-=___----   ', isHomepage)
   // const data = useStaticQuery(graphql`
   //   query SiteTitleQuery {
   //     craft {

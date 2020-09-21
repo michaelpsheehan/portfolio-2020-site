@@ -28,7 +28,6 @@ class HeroNew extends Component {
   }
 
   animateTextOnScroll = (allWords) => {
-    console.log('animate on Scroll this --', this)
     this.scrollTimeline = gsap
       .timeline({
         scrollTrigger: {
@@ -119,7 +118,7 @@ class HeroNew extends Component {
   }
 
   componentDidMount() {
-    // gsap.to(window, {duration: 0.0001, scrollTo: 0});
+    gsap.to(window, {duration: 0.00000001, scrollTo: 0});
     this.allWords = Array.from(this.heroTextLineEls).map((currentLine, i) => [
       ...this.allWords,
       ...currentLine.children,

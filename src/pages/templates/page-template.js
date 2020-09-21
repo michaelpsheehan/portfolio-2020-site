@@ -59,7 +59,7 @@ const pageTemplate = ({ data }) => {
 
   return (
     <Layout>
-      <SEO title={title || ''} />
+      {/* <SEO title={title || ''} /> */}
       <div className="container border">
         <h1>{title}</h1>
         <div>{slug}</div>

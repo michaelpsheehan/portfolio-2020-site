@@ -10,12 +10,8 @@ import mergeEntries from '../../helpers/mergeEntries'
 const ProjectsIndexPage = () => {
   const { projects, entry, siteUrl } = projectsIndexData()
   const { seoMeta } = entry
-  console.log('entry card in index ---', EntryCard)
-
   const finaleEntries = mergeEntries(entry.featuredProjects, projects)
 
-  console.log('MEGA FINAL entries', finaleEntries)
-  console.log('projects', projects)
   return (
     <>
       {entry && (

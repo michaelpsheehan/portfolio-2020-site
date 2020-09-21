@@ -147,6 +147,7 @@ async function createHomepage({ graphql, actions }) {
       })
     ).then((result) => result)
 
+    console.log('NODE Entry in NODE------------------', entry)
     await actions.createPage({
       // path: '/home',
       path: '/',

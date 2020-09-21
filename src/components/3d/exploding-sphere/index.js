@@ -161,7 +161,6 @@ export default function BreakingSphere({ userScale }) {
       }
     }, [width])
 
-    console.log('window width in sphere ==', width)
   }
 
   return (

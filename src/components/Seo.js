@@ -38,8 +38,6 @@ const SEO = ({
   }
 
   const { facebook, twitter } = socialMeta;
-   console.log('SEO social meta ===', socialMeta)
- 
 
   return (
     <Helmet title={seo.title}>

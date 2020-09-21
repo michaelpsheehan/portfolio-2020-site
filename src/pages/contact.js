@@ -59,12 +59,10 @@ const ContactPage = () => {
   `)
 
   const { entry, globalSets } = pageData.craft
-  const { seoMeta } = entry
+  const  seoMeta  = entry.seoMeta
   const [fallbacks, socialLinks] = globalSets
 
-  console.log('data on the contact page ==', pageData)
-  console.log('globalSets', globalSets)
-  console.log('social links', socialLinks)
+ 
 
   const formRef = useRef(null)
   const [formState, setFormState] = useState({

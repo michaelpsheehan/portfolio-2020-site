@@ -30,7 +30,8 @@ const introOverlayAnimation = (
 
 const HomeTemplate = (data) => {
   const { entry, siteUrl, richArticle } = data.pageContext
-  const { seoMeta } = entry
+  console.log('homepage entry ==', entry)
+  const  seoMeta  = data.seoMeta
   const [animationComplete, setAnimationComplete] = useState(false)
   const introOverlayLeftSectionEl = useRef(null)
   const introOverlayRightSectionEl = useRef(null)
@@ -50,12 +51,12 @@ const HomeTemplate = (data) => {
 
   return (
     <>
-      <SEO
+      {/* <SEO
         title={seoMeta.title || title}
         description={seoMeta.description}
         socialMeta={seoMeta.social}
     
-      />
+      /> */}
       {animationComplete === false ? (
         <IntroOverlay
           leftSection={introOverlayLeftSectionEl}
