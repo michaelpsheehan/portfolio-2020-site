@@ -121,21 +121,6 @@ async function createHomepage({ graphql, actions }) {
           }
         }
 
-        globalSets {
-          ... on Craft_fallbacks_GlobalSet {
-            id
-            fallbackImage(optimizedImagesGridThumbnail: "") {
-              id
-              url
-            }
-          }
-          ... on Craft_socialLinks_GlobalSet {
-            id
-            twitterUsername
-            githubUrl
-            linkedinUrl
-          }
-        }
       }
     }
   `)
@@ -145,7 +130,7 @@ async function createHomepage({ graphql, actions }) {
   }
 
   const { siteUrl } = data.site.siteMetadata
-  const { entry, globalSets } = data.craft
+  const { entry } = data.craft
   const richArticle = entry ? data.craft.entry[0].richArticle : null
 
   if (richArticle) {
@@ -171,7 +156,6 @@ async function createHomepage({ graphql, actions }) {
         siteUrl,
         entry: entry ? entry[0] : null,
         richArticle: updatedRichArticle || null,
-        globalSets: globalSets,
         // currentPath: path
       },
     })

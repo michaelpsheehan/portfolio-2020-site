@@ -8,9 +8,8 @@ import EntryCard from '../../components/core/EntryCard'
 import IndexPage from '../../components/core/IndexPage'
 import mergeEntries from '../../helpers/mergeEntries'
 const ProjectsIndexPage = () => {
-  const { projects, entry, siteUrl, globalSets } = projectsIndexData()
+  const { projects, entry, siteUrl } = projectsIndexData()
   const { seoMeta } = entry
-  const [fallbacks, socialLinks] = globalSets
   console.log('entry card in index ---', EntryCard)
 
   const finaleEntries = mergeEntries(entry.featuredProjects, projects)
@@ -25,8 +24,7 @@ const ProjectsIndexPage = () => {
             title={seoMeta.title || title}
             description={seoMeta.description}
             socialMeta={seoMeta.social}
-            fallbackImage={fallbacks.fallbackImage}
-            twitterHandle={socialLinks.twitterUsername}
+         
           />
           <Section
             content={<PageTitle title={entry.title} underline subtitle />}

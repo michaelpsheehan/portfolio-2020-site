@@ -119,6 +119,7 @@ class HeroNew extends Component {
   }
 
   componentDidMount() {
+    // gsap.to(window, {duration: 0.0001, scrollTo: 0});
     this.allWords = Array.from(this.heroTextLineEls).map((currentLine, i) => [
       ...this.allWords,
       ...currentLine.children,

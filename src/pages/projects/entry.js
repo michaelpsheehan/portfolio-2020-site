@@ -25,7 +25,6 @@ const pageTemplate = ({ data }) => {
     richArticle,
     seoMeta,
   } = data.craft.entries[0]
-  const [fallbacks, socialLinks] = data.craft.globalSets
   const { siteUrl } = data.site.siteMetadata
   const imageOptimizedHeroImage = heroImage
     ? heroImage[0].optimizedImagesFullWidth
@@ -66,8 +65,6 @@ const pageTemplate = ({ data }) => {
                 title={seoMeta.title || title}
                 description={seoMeta.description}
                 socialMeta={seoMeta.social}
-                fallbackImage={fallbacks.fallbackImage}
-                twitterHandle={socialLinks.twitterUsername}
               />
             )}
 
@@ -108,7 +105,6 @@ const pageTemplate = ({ data }) => {
         {richArticle && (
           <RichArticle richArticle={richArticle} siteUrl={siteUrl} />
         )}
-        {/* </Layout> */}
       </div>
     </>
   )
@@ -222,21 +218,6 @@ export const projectEntryQuery = graphql`
               }
             }
           }
-        }
-      }
-      globalSets {
-        ... on Craft_fallbacks_GlobalSet {
-          id
-          fallbackImage(optimizedImagesGridThumbnail: "") {
-            id
-            url
-          }
-        }
-        ... on Craft_socialLinks_GlobalSet {
-          id
-          twitterUsername
-          githubUrl
-          linkedinUrl
         }
       }
     }
