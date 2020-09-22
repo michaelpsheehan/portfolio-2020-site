@@ -28,6 +28,27 @@ class HeroNew extends Component {
   }
 
   animateTextOnScroll = (allWords) => {
+    let flatWordsArray = [] 
+      allWords.map(currentWord => {
+        currentWord.forEach(currentWord => {
+          console.log('current word ', currentWord)
+          flatWordsArray = [...flatWordsArray, currentWord]
+        }
+      )
+    }
+    
+    )
+    console.log('flat words ==', flatWordsArray)
+    console.log('allwords ==', allWords)
+
+    let testing = []
+    flatWordsArray.forEach(el => {
+      console.log('el ===', el.children)
+      let childArray = [...el.children]
+        childArray.forEach(word => testing = [...testing, word])
+      }
+    )
+    console.log('kIDS ==',testing)
     this.scrollTimeline = gsap
       .timeline({
         scrollTrigger: {
@@ -37,18 +58,27 @@ class HeroNew extends Component {
           // markers: true
         },
       })
-      .to([allWords[0], allWords[1]], {
+      .to(allWords, {
         y: '-900px',
         ease: 'Power4.out',
-        rotation: -360,
+        rotation: -60,
         skewY: 7,
         stagger: {
           amount: 0.01,
         },
       })
+      .to(testing, {
+        rotation: 120,
+        x: -300,
+        ease: 'Power4.out',
+        stagger: {
+          each: 0.001,
+          from: 'center',
+        }
+
+      }, '<')
       .to(
-        this.heroSecondaryButtonEl.current,
-        {
+        this.heroSecondaryButtonEl.current, {
           y: '-250%',
           x: '-500%',
           // opacity: 0,
@@ -82,21 +112,39 @@ class HeroNew extends Component {
       )
   }
 
+  splitLetters = (word) => {
+    console.log('word ==', word)
+    const lettersArray = word.split('')
+    const letters = lettersArray.map((letter, index )=>  (<span className="c-hero__text-letter inline-block" key={index}>{letter}</span>))
+    console.log('letters array ==', lettersArray)
+    console.log('letters  ==', letters)
+    return letters
+    
+  }
+
   splitText(text) {
     if (text) {
       return text.split(/[\n]/g).map((line, index) => {
-        const words = line.split(/[\s]/g).map((word, wordIndex) => (
-          // split and return every word from the hero text wrapped in a span to allow it to be targeted and animated by gsap
-          <span
-            className="c-hero__text-word inline-block"
-            key={wordIndex}
-            ref={(currentWord) =>
-              (this.heroTextWordEls[wordIndex] = currentWord)
-            }
-          >
-            {word}{' '}
-          </span>
-        ))
+      const words = line.split(/[\s]/g).map((word, wordIndex) =>{ 
+      const lettersTest =  this.splitLetters(word)
+      console.log('letters test ==', lettersTest)
+        // console.log('split letters ==', this.splitLetters(word))
+       return (
+        // split and return every word from the hero text wrapped in a span to allow it to be targeted and animated by gsap
+        <span
+          className="c-hero__text-word inline-block"
+          key={wordIndex}
+          ref={(currentWord) =>
+            (this.heroTextWordEls[wordIndex] = currentWord)
+          }
+        >
+          {/* {word}{' '} */}
+          {lettersTest}{' '}
+        </span>
+      )
+      }
+        
+        )
 
         return (
           // maintain the line breaks from the CMS. wrap the array of words in each line of text

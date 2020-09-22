@@ -31,7 +31,10 @@ const introOverlayAnimation = (
 const HomeTemplate = (data) => {
   const { entry, siteUrl, richArticle } = data.pageContext
   console.log('homepage entry ==', entry)
-  const  seoMeta  = data.seoMeta
+  // const  seoMeta  = data.pageContext.entry.seoMeta
+  // const  seoMeta  = entry.seoMeta
+  console.log('HOMEPAGE dat ===', data.pageContext.seoMeta)
+  // console.log('HOMEPAGE seo meta ===', seoMeta)
   const [animationComplete, setAnimationComplete] = useState(false)
   const introOverlayLeftSectionEl = useRef(null)
   const introOverlayRightSectionEl = useRef(null)

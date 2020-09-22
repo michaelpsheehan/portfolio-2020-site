@@ -21,6 +21,7 @@ async function createHomepage({ graphql, actions }) {
             ctaButton1Link
             ctaButton2Text
             ctaButton2Link
+
             seoMeta {
               title
               description
@@ -50,7 +51,10 @@ async function createHomepage({ graphql, actions }) {
                   }
                 }
               }
+              
             }
+
+
             heroImage {
               url
               ... on Craft_images_Asset {
