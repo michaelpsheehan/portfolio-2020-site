@@ -15,7 +15,7 @@ const Layout = ({ children, uri }) => {
 
   // let isHomepage = uri === '/' ? true : false
   let isHomepage = pathname === '/' ? true : false
-  console.log('isHOMEPAGE =-=-=___----   ', isHomepage)
+  // console.log('isHOMEPAGE =-=-=___----   ', isHomepage)
   // const data = useStaticQuery(graphql`
   //   query SiteTitleQuery {
   //     craft {
@@ -41,7 +41,7 @@ const Layout = ({ children, uri }) => {
     tl.set(siteContainerEl.current, { css: { visibility: 'visible' } })
   }, [isHomepage])
 
-  console.log('layout re rendered')
+  // console.log('layout re rendered')
 
   return (
     // windowSize &&

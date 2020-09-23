@@ -11,7 +11,8 @@ import Intro from '../../components/content/Intro'
 import RichArticle from '../../components/content/rich-article/RichArticle'
 import staggerItemsIn from '../../animations/staggerItemsIn'
 
-const pageTemplate = ({ data }) => {
+const pageTemplate = (obj) => {
+  console.log('index obj==', obj)
   const {
     title,
     projectType,
@@ -24,8 +25,8 @@ const pageTemplate = ({ data }) => {
     siteUrl: liveProjectUrl,
     richArticle,
     seoMeta,
-  } = data.craft.entries[0]
-  const { siteUrl } = data.site.siteMetadata
+  } = obj.data.craft.entries[0]
+  const { siteUrl } = obj.data.site.siteMetadata
   const imageOptimizedHeroImage = heroImage
     ? heroImage[0].optimizedImagesFullWidth
     : null

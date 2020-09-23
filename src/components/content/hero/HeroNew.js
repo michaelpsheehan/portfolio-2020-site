@@ -31,24 +31,24 @@ class HeroNew extends Component {
     let flatWordsArray = [] 
       allWords.map(currentWord => {
         currentWord.forEach(currentWord => {
-          console.log('current word ', currentWord)
+          // console.log('current word ', currentWord)
           flatWordsArray = [...flatWordsArray, currentWord]
         }
       )
     }
     
     )
-    console.log('flat words ==', flatWordsArray)
-    console.log('allwords ==', allWords)
+    // console.log('flat words ==', flatWordsArray)
+    // console.log('allwords ==', allWords)
 
     let testing = []
     flatWordsArray.forEach(el => {
-      console.log('el ===', el.children)
+      // console.log('el ===', el.children)
       let childArray = [...el.children]
         childArray.forEach(word => testing = [...testing, word])
       }
     )
-    console.log('kIDS ==',testing)
+    // console.log('kIDS ==',testing)
     this.scrollTimeline = gsap
       .timeline({
         scrollTrigger: {
@@ -113,11 +113,11 @@ class HeroNew extends Component {
   }
 
   splitLetters = (word) => {
-    console.log('word ==', word)
+    // console.log('word ==', word)
     const lettersArray = word.split('')
     const letters = lettersArray.map((letter, index )=>  (<span className="c-hero__text-letter inline-block" key={index}>{letter}</span>))
-    console.log('letters array ==', lettersArray)
-    console.log('letters  ==', letters)
+    // console.log('letters array ==', lettersArray)
+    // console.log('letters  ==', letters)
     return letters
     
   }
@@ -127,7 +127,7 @@ class HeroNew extends Component {
       return text.split(/[\n]/g).map((line, index) => {
       const words = line.split(/[\s]/g).map((word, wordIndex) =>{ 
       const lettersTest =  this.splitLetters(word)
-      console.log('letters test ==', lettersTest)
+      // console.log('letters test ==', lettersTest)
         // console.log('split letters ==', this.splitLetters(word))
        return (
         // split and return every word from the hero text wrapped in a span to allow it to be targeted and animated by gsap
@@ -231,7 +231,7 @@ class HeroNew extends Component {
     const { primaryButton, secondaryButton, heroTextBody } = heroContent
     const updatedHeroTextBody = this.splitText(heroTextBody)
 
-    console.log('hero re render')
+    // console.log('hero re render')
     return (
       <div className={`c-hero ${classes}`} ref={this.heroEl}>
         {/* show hero bg image or video if available */}

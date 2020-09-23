@@ -72,7 +72,7 @@ const ContactPage = () => {
   })
 
   const handleChange = (e) => {
-    console.log('event =')
+    // console.log('event =')
     setFormState({
       ...formState,
       [e.target.id]: e.target.value,
