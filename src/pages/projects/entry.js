@@ -12,7 +12,7 @@ import RichArticle from '../../components/content/rich-article/RichArticle'
 import staggerItemsIn from '../../animations/staggerItemsIn'
 
 const pageTemplate = (obj) => {
-  console.log('index obj==', obj)
+  // console.log('index obj==', obj)
   const {
     title,
     projectType,

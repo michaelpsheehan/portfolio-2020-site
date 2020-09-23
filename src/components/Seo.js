@@ -31,7 +31,7 @@ const SEO = ({
     ? twitterHandle
     : site.siteMetadata.twitterUsername
 
-  const seo = {
+  const seoData = {
     title: title || defaultTitle,
     description: description || defaultDescription,
     url: `${siteUrl}${pathname}`,
@@ -40,7 +40,7 @@ const SEO = ({
   const { facebook, twitter } = socialMeta;
 
   return (
-    <Helmet title={seo.title}>
+    <Helmet title={seoData.title}>
       <meta name="description" content={finalDescription} />
       {twitter && twitter.image && (
         <meta name="image" content={`${siteUrl}${twitter.image.optimizedImagesGridThumbnail.src}`} />
@@ -84,18 +84,18 @@ const SEO = ({
 
 export default SEO
 
-SEO.propTypes = {
-  title: PropTypes.string,
-  description: PropTypes.string,
-}
+// SEO.propTypes = {
+//   title: PropTypes.string,
+//   description: PropTypes.string,
+// }
 
-SEO.defaultProps = {
-  title: null,
-  description: null,
-}
+// SEO.defaultProps = {
+//   title: null,
+//   description: null,
+// }
 
 const query = graphql`
-  query SEO {
+  query SEOQuery {
     site {
       siteMetadata {
         defaultTitle: title
