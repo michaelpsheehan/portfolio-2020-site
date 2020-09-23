@@ -5,7 +5,7 @@ import Image from '../components/core/Image'
 import RichArticle from '../components/content/rich-article/RichArticle'
 import IntroOverlay from '../components/core/IntroOverlay'
 import { gsap } from 'gsap'
-import SEO from '../components/SEO'
+import SEO from '../components/Seo'
 import { graphql } from 'gatsby'
 
 const tl = gsap.timeline({
