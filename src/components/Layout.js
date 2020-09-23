@@ -9,9 +9,9 @@ import { useLocation } from '@reach/router'
 
 
 const Layout = ({ children, uri }) => {
-  console.log('USE LOCATION ========', useLocation)
+  // console.log('USE LOCATION ========', useLocation)
   const { pathname } = useLocation()
-  console.log('PATH NAME +++', pathname)
+  // console.log('PATH NAME +++', pathname)
 
   // let isHomepage = uri === '/' ? true : false
   let isHomepage = pathname === '/' ? true : false
@@ -50,9 +50,7 @@ const Layout = ({ children, uri }) => {
         <TransitionCover />
         {/* <Header siteTitle={data.site.siteMetadata.title} /> */}
         <SiteHead isHomepage={isHomepage} />
-        <main
-          className={`o-main-content  ${isHomepage ? 'f-is-homepage' : ''}`}
-        >
+        <main className={`o-main-content  ${isHomepage ? 'f-is-homepage' : ''}`}>
           {children}
         </main>
 
