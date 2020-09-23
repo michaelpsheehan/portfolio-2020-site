@@ -81,7 +81,7 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-robots-txt',
       options: {
-        // host: 'http://localhost:9000/',
+        host: 'https://portfolio-2020-staging.netlify.app/',
         // host: 'https://www.example.com',
         // sitemap: 'https://www.example.com/sitemap.xml',
         policy: [{ userAgent: '*', allow: '/' }]
