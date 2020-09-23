@@ -1,6 +1,6 @@
 import React from 'react'
 import projectsIndexData from '../../hooks/projectsIndexData'
-import SEO from '../../components/Seo'
+import SEO from '../../components/SEO'
 import PageTitle from '../../components/content/PageTitle'
 import Section from '../../components/core/Section'
 import Grid from '../../components/core/Grid'

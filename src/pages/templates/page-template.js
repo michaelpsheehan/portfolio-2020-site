@@ -1,7 +1,7 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 import Layout from '../../components/Layout'
-import SEO from '../../components/Seo'
+import SEO from '../../components/SEO'
 import TechnologyList from '../../components/content/technologiesList'
 import formatDate from '../../components/utilities/format-date'
 

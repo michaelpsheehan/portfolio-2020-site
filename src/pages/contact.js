@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react'
-import SEO from '../components/seo'
+import SEO from '../components/SEO'
 import staggerItemsIn from '../animations/staggerItemsIn'
 import Section from '../components/core/Section'
 import PageTitle from '../components/content/PageTitle'
