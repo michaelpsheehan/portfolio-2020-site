@@ -72,8 +72,8 @@ class HeroNew extends Component {
         x: -300,
         ease: 'Power4.out',
         stagger: {
-          each: 0.001,
-          from: 'center',
+          each: 0.005,
+          from: 'edges',
         }
 
       }, '<')
@@ -149,7 +149,8 @@ class HeroNew extends Component {
         return (
           // maintain the line breaks from the CMS. wrap the array of words in each line of text
           <span
-            className="c-hero__line-container overflow-hidden relative  w-full block"
+            // className="c-hero__line-container overflow-hidden relative  w-full block"
+            className="c-hero__line-container  relative  w-full block"
             key={index}
             ref={(el) => (this.heroTextLineContainerEls[index] = el)}
           >
