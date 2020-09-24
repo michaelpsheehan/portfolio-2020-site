@@ -1,5 +1,5 @@
 .c-scroll-icon {
-  @apply invisible;
+  @apply invisible hidden;
   margin-top: -35px;
   box-shadow: inset 0 0 0 1px #fff;
   border-radius: 25px;
@@ -10,6 +10,7 @@
   bottom: 4rem;
 
   @screen md {
+    @apply block;
     bottom:2rem;
     width: 40px;
     height: 70px;

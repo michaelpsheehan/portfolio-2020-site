@@ -16,14 +16,14 @@
   }
 
   &__text {
-    @apply font-sans text-3xl text-black mb-8 whitespace-pre-wrap text-center;
+    @apply font-sans text-2xl text-black my-16 whitespace-pre-wrap text-center;
     margin-right: auto;
     margin-left: auto;
     padding-right: 2rem;
     padding-left: 2rem;
 
     @screen md {
-      @apply mb-16;
+      @apply mb-16 mt-0;
     }
 
     @screen lg {

@@ -35,13 +35,15 @@ class HeroNew extends Component {
     this.handleWordHoverExit = this.handleWordHoverExit.bind(this)
     this.animateTextOnScroll = this.animateTextOnScroll.bind(this)
     this.resetLetters = this.resetLetters.bind(this)
+    this.handleScrollUpdate = this.handleScrollUpdate.bind(this)
+    this.handleWordTouchMobile = this.handleWordTouchMobile.bind(this)
   }
 
-  resetLetters() {
+  resetLetters(delay = 0.01,  duration = 0.1) {
     this.allLetters.map((letter) => {
       gsap.to(letter, {
-        delay: 0.2,
-        duration: 0.1,
+        delay: delay,
+        duration: duration,
         y: 0,
         x: 0,
         skew: 0,
@@ -51,6 +53,7 @@ class HeroNew extends Component {
   }
 
   handleWordHover(e) {
+    console.log('event ==', e)
     this.setState({
       isWordHovered: true,
     })
@@ -87,6 +90,24 @@ class HeroNew extends Component {
     })
   }
 
+
+  handleWordTouchMobile() {
+    this.resetLetters(0.5, 0.3)
+    console.log('MOBILE TOuch')
+  }
+handleScrollUpdate(progress,  isActive) {
+  
+if(  progress === 0 && this.state.isWordHovered === false) {
+  this.resetLetters()
+  } 
+  // else if( isActive === true & this.state.isWordHovered === true ) {
+  //   // this.handleWordHoverExit()
+  //   this.setState({
+  //     isWordHovered: false,
+  //   })
+  // }
+}
+
   animateTextOnScroll = (allWords, allLetters) => {
     let flatWordsArray = []
     allWords.map((currentWord) => {
@@ -105,10 +126,7 @@ class HeroNew extends Component {
           start: 'top top',
           scrub: 0.1,
           trigger: this.heroEl.current,
-          onUpdate: ({ progress, direction, isActive }) =>
-            progress === 0 && this.state.isWordHovered === false
-              ? this.resetLetters()
-              : null,
+          onUpdate: ({ progress, direction, isActive }) => this.handleScrollUpdate(progress, isActive)
           // markers: true,
         },
       })
@@ -193,6 +211,7 @@ class HeroNew extends Component {
               }
               onMouseEnter={this.handleWordHover}
               onMouseLeave={this.handleWordHoverExit}
+              onTouchStart={this.handleWordTouchMobile}
             >
               {lettersTest}{' '}
             </span>
