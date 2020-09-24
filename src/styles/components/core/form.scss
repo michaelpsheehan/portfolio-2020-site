@@ -1,10 +1,14 @@
 .c-form {
-  @apply  max-w-2xl mx-auto px-16;
+  @apply  max-w-2xl mx-auto;
+  @screen md {
+    @apply px-16;
+  }
   &__text-area {
-    @apply w-full pb-16 pt-2 mb-8 ;
+    @apply w-full pb-16 pt-2 mb-8 rounded-lg ;
+    min-height: 10rem;
   }
   &__input {
-    @apply py-2 px-2 rounded-full w-full mb-4;
+    @apply py-2 px-2 rounded-lg w-full mb-4;
     input {
     }
   }

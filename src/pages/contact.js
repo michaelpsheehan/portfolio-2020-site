@@ -4,6 +4,7 @@ import staggerItemsIn from '../animations/staggerItemsIn'
 import Section from '../components/core/Section'
 import PageTitle from '../components/content/PageTitle'
 import { graphql, useStaticQuery } from 'gatsby'
+import gsap from 'gsap/gsap-core'
 
 const ContactPage = () => {
   const pageData = useStaticQuery(graphql`
@@ -91,6 +92,7 @@ const ContactPage = () => {
       })
   }
   useEffect(() => {
+    gsap.set(formRef.current, {delay: 0.2,autoAlpha: 1})
     const tl = staggerItemsIn(formRef.current.children)
     return () => {
       tl.kill()
@@ -123,7 +125,7 @@ const ContactPage = () => {
           <>
             <div>
               <form
-                className="c-form text-center flex flex-col justify-center"
+                className="c-form text-center flex flex-col justify-center invisible"
                 name="contact-form"
                 method="post"
                 data-netlify="true"

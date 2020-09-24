@@ -2,7 +2,10 @@
   @apply text-center font-sans;
 
   &__title {
-    @apply text-3xl uppercase;
+    @apply text-2xl uppercase;
+    @screen md {
+      @apply text-3xl;
+    }
   }
 
   &__underline {

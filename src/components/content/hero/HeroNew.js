@@ -92,7 +92,7 @@ class HeroNew extends Component {
 
 
   handleWordTouchMobile() {
-    this.resetLetters(0.5, 0.3)
+    this.resetLetters(0.5, 0.5)
     console.log('MOBILE TOuch')
   }
 handleScrollUpdate(progress,  isActive) {
@@ -260,7 +260,7 @@ if(  progress === 0 && this.state.isWordHovered === false) {
 
     this.tl = gsap
       .timeline({
-        defaults: { duration: 1, ease: 'Power3.out' },
+        defaults: { duration: 0.8, ease: 'Power3.out' },
         // create the scrollTrigger timeline after the intro completes to stop any early scroll bugs
         onComplete: this.animateTextOnScroll,
         onCompleteParams: [this.allWords, this.allLetters],
@@ -273,8 +273,8 @@ if(  progress === 0 && this.state.isWordHovered === false) {
 
     allLetts.forEach((letter) => {
       this.tl.set(letter, {
-        y: gsap.utils.random(-50, 50),
-        x: gsap.utils.random(-50, 50),
+        y: gsap.utils.random(-400, 400),
+        x: gsap.utils.random(-400, 400),
         skew: gsap.utils.random(0, 9),
         rotation: gsap.utils.random(-360, 360),
         opacity: 0,
@@ -282,8 +282,8 @@ if(  progress === 0 && this.state.isWordHovered === false) {
     })
 
     this.tl.to(this.allLetters, {
-      delay: 2.6,
-      duration: 1,
+      delay: 2.4,
+      duration: 0.7,
       rotation: 0,
       y: 0,
       x: 0,
@@ -316,9 +316,9 @@ if(  progress === 0 && this.state.isWordHovered === false) {
         '-=0.5'
       )
 
-      .set(this.heroTextLineContainerEls, {
-        css: { overflow: 'visible' },
-      })
+      // .set(this.heroTextLineContainerEls, {
+      //   css: { overflow: 'visible' },
+      // })
   }
 
   componentWillUnmount() {

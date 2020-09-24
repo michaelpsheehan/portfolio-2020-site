@@ -36,7 +36,7 @@ const pageTemplate = (obj) => {
       projectType
     ) : (
       <div>
-        Developed while working at{' '}
+        Developed while at{' '}
         <a className="underline" href="https://www.google.com" target="_blank">
           {projectType}
         </a>
