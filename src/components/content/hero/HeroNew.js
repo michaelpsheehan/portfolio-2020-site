@@ -15,6 +15,7 @@ class HeroNew extends Component {
     this.heroEl = createRef()
     this.heroTextLineEls = []
     this.heroTextWordEls = []
+    this.heroTextLetterEls = []
     this.heroContentEl = createRef()
     this.heroTextLineContainerEls = []
     this.heroSecondaryButtonEl = createRef()
@@ -22,6 +23,7 @@ class HeroNew extends Component {
     this.heroScrollIconEl = createRef()
     // array of all words in the hero text
     this.allWords = []
+    this.allLetters = []
     // gsap timelines
     this.tl = null
     this.scrollTimeline = null
@@ -31,24 +33,18 @@ class HeroNew extends Component {
     let flatWordsArray = [] 
       allWords.map(currentWord => {
         currentWord.forEach(currentWord => {
-          // console.log('current word ', currentWord)
           flatWordsArray = [...flatWordsArray, currentWord]
         }
       )
     }
     
     )
-    // console.log('flat words ==', flatWordsArray)
-    // console.log('allwords ==', allWords)
-
     let testing = []
     flatWordsArray.forEach(el => {
-      // console.log('el ===', el.children)
       let childArray = [...el.children]
         childArray.forEach(word => testing = [...testing, word])
       }
     )
-    // console.log('kIDS ==',testing)
     this.scrollTimeline = gsap
       .timeline({
         scrollTrigger: {
@@ -72,8 +68,9 @@ class HeroNew extends Component {
         x: -300,
         ease: 'Power4.out',
         stagger: {
-          each: 0.005,
-          from: 'edges',
+          each: 0.007,
+          // from: 'edges',
+          from: 'random',
         }
 
       }, '<')
@@ -115,7 +112,11 @@ class HeroNew extends Component {
   splitLetters = (word) => {
     // console.log('word ==', word)
     const lettersArray = word.split('')
-    const letters = lettersArray.map((letter, index )=>  (<span className="c-hero__text-letter inline-block" key={index}>{letter}</span>))
+    const letters = lettersArray.map((letter, index )=>  (<span className="c-hero__text-letter inline-block" key={index}
+    // ref={(currentLetter) =>
+    //   (this.heroTextLetterEls[letterIndex] = currentLetter)
+    // }
+    >{letter}</span>))
     // console.log('letters array ==', lettersArray)
     // console.log('letters  ==', letters)
     return letters
@@ -123,6 +124,7 @@ class HeroNew extends Component {
   }
 
   splitText(text) {
+    console.log('split text ran')
     if (text) {
       return text.split(/[\n]/g).map((line, index) => {
       const words = line.split(/[\s]/g).map((word, wordIndex) =>{ 
@@ -134,7 +136,7 @@ class HeroNew extends Component {
         <span
           className="c-hero__text-word inline-block"
           key={wordIndex}
-          ref={(currentWord) =>
+          ref={(currentWord,) =>
             (this.heroTextWordEls[wordIndex] = currentWord)
           }
         >
@@ -149,8 +151,8 @@ class HeroNew extends Component {
         return (
           // maintain the line breaks from the CMS. wrap the array of words in each line of text
           <span
-            // className="c-hero__line-container overflow-hidden relative  w-full block"
-            className="c-hero__line-container  relative  w-full block"
+            className="c-hero__line-container overflow-hidden relative  w-full block"
+            // className="c-hero__line-container  relative  w-full block"
             key={index}
             ref={(el) => (this.heroTextLineContainerEls[index] = el)}
           >
@@ -173,6 +175,23 @@ class HeroNew extends Component {
       ...currentLine.children,
     ])
 
+    let flatWordsArray = [] 
+    this.allWords.map(currentWord => {
+      currentWord.forEach(currentWord => {
+        flatWordsArray = [...flatWordsArray, currentWord]
+      }
+    )
+  }
+  
+  )
+  let testing = []
+  flatWordsArray.forEach(el => {
+    let childArray = [...el.children]
+      childArray.forEach(word => this.allLetters = [...this.allLetters, word])
+    }
+  )
+  console.log('ALL letters ==', this.allLetters)
+
     this.tl = gsap
       .timeline({
         defaults: { duration: 1, ease: 'Power3.out' },
@@ -184,16 +203,32 @@ class HeroNew extends Component {
       .set(this.heroContentEl.current, { css: { visibility: 'visible' } })
       .set(this.heroScrollIconEl.current, { css: { visibility: 'visible' } })
 
-      .from(this.heroTextLineEls, {
+      // .from(this.heroTextLineEls, {
+      .from(this.allLetters, {
         delay: 2.6,
         duration: 1,
         y: '140',
-        ease: 'Power4.out',
+        // opacity: 0,
+        ease: 'Power2.out',
         skewY: 7,
         stagger: {
-          amount: 0.32,
+          // amount: 0.32,
+          each: 0.015,
+          // from: 'edges',
+          // from: 'center',
+          from: 'random',
         },
       })
+      // .from(this.heroTextLineEls, {
+      //   delay: 2.6,
+      //   duration: 1,
+      //   y: '140',
+      //   ease: 'Power4.out',
+      //   skewY: 7,
+      //   stagger: {
+      //     amount: 0.32,
+      //   },
+      // })
       .from(this.heroPrimaryButtonEl.current, {
         y: 10,
         opacity: 0,
@@ -216,6 +251,8 @@ class HeroNew extends Component {
       .set(this.heroTextLineContainerEls, {
         css: { overflow: 'visible' },
       })
+
+      console.log('this hero letter els ==', this.heroTextLetterEls)
   }
 
   componentWillUnmount() {
