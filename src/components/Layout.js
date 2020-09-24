@@ -50,7 +50,7 @@ const Layout = ({ children, uri }) => {
         {/* <Header siteTitle={data.site.siteMetadata.title} /> */}
         <SiteHead isHomepage={isHomepage} />
         <main
-          className={`o-main-content  ${isHomepage ? 'f-is-homepage' : ''}`}
+          className={`o-main-content overflow-x-hidden  ${isHomepage ? 'f-is-homepage' : ''}`}
         >
           {children}
         </main>

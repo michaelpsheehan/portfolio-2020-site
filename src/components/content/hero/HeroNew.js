@@ -92,7 +92,7 @@ class HeroNew extends Component {
 
 
   handleWordTouchMobile() {
-    this.resetLetters(0.5, 0.5)
+    this.resetLetters(0.8, 0.5)
     console.log('MOBILE TOuch')
   }
 handleScrollUpdate(progress,  isActive) {
