@@ -64,7 +64,6 @@ async function createHomepage({ graphql, actions }) {
             }
           }
         }
-
       }
     }
   `)
@@ -73,32 +72,32 @@ async function createHomepage({ graphql, actions }) {
     throw new Error('there was an error')
   }
 
-  const richArticle = data.craft.entry[0].richArticle 
-    const updatedRichArticle = await Promise.all(
-      richArticle.map(async (block) => {
-        if (block.typeHandle === 'animation' && block.animationUrl) {
-          const response = await axios.get(block.animationUrl)
-          return {
-            ...block,
-            animationData: response.data,
-          }
+  const richArticle = data.craft.entry[0].richArticle
+  const updatedRichArticle = await Promise.all(
+    richArticle.map(async (block) => {
+      if (block.typeHandle === 'animation' && block.animationUrl) {
+        const response = await axios.get(block.animationUrl)
+        return {
+          ...block,
+          animationData: response.data,
         }
-        return block
-      })
-    ).then((result) => result)
-
-    await actions.createPage({
-      path: '/',
-      component: require.resolve('./src/pages/HomeTemplate.js'),
-      context: {
-        richArticle: updatedRichArticle || null,
-      },
+      }
+      return block
     })
-  }
+  ).then((result) => result)
+
+  await actions.createPage({
+    path: '/',
+    component: require.resolve('./src/pages/HomeTemplate.js'),
+    context: {
+      richArticle: updatedRichArticle || null,
+    },
+  })
+}
 // }
 
 exports.onCreateNode = (obj) => {
-  if(obj.node.path === '/') {
+  if (obj.node.path === '/') {
     console.log('page created ------', obj)
   }
 }

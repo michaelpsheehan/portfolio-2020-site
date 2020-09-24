@@ -20,7 +20,6 @@ const ProjectsIndexPage = () => {
             title={seoMeta.title || title}
             description={seoMeta.description}
             socialMeta={seoMeta.social}
-         
           />
           <Section
             content={<PageTitle title={entry.title} underline subtitle />}

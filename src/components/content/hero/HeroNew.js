@@ -12,6 +12,9 @@ class HeroNew extends Component {
   constructor() {
     super()
     // react refs needed to access dom elements for the gsap animations
+    this.state = {
+      isWordHovered: false,
+    }
     this.heroEl = createRef()
     this.heroTextLineEls = []
     this.heroTextWordEls = []
@@ -27,31 +30,86 @@ class HeroNew extends Component {
     // gsap timelines
     this.tl = null
     this.scrollTimeline = null
+
+    this.handleWordHover = this.handleWordHover.bind(this)
+    this.handleWordHoverExit = this.handleWordHoverExit.bind(this)
+    this.animateTextOnScroll = this.animateTextOnScroll.bind(this)
+    this.resetLetters = this.resetLetters.bind(this)
   }
 
-  animateTextOnScroll = (allWords) => {
-    let flatWordsArray = [] 
-      allWords.map(currentWord => {
-        currentWord.forEach(currentWord => {
-          flatWordsArray = [...flatWordsArray, currentWord]
-        }
-      )
-    }
-    
-    )
+  resetLetters() {
+    this.allLetters.map((letter) => {
+      gsap.to(letter, {
+        delay: 0.2,
+        duration: 0.1,
+        y: 0,
+        x: 0,
+        skew: 0,
+        rotation: 0,
+      })
+    })
+  }
+
+  handleWordHover(e) {
+    this.setState({
+      isWordHovered: true,
+    })
+
+    let word = e.currentTarget
+    let letters = [...word.children]
+    letters.forEach((letter) => {
+      gsap.to(letter, {
+        duration: 0.3,
+        y: gsap.utils.random(-50, 50),
+        x: gsap.utils.random(-50, 50),
+        skew: gsap.utils.random(0, 2),
+        rotation: gsap.utils.random(-120, 120),
+      })
+    })
+  }
+
+  handleWordHoverExit(e) {
+    this.setState({
+      isWordHovered: false,
+    })
+
+    console.log('This state on leave ==', this.state)
+    let word = e.currentTarget
+    let letters = [...word.children]
+    letters.forEach((letter) => {
+      gsap.to(letter, {
+        duration: 0.3,
+        y: 0,
+        x: 0,
+        skew: 0,
+        rotation: 0,
+      })
+    })
+  }
+
+  animateTextOnScroll = (allWords, allLetters) => {
+    let flatWordsArray = []
+    allWords.map((currentWord) => {
+      currentWord.forEach((currentWord) => {
+        flatWordsArray = [...flatWordsArray, currentWord]
+      })
+    })
     let testing = []
-    flatWordsArray.forEach(el => {
+    flatWordsArray.forEach((el) => {
       let childArray = [...el.children]
-        childArray.forEach(word => testing = [...testing, word])
-      }
-    )
+      childArray.forEach((word) => (testing = [...testing, word]))
+    })
     this.scrollTimeline = gsap
       .timeline({
         scrollTrigger: {
           start: 'top top',
           scrub: 0.1,
           trigger: this.heroEl.current,
-          // markers: true
+          onUpdate: ({ progress, direction, isActive }) =>
+            progress === 0 && this.state.isWordHovered === false
+              ? this.resetLetters()
+              : null,
+          // markers: true,
         },
       })
       .to(allWords, {
@@ -63,22 +121,24 @@ class HeroNew extends Component {
           amount: 0.01,
         },
       })
-      .to(testing, {
-        rotation: 120,
-        x: -300,
-        ease: 'Power4.out',
-        stagger: {
-          each: 0.007,
-          // from: 'edges',
-          from: 'random',
-        }
-
-      }, '<')
       .to(
-        this.heroSecondaryButtonEl.current, {
+        testing,
+        {
+          rotation: 120,
+          x: -300,
+          ease: 'Power4.out',
+          stagger: {
+            each: 0.007,
+            from: 'random',
+          },
+        },
+        '<'
+      )
+      .to(
+        this.heroSecondaryButtonEl.current,
+        {
           y: '-250%',
           x: '-500%',
-          // opacity: 0,
           transformOrigin: '50% 50%',
           rotation: -360,
           ease: 'Power3.out',
@@ -90,7 +150,6 @@ class HeroNew extends Component {
         {
           y: '-250%',
           x: '500%',
-          // opacity: 0,
           transformOrigin: '50% 50%',
           rotation: 360,
           ease: 'Power3.out',
@@ -110,49 +169,40 @@ class HeroNew extends Component {
   }
 
   splitLetters = (word) => {
-    // console.log('word ==', word)
     const lettersArray = word.split('')
-    const letters = lettersArray.map((letter, index )=>  (<span className="c-hero__text-letter inline-block" key={index}
-    // ref={(currentLetter) =>
-    //   (this.heroTextLetterEls[letterIndex] = currentLetter)
-    // }
-    >{letter}</span>))
-    // console.log('letters array ==', lettersArray)
-    // console.log('letters  ==', letters)
+    const letters = lettersArray.map((letter, index) => (
+      <span className="c-hero__text-letter inline-block" key={index}>
+        {letter}
+      </span>
+    ))
     return letters
-    
   }
 
   splitText(text) {
-    console.log('split text ran')
     if (text) {
       return text.split(/[\n]/g).map((line, index) => {
-      const words = line.split(/[\s]/g).map((word, wordIndex) =>{ 
-      const lettersTest =  this.splitLetters(word)
-      // console.log('letters test ==', lettersTest)
-        // console.log('split letters ==', this.splitLetters(word))
-       return (
-        // split and return every word from the hero text wrapped in a span to allow it to be targeted and animated by gsap
-        <span
-          className="c-hero__text-word inline-block"
-          key={wordIndex}
-          ref={(currentWord,) =>
-            (this.heroTextWordEls[wordIndex] = currentWord)
-          }
-        >
-          {/* {word}{' '} */}
-          {lettersTest}{' '}
-        </span>
-      )
-      }
-        
-        )
+        const words = line.split(/[\s]/g).map((word, wordIndex) => {
+          const lettersTest = this.splitLetters(word)
+          return (
+            // split and return every word from the hero text wrapped in a span to allow it to be targeted and animated by gsap
+            <span
+              className="c-hero__text-word inline-block cursor-pointer"
+              key={wordIndex}
+              ref={(currentWord) =>
+                (this.heroTextWordEls[wordIndex] = currentWord)
+              }
+              onMouseEnter={this.handleWordHover}
+              onMouseLeave={this.handleWordHoverExit}
+            >
+              {lettersTest}{' '}
+            </span>
+          )
+        })
 
         return (
           // maintain the line breaks from the CMS. wrap the array of words in each line of text
           <span
-            className="c-hero__line-container overflow-hidden relative  w-full block"
-            // className="c-hero__line-container  relative  w-full block"
+            className="c-hero__line-container  relative  w-full block"
             key={index}
             ref={(el) => (this.heroTextLineContainerEls[index] = el)}
           >
@@ -169,66 +219,65 @@ class HeroNew extends Component {
   }
 
   componentDidMount() {
-    gsap.to(window, {duration: 0.00000001, scrollTo: 0});
+    gsap.to(window, { duration: 0.00000001, scrollTo: 0 })
     this.allWords = Array.from(this.heroTextLineEls).map((currentLine, i) => [
       ...this.allWords,
       ...currentLine.children,
     ])
 
-    let flatWordsArray = [] 
-    this.allWords.map(currentWord => {
-      currentWord.forEach(currentWord => {
+    let flatWordsArray = []
+    this.allWords.map((currentWord) => {
+      currentWord.forEach((currentWord) => {
         flatWordsArray = [...flatWordsArray, currentWord]
-      }
-    )
-  }
-  
-  )
-  let testing = []
-  flatWordsArray.forEach(el => {
-    let childArray = [...el.children]
-      childArray.forEach(word => this.allLetters = [...this.allLetters, word])
-    }
-  )
-  console.log('ALL letters ==', this.allLetters)
+      })
+    })
+    let testing = []
+    flatWordsArray.forEach((el) => {
+      let childArray = [...el.children]
+      childArray.forEach(
+        (word) => (this.allLetters = [...this.allLetters, word])
+      )
+    })
 
     this.tl = gsap
       .timeline({
         defaults: { duration: 1, ease: 'Power3.out' },
         // create the scrollTrigger timeline after the intro completes to stop any early scroll bugs
         onComplete: this.animateTextOnScroll,
-        onCompleteParams: [this.allWords],
+        onCompleteParams: [this.allWords, this.allLetters],
         onCompleteScope: this,
       })
       .set(this.heroContentEl.current, { css: { visibility: 'visible' } })
       .set(this.heroScrollIconEl.current, { css: { visibility: 'visible' } })
 
-      // .from(this.heroTextLineEls, {
-      .from(this.allLetters, {
-        delay: 2.6,
-        duration: 1,
-        y: '140',
-        // opacity: 0,
-        ease: 'Power2.out',
-        skewY: 7,
-        stagger: {
-          // amount: 0.32,
-          each: 0.015,
-          // from: 'edges',
-          // from: 'center',
-          from: 'random',
-        },
+    let allLetts = this.allLetters
+
+    allLetts.forEach((letter) => {
+      this.tl.set(letter, {
+        y: gsap.utils.random(-50, 50),
+        x: gsap.utils.random(-50, 50),
+        skew: gsap.utils.random(0, 9),
+        rotation: gsap.utils.random(-360, 360),
+        opacity: 0,
       })
-      // .from(this.heroTextLineEls, {
-      //   delay: 2.6,
-      //   duration: 1,
-      //   y: '140',
-      //   ease: 'Power4.out',
-      //   skewY: 7,
-      //   stagger: {
-      //     amount: 0.32,
-      //   },
-      // })
+    })
+
+    this.tl.to(this.allLetters, {
+      delay: 2.6,
+      duration: 1,
+      rotation: 0,
+      y: 0,
+      x: 0,
+      opacity: 1,
+      ease: 'Power2.out',
+      skewY: 0,
+      stagger: {
+        each: 0.015,
+        from: 'random',
+      },
+    })
+
+    this.tl
       .from(this.heroPrimaryButtonEl.current, {
         y: 10,
         opacity: 0,
@@ -251,8 +300,6 @@ class HeroNew extends Component {
       .set(this.heroTextLineContainerEls, {
         css: { overflow: 'visible' },
       })
-
-      console.log('this hero letter els ==', this.heroTextLetterEls)
   }
 
   componentWillUnmount() {
@@ -269,7 +316,6 @@ class HeroNew extends Component {
     const { primaryButton, secondaryButton, heroTextBody } = heroContent
     const updatedHeroTextBody = this.splitText(heroTextBody)
 
-    // console.log('hero re render')
     return (
       <div className={`c-hero ${classes}`} ref={this.heroEl}>
         {/* show hero bg image or video if available */}

@@ -7,7 +7,6 @@ import { gsap } from 'gsap'
 import useWindowSize from '../hooks/useWindowSize'
 import { useLocation } from '@reach/router'
 
-
 const Layout = ({ children, uri }) => {
   // console.log('USE LOCATION ========', useLocation)
   const { pathname } = useLocation()
@@ -50,7 +49,9 @@ const Layout = ({ children, uri }) => {
         <TransitionCover />
         {/* <Header siteTitle={data.site.siteMetadata.title} /> */}
         <SiteHead isHomepage={isHomepage} />
-        <main className={`o-main-content  ${isHomepage ? 'f-is-homepage' : ''}`}>
+        <main
+          className={`o-main-content  ${isHomepage ? 'f-is-homepage' : ''}`}
+        >
           {children}
         </main>
 

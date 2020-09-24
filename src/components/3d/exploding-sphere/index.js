@@ -160,7 +160,6 @@ export default function BreakingSphere({ userScale }) {
         setPosition([2, 0, 0])
       }
     }, [width])
-
   }
 
   return (

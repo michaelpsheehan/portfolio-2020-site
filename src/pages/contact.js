@@ -59,10 +59,8 @@ const ContactPage = () => {
   `)
 
   const { entry, globalSets } = pageData.craft
-  const  seoMeta  = entry.seoMeta
+  const seoMeta = entry.seoMeta
   const [fallbacks, socialLinks] = globalSets
-
- 
 
   const formRef = useRef(null)
   const [formState, setFormState] = useState({

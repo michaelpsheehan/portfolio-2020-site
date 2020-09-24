@@ -4,11 +4,7 @@ import { Helmet } from 'react-helmet'
 import { useLocation } from '@reach/router'
 import { useStaticQuery, graphql } from 'gatsby'
 
-const SEO = ({
-  title,
-  description,
-  socialMeta,
-}) => {
+const SEO = ({ title, description, socialMeta }) => {
   const { pathname } = useLocation()
   const { site, craft } = useStaticQuery(query)
   const {
@@ -20,7 +16,6 @@ const SEO = ({
   const [fallbacks, socialLinks] = craft.globalSets
   const twitterHandle = socialLinks.twitterUsername
   const fallbackImage = fallbacks.fallbackImage
- 
 
   // checks for CMS data and uses fallbacks if not present
 
@@ -37,13 +32,16 @@ const SEO = ({
     url: `${siteUrl}${pathname}`,
   }
 
-  const { facebook, twitter } = socialMeta;
+  const { facebook, twitter } = socialMeta
 
   return (
     <Helmet title={seoData.title}>
       <meta name="description" content={finalDescription} />
       {twitter && twitter.image && (
-        <meta name="image" content={`${siteUrl}${twitter.image.optimizedImagesGridThumbnail.src}`} />
+        <meta
+          name="image"
+          content={`${siteUrl}${twitter.image.optimizedImagesGridThumbnail.src}`}
+        />
       )}
 
       {pathname && frontendSiteUrl && (
@@ -54,12 +52,15 @@ const SEO = ({
         <meta property="og:title" content={facebook.title} />
       )}
 
-      {facebook && facebook.description &&  (
+      {facebook && facebook.description && (
         <meta property="og:description" content={facebook.description} />
       )}
 
       {facebook && facebook.image && (
-        <meta property="og:image" content={`${siteUrl}${facebook.image.optimizedImagesGridThumbnail.src}`} />
+        <meta
+          property="og:image"
+          content={`${siteUrl}${facebook.image.optimizedImagesGridThumbnail.src}`}
+        />
       )}
 
       <meta name="twitter:card" content="summary_large_image" />
@@ -76,7 +77,10 @@ const SEO = ({
         <meta name="twitter:description" content={twitter.description} />
       )}
       {twitter && twitter.image && (
-        <meta name="twitter:image" content={`${siteUrl}${twitter.image.optimizedImagesGridThumbnail.src}`} />
+        <meta
+          name="twitter:image"
+          content={`${siteUrl}${twitter.image.optimizedImagesGridThumbnail.src}`}
+        />
       )}
     </Helmet>
   )
@@ -107,20 +111,20 @@ const query = graphql`
     }
     craft {
       globalSets {
-          ... on Craft_fallbacks_GlobalSet {
+        ... on Craft_fallbacks_GlobalSet {
+          id
+          fallbackImage(optimizedImagesGridThumbnail: "") {
             id
-            fallbackImage(optimizedImagesGridThumbnail: "") {
-              id
-              url
-            }
-          }
-          ... on Craft_socialLinks_GlobalSet {
-            id
-            twitterUsername
-            githubUrl
-            linkedinUrl
+            url
           }
         }
+        ... on Craft_socialLinks_GlobalSet {
+          id
+          twitterUsername
+          githubUrl
+          linkedinUrl
+        }
+      }
     }
   }
 `

@@ -17,7 +17,6 @@ const PageTransition = () => {
       scaleX: 0.5,
       transformOrigin: 'bottom right',
     })
-
   })
 
   return (

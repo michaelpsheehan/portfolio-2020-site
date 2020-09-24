@@ -29,11 +29,11 @@ const introOverlayAnimation = (
   })
 }
 
-const HomeTemplate = ({data, pageContext}) => {
-  const  { richArticle }  = pageContext
-  const  entry  = data.craft.entry[0]
-  const {  siteUrl } = data.site
-  const {seoMeta} = entry
+const HomeTemplate = ({ data, pageContext }) => {
+  const { richArticle } = pageContext
+  const entry = data.craft.entry[0]
+  const { siteUrl } = data.site
+  const { seoMeta } = entry
 
   const [animationComplete, setAnimationComplete] = useState(false)
   const introOverlayLeftSectionEl = useRef(null)
@@ -58,7 +58,6 @@ const HomeTemplate = ({data, pageContext}) => {
         title={seoMeta.title || title}
         description={seoMeta.description}
         socialMeta={seoMeta.social}
-    
       />
       {animationComplete === false ? (
         <IntroOverlay
@@ -85,82 +84,78 @@ const HomeTemplate = ({data, pageContext}) => {
           }}
         />
       )}
-      {richArticle && (     
+      {richArticle && (
         <RichArticle richArticle={richArticle} isHomepage={true} />
-      )} 
+      )}
     </>
   )
 }
 
-
-
 export const homeQuery = graphql`
-query homeTemplateQuery {
-  site {
-    siteMetadata {
-      siteUrl
+  query homeTemplateQuery {
+    site {
+      siteMetadata {
+        siteUrl
+      }
     }
-  }
-  craft {
-    entry: entries(section: "homepage") {
-      title
-      ... on Craft_homepage_homepage_Entry {
-        heroTextBody
-        ctaButton1Text
-        ctaButton1Link
-        ctaButton2Text
-        ctaButton2Link
-        seoMeta {
-          title
-          description
-          social {
-            facebook {
-              title
-              description
-              image {
-                ... on Craft_images_Asset {
-                  id
-                  optimizedImagesGridThumbnail {
-                    src
+    craft {
+      entry: entries(section: "homepage") {
+        title
+        ... on Craft_homepage_homepage_Entry {
+          heroTextBody
+          ctaButton1Text
+          ctaButton1Link
+          ctaButton2Text
+          ctaButton2Link
+          seoMeta {
+            title
+            description
+            social {
+              facebook {
+                title
+                description
+                image {
+                  ... on Craft_images_Asset {
+                    id
+                    optimizedImagesGridThumbnail {
+                      src
+                    }
                   }
                 }
               }
-            }
-            twitter {
-              title
-              description
-              image {
-                ... on Craft_images_Asset {
-                  id
-                  optimizedImagesGridThumbnail {
-                    src
+              twitter {
+                title
+                description
+                image {
+                  ... on Craft_images_Asset {
+                    id
+                    optimizedImagesGridThumbnail {
+                      src
+                    }
                   }
                 }
               }
             }
           }
-          
-        }
-        heroImage {
-          url
-          ... on Craft_images_Asset {
-            optimizedImagesFullWidth {
-              ... on Craft_optimizedImagesFullWidth_OptimizedImages {
-                focalPoint
-                placeholder
-                src
-                srcUrls
-                srcWebp
-                srcset
+          heroImage {
+            url
+            ... on Craft_images_Asset {
+              optimizedImagesFullWidth {
+                ... on Craft_optimizedImagesFullWidth_OptimizedImages {
+                  focalPoint
+                  placeholder
+                  src
+                  srcUrls
+                  srcWebp
+                  srcset
+                }
               }
             }
           }
         }
       }
     }
-
   }
-}
 `
 
 export default HomeTemplate
