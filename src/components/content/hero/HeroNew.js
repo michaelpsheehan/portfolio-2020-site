@@ -1,12 +1,9 @@
 import React, { Component, useRef, useEffect, createRef } from 'react'
 import { gsap } from 'gsap'
-import { CSSRulePlugin } from 'gsap/CSSRulePlugin'
-import { ScrollToPlugin } from 'gsap/ScrollToPlugin'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Button from '../../core/Button'
 import ScrollIcon from '../../core/ScrollIcon'
-import useWindowSize from '../../../hooks/useWindowSize'
-gsap.registerPlugin(CSSRulePlugin, ScrollToPlugin, ScrollTrigger)
+gsap.registerPlugin(ScrollTrigger)
 
 class HeroNew extends Component {
   constructor() {
@@ -243,7 +240,6 @@ if(  progress === 0 && this.state.isWordHovered === false) {
   }
 
   componentDidMount() {
-    gsap.to(window, { duration: 0.00000001, scrollTo: 0 })
     this.allWords = Array.from(this.heroTextLineEls).map((currentLine, i) => [
       ...this.allWords,
       ...currentLine.children,

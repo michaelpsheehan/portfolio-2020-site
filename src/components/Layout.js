@@ -4,9 +4,14 @@ import SiteHead from './SiteHead'
 import '../styles/main.scss'
 import TransitionCover from '../components/core/transitions/TransitionCover'
 import { gsap } from 'gsap'
+import { ScrollToPlugin } from 'gsap/ScrollToPlugin'
+
 import useWindowSize from '../hooks/useWindowSize'
 import Footer from './core/Footer'
 import { useLocation } from '@reach/router'
+// import { gsap } from 'gsap'
+
+gsap.registerPlugin( ScrollToPlugin)
 
 const Layout = ({ children, uri }) => {
   // console.log('USE LOCATION ========', useLocation)
@@ -33,6 +38,7 @@ const Layout = ({ children, uri }) => {
 
   useEffect(() => {
     isHomepage = uri === '/' ? true : false
+    gsap.to(window, { duration: 0.1, scrollTo: 0 })
   }, [])
 
   useEffect(() => {
