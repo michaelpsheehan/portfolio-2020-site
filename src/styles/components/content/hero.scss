@@ -1,17 +1,18 @@
 .c-hero {
-  // margin-top: -160px;
   @apply relative  w-full h-screen overflow-hidden;
-
-
+  
+  // margin-top: -114px;
+  
   &__media-content {
     @apply h-full w-full;
   }
-
+  
   &-image {
     @apply h-full w-full object-cover object-center absolute;
   }
-
+  
   &__content {
+    // margin-top: -114px;
     @apply text-white inset-0 z-30 absolute text-center h-full w-full flex flex-col justify-center items-center invisible;
   }
 

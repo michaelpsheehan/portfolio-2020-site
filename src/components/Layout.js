@@ -14,26 +14,9 @@ import { useLocation } from '@reach/router'
 gsap.registerPlugin( ScrollToPlugin)
 
 const Layout = ({ children, uri }) => {
-  // console.log('USE LOCATION ========', useLocation)
   const { pathname } = useLocation()
-  // console.log('PATH NAME +++', pathname)
-
-  // let isHomepage = uri === '/' ? true : false
   let isHomepage = pathname === '/' ? true : false
-  // console.log('isHOMEPAGE =-=-=___----   ', isHomepage)
-  // const data = useStaticQuery(graphql`
-  //   query SiteTitleQuery {
-  //     craft {
-  //       entries(section: "homepage") {
-  //         title
-  //         id
-  //       }
-  //     }
-  //   }
-  // `)
-
   const siteContainerEl = useRef(null)
-
   let windowSize = useWindowSize()
 
   useEffect(() => {
@@ -48,7 +31,6 @@ const Layout = ({ children, uri }) => {
   }, [isHomepage])
 
   return (
-    // windowSize &&
     <>
       <div className={`c-site-container`} ref={siteContainerEl}>
         <TransitionCover />

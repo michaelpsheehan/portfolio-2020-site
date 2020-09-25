@@ -102,12 +102,7 @@ if(  progress === 0 && this.state.isWordHovered === false) {
   this.resetLetters()
   
   } 
-  // else if( isActive === true & this.state.isWordHovered === true ) {
-  //   // this.handleWordHoverExit()
-  //   this.setState({
-  //     isWordHovered: false,
-  //   })
-  // }
+
 }
 
   animateTextOnScroll = (allWords, allLetters) => {
@@ -316,10 +311,6 @@ if(  progress === 0 && this.state.isWordHovered === false) {
         },
         '-=0.5'
       )
-
-      // .set(this.heroTextLineContainerEls, {
-      //   css: { overflow: 'visible' },
-      // })
   }
 
   componentWillUnmount() {
