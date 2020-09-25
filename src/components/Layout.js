@@ -5,6 +5,7 @@ import '../styles/main.scss'
 import TransitionCover from '../components/core/transitions/TransitionCover'
 import { gsap } from 'gsap'
 import useWindowSize from '../hooks/useWindowSize'
+import Footer from './core/Footer'
 import { useLocation } from '@reach/router'
 
 const Layout = ({ children, uri }) => {
@@ -40,24 +41,19 @@ const Layout = ({ children, uri }) => {
     tl.set(siteContainerEl.current, { css: { visibility: 'visible' } })
   }, [isHomepage])
 
-  // console.log('layout re rendered')
-
   return (
     // windowSize &&
     <>
       <div className={`c-site-container`} ref={siteContainerEl}>
         <TransitionCover />
-        {/* <Header siteTitle={data.site.siteMetadata.title} /> */}
         <SiteHead isHomepage={isHomepage} />
         <main
           className={`o-main-content overflow-x-hidden  ${isHomepage ? 'f-is-homepage' : ''}`}
         >
           {children}
         </main>
+        <Footer />
 
-        <footer className="mt-16 py-16 bg-brand-blue">
-          <div className="container text-white uppercase">Projects</div>
-        </footer>
       </div>
     </>
   )

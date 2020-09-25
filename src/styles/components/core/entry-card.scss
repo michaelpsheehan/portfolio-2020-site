@@ -5,11 +5,23 @@
   }
 
   &__text {
-    @apply py-8 px-4 bg-offwhite;
+    @apply py-4 px-4 bg-offwhite text-xs;
+
+    @screen sm {
+      @apply py-8;
+    }
+
+    @screen md {
+      @apply text-sm py-12;
+    }
   }
 
   &__overlay {
-    @apply absolute inset-0 w-full h-full  bg-brand-light-blue text-white opacity-0 transition duration-100;
+    @apply absolute inset-0 w-full h-full bg-brand-light-blue text-white opacity-0 transition duration-100;
+    
+          @screen md {
+            @apply text-base;
+          }
 
     &-content {
       @apply border py-4 px-16 flex flex-col justify-around text-center items-center h-full;

@@ -92,13 +92,18 @@ class HeroNew extends Component {
 
 
   handleWordTouchMobile() {
-    this.resetLetters(0.8, 0.5)
+    this.resetLetters(0.7, 0.5)
+    this.setState({
+      isWordHovered: false,
+    })
+
     console.log('MOBILE TOuch')
   }
 handleScrollUpdate(progress,  isActive) {
   
 if(  progress === 0 && this.state.isWordHovered === false) {
   this.resetLetters()
+  
   } 
   // else if( isActive === true & this.state.isWordHovered === true ) {
   //   // this.handleWordHoverExit()

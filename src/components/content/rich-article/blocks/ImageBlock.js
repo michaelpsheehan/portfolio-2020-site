@@ -1,5 +1,4 @@
 import React from 'react'
-import Section from '../../../core/Section'
 import Image from '../../../core/Image'
 
 const ImageBlock = ({ block, classes = '' }) => {
@@ -7,14 +6,11 @@ const ImageBlock = ({ block, classes = '' }) => {
   if (image === null || !image[0]) {
     return null
   }
+ 
+  const imageComponent = constrainImage ? <div class="container"> <Image classes={classes} image={image[0].optimizedImagesFullWidth} alt={imageCaption} /></div> :  <Image classes={classes} image={image[0].optimizedImagesFullWidth} alt={imageCaption} />
 
   return (
-    <Section
-      content={
-        <Image image={image[0].optimizedImagesFullWidth} alt={imageCaption} />
-      }
-      container={constrainImage}
-    />
+    imageComponent
   )
 }
 export default ImageBlock

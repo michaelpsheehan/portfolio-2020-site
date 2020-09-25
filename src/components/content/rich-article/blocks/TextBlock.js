@@ -3,9 +3,8 @@ import Section from '../../../core/Section'
 import Text from '../../../core/Text'
 
 const TextBlock = ({ block, classes = '' }) => (
-  <Section
-    content={<Text heading={block.heading} body={block.body} />}
-    container
-  />
+  <div className="container">
+    <Text heading={block.heading} body={block.body} />
+  </div>
 )
 export default TextBlock

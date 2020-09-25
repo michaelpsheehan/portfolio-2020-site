@@ -34,7 +34,7 @@ const EntryCard = ({ item, itemSection = '', classes = '' }) => {
               </div>
             </div>
             <div className="c-entry-card__text">
-              <h2 className="">{title}</h2>
+              <h2 className="mb-0">{title}</h2>
             </div>
           </>
         )}

@@ -1,9 +1,8 @@
 @tailwind base;
-@tailwind utilities;
 html {
   font-size: 19px;
-
 }
+
 body {
   @apply bg-background-gray overflow-x-hidden;
   overscroll-behaviour: none;
@@ -15,7 +14,6 @@ body {
 @import './components/core/site-container.scss';
 @import './components/site-head.scss';
 
-@tailwind components;
 @import './components/primary-nav.scss';
 @import './components/content/hero.scss';
 @import './components/content/page-title.scss';
@@ -36,3 +34,6 @@ body {
 @import './components/core/entry-card.scss';
 @import './components/core/form.scss';
 @import './components/core/page-transitions/transition-cover.scss';
+
+@tailwind utilities;
+@tailwind components;
