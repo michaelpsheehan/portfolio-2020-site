@@ -88,15 +88,6 @@ const SEO = ({ title, description, socialMeta }) => {
 
 export default SEO
 
-// SEO.propTypes = {
-//   title: PropTypes.string,
-//   description: PropTypes.string,
-// }
-
-// SEO.defaultProps = {
-//   title: null,
-//   description: null,
-// }
 
 const query = graphql`
   query SEOQuery {

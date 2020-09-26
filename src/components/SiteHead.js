@@ -7,8 +7,6 @@ import {
   useGlobalDispatchContext,
 } from '../context/globalContext'
 
-import ThemeButton from './ThemeButton'
-
 const SiteHead = ({ classes = '', isHomepage }) => {
   const dispatch = useGlobalDispatchContext()
   const { overlayStatus, currentUiStyle } = useGlobalStateContext()
@@ -41,7 +39,6 @@ const SiteHead = ({ classes = '', isHomepage }) => {
       >
         <div className="c-site-head__container container">
           <div className="c-site-head__components">
-            {/* <ThemeButton /> */}
             <SiteHeadBurger
               overlayStatus={overlayStatus}
               toggleOverlay={toggleOverlay}
