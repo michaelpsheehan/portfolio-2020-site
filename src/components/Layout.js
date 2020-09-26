@@ -5,13 +5,10 @@ import '../styles/main.scss'
 import TransitionCover from '../components/core/transitions/TransitionCover'
 import { gsap } from 'gsap'
 import { ScrollToPlugin } from 'gsap/ScrollToPlugin'
-
 import useWindowSize from '../hooks/useWindowSize'
-import Footer from './core/Footer'
+import SiteFoot from './core/SiteFoot'
 import { useLocation } from '@reach/router'
-// import { gsap } from 'gsap'
-
-gsap.registerPlugin( ScrollToPlugin)
+gsap.registerPlugin(ScrollToPlugin)
 
 const Layout = ({ children, uri }) => {
   const { pathname } = useLocation()
@@ -36,12 +33,13 @@ const Layout = ({ children, uri }) => {
         <TransitionCover />
         <SiteHead isHomepage={isHomepage} />
         <main
-          className={`o-main-content overflow-x-hidden  ${isHomepage ? 'f-is-homepage' : ''}`}
+          className={`o-main-content overflow-x-hidden  ${
+            isHomepage ? 'f-is-homepage' : ''
+          }`}
         >
           {children}
         </main>
-        <Footer />
-
+        <SiteFoot />
       </div>
     </>
   )

@@ -29,7 +29,7 @@ const ProjectsIndexPage = () => {
       )}
       {projects && (
         <Section
-        // classes="overflow-y-visible"
+          // classes="overflow-y-visible"
           content={
             <Grid
               items={finaleEntries}

@@ -36,7 +36,7 @@ class HeroNew extends Component {
     this.handleWordTouchMobile = this.handleWordTouchMobile.bind(this)
   }
 
-  resetLetters(delay = 0.01,  duration = 0.1) {
+  resetLetters(delay = 0.01, duration = 0.1) {
     this.allLetters.map((letter) => {
       gsap.to(letter, {
         delay: delay,
@@ -87,7 +87,6 @@ class HeroNew extends Component {
     })
   }
 
-
   handleWordTouchMobile() {
     this.resetLetters(0.7, 0.5)
     this.setState({
@@ -96,14 +95,11 @@ class HeroNew extends Component {
 
     console.log('MOBILE TOuch')
   }
-handleScrollUpdate(progress,  isActive) {
-  
-if(  progress === 0 && this.state.isWordHovered === false) {
-  this.resetLetters()
-  
-  } 
-
-}
+  handleScrollUpdate(progress, isActive) {
+    if (progress === 0 && this.state.isWordHovered === false) {
+      this.resetLetters()
+    }
+  }
 
   animateTextOnScroll = (allWords, allLetters) => {
     let flatWordsArray = []
@@ -123,7 +119,8 @@ if(  progress === 0 && this.state.isWordHovered === false) {
           start: 'top top',
           scrub: 0.1,
           trigger: this.heroEl.current,
-          onUpdate: ({ progress, direction, isActive }) => this.handleScrollUpdate(progress, isActive)
+          onUpdate: ({ progress, direction, isActive }) =>
+            this.handleScrollUpdate(progress, isActive),
           // markers: true,
         },
       })

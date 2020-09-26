@@ -92,7 +92,7 @@ const ContactPage = () => {
       })
   }
   useEffect(() => {
-    gsap.set(formRef.current, {delay: 0.2,autoAlpha: 1})
+    gsap.set(formRef.current, { delay: 0.2, autoAlpha: 1 })
     const tl = staggerItemsIn(formRef.current.children)
     return () => {
       tl.kill()

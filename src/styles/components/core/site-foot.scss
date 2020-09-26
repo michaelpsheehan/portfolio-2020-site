@@ -1,0 +1,8 @@
+.c-site-foot {
+  @apply py-12 bg-brand-blue mt-12;
+  height:114px;
+
+  @screen md {
+    @apply mt-24;
+  }
+}

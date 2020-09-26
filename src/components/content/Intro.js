@@ -16,10 +16,20 @@ const Intro = ({
     />
     <div className="c-intro__buttons">
       {viewSiteLink && (
-        <Button classes="mb-4 md:mb-0 " text="Visit Site" url={viewSiteLink} externalLink />
+        <Button
+          classes="mb-4 md:mb-0 "
+          text="Visit Site"
+          url={viewSiteLink}
+          externalLink
+        />
       )}
       {viewCodeLink && (
-        <Button classes="mb-4 md:mb-0 " text="View Code" url={viewCodeLink} externalLink />
+        <Button
+          classes="mb-4 md:mb-0 "
+          text="View Code"
+          url={viewCodeLink}
+          externalLink
+        />
       )}
     </div>
   </div>

@@ -1,0 +1,7 @@
+.c-social-icons {
+  @apply flex items-center justify-center; 
+  &__icon {
+    @apply mx-8;
+    fill: white;
+  }
+}
