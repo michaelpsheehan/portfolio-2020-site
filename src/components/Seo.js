@@ -66,7 +66,7 @@ const SEO = ({ title, description, socialMeta }) => {
       <meta name="twitter:card" content="summary_large_image" />
 
       {twitterUsername && (
-        <meta name="twitter:creator" content={twitterUsername} />
+        <meta name="twitter:creator" content={`@${twitterUsername}`} />
       )}
 
       {twitter && twitter.title && (
