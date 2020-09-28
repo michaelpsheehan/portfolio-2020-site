@@ -12,10 +12,10 @@ import RichArticle from '../../components/content/rich-article/RichArticle'
 import staggerItemsIn from '../../animations/staggerItemsIn'
 
 const pageTemplate = (obj) => {
-  // console.log('index obj==', obj)
   const {
     title,
-    projectType,
+    projectTypeLabel,
+    projectTypeValue,
     introHeading,
     introBody,
     technologyentries,
@@ -31,17 +31,22 @@ const pageTemplate = (obj) => {
     ? heroImage[0].optimizedImagesFullWidth
     : null
 
-  const currentProjectType =
-    projectType === 'Demo Project' ? (
-      projectType
-    ) : (
+  let currentProjectType
+
+  if (projectTypeLabel === 'Portfolio') {
+    currentProjectType === null
+  } else if (projectTypeLabel === 'Demo Project') {
+    currentProjectType = <div>{projectTypeLabel}</div>
+  } else {
+    currentProjectType = (
       <div>
         Developed while at{' '}
-        <a className="underline" href="https://www.google.com" target="_blank">
-          {projectType}
+        <a className="underline" href={projectTypeValue} target="_blank">
+          {projectTypeLabel}
         </a>
       </div>
     )
+  }
 
   const projectEntryRef = useRef(null)
 
@@ -129,7 +134,9 @@ export const projectEntryQuery = graphql`
         postDate
         title
         ... on Craft_project_project_Entry {
-          projectType(label: true)
+          # projectType(label: true)
+          projectTypeLabel: projectType(label: true)
+          projectTypeValue: projectType(label: false)
           thumbnailDescription
           introHeading
           introBody

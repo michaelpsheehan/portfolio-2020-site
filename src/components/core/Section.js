@@ -36,9 +36,9 @@ const Section = ({ content, container, isHomepage, classes = '' }) => {
     }
   }
 
-  useEffect(()=> {
+  useEffect(() => {
     setUiLight()
-  },[])
+  }, [])
 
   useEffect(() => {
     let scroller = null

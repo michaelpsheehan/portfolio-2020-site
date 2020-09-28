@@ -8,7 +8,7 @@ const ImageBlock = ({ block, classes = '' }) => {
   }
 
   const imageComponent = constrainImage ? (
-    <div class="container">
+    <div className="container">
       {' '}
       <Image
         classes={classes}

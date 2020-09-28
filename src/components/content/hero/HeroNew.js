@@ -333,7 +333,7 @@ class HeroNew extends Component {
         <div className="c-hero__content" ref={this.heroContentEl}>
           {updatedHeroTextBody && (
             <>
-              <div className="c-hero__text ">{updatedHeroTextBody}</div>
+              <h1 className="c-hero__text ">{updatedHeroTextBody}</h1>
             </>
           )}
           <div className="c-hero__buttons">

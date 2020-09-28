@@ -1,10 +1,14 @@
 import React from 'react'
 
 const Text = ({ heading, body, forwardedRef, classes = '' }) => {
+  // console.log('text body ===', body)
   return (
     <div className={`c-text ${classes}`} ref={forwardedRef}>
       <h2 className="c-text__heading">{heading}</h2>
-      <div className="c-text__body">{body}</div>
+      <div
+        className="c-text__body"
+        dangerouslySetInnerHTML={{ __html: body }}
+      />
     </div>
   )
 }

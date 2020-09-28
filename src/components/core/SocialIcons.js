@@ -5,10 +5,6 @@ import { twitterIcon, linkedInIcon, githubIcon } from '../../icons/socialIcons'
 const SocialIcons = ({ twitter, linkedIn, github }) => {
   const data = useStaticQuery(query)
   const { twitterUsername, linkedinUrl, githubUrl } = data.craft.globalSet
-  console.log('social icon data', data)
-  console.log('twitter url ==', twitterUsername)
-  console.log('linkedIN url ==', linkedinUrl)
-  console.log('github url ==', githubUrl)
 
   return (
     <div className="c-social-icons">

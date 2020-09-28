@@ -88,7 +88,6 @@ const SEO = ({ title, description, socialMeta }) => {
 
 export default SEO
 
-
 const query = graphql`
   query SEOQuery {
     site {

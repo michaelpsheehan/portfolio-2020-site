@@ -17,7 +17,7 @@ const Layout = ({ children, uri }) => {
   let windowSize = useWindowSize()
 
   useEffect(() => {
-    isHomepage = uri === '/' ? true : false
+    // isHomepage = uri === '/' ? true : false
     gsap.to(window, { duration: 0.1, scrollTo: 0 })
   }, [])
 

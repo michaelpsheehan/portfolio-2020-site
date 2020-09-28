@@ -35,7 +35,7 @@ const LottieAnimation = ({
   return (
     <div className={`c-lottie-animation ${classes}`} ref={lottieAnimationRef}>
       <Lottie
-        className="cursor-auto border"
+        className="cursor-auto"
         options={{
           animationData: lottieAnimationData,
           loop: shouldLoop,

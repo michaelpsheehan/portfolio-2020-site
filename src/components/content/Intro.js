@@ -10,10 +10,7 @@ const Intro = ({
   classes = '',
 }) => (
   <div className={`c-intro ${classes}`}>
-    <Text
-      //  heading={introHeading}
-      body={introBody}
-    />
+    <Text heading={introHeading} body={introBody} />
     <div className="c-intro__buttons">
       {viewSiteLink && (
         <Button

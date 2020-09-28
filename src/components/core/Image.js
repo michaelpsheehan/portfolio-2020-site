@@ -36,7 +36,7 @@ const Image = ({ image, alt = '', classes = '' }) => {
   // ) :
   const imageComponent = (
     <img
-      className={`c-image w-full lazyload ${classes}`}
+      className={`c-image shadow-2xl w-full lazyload ${classes}`}
       sizes="100vw"
       src={image.placeholderImage}
       data-src={`${siteUrl}${image.src}`}
