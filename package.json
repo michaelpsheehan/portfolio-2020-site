@@ -26,6 +26,7 @@
     "gatsby-source-graphql": "^2.7.4",
     "gatsby-transformer-sharp": "^2.5.12",
     "gsap": "^3.5.1",
+    "hls.js": "^0.14.13",
     "lazysizes": "^5.2.2",
     "lottie-react-web": "^2.2.2",
     "node-sass": "^4.14.1",
@@ -33,6 +34,7 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-helmet": "^6.1.0",
+    "react-player": "^2.6.2",
     "react-refresh": "^0.8.3",
     "react-three-fiber": "^4.2.21",
     "three": "^0.120.1"

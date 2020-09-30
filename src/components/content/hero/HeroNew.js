@@ -60,10 +60,10 @@ class HeroNew extends Component {
     letters.forEach((letter) => {
       gsap.to(letter, {
         duration: 0.3,
-        y: gsap.utils.random(-50, 50),
-        x: gsap.utils.random(-50, 50),
+        y: gsap.utils.random(-25, 25),
+        x: gsap.utils.random(-25, 25),
         skew: gsap.utils.random(0, 2),
-        rotation: gsap.utils.random(-120, 120),
+        rotation: gsap.utils.random(-60, 60),
       })
     })
   }

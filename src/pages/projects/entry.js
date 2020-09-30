@@ -33,6 +33,8 @@ const pageTemplate = (obj) => {
 
   let currentProjectType
 
+  console.log('rich article --', richArticle)
+
   if (projectTypeLabel === 'Portfolio') {
     currentProjectType === null
   } else if (projectTypeLabel === 'Demo Project') {
@@ -177,6 +179,18 @@ export const projectEntryQuery = graphql`
           }
 
           richArticle {
+            ... on Craft_richArticle_video_BlockType {
+            id
+            typeHandle
+            video {
+              ... on Craft_videos_Asset {
+                id
+                uri
+                url
+              }
+            }
+          }
+            
             ... on Craft_richArticle_text_BlockType {
               id
               typeHandle
