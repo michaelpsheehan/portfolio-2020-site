@@ -182,6 +182,7 @@ export const projectEntryQuery = graphql`
             ... on Craft_richArticle_video_BlockType {
               id
               typeHandle
+              isAmbientVideo
               video {
                 ... on Craft_videos_Asset {
                   id

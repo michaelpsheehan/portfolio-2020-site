@@ -4,8 +4,8 @@ import { Player, ControlBar, Shortcut } from 'video-react'
 
 const Video = ({
   videoUrl,
-  loopSilent,
-  playing,
+  isAmbientVideo,
+  autoPlay,
   loop,
   muted,
   classes = '',
@@ -30,17 +30,17 @@ const Video = ({
     <Player
       fluid
       playsInline
-      autoPlay
-      loop
-      muted
+      autoPlay={autoPlay}
+      loop={loop}
+      muted={muted}
       preload="auto"
       className="shadow-2xl"
       width="100%"
       height="auto"
     >
       <source src={videoSrc} />
-      <ControlBar disabled />
-      {loopSilent && shortcutEl}
+      <ControlBar disabled={isAmbientVideo} />
+      {isAmbientVideo && shortcutEl}
     </Player>
   )
 }
