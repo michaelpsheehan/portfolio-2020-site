@@ -7,6 +7,10 @@ body {
   @apply bg-background-gray overflow-x-hidden;
   overscroll-behaviour: none;
 }
+
+
+
+@import './external/external-libraries.scss';
 @import './elements/text.scss';
 @import './objects/container.scss';
 @import './objects/main-content.scss';
@@ -35,7 +39,10 @@ body {
 @import './components/core/grid.scss';
 @import './components/core/entry-card.scss';
 @import './components/core/form.scss';
+@import './components/core/video.scss';
 @import './components/core/page-transitions/transition-cover.scss';
+// import '~video-react/dist/video-react.css'; // import css
+
 
 @tailwind utilities;
 @tailwind components;

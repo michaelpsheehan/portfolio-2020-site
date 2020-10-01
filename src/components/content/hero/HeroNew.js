@@ -50,7 +50,7 @@ class HeroNew extends Component {
   }
 
   handleWordHover(e) {
-    console.log('event ==', e)
+    // console.log('event ==', e)
     this.setState({
       isWordHovered: true,
     })
@@ -73,7 +73,7 @@ class HeroNew extends Component {
       isWordHovered: false,
     })
 
-    console.log('This state on leave ==', this.state)
+    // console.log('This state on leave ==', this.state)
     let word = e.currentTarget
     let letters = [...word.children]
     letters.forEach((letter) => {
@@ -93,7 +93,7 @@ class HeroNew extends Component {
       isWordHovered: false,
     })
 
-    console.log('MOBILE TOuch')
+    // console.log('MOBILE TOuch')
   }
   handleScrollUpdate(progress, isActive) {
     if (progress === 0 && this.state.isWordHovered === false) {

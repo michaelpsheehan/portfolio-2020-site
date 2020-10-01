@@ -90,7 +90,7 @@ async function createHomepage({ graphql, actions }) {
     path: '/',
     component: require.resolve('./src/pages/HomeTemplate.js'),
     context: {
-      richArticle: updatedRichArticle || null,
+      // richArticle: updatedRichArticle || null,
     },
   })
 }
@@ -98,7 +98,7 @@ async function createHomepage({ graphql, actions }) {
 
 exports.onCreateNode = (obj) => {
   if (obj.node.path === '/') {
-    console.log('page created ------', obj)
+    // console.log('page created ------', obj)
   }
 }
 

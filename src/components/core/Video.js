@@ -1,21 +1,50 @@
-import React, {useEffect} from 'react'
+import React, { useEffect, useRef } from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
-import ReactPlayer from 'react-player/lazy'
+import { Player, ControlBar, Shortcut } from 'video-react'
 
-
-const Video = ({ videoUrl, playing, loop, muted, classes = '' }) => {
+const Video = ({
+  videoUrl,
+  loopSilent,
+  playing,
+  loop,
+  muted,
+  classes = '',
+}) => {
   const { site } = useStaticQuery(query)
   const { siteUrl } = site.siteMetadata
+  const videoSrc = siteUrl + videoUrl
+  const videoRef = useRef(null)
+  const newShortcuts = [
+    {
+      //  disables fullscreen shorcut with the f key. Is used for background looping videos that should not be controllable
+      keyCode: 70, // f
+      handle: () => {},
+    },
+  ]
 
-
-console.log('vid render')
-  return (
-      <ReactPlayer className="c-video shadow-2xl" url={siteUrl + videoUrl }  playing={playing} loop={loop} muted={muted} width="100%" height="auto" />
+  const shortcutEl = (
+    <Shortcut clickable={false} dblclickable={false} shortcuts={newShortcuts} />
   )
 
+  return (
+    <Player
+      fluid
+      playsInline
+      autoPlay
+      loop
+      muted
+      preload="auto"
+      className="shadow-2xl"
+      width="100%"
+      height="auto"
+    >
+      <source src={videoSrc} />
+      <ControlBar disabled />
+      {loopSilent && shortcutEl}
+    </Player>
+  )
 }
 export default Video
-
 
 const query = graphql`
   query videoQuery {
