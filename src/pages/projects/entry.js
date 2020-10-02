@@ -114,6 +114,12 @@ const pageTemplate = (obj) => {
           <RichArticle richArticle={richArticle} siteUrl={siteUrl} />
         )}
       </div>
+      <Section
+          content={
+        <div>testing button</div>
+          }
+          container
+        />
     </>
   )
 }

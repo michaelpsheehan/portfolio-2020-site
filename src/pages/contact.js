@@ -10,7 +10,7 @@ const ContactPage = () => {
   const pageData = useStaticQuery(graphql`
     query contactQuery {
       craft {
-        entry {
+        entry: entries(id: "671") {
           ... on Craft_contact_contact_Entry {
             id
             title
@@ -46,22 +46,12 @@ const ContactPage = () => {
             }
           }
         }
-        globalSets {
-          ... on Craft_socialLinks_GlobalSet {
-            id
-            name
-            twitterUsername
-            linkedinUrl
-            handle
-          }
-        }
       }
     }
   `)
 
   const { entry, globalSets } = pageData.craft
-  const seoMeta = entry.seoMeta
-  const [fallbacks, socialLinks] = globalSets
+  const seoMeta =  entry.length ?  entry[0].seoMeta : null
 
   const formRef = useRef(null)
   const [formState, setFormState] = useState({
@@ -109,12 +99,12 @@ const ContactPage = () => {
 
   return (
     <>
-      <SEO
-        title={seoMeta.title || title}
-        description={seoMeta.description}
-        socialMeta={seoMeta.social}
-        twitterHandle={socialLinks.twitterUsername}
-      />
+       <SEO
+       title={seoMeta ? seoMeta.title : null}
+       description={seoMeta ? seoMeta.description : null}
+       socialMeta={seoMeta ? seoMeta.social : null}
+       /> 
+      
       <Section
         container
         content={<PageTitle title="Contact Me" underline subtitle />}
