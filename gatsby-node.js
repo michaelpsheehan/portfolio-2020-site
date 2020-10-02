@@ -90,7 +90,7 @@ async function createHomepage({ graphql, actions }) {
     path: '/',
     component: require.resolve('./src/pages/HomeTemplate.js'),
     context: {
-      // richArticle: updatedRichArticle || null,
+      richArticle: updatedRichArticle || null,
     },
   })
 }
