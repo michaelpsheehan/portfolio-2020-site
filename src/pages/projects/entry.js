@@ -10,6 +10,7 @@ import HeroImage from '../../components/content/hero/HeroImage'
 import Intro from '../../components/content/Intro'
 import RichArticle from '../../components/content/rich-article/RichArticle'
 import staggerItemsIn from '../../animations/staggerItemsIn'
+import Button from '../../components/core/Button'
 
 const pageTemplate = (obj) => {
   const {
@@ -116,7 +117,9 @@ const pageTemplate = (obj) => {
       </div>
       <Section
           content={
-        <div>testing button</div>
+            <div className="flex justify-center">
+              <Button text="More Projects" url="/projects" classes="c-button--ghost" />
+            </div>
           }
           container
         />
