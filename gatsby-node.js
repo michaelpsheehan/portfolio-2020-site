@@ -52,7 +52,7 @@ async function createHomepage({ graphql, actions }) {
                     optimizedImagesFullWidth {
                       focalPoint
                       lightness
-                      placeholder
+                      placeholderImage
                       src
                       srcUrls
                       srcWebp

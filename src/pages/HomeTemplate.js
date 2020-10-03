@@ -143,7 +143,7 @@ export const homeQuery = graphql`
               optimizedImagesFullWidth {
                 ... on Craft_optimizedImagesFullWidth_OptimizedImages {
                   focalPoint
-                  placeholder
+                  placeholderImage
                   src
                   srcUrls
                   srcWebp

@@ -96,8 +96,8 @@ const Sphere = ({ spherePosition, userScale = 1.5 }) => {
 
     // only rotate the sphere automatically when it is not hovered
     if (!hovered) {
-      meshRef.current.rotation.z += 0.001
-      meshRef.current.rotation.x += 0.001
+      meshRef.current.rotation.z += 0.0005
+      meshRef.current.rotation.x += 0.0005
       meshRef.current.rotation.y += 0.003
     }
   })
@@ -114,7 +114,7 @@ const Sphere = ({ spherePosition, userScale = 1.5 }) => {
       >
         <icosahedronBufferGeometry
           attach="geometry"
-          args={[1, 4]}
+          args={[1, 30]}
           ref={geoRef}
           uniforms={{
             explosion: { type: 'f', value: 1 },
@@ -141,6 +141,8 @@ const Sphere = ({ spherePosition, userScale = 1.5 }) => {
     </>
   )
 }
+
+
 
 // don't do 3D things during ssr, check browser exists
 const isBrowser = typeof window !== 'undefined'

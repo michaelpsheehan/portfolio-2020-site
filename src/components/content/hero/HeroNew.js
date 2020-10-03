@@ -1,9 +1,9 @@
 import React, { Component, useRef, useEffect, createRef } from 'react'
 import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { ScrollTrigger} from 'gsap/ScrollTrigger'
 import Button from '../../core/Button'
 import ScrollIcon from '../../core/ScrollIcon'
-gsap.registerPlugin(ScrollTrigger)
+gsap.registerPlugin( ScrollTrigger);
 
 class HeroNew extends Component {
   constructor() {
@@ -43,14 +43,13 @@ class HeroNew extends Component {
         duration: duration,
         y: 0,
         x: 0,
-        skew: 0,
+        skewY: 0,
         rotation: 0,
       })
     })
   }
 
   handleWordHover(e) {
-    // console.log('event ==', e)
     this.setState({
       isWordHovered: true,
     })
@@ -62,7 +61,7 @@ class HeroNew extends Component {
         duration: 0.3,
         y: gsap.utils.random(-6, 6),
         x: gsap.utils.random(-6, 6),
-        skew: gsap.utils.random(1, 2),
+        skewY: gsap.utils.random(1, 2, 1),
         rotation: gsap.utils.random(-30, 30),
       })
     })
@@ -81,7 +80,7 @@ class HeroNew extends Component {
         duration: 0.3,
         y: 0,
         x: 0,
-        skew: 0,
+        skewY: 0,
         rotation: 0,
       })
     })
@@ -93,7 +92,6 @@ class HeroNew extends Component {
       isWordHovered: false,
     })
 
-    // console.log('MOBILE TOuch')
   }
   handleScrollUpdate(progress, isActive) {
     if (progress === 0 && this.state.isWordHovered === false) {
@@ -268,7 +266,7 @@ class HeroNew extends Component {
       this.tl.set(letter, {
         y: gsap.utils.random(-400, 400),
         x: gsap.utils.random(-400, 400),
-        skew: gsap.utils.random(0, 9),
+        skewY: gsap.utils.random(0, 9, 1),
         rotation: gsap.utils.random(-360, 360),
         opacity: 0,
       })

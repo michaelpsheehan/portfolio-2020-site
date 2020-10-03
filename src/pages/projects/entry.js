@@ -142,7 +142,6 @@ export const projectEntryQuery = graphql`
         postDate
         title
         ... on Craft_project_project_Entry {
-          # projectType(label: true)
           projectTypeLabel: projectType(label: true)
           projectTypeValue: projectType(label: false)
           thumbnailDescription
@@ -214,7 +213,7 @@ export const projectEntryQuery = graphql`
                   id
                   optimizedImagesFullWidth {
                     focalPoint
-                    placeholder
+                    placeholderImage
                     src
                     srcUrls
                     srcWebp
@@ -231,15 +230,13 @@ export const projectEntryQuery = graphql`
             title
           }
 
-          # heroImage(optimizedImagesFullWidth: "") {
           heroImage(optimizedImagesFullWidth: "") {
             url
             ... on Craft_images_Asset {
               id
-              # optimizedImagesFullWidth {
               optimizedImagesFullWidth {
                 focalPoint
-                placeholder
+                placeholderImage
                 src
                 srcUrls
                 srcWebp
