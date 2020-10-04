@@ -61,7 +61,7 @@ const webGLBlock = ({ block, sectionColor, classes = '' }) => {
       ref={scrollContainerRef}
     >
       <div
-        className={`c-webgl py-16 md:py-0 md:flex md:items-center md:h-screen  relative `}
+        className={`c-webgl md:flex md:items-center md:h-screen  relative `}
       >
         <div className="container">
           <div className={`${reversed ? 'md:flex md:flex-row-reverse' : ''} `}>
