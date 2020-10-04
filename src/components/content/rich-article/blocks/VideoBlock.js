@@ -7,15 +7,19 @@ const VideoBlock = ({ block, classes = '' }) => {
   }
 
   const videoUrl = block.video[0].url
-  const {isAmbientVideo} = block
+  const { isAmbientVideo } = block
   console.log('is ambient video ===', block.isAmbientVideo)
 
   return (
     <div className="container">
-      <Video videoUrl={videoUrl} autoPlay={isAmbientVideo} loop={isAmbientVideo} muted={isAmbientVideo} isAmbientVideo={isAmbientVideo} />
+      <Video
+        videoUrl={videoUrl}
+        autoPlay={isAmbientVideo}
+        loop={isAmbientVideo}
+        muted={isAmbientVideo}
+        isAmbientVideo={isAmbientVideo}
+      />
     </div>
   )
 }
 export default VideoBlock
-
-

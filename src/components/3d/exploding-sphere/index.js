@@ -142,8 +142,6 @@ const Sphere = ({ spherePosition, userScale = 1.5 }) => {
   )
 }
 
-
-
 // don't do 3D things during ssr, check browser exists
 const isBrowser = typeof window !== 'undefined'
 
@@ -168,7 +166,7 @@ export default function BreakingSphere({ userScale }) {
     <>
       {isBrowser && (
         <>
-          <Canvas camera={{fov: 70}}>
+          <Canvas camera={{ fov: 70 }}>
             <Sphere userScale={userScale} spherePosition={spherePosition} />
             <OrbitControls
               mouseButtons={{

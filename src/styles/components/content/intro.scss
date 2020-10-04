@@ -1,10 +1,6 @@
 .c-intro {
   @apply max-w-3xl mx-auto;
-  // p {
-  //   a {
-  //     @apply underline text-brand-blue;
-  //   }
-  // }
+  
   &__buttons {
     @apply flex flex-col mx-auto w-2/3 mt-16;
 

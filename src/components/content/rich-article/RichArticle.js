@@ -30,13 +30,6 @@ const RichArticle = ({ richArticle, isHomepage, classes = '' }) => {
 
   const richArticleRef = useRef(null)
 
-  // useEffect(()=> {
-  //   const tl = staggerItemsIn(richArticleRef.current.children,)
-  //   return () => {
-  //     tl.kill()
-  //   }
-  //   },[])
-
   return (
     richArticle && (
       <article className={`c-rich-article ${classes}`} ref={richArticleRef}>

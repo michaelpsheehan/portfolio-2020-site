@@ -7,7 +7,7 @@ const Image = ({ image, alt = '', classes = '' }) => {
   if (image === null) {
     return
   }
-  
+
   const { siteUrl } = getSiteUrl()
 
   // formats the srcset from imageOptimize to work with gatsby by adding the craft backend url to the start of each src

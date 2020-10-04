@@ -70,7 +70,7 @@ const HomeTemplate = ({ data, pageContext }) => {
 
       {entry && (
         <HeroNew
-          classes="c-hero--dark-bg c-hero--animated-bg"
+          classes="c-hero--dark-bg"
           heroContent={{
             heroTextBody: entry.heroTextBody,
             primaryButton: {

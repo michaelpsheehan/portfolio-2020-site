@@ -1,9 +1,9 @@
 import React, { Component, useRef, useEffect, createRef } from 'react'
 import { gsap } from 'gsap'
-import { ScrollTrigger} from 'gsap/ScrollTrigger'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Button from '../../core/Button'
 import ScrollIcon from '../../core/ScrollIcon'
-gsap.registerPlugin( ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger)
 
 class HeroNew extends Component {
   constructor() {
@@ -17,7 +17,6 @@ class HeroNew extends Component {
     this.heroTextWordEls = []
     this.heroTextLetterEls = []
     this.heroContentEl = createRef()
-    this.heroTextLineContainerEls = []
     this.heroSecondaryButtonEl = createRef()
     this.heroPrimaryButtonEl = createRef()
     this.heroScrollIconEl = createRef()
@@ -91,7 +90,6 @@ class HeroNew extends Component {
     this.setState({
       isWordHovered: false,
     })
-
   }
   handleScrollUpdate(progress, isActive) {
     if (progress === 0 && this.state.isWordHovered === false) {
@@ -211,18 +209,12 @@ class HeroNew extends Component {
         })
 
         return (
-          // maintain the line breaks from the CMS. wrap the array of words in each line of text
           <span
-            className="c-hero__line-container  relative  w-full block"
+            className="c-hero__text-line block"
             key={index}
-            ref={(el) => (this.heroTextLineContainerEls[index] = el)}
+            ref={(el) => (this.heroTextLineEls[index] = el)}
           >
-            <span
-              className="c-hero__text-line block"
-              ref={(el) => (this.heroTextLineEls[index] = el)}
-            >
-              {words}
-            </span>
+            {words}
           </span>
         )
       })

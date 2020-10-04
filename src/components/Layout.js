@@ -33,7 +33,7 @@ const Layout = ({ children, uri }) => {
         <TransitionCover />
         <SiteHead isHomepage={isHomepage} />
         <main
-          className={`o-main-content overflow-x-hidden  ${
+          className={`o-main-content overflow-x-hidden ${
             isHomepage ? 'f-is-homepage' : ''
           }`}
         >

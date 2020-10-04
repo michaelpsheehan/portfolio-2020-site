@@ -116,13 +116,17 @@ const pageTemplate = (obj) => {
         )}
       </div>
       <Section
-          content={
-            <div className="flex justify-center">
-              <Button text="More Projects" url="/projects" classes="c-button--ghost" />
-            </div>
-          }
-          container
-        />
+        content={
+          <div className="flex justify-center">
+            <Button
+              text="More Projects"
+              url="/projects"
+              classes="c-button--ghost"
+            />
+          </div>
+        }
+        container
+      />
     </>
   )
 }

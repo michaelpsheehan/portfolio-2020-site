@@ -51,7 +51,7 @@ const ContactPage = () => {
   `)
 
   const { entry, globalSets } = pageData.craft
-  const seoMeta =  entry.length ?  entry[0].seoMeta : null
+  const seoMeta = entry.length ? entry[0].seoMeta : null
 
   const formRef = useRef(null)
   const [formState, setFormState] = useState({
@@ -99,12 +99,12 @@ const ContactPage = () => {
 
   return (
     <>
-       <SEO
-       title={seoMeta ? seoMeta.title : null}
-       description={seoMeta ? seoMeta.description : null}
-       socialMeta={seoMeta ? seoMeta.social : null}
-       /> 
-      
+      <SEO
+        title={seoMeta ? seoMeta.title : null}
+        description={seoMeta ? seoMeta.description : null}
+        socialMeta={seoMeta ? seoMeta.social : null}
+      />
+
       <Section
         container
         content={<PageTitle title="Contact Me" underline subtitle />}

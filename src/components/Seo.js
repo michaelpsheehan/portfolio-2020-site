@@ -32,8 +32,8 @@ const SEO = ({ title, description, socialMeta }) => {
     url: `${siteUrl}${pathname}`,
   }
 
-  let facebook = socialMeta ? socialMeta.facebook : null;
-  let twitter = socialMeta ? socialMeta.twitter: null
+  let facebook = socialMeta ? socialMeta.facebook : null
+  let twitter = socialMeta ? socialMeta.twitter : null
 
   return (
     <Helmet title={seoData.title}>
