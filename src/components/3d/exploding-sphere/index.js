@@ -89,7 +89,7 @@ const Sphere = ({ spherePosition, userScale = 1.5 }) => {
 
     // the explosion value is different depending if the hovered state is true
     matRef.current.uniforms.explosion.value =
-      Math.sin(clock.elapsedTime * 0.8 - Math.PI / 4) * (hovered ? 0.002 : 0.2)
+      Math.sin(clock.elapsedTime * 0.8 - Math.PI / 4) * (hovered ? 0.15 : 0.002)
 
     matRef.current.uniforms.time.value =
       (clock.elapsedTime * 0.8 - Math.PI / 4) * 0.2 + 0.2
@@ -114,7 +114,7 @@ const Sphere = ({ spherePosition, userScale = 1.5 }) => {
       >
         <icosahedronBufferGeometry
           attach="geometry"
-          args={[1, 30]}
+          args={[1, 5]}
           ref={geoRef}
           uniforms={{
             explosion: { type: 'f', value: 1 },
@@ -168,7 +168,7 @@ export default function BreakingSphere({ userScale }) {
     <>
       {isBrowser && (
         <>
-          <Canvas>
+          <Canvas camera={{fov: 70}}>
             <Sphere userScale={userScale} spherePosition={spherePosition} />
             <OrbitControls
               mouseButtons={{
