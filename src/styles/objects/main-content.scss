@@ -1,19 +1,10 @@
 .o-main-content {
   @apply relative flex-grow;
-  // margin-top: 114px;
   padding-top: 114px;
-  // background-color: green;
-  // &:not(.f-is-homepage) {
-  //   padding-top: 120px;
-    
-  // }
 }
-
 
 .f-is-homepage {
   &.o-main-content {
-    // margin-top:0;
     padding-top:0;
-    // background-color:red;
   }
 }

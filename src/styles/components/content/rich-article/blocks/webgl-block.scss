@@ -1,0 +1,8 @@
+.c-webgl-block {
+  @apply py-16 overflow-hidden;
+
+  @screen md {
+      @apply py-0;
+  }
+
+}

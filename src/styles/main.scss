@@ -26,8 +26,9 @@ body {
 @import './components/3d/exploding-sphere.scss';
 @import './components/content/webgl.scss';
 @import './components/content/rich-article.scss';
+@import './components/content/rich-article/blocks/animation-block.scss';
+@import './components/content/rich-article/blocks/webgl-block.scss';
 @import './components/content/split-section.scss';
-@import './components/content/rich-article/animation-block.scss';
 @import './components/core/text.scss';
 @import './components/core/scroll-icon.scss';
 @import './components/core/intro-overlay.scss';
@@ -41,7 +42,6 @@ body {
 @import './components/core/form.scss';
 @import './components/core/video.scss';
 @import './components/core/page-transitions/transition-cover.scss';
-// import '~video-react/dist/video-react.css'; // import css
 
 
 @tailwind utilities;

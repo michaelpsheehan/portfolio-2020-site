@@ -15,7 +15,7 @@ const TechnologyList = ({ currentList }) => {
       <div className="c-technologies__list" ref={technologyListRef}>
         {currentList &&
           currentList.map((ListItem) => (
-            <div className="px-2  md:mb-1 md:mx-4" key={ListItem.id}>
+            <div className="c-technologies__list-item" key={ListItem.id}>
               {ListItem.title}
             </div>
           ))}
