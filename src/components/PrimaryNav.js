@@ -3,6 +3,7 @@ import { gsap } from 'gsap'
 import { ScrollToPlugin } from 'gsap/ScrollToPlugin'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import MenuItem from './MenuItem'
+import Overlay from './core/Overlay'
 gsap.registerPlugin(ScrollToPlugin, ScrollTrigger)
 
 class PrimaryNav extends Component {
@@ -41,11 +42,7 @@ class PrimaryNav extends Component {
 
     return isOverlayOpen ? (
       <>
-        <div
-          className={`c-primary-nav__background ${
-            isOverlayOpen ? 'c-primary-nav__background--open' : ''
-          } `}
-        >
+        <Overlay classes={`${isOverlayOpen ? 'c-overlay--open' : '' }`}>
           <ul className="c-primary-nav__list" ref={this.menuEl}>
             {this.links.map((item, index) => (
               <MenuItem
@@ -56,7 +53,7 @@ class PrimaryNav extends Component {
               />
             ))}
           </ul>
-        </div>
+          </Overlay>
       </>
     ) : null
   }

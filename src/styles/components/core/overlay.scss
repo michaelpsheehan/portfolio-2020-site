@@ -1,0 +1,6 @@
+.c-overlay {
+    @apply bg-brand-light-blue h-full w-full fixed z-10 inset-y-0 inset-x-0 opacity-0 pointer-events-none;
+    &--open {
+      @apply opacity-100 pointer-events-auto;
+    }
+}
