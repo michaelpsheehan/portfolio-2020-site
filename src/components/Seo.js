@@ -84,10 +84,10 @@ const SEO = ({ title, description, socialMeta }) => {
         />
       )}
 
-      <meta content="en_GB" property="og:locale" />
+      {/* <meta content="en_GB" property="og:locale" />
       <meta content="website" property="og:type" />
       <meta content="1200" property="og:image:width" />
-      <meta content="630" property="og:image:height" />
+      <meta content="630" property="og:image:height" /> */}
     </Helmet>
   )
 }
