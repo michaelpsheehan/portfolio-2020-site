@@ -1,4 +1,4 @@
-import React, { Component, useRef, useEffect, createRef } from 'react'
+import React, { Component, createRef } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Button from '../../core/Button'

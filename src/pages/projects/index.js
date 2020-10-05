@@ -5,7 +5,6 @@ import PageTitle from '../../components/content/PageTitle'
 import Section from '../../components/core/Section'
 import Grid from '../../components/core/Grid'
 import EntryCard from '../../components/core/EntryCard'
-import IndexPage from '../../components/core/IndexPage'
 import mergeEntries from '../../helpers/mergeEntries'
 const ProjectsIndexPage = () => {
   const { projects, entry, siteUrl } = projectsIndexData()

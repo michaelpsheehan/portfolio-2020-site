@@ -1,12 +1,10 @@
-import React, { Component, useRef, useEffect, createRef } from 'react'
+import React, { useRef } from 'react'
 import AnimationBlock from './blocks/AnimationBlock'
 import ImageBlock from './blocks/ImageBlock'
 import TextBlock from './blocks/TextBlock'
 import WebGLBlock from './blocks/WebGLBlock'
 import VideoBlock from './blocks/VideoBlock'
 import Section from '../../core/Section'
-
-import staggerItemsIn from '../../../animations/staggerItemsIn'
 
 const RichArticle = ({ richArticle, isHomepage, classes = '' }) => {
   // checks the blockType from the matrix field and loads the appropriate component

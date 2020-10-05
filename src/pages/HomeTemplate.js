@@ -1,7 +1,5 @@
 import React, { useRef, useEffect, useState } from 'react'
-import Section from '../components/core/Section'
 import HeroNew from '../components/content/hero/HeroNew'
-import Image from '../components/core/Image'
 import RichArticle from '../components/content/rich-article/RichArticle'
 import IntroOverlay from '../components/core/IntroOverlay'
 import { gsap } from 'gsap'

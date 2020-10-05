@@ -4,9 +4,7 @@ import SEO from '../../components/Seo'
 import Section from '../../components/core/Section'
 import Image from '../../components/core/Image'
 import TechnologyList from '../../components/content/technologiesList'
-import formatDate from '../../components/utilities/format-date'
 import PageTitle from '../../components/content/PageTitle'
-import HeroImage from '../../components/content/hero/HeroImage'
 import Intro from '../../components/content/Intro'
 import RichArticle from '../../components/content/rich-article/RichArticle'
 import staggerItemsIn from '../../animations/staggerItemsIn'
@@ -33,8 +31,6 @@ const pageTemplate = (obj) => {
     : null
 
   let currentProjectType
-
-  // console.log('rich article --', richArticle)
 
   if (projectTypeLabel === 'Portfolio') {
     currentProjectType === null

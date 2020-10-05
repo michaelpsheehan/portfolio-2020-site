@@ -1,6 +1,5 @@
-import React, { useRef, useEffect } from 'react'
+import React, { useRef } from 'react'
 import { gsap } from 'gsap'
-import { useGlobalDispatchContext } from '../../../context/globalContext'
 
 let transitionCoverEl = null
 let transitionCoverLeftSectionEl = null

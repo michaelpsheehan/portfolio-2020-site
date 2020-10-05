@@ -5,17 +5,9 @@ export const GlobalStateContext = createContext()
 export const GlobalDispatchContext = createContext()
 
 //  reducer
-
 const globalReducer = (state, action) => {
   switch (action.type) {
-    case 'CHANGE_THEME': {
-      return {
-        ...state,
-        currentTheme: action.theme,
-      }
-    }
     case 'CHANGE_OVERLAY': {
-      // console.log('context current theme ===', action.theme)
       return {
         ...state,
         overlayStatus: action.newStatus,

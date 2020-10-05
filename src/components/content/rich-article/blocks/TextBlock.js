@@ -1,5 +1,4 @@
 import React from 'react'
-import Section from '../../../core/Section'
 import Text from '../../../core/Text'
 
 const TextBlock = ({ block, classes = '' }) => (

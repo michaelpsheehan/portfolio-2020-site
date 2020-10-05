@@ -1,5 +1,4 @@
-import React, { useEffect } from 'react'
-import AniLink from 'gatsby-plugin-transition-link/AniLink'
+import React from 'react'
 import TransitionLink from 'gatsby-plugin-transition-link'
 import {
   transitionStandard,

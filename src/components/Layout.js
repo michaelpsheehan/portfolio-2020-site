@@ -1,13 +1,13 @@
-import React, { useEffect, useState, useRef } from 'react'
+import React, { useEffect, useRef } from 'react'
 import PropTypes from 'prop-types'
 import SiteHead from './SiteHead'
 import '../styles/main.scss'
-import TransitionCover from '../components/core/transitions/TransitionCover'
-import { gsap } from 'gsap'
-import { ScrollToPlugin } from 'gsap/ScrollToPlugin'
 import useWindowSize from '../hooks/useWindowSize'
 import SiteFoot from './core/SiteFoot'
 import { useLocation } from '@reach/router'
+import TransitionCover from '../components/core/transitions/TransitionCover'
+import { gsap } from 'gsap'
+import { ScrollToPlugin } from 'gsap/ScrollToPlugin'
 gsap.registerPlugin(ScrollToPlugin)
 
 const Layout = ({ children, uri }) => {
@@ -17,7 +17,6 @@ const Layout = ({ children, uri }) => {
   let windowSize = useWindowSize()
 
   useEffect(() => {
-    // isHomepage = uri === '/' ? true : false
     gsap.to(window, { duration: 0.1, scrollTo: 0 })
   }, [])
 

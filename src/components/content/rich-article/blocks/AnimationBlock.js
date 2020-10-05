@@ -1,5 +1,4 @@
-import React, { useRef, useEffect, useState } from 'react'
-
+import React, { useRef, useEffect } from 'react'
 import { gsap } from 'gsap'
 import { CSSRulePlugin } from 'gsap/CSSRulePlugin'
 import { ScrollToPlugin } from 'gsap/ScrollToPlugin'
@@ -71,7 +70,6 @@ const AnimationBlock = ({ block, classes = '' }) => {
               <LottieAnimation lottieAnimationData={block.animationData} />
             </div>
           </div>
-          {/* </div> */}
         </div>
       </div>
     </div>

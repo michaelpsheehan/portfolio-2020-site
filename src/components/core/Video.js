@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useRef } from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
 import { Player, ControlBar, Shortcut } from 'video-react'
 

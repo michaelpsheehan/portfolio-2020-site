@@ -1,12 +1,10 @@
 import React, { Component, createRef } from 'react'
 import { gsap } from 'gsap'
-import { CSSRulePlugin } from 'gsap/CSSRulePlugin'
 import { ScrollToPlugin } from 'gsap/ScrollToPlugin'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-
 import MenuItem from './MenuItem'
+gsap.registerPlugin(ScrollToPlugin, ScrollTrigger)
 
-gsap.registerPlugin(CSSRulePlugin, ScrollToPlugin, ScrollTrigger)
 class PrimaryNav extends Component {
   constructor() {
     super()
