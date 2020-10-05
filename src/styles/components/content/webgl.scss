@@ -11,6 +11,7 @@
   &__secondary {
  
     @apply w-full;
+    height:70vh;
     @screen md {
       min-height: auto;
       position: absolute;
@@ -20,7 +21,7 @@
       left:0;
     }
     canvas {
-      min-height:60vh;
+      min-height:70vh;
       mix-blend-mode: multiply;
       &:focus {
         outline: none;
