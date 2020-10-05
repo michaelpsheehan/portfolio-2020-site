@@ -64,7 +64,7 @@ const SEO = ({ title, description, socialMeta }) => {
         />
       )}
 
-      <meta name="twitter:card" content="summary_large_image" />
+      {/* <meta name="twitter:card" content="summary_large_image" />
 
       {twitterUsername && (
         <meta name="twitter:creator" content={`@${twitterUsername}`} />
@@ -82,7 +82,7 @@ const SEO = ({ title, description, socialMeta }) => {
           name="twitter:image"
           content={`${siteUrl}${twitter.image.optimizedImagesGridThumbnail.src}`}
         />
-      )}
+      )} */}
     </Helmet>
   )
 }
