@@ -46,7 +46,7 @@ class PrimaryNav extends Component {
             isOverlayOpen ? 'c-primary-nav__background--open' : ''
           } `}
         >
-          <ul className="c-primary-nav__list " ref={this.menuEl}>
+          <ul className="c-primary-nav__list" ref={this.menuEl}>
             {this.links.map((item, index) => (
               <MenuItem
                 key={item.id}

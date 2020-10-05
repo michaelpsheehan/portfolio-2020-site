@@ -27,8 +27,8 @@ const MenuItem = ({ name, link, forwardedRef }) => {
 
   return (
     <li className="c-primary-nav__list-item">
-      <span className="block overflow-hidden">
-        <span className="block" ref={forwardedRef}>
+      <span className="c-primary-nav__link-animation-wrapper">
+        <span className="c-primary-nav__link-animated-el" ref={forwardedRef}>
           <TransitionLink
             to={link}
             className="c-primary-nav__list-item-link"

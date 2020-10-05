@@ -8,8 +8,6 @@
 
   &__list {
     @apply flex flex-col items-center justify-center h-full;
-
- 
   }
 
   &__list-item {
@@ -24,8 +22,6 @@
     );
     background-size: 240%;
     transition: all 0.2s ;
-    // cubic-bezier(.6, -0.5,.1,.99);
-    // 
 
     @screen sm {
       @apply text-4xl my-4;
@@ -41,12 +37,18 @@
         background-position: 100%;
       }
     }
-
+    
     &-link {
-
+      
       &.is-current-page {
         border-bottom: 5px solid #ffffff;
       }
     }
   }
+      &__link-animation-wrapper {
+        @apply block overflow-hidden;
+      }
+      &__link-animated-el {
+        @apply block;
+      }
 }

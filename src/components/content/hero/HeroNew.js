@@ -1,4 +1,4 @@
-import React, { Component, createRef } from 'react'
+import React, { Component, useRef, useEffect, createRef } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Button from '../../core/Button'
@@ -71,7 +71,6 @@ class HeroNew extends Component {
       isWordHovered: false,
     })
 
-    // console.log('This state on leave ==', this.state)
     let word = e.currentTarget
     let letters = [...word.children]
     letters.forEach((letter) => {

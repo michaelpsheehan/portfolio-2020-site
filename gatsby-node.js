@@ -98,7 +98,6 @@ async function createHomepage({ graphql, actions }) {
 
 exports.onCreateNode = (obj) => {
   if (obj.node.path === '/') {
-    // console.log('page created ------', obj)
   }
 }
 

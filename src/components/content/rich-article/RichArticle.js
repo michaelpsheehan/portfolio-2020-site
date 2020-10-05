@@ -9,7 +9,6 @@ import Section from '../../core/Section'
 const RichArticle = ({ richArticle, isHomepage, classes = '' }) => {
   // checks the blockType from the matrix field and loads the appropriate component
   const checkBlockType = (blockType, block) => {
-    // console.log('block type', blockType)
     switch (blockType) {
       case 'text':
         return <TextBlock block={block} />
@@ -33,7 +32,6 @@ const RichArticle = ({ richArticle, isHomepage, classes = '' }) => {
       <article className={`c-rich-article ${classes}`} ref={richArticleRef}>
         {richArticle.map((block) => {
           const currentBlock = checkBlockType(block.typeHandle, block, block.id)
-          console.log('current block', currentBlock)
           const fullHeightSection =
             block.typeHandle === 'animation' || block.typeHandle === 'webgl'
               ? true

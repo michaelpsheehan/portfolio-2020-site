@@ -8,7 +8,6 @@ const VideoBlock = ({ block, classes = '' }) => {
 
   const videoUrl = block.video[0].url
   const { isAmbientVideo } = block
-  console.log('is ambient video ===', block.isAmbientVideo)
 
   return (
     <div className="container">
