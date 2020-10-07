@@ -80,17 +80,17 @@ module.exports = {
         postCssPlugins: [require('tailwindcss')('./tailwind.js')],
       },
     },
-    {
-      resolve: 'gatsby-plugin-robots-txt',
-      options: {
-        // host: 'https://portfolio-2020-staging.netlify.app/',
-        // host: 'https://portfolio-2020-staging.netlify.app/',
-        host: 'https://www.michaelsheehan.dev',
-        // host: 'https://www.example.com',
-        // sitemap: 'https://www.example.com/sitemap.xml',
-        policy: [{ userAgent: '*', allow: '/' }],
-      },
-    },
+    // {
+    //   resolve: 'gatsby-plugin-robots-txt',
+    //   options: {
+    //     // host: 'https://portfolio-2020-staging.netlify.app/',
+    //     // host: 'https://portfolio-2020-staging.netlify.app/',
+    //     host: 'https://www.michaelsheehan.dev',
+    //     // host: 'https://www.example.com',
+    //     // sitemap: 'https://www.example.com/sitemap.xml',
+    //     policy: [{ userAgent: '*', allow: '/' }],
+    //   },
+    // },
     {
       resolve: `gatsby-plugin-purgecss`,
       options: {
