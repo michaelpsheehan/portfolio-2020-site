@@ -1,9 +1,9 @@
-import React, { Component, createRef } from 'react'
+import React, { Component, createRef, memo } from 'react'
 import { gsap } from 'gsap'
 import { ScrollToPlugin } from 'gsap/ScrollToPlugin'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import MenuItem from './MenuItem'
-import Overlay from './core/Overlay'
+import Overlay from './Overlay'
 gsap.registerPlugin(ScrollToPlugin, ScrollTrigger)
 
 class PrimaryNav extends Component {
@@ -24,6 +24,7 @@ class PrimaryNav extends Component {
   }
 
   componentDidUpdate() {
+    console.log('component update overlay ==', this.props.isOverlayOpen)
     if (this.props.isOverlayOpen === true) {
       this.tl.from(this.menuItemEls, {
         duration: 0.8,
@@ -35,6 +36,10 @@ class PrimaryNav extends Component {
         },
       })
     }
+  }
+
+  componentWillUnmount() {
+    this.tl.kill()
   }
 
   render() {
@@ -58,4 +63,4 @@ class PrimaryNav extends Component {
     ) : null
   }
 }
-export default PrimaryNav
+export default memo(PrimaryNav)

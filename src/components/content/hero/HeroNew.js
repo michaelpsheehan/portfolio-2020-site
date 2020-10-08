@@ -279,11 +279,11 @@ class HeroNew extends Component {
     })
 
     this.tl
-      .from(this.heroPrimaryButtonEl.current, {
+      .from(this.heroSecondaryButtonEl.current, {
         y: 10,
         opacity: 0,
       })
-      .from(this.heroSecondaryButtonEl.current, {
+      .from(this.heroPrimaryButtonEl.current, {
         y: 10,
         opacity: 0,
       })

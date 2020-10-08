@@ -5,7 +5,7 @@ import SiteHeadBurger from './SiteHeadBurger'
 import {
   useGlobalStateContext,
   useGlobalDispatchContext,
-} from '../context/globalContext'
+} from '../../context/globalContext'
 
 const SiteHead = ({ classes = '', isHomepage }) => {
   const dispatch = useGlobalDispatchContext()

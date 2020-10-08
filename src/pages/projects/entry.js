@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from 'react'
 import { graphql } from 'gatsby'
-import SEO from '../../components/Seo'
+import SEO from '../../components/core/Seo'
 import Section from '../../components/core/Section'
 import Image from '../../components/core/Image'
 import TechnologyList from '../../components/content/technologiesList'

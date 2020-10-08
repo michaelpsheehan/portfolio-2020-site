@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react'
 import PropTypes from 'prop-types'
-import SiteHead from './SiteHead'
+import SiteHead from './core/SiteHead'
 import '../styles/main.scss'
 import useWindowSize from '../hooks/useWindowSize'
 import SiteFoot from './core/SiteFoot'

@@ -3,7 +3,7 @@ import HeroNew from '../components/content/hero/HeroNew'
 import RichArticle from '../components/content/rich-article/RichArticle'
 import IntroOverlay from '../components/core/IntroOverlay'
 import { gsap } from 'gsap'
-import SEO from '../components/Seo'
+import SEO from '../components/core/Seo'
 import { graphql } from 'gatsby'
 
 const tl = gsap.timeline({

@@ -1,6 +1,6 @@
 .c-site-head {
-  @apply py-12 mb-12 font-sans fixed top-0 inset-x-0 w-full z-50;
-
+  @apply py-12 mb-12 font-sans fixed top-0 inset-x-0 w-full z-40;
+// z-index:9999;
   @screen md {
   }
 
@@ -85,11 +85,21 @@
 
 .ui-style-white-on-dark {
   &.c-site-head {
-    &__hamburger {
+ &__hamburger {
       span {
         @apply bg-white;
+        z-index:70;
       }
     }
   }
 
 }
+
+
+
+// .f-overlay-open {
+//   .c-site-head {
+//     background-color:transparent !important;
+//     z-index:9999;
+//   }
+// }

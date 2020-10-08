@@ -3,9 +3,9 @@ import TransitionLink from 'gatsby-plugin-transition-link'
 import {
   transitionStandard,
   exitTransition,
-} from '../components/core/transitions/TransitionCover'
+} from './transitions/TransitionCover'
 
-import { useGlobalDispatchContext } from '../context/globalContext'
+import { useGlobalDispatchContext } from '../../context/globalContext'
 
 const MenuItem = ({ name, link, forwardedRef }) => {
   const dispatch = useGlobalDispatchContext()
