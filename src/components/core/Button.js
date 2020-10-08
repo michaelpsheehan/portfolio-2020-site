@@ -11,7 +11,7 @@ const Button = ({
 }) => {
   const buttonClasses = `c-button ${classes}`
   // checks the type of button to use. If the button is purely visual with no functionality use a <span></span>
-  let buttonType = <span className={buttonClasses}>{text}</span>
+  let buttonType = <button className={buttonClasses}>{text}</button>
 
   if (url) {
     buttonType = externalLink ? (

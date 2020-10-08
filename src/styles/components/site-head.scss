@@ -19,7 +19,18 @@
       @apply w-16;
     }
 
+    // &:active {
+    //   outline: none;
+    // }
+    &:focus{
+      // outline: none;
+      // outline: blue;
+    }
+    
     span {
+      // &:active {
+      //   outline: none;
+      // }
       @apply block absolute w-full bg-white opacity-100 right-0 z-50 h-1 translate-x-0 translate-y-1/2 cursor-pointer;
       border-radius: 40px;
       top: 50%;
@@ -103,3 +114,4 @@
 //     z-index:9999;
 //   }
 // }
+

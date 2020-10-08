@@ -33,8 +33,6 @@ module.exports = {
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        // name: `images`,
-        // path: `${__dirname}/src/images`,
         name: `src`,
         path: `${__dirname}/src`,
       },
@@ -86,11 +84,11 @@ module.exports = {
         host: 'https://www.codebysheen.com',
         sitemap: 'https://www.codebysheen.com/sitemap.xml',
         policy: [
-          { 
-            userAgent: '*', 
+          {
+            userAgent: '*',
             allow: '/',
-            disallow: ["/projects/carousel", "/projects/true-north"],
-        }
+            disallow: ['/projects/carousel', '/projects/true-north'],
+          },
         ],
       },
     },

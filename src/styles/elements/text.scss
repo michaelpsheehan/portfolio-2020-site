@@ -18,3 +18,10 @@ p {
 body {
   @apply text-base text-black overflow-x-hidden;
 }
+
+
+.no-outline-on-focus button:focus,
+.no-outline-on-focus a:focus {
+    outline: none;
+ 
+}

@@ -24,7 +24,6 @@ class PrimaryNav extends Component {
   }
 
   componentDidUpdate() {
-    console.log('component update overlay ==', this.props.isOverlayOpen)
     if (this.props.isOverlayOpen === true) {
       this.tl.from(this.menuItemEls, {
         duration: 0.8,
@@ -47,18 +46,20 @@ class PrimaryNav extends Component {
 
     return isOverlayOpen ? (
       <>
-        <Overlay classes={`${isOverlayOpen ? 'c-overlay--open' : '' }`}>
-          <ul className="c-primary-nav__list" ref={this.menuEl}>
-            {this.links.map((item, index) => (
-              <MenuItem
-                key={item.id}
-                name={item.name}
-                link={item.link}
-                forwardedRef={(el) => (this.menuItemEls[index] = el)}
-              />
-            ))}
-          </ul>
-          </Overlay>
+        <Overlay classes={`${isOverlayOpen ? 'c-overlay--open' : ''}`}>
+          <nav className="c-primary-nav">
+            <ul className="c-primary-nav__list" ref={this.menuEl}>
+              {this.links.map((item, index) => (
+                <MenuItem
+                  key={item.id}
+                  name={item.name}
+                  link={item.link}
+                  forwardedRef={(el) => (this.menuItemEls[index] = el)}
+                />
+              ))}
+            </ul>
+          </nav>
+        </Overlay>
       </>
     ) : null
   }
