@@ -9,7 +9,7 @@ module.exports = {
     siteUrl: 'https://www.michaelsheehan.dev',
     frontendSiteUrl: 'https://www.codebysheen.com',
 
-    twitterUsername: '@testLocalUser',
+    twitterUsername: '@codebysheen',
   },
   plugins: [
     {
