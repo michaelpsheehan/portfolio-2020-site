@@ -1,3 +1,8 @@
 {
-  "gitflow4code.releases": []
+  "gitflow4code.releases": [
+    {
+      "name": "release/relase/1.0.1",
+      "base": "develop"
+    }
+  ]
 }

@@ -2,25 +2,20 @@ var path = require('path')
 
 module.exports = {
   siteMetadata: {
-    title: `Code By Sheen local name`,
-    // titleTemplate: `%s · local title template`,
+    title: `Michael Sheehan Portfolio`,
     description: `Michael Sheehan web development portfolio`,
-    // siteUrl: 'http://157.245.46.3',
     siteUrl: 'https://www.michaelsheehan.dev',
     frontendSiteUrl: 'https://www.codebysheen.com',
-
-    twitterUsername: '@testLocalUser',
+    twitterUsername: '@codebysheen',
   },
   plugins: [
     {
-      // Simple config, passing URL
       resolve: 'gatsby-source-graphql',
       options: {
         // Arbitrary name for the remote schema Query type
         typeName: 'Craft',
         // Field under which the remote schema will be accessible. You'll use this in your Gatsby query
         fieldName: 'craft',
-        // url for the back end craft graphql api
         url: 'https://www.michaelsheehan.dev/api',
 
         headers: {
@@ -43,8 +38,9 @@ module.exports = {
         layout: require.resolve(`./src/components/Layout.js`),
       },
     },
-    `gatsby-transformer-sharp`,
-    `gatsby-plugin-sharp`,
+  
+    `gatsby-plugin-sitemap`,
+
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
@@ -109,19 +105,6 @@ module.exports = {
         whitelistPatternsChildren: [/^video-react/],
       },
     },
-
-    {
-      resolve: 'gatsby-plugin-webpack-bundle-analyzer',
-      options: {
-        production: true,
-        disable: !process.env.ANALYZE_BUNDLE_SIZE,
-        generateStatFile: true,
-        analyzerMode: 'static',
-      },
-    },
-
-    // this (optional) plugin enables Progressive Web App + Offline functionality
-    // To learn more, visit: https://gatsby.dev/offline
-    // `gatsby-plugin-offline`,
+  
   ],
 }
