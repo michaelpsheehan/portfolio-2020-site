@@ -1,0 +1,66 @@
+.c-hero {
+  @apply relative  w-full h-screen overflow-hidden bg-brand-blue;
+  margin-top: -114px;
+  
+  &__media-content {
+    @apply h-full w-full;
+  }
+  
+  &-image {
+    @apply h-full w-full object-cover object-center absolute;
+  }
+  
+  &__content {
+    @apply text-white inset-0 z-30 absolute text-center h-full w-full flex flex-col justify-center items-center invisible;
+  }
+
+  &__text {
+    @apply font-sans text-2xl text-black my-16 whitespace-pre-wrap text-center;
+    margin-right: auto;
+    margin-left: auto;
+    padding-right: 2rem;
+    padding-left: 2rem;
+
+    @screen md {
+      @apply mb-16 mt-0;
+    }
+
+    @screen lg {
+      @apply text-5xl;
+    }
+  }
+
+  &__buttons {
+    @apply flex flex-col mx-auto w-2/3;
+
+    @screen md {
+      @apply flex-row w-full justify-center;
+    }
+  }
+
+  &--dark-bg {
+    .c-hero {
+      &__text {
+        @apply text-white;
+      }
+    }
+    .c-button--hero {
+      &-primary {
+        @apply bg-white text-brand-blue border-white;
+      }
+
+      &-secondary {
+        @apply border-white text-white;
+        &:hover {
+          @apply bg-white text-brand-blue;
+        }
+      }
+    }
+  }
+}
+
+.f-is-homepage {
+  .c-hero {
+    @apply mt-0;
+  }
+}

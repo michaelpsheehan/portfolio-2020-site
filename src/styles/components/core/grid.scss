@@ -1,0 +1,13 @@
+.c-grid {
+  @screen lg {
+    @apply grid grid-cols-2 gap-12;
+  }
+
+  &__item {
+    @apply mb-8;
+
+    @screen lg {
+      @apply mb-0;
+    }
+  }
+}

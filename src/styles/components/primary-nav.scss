@@ -1,0 +1,49 @@
+.c-primary-nav {
+  @apply w-full h-full;
+  
+  &__list {
+    @apply flex flex-col items-center justify-center h-full;
+  }
+
+  &__list-item {
+    @apply uppercase text-white text-3xl py-2 mx-0 p-4 whitespace-no-wrap;
+
+    // the background needed to achieve the hover state. Not visible as default
+    background: linear-gradient(
+      120deg,
+      transparent 0%,
+      transparent 50%,
+      #ffffff 50%
+    );
+    background-size: 240%;
+    transition: all 0.2s ;
+
+    @screen sm {
+      @apply text-4xl my-4;
+    }
+    @screen md {
+      @apply text-5xl my-4;
+    }
+  
+    &:hover {
+      @screen lg {
+        // animate the background in on hover on large screens
+        @apply text-brand-light-blue;
+        background-position: 100%;
+      }
+    }
+    
+    &-link {
+      
+      &.is-current-page {
+        border-bottom: 5px solid #ffffff;
+      }
+    }
+  }
+      &__link-animation-wrapper {
+        @apply block overflow-hidden;
+      }
+      &__link-animated-el {
+        @apply block;
+      }
+}

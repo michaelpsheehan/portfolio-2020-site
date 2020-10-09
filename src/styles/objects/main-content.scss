@@ -1,0 +1,10 @@
+.o-main-content {
+  @apply relative flex-grow;
+  padding-top: 114px;
+}
+
+.f-is-homepage {
+  &.o-main-content {
+    padding-top:0;
+  }
+}

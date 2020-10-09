@@ -1,0 +1,10 @@
+.c-transition-cover {
+  @apply  fixed  w-full h-full pointer-events-none invisible;
+  z-index:9999;
+  left:0;
+  top:0;
+ &__left-section,
+ &__right-section {
+   @apply bg-brand-red;
+ }
+}

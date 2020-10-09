@@ -1,0 +1,117 @@
+.c-site-head {
+  @apply py-12 mb-12 font-sans fixed top-0 inset-x-0 w-full z-40;
+// z-index:9999;
+  @screen md {
+  }
+
+  &__container {
+    // @apply ;
+  }
+
+  &__components {
+    @apply relative w-full w-full flex items-center;
+  }
+
+  &__hamburger {
+    @apply absolute z-20 right-0 h-8 w-12 cursor-pointer;
+
+    @screen md {
+      @apply w-16;
+    }
+
+    // &:active {
+    //   outline: none;
+    // }
+    &:focus{
+      // outline: none;
+      // outline: blue;
+    }
+    
+    span {
+      // &:active {
+      //   outline: none;
+      // }
+      @apply block absolute w-full bg-white opacity-100 right-0 z-50 h-1 translate-x-0 translate-y-1/2 cursor-pointer;
+      border-radius: 40px;
+      top: 50%;
+      transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      // mix-blend-mode: difference;
+    }
+
+    span:first-child {
+      top:0;
+    }
+
+    span:nth-of-type(2) {
+      @apply translate-x-0 translate-y-1/2;
+      width: 65%;
+    }
+
+    span:last-child {
+      top:100%;
+    }
+
+    &:hover {
+      @apply cursor-pointer;
+    }
+
+    &--open {
+        span {
+      
+        &:first-child {
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%, -50%) rotate(-135deg) scale(0.6);
+        }
+
+        &:nth-of-type(2) {
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%, -50%) rotate(135deg);
+          transform: translateX(-110vw);
+        }
+
+        &:last-child {
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%, -50%) rotate(135deg) scale(0.6);
+        }
+      }
+
+
+    }
+  }
+}
+
+
+.ui-style-dark-on-white {
+  &:not(.f-overlay-open)
+{  &.c-site-head__hamburger {
+      span {
+        @apply bg-brand-blue;
+      }
+    
+  }}
+}
+
+.ui-style-white-on-dark {
+  &.c-site-head {
+ &__hamburger {
+      span {
+        @apply bg-white;
+        z-index:70;
+      }
+    }
+  }
+
+}
+
+
+
+// .f-overlay-open {
+//   .c-site-head {
+//     background-color:transparent !important;
+//     z-index:9999;
+//   }
+// }
+

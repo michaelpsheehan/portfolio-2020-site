@@ -1,0 +1,14 @@
+.c-page-title {
+  @apply text-center font-sans;
+
+  &__title {
+    @apply text-2xl uppercase;
+    @screen md {
+      @apply text-3xl;
+    }
+  }
+
+  &__underline {
+    @apply mx-auto w-24 text-gray;
+  }
+}

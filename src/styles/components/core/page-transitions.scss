@@ -1,0 +1,33 @@
+// .c-page-transition {
+//   border: 10px solid green;
+// }
+
+.c-page-transition {
+  @apply pointer-events-none  fixed flex w-screen h-screen overflow-hidden bg-brand-light-blue;
+  // border: 9px solid green;
+  background-color: yellow;
+  z-index: 99999999999999999;
+  &__left {
+    &-section {
+      @apply w-1/2 z-50 h-full;
+    }
+
+    &-item {
+      @apply h-full w-1/3 top-0 bg-white;
+      transform: scaleY(1);
+
+      &:nth-child(2) {
+      }
+      &:nth-child(3) {
+      }
+    }
+  }
+
+  &__right-section {
+    @apply w-1/2 z-50 h-full;
+
+    .c-intro-overlay__right-item {
+      @apply h-full bg-white;
+    }
+  }
+}

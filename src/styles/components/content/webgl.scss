@@ -1,0 +1,36 @@
+.c-webgl {
+  &__primary {
+    pointer-events: none;
+
+    .c-text {
+      z-index:999;
+      mix-blend-mode: multiply;
+    }
+  }
+  
+  &__secondary {
+ 
+    @apply w-full;
+    height:70vh;
+    @screen md {
+      min-height: auto;
+      position: absolute;
+      cursor:pointer;
+      width:100%;
+      height:70%;
+      left:0;
+    }
+    canvas {
+      min-height:70vh;
+      mix-blend-mode: multiply;
+      &:focus {
+        outline: none;
+      }
+
+      @screen md {
+        height: unset;
+      }
+    }
+
+  }
+}

@@ -1,0 +1,28 @@
+.c-exploding-sphere  {
+
+}
+
+.c-scale-model {
+  pointer-events: all;;
+  @apply absolute;
+  right:2rem;
+  bottom:2rem;
+  
+  &__title {
+    @apply uppercase  text-xs leading-loose text-center;
+  }
+  
+  &__buttons {
+    @apply flex justify-between;
+
+}
+&__button {
+    // @apply px-8;
+    @apply text-2xl ;
+    &:hover {
+      @apply cursor-pointer ;
+      
+    }
+   
+  }
+}

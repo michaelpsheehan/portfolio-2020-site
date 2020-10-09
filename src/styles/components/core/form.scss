@@ -1,0 +1,23 @@
+.c-form {
+  @apply  max-w-2xl mx-auto;
+  @screen md {
+    @apply px-16;
+  }
+  &__text-area {
+    @apply w-full pb-16 pt-2 mb-8 rounded-lg ;
+    min-height: 10rem;
+  }
+  &__input {
+    @apply py-2 px-2 rounded-lg w-full mb-4;
+    input {
+    }
+  }
+
+  &__label {
+    @apply mb-1 text-sm text-left pl-4;
+  }
+
+  &__submit {
+    @apply w-full mx-auto mt-8;
+  }
+}

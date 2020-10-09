@@ -1,0 +1,33 @@
+.c-animation-block {
+  @apply py-16 h-full;
+
+ @screen md {
+  @apply py-0;
+  }
+
+  &__content {
+    @screen md {
+      @apply flex items-center h-full;
+    }
+  }
+
+  &__section {
+   @apply mb-8 ;
+
+   @screen md {
+     @apply mb-0 w-1/2;
+   }
+  }
+
+  &__text-container {
+    @apply max-w-md;
+  }
+
+  &__attribution {
+    @apply text-xs opacity-50 mt-4;
+  }
+
+  &__animation {
+    @apply text-center max-w-md mx-auto;
+  }
+}

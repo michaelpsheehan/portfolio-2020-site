@@ -1,0 +1,15 @@
+.c-section {
+  @apply my-12 relative ;
+
+  @screen md {
+    @apply my-24;
+  }
+
+  &.c-section--screen-height {
+    @apply my-0 overflow-hidden;
+    
+    @screen md {
+      @apply my-0 h-screen ;
+    }
+  }
+}

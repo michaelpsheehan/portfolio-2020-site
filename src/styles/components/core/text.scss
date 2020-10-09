@@ -1,0 +1,21 @@
+.c-text {
+  @apply max-w-3xl mx-auto;
+
+  &__heading {
+    @apply uppercase text-xl mb-4;
+  }
+
+  &--animation {
+    .c-text__heading {
+      @apply text-2xl;
+
+      @screen md {
+        @apply text-3xl;
+      }
+    }
+  }
+
+  a {
+    @apply underline text-brand-blue;
+  }
+}
