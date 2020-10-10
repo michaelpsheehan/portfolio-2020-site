@@ -96,18 +96,7 @@ class HeroNew extends Component {
     }
   }
 
-  animateTextOnScroll = (allWords, allLetters) => {
-    let flatWordsArray = []
-    allWords.map((currentWord) => {
-      currentWord.forEach((currentWord) => {
-        flatWordsArray = [...flatWordsArray, currentWord]
-      })
-    })
-    let testing = []
-    flatWordsArray.forEach((el) => {
-      let childArray = [...el.children]
-      childArray.forEach((word) => (testing = [...testing, word]))
-    })
+  animateTextOnScroll = () => {
     this.scrollTimeline = gsap
       .timeline({
         scrollTrigger: {
@@ -116,10 +105,9 @@ class HeroNew extends Component {
           trigger: this.heroEl.current,
           onUpdate: ({ progress, direction, isActive }) =>
             this.handleScrollUpdate(progress, isActive),
-          // markers: true,
         },
       })
-      .to(allWords, {
+      .to(this.allWords, {
         y: '-900px',
         ease: 'Power4.out',
         rotation: -60,
@@ -129,7 +117,7 @@ class HeroNew extends Component {
         },
       })
       .to(
-        testing,
+        this.allLetters.flat(),
         {
           rotation: 120,
           x: -300,
@@ -232,7 +220,7 @@ class HeroNew extends Component {
         flatWordsArray = [...flatWordsArray, currentWord]
       })
     })
-    let testing = []
+
     flatWordsArray.forEach((el) => {
       let childArray = [...el.children]
       childArray.forEach(
@@ -245,15 +233,12 @@ class HeroNew extends Component {
         defaults: { duration: 0.8, ease: 'Power3.out' },
         // create the scrollTrigger timeline after the intro completes to stop any early scroll bugs
         onComplete: this.animateTextOnScroll,
-        onCompleteParams: [this.allWords, this.allLetters],
         onCompleteScope: this,
       })
       .set(this.heroContentEl.current, { css: { visibility: 'visible' } })
       .set(this.heroScrollIconEl.current, { css: { visibility: 'visible' } })
 
-    let allLetts = this.allLetters
-
-    allLetts.forEach((letter) => {
+    this.allLetters.forEach((letter) => {
       this.tl.set(letter, {
         y: gsap.utils.random(-400, 400),
         x: gsap.utils.random(-400, 400),

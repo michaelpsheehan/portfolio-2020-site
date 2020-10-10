@@ -46,7 +46,6 @@ const Section = ({ content, container, isHomepage, classes = '' }) => {
       scroller = ScrollTrigger.create({
         trigger: sectionRef.current,
         start: 'top 70',
-        // markers: {startColor: "black", endColor: "black", fontSize: "20px"},
         onEnter: (el) => handleScroll(el),
         onEnterBack: (el) => handleScroll(el),
         onLeaveBack: (el) => handleScrollBackToStart(el),

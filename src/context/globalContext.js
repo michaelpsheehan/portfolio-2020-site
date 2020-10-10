@@ -40,7 +40,7 @@ export const GlobalProvider = ({ children }) => {
   )
 }
 
-// custom hooks for when we want to use global state or dispatch an action to update state
+// custom hooks for when I want to use global state or dispatch an action to update state
 export const useGlobalStateContext = () => useContext(GlobalStateContext)
 
 export const useGlobalDispatchContext = () => useContext(GlobalDispatchContext)

@@ -38,7 +38,7 @@ module.exports = {
         layout: require.resolve(`./src/components/Layout.js`),
       },
     },
-  
+
     `gatsby-plugin-sitemap`,
 
     {
@@ -105,6 +105,5 @@ module.exports = {
         whitelistPatternsChildren: [/^video-react/],
       },
     },
-  
   ],
 }

@@ -11,8 +11,7 @@ body {
 
 
 @import './external/external-libraries.scss';
-@import './elements/text.scss';
-@import './objects/container.scss';
+@import './elements/elements.scss';
 @import './objects/main-content.scss';
 @import './components/core/button.scss';
 @import './components/core/site-container.scss';
@@ -26,7 +25,6 @@ body {
 @import './components/content/intro.scss';
 @import './components/3d/exploding-sphere.scss';
 @import './components/content/webgl.scss';
-@import './components/content/rich-article.scss';
 @import './components/content/rich-article/blocks/animation-block.scss';
 @import './components/content/rich-article/blocks/webgl-block.scss';
 @import './components/content/split-section.scss';
@@ -35,13 +33,11 @@ body {
 @import './components/core/intro-overlay.scss';
 @import './components/core/page-transitions.scss';
 @import './components/content/technologies.scss';
-@import './components/content/lottie-animation.scss';
 @import './components/core/social-icons.scss';
 @import './components/core/section.scss';
 @import './components/core/grid.scss';
 @import './components/core/entry-card.scss';
 @import './components/core/form.scss';
-@import './components/core/video.scss';
 @import './components/core/page-transitions/transition-cover.scss';
 
 

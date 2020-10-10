@@ -40,19 +40,6 @@ const ProjectsIndexPage = () => {
           container
         />
       )}
-      {/* 
-      <IndexPage
-        featuredEntries={entry.featuredProjects}
-        allEntries={projects}
-        itemSection="projects"
-        itemTemplatePath={EntryCard}
-
-        siteUrl={siteUrl}
-
-
-      >
-        <div>test child</div>
-        </IndexPage> */}
     </>
   )
 }

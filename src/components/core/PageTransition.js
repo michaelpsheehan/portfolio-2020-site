@@ -5,18 +5,19 @@ const PageTransition = () => {
   const transitionLeftSectionEl = useRef(null)
   const transitionRightSectionEl = useRef(null)
   useEffect(() => {
-    const tl = gsap.timeline({
-      defaults: { duration: 5, ease: 'expo.inOut' },
-    })
-    tl.to(transitionLeftSectionEl.current.children, 1, {
-      scaleY: 0.5,
-      stagger: 0.3,
-      transformOrigin: 'bottom left',
-    })
-    tl.to(transitionRightSectionEl.current, {
-      scaleX: 0.5,
-      transformOrigin: 'bottom right',
-    })
+    const tl = gsap
+      .timeline({
+        defaults: { duration: 5, ease: 'expo.inOut' },
+      })
+      .to(transitionLeftSectionEl.current.children, 1, {
+        scaleY: 0.5,
+        stagger: 0.3,
+        transformOrigin: 'bottom left',
+      })
+      .to(transitionRightSectionEl.current, {
+        scaleX: 0.5,
+        transformOrigin: 'bottom right',
+      })
   })
 
   return (

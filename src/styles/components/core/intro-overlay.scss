@@ -1,5 +1,5 @@
 .c-intro-overlay {
-  @apply pointer-events-none  absolute flex w-screen h-screen overflow-hidden;
+  @apply pointer-events-none absolute flex w-screen h-screen overflow-hidden;
   &__left {
     &-section {
       @apply w-1/2 z-50 h-full;
@@ -8,11 +8,6 @@
     &-item {
       @apply h-full w-1/3 top-0 bg-white;
       transform: scaleY(1);
-
-      &:nth-child(2) {
-      }
-      &:nth-child(3) {
-      }
     }
   }
 

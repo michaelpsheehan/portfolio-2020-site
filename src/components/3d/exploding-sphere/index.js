@@ -108,7 +108,6 @@ const Sphere = ({ spherePosition, userScale = 1.5 }) => {
         scale={[userScale, userScale, userScale]}
         onPointerOver={(e) => setHover(true)}
         onPointerOut={(e) => setHover(false)}
-        // position={position ? position : [2, 0, 0]}
         position={spherePosition}
       >
         <icosahedronBufferGeometry
