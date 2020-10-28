@@ -1,5 +1,5 @@
 import React from 'react'
-export const twitterIcon = (
+export const twitterIcon: React.SVGProps<SVGSVGElement> = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="24"
@@ -10,7 +10,7 @@ export const twitterIcon = (
   </svg>
 )
 
-export const linkedInIcon = (
+export const linkedInIcon: React.SVGProps<SVGSVGElement> = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="24"
@@ -21,7 +21,7 @@ export const linkedInIcon = (
   </svg>
 )
 
-export const githubIcon = (
+export const githubIcon: React.SVGProps<SVGSVGElement>  = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="24"

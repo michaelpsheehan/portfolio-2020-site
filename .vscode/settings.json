@@ -4,5 +4,11 @@
       "name": "release/relase/1.0.1",
       "base": "develop"
     }
+  ],
+  "gitflow4code.features": [
+    {
+      "name": "feature/typescriptAdd",
+      "base": "develop"
+    }
   ]
 }
