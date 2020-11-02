@@ -1,7 +1,7 @@
 import React from 'react'
 import SocialIcons from './SocialIcons'
 
-const SiteFoot = () => {
+const SiteFoot: React.FC<{}> = () => {
   return (
     <footer className="c-site-foot ">
       <div className="container text-white uppercase">

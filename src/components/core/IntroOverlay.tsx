@@ -1,6 +1,11 @@
 import React from 'react'
 
-function IntroOverlay({ leftSection, rightSection }) {
+interface IntroOverlayProps {
+  leftSection: React.MutableRefObject<any>
+  rightSection: React.MutableRefObject<any>
+}
+
+const IntroOverlay: React.FC<IntroOverlayProps> = ({ leftSection, rightSection }) => {
   return (
     <>
       <div className="c-intro-overlay ">
@@ -18,3 +23,5 @@ function IntroOverlay({ leftSection, rightSection }) {
   )
 }
 export default IntroOverlay
+
+

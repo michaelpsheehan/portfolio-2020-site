@@ -1,17 +1,22 @@
 import React from 'react'
 import AniLink from 'gatsby-plugin-transition-link/AniLink'
 
-// import AniLink from 'gatsby-plugin-transition-link/AniLink'
+interface ButtonProps {
+  text?: string
+  url?: string
+  externalLink?: boolean
+  classes?: string
+}
 
-const Button = ({
+const Button: React.FC<ButtonProps> = ({
   text = 'Read More',
   url,
   externalLink = false,
   classes = '',
-}) => {
-  const buttonClasses = `c-button ${classes}`
+}: ButtonProps) => {
+  const buttonClasses: string = `c-button ${classes}`
   // checks the type of button to use. If the button is purely visual with no functionality use a <span></span>
-  let buttonType = <button className={buttonClasses}>{text}</button>
+  let buttonType: React.ReactElement<HTMLAnchorElement  | HTMLDivElement | HTMLButtonElement>  = <button className={buttonClasses}>{text}</button>
 
   if (url) {
     buttonType = externalLink ? (

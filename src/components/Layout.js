@@ -1,9 +1,8 @@
 import React, { useEffect, useRef } from 'react'
-import PropTypes from 'prop-types'
 import SiteHead from './core/SiteHead'
 import '../styles/main.scss'
 import useWindowSize from '../hooks/useWindowSize'
-import SiteFoot from './core/SiteFoot'
+import SiteFoot from './core/SiteFoot.tsx'
 import { useLocation } from '@reach/router'
 import TransitionCover from '../components/core/transitions/TransitionCover'
 import { gsap } from 'gsap'
@@ -42,10 +41,6 @@ const Layout = ({ children, uri }) => {
       </div>
     </>
   )
-}
-
-Layout.propTypes = {
-  children: PropTypes.node.isRequired,
 }
 
 export default Layout

@@ -2,8 +2,24 @@ import React from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
 import { twitterIcon, linkedInIcon, githubIcon } from '../../icons/socialIcons'
 
-const SocialIcons = ({ twitter, linkedIn, github }) => {
-  const data = useStaticQuery(query)
+interface SocialIconsProps {
+  twitter?: boolean
+   linkedIn?: boolean
+   github?: boolean
+}
+
+interface globalSocialUrlQuery {
+    craft:  {
+      globalSet:  {
+        twitterUsername: string
+        linkedinUrl: string
+        githubUrl: string
+      }
+    }
+}
+
+const SocialIcons: React.FC<SocialIconsProps> = ({ twitter, linkedIn, github }:SocialIconsProps) => {
+  const data: globalSocialUrlQuery = useStaticQuery(query)
   const { twitterUsername, linkedinUrl, githubUrl } = data.craft.globalSet
 
   return (

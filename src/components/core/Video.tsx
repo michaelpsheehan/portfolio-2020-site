@@ -1,40 +1,46 @@
-import React, { useRef } from 'react'
-import { useStaticQuery, graphql } from 'gatsby'
+import React from 'react'
 import { Player, ControlBar, Shortcut } from 'video-react'
+import useSiteUrl from '../../hooks/useSiteUrl'
 
-const Video = ({
+interface VideoProps {
+  videoUrl: string
+  isAmbientVideo?: boolean
+  autoPlay?: boolean
+  loop?: boolean
+  muted?: boolean
+  classes?: string
+}
+
+const Video: React.FC<VideoProps> = ({
   videoUrl,
   isAmbientVideo,
   autoPlay,
   loop,
   muted,
   classes = '',
-}) => {
-  const { site } = useStaticQuery(query)
-  const { siteUrl } = site.siteMetadata
-  const videoSrc = siteUrl + videoUrl
-  const videoRef = useRef(null)
-  const newShortcuts = [
+}: VideoProps) => {
+  const siteUrl: string = useSiteUrl()
+  const videoSrc: string = siteUrl + videoUrl
+  const newShortcuts: {} = [
     {
-      //  disables fullscreen shorcut with the f key. Is used for background looping videos that should not be controllable
+      //  disables fullscreen shortcut with the f key. Is used for background looping videos that should not be controllable
       keyCode: 70, // f
       handle: () => {},
     },
   ]
 
-  const shortcutEl = (
+  const shortcutEl: JSX.Element = (
     <Shortcut clickable={false} dblclickable={false} shortcuts={newShortcuts} />
   )
 
   return (
     <Player
+      className={`shadow-2xl ${classes}`}
       fluid
       playsInline
       autoPlay={autoPlay}
       loop={loop}
       muted={muted}
-      // preload="auto"
-      className="shadow-2xl"
       width="100%"
       height="auto"
     >
@@ -45,13 +51,3 @@ const Video = ({
   )
 }
 export default Video
-
-const query = graphql`
-  query videoQuery {
-    site {
-      siteMetadata {
-        siteUrl
-      }
-    }
-  }
-`
