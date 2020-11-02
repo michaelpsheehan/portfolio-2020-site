@@ -10,5 +10,8 @@
       "name": "feature/typescriptAdd",
       "base": "develop"
     }
+  ],
+  "cSpell.ignoreWords": [
+    "unmount"
   ]
 }

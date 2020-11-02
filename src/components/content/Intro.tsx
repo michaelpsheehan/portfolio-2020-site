@@ -2,13 +2,22 @@ import React from 'react'
 import Text from '../core/Text'
 import Button from '../core/Button'
 
-const Intro = ({
+interface IntroProps {
+  introHeading?: string
+  introBody?: string
+  viewSiteLink?: string
+  viewCodeLink?: string
+  classes?: string
+}
+
+
+const Intro: React.FC<IntroProps> = ({
   introHeading,
   introBody,
   viewSiteLink,
   viewCodeLink,
   classes = '',
-}) => (
+}: IntroProps) => (
   <div className={`c-intro ${classes}`}>
     <Text heading={introHeading} body={introBody} />
     <div className="c-intro__buttons">

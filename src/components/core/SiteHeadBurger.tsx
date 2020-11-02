@@ -1,6 +1,14 @@
 import React from 'react'
-import AccessibleFocusOutline from '../core/AccessibleFocusOutline'
-const SiteHeadBurger = ({ overlayStatus, toggleOverlay, uiStyle }) => {
+import AccessibleFocusOutline from './AccessibleFocusOutline'
+
+interface SiteHeadBurgerProps {
+  overlayStatus?: string
+  toggleOverlay: () => void
+  uiStyle: string
+}
+
+
+const SiteHeadBurger: React.FC<SiteHeadBurgerProps> = ({ overlayStatus, toggleOverlay, uiStyle }) => {
   return (
     <AccessibleFocusOutline classes="flex items-center">
       <button

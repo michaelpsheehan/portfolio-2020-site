@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from 'react'
 
-const AccessibleFocusOutline = (props) => {
+interface FocusProps {
+  children: React.ButtonHTMLAttributes<HTMLButtonElement>
+  classes?: string
+}
+
+const AccessibleFocusOutline: React.FC<FocusProps> = ({children, classes}: FocusProps) => {
   //   this component helps accessibility by checking if the user navigated to the element using tab on a keyboard using the tab key and adds a class if so. This ensures the :focus outline is only removed if the user clicked with the mouse
   const [enableOutline, setOutline] = useState(false)
 
@@ -19,9 +24,9 @@ const AccessibleFocusOutline = (props) => {
     setOutline(false)
   }
 
-  const handleKeydown = (e) => {
+  const handleKeydown = (e:  KeyboardEvent)  => {
     // Detect a keyboard user from a tab key press keep outline if user is using the tab button
-    const isTabEvent = e.keyCode === 9
+    const isTabEvent:boolean = e.key === 'Tab'
     if (isTabEvent) {
       setOutline(true)
     }
@@ -29,12 +34,12 @@ const AccessibleFocusOutline = (props) => {
 
   return (
     <span
-      className={`${props.classes ? props.classes : ''} ${
-        enableOutline ? '-test' : 'no-outline-on-focus'
+      className={`${classes ? classes : ''} ${
+        enableOutline ? '' : 'no-outline-on-focus'
       } `}
       onClick={handleClick}
     >
-      {props.children}
+      {children}
     </span>
   )
 }

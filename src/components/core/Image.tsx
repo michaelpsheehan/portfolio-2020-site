@@ -1,5 +1,5 @@
 import React from 'react'
-import { useStaticQuery, graphql } from 'gatsby'
+import useSiteUrl from '../../hooks/useSiteUrl'
 require('lazysizes')
 require('lazysizes/plugins/attrchange/ls.attrchange')
 
@@ -12,14 +12,8 @@ interface ImageProps {
   alt?: string
 }
 
-interface SiteUrlQuery {
-      siteUrl: string
-}
-
 const Image: React.FC<ImageProps> = ({ image, alt = '', classes = '' }: ImageProps) => {
-  const data: SiteUrlQuery = getSiteUrl()
-  const siteUrl: string = data.siteUrl
-
+  const siteUrl: string = useSiteUrl()
   // formats the srcset from imageOptimize to work with gatsby by adding the craft backend url to the start of each src
   const formattedSrcset: string = image.srcset
     .split(',')
@@ -40,19 +34,3 @@ const Image: React.FC<ImageProps> = ({ image, alt = '', classes = '' }: ImagePro
   return imageComponent
 }
 export default Image
-
-const getSiteUrl = () => {
-  const data = useStaticQuery(graphql`
-    query HeadingQuery {
-      site {
-        siteMetadata {
-          siteUrl
-        }
-      }
-    }
-  `)
-
-  return {
-    siteUrl: data.site.siteMetadata.siteUrl,
-  }
-}
