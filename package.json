@@ -33,7 +33,7 @@
     "react-helmet": "^6.1.0",
     "react-refresh": "^0.8.3",
     "react-three-fiber": "^5.0.2",
-    "three": "^0.120.0",
+    "three": "^0.125.0",
     "video-react": "^0.14.1"
   },
   "devDependencies": {
