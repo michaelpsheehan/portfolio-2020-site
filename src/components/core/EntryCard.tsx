@@ -47,7 +47,7 @@ const EntryCard: React.FC<EntryCardProps> = ({ item, itemSection = '', classes =
           <>
             <div className="c-entry-card__overlay">
               <div className="c-entry-card__overlay-content">
-                <div>{title}</div>
+              <div>{title}</div>
                 {thumbnailDescription && <div>{thumbnailDescription}</div>}
                 <Button classes="c-button--ghost c-button--white" />
               </div>

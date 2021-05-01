@@ -1,6 +1,11 @@
 import React, { useRef, useEffect } from 'react'
 import staggerItemsIn from '../../animations/staggerItemsIn'
 
+interface Props {
+  items: any
+  itemTemplatePath
+}
+
 const Grid = ({
   items,
   itemTemplatePath,
