@@ -11,6 +11,7 @@ import staggerItemsIn from '../../animations/staggerItemsIn'
 import Button from '../../components/core/Button'
 
 const pageTemplate = (obj) => {
+  console.log('page data === ', obj)
   const {
     title,
     projectTypeLabel,

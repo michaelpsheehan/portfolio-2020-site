@@ -24,7 +24,7 @@ interface EntryCardProps {
 }
 
 
-const EntryCard: React.FC<EntryCardProps> = ({ item, itemSection = '', classes = '' }: EntryCardProps) => {
+const EntryCard = ({ item, itemSection = '', classes = '' }: EntryCardProps) => {
   const { slug, title, thumbnailDescription, imageCaption = '', heroImage } = item
   const entryCardImage: IHeroImage | null = (heroImage && heroImage.length) ? heroImage[0] : null
 

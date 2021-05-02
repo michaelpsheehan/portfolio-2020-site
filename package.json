@@ -6,6 +6,8 @@
   "author": "michaelpsheehan",
   "license": "ISC",
   "dependencies": {
+    "@typescript-eslint/eslint-plugin": "^2.34.0",
+    "@typescript-eslint/parser": "^2.34.0",
     "acorn": "^7.4.0",
     "axios": "^0.19.2",
     "drei": "^1.5.7",

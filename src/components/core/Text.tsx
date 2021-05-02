@@ -1,10 +1,10 @@
 import React from 'react'
 
 interface TextProps {
-  heading?: string 
-  body?:  string 
-  forwardedRef?: React.MutableRefObject<any>  
-  classes?: string
+    heading?: string 
+    body?:  string 
+    forwardedRef?: React.MutableRefObject<any>  
+    classes?: string
 }
 
 
@@ -16,8 +16,8 @@ const Text: React.FC<TextProps> = ({ heading, body, forwardedRef, classes = '' }
       }
       {body &&
         <div
-        className="c-text__body"
-        dangerouslySetInnerHTML={{ __html: body }}
+          className="c-text__body"
+          dangerouslySetInnerHTML={{ __html: body }}
         />
     }
     </div>
