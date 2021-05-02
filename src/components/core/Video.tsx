@@ -11,7 +11,7 @@ interface VideoProps {
   classes?: string
 }
 
-const Video: React.FC<VideoProps> = ({
+const Video = ({
   videoUrl,
   isAmbientVideo,
   autoPlay,

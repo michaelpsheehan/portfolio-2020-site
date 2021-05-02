@@ -10,6 +10,8 @@ import RichArticle from '../../components/content/rich-article/RichArticle'
 import staggerItemsIn from '../../animations/staggerItemsIn'
 import Button from '../../components/core/Button'
 
+import { IRichArticle } from '../../types/types'
+
 const pageTemplate = (obj) => {
   console.log('page data === ', obj)
   const {

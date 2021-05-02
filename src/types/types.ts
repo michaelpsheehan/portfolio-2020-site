@@ -5,13 +5,8 @@ export interface IHeroImage {
 
 }
 
-
-
-
-
-
 export interface EntryCardProps {
-  item: {
+    item: {
     slug: string
     title: string
     thumbnailDescription?: string
@@ -29,25 +24,17 @@ interface IVideo {
     url: string;
 }
 
-interface IVideoBlock {
-    id: string;
-    typeHandle: string;
+export interface IVideoBlock extends IRichArticleBlock {
     isAmbientVideo: boolean;
-    video: IVideo
+    video: IVideo[]
 }
-
-
-export interface IRichArticle {
-
-}
-    
 
 interface IRichArticleBlock {
     id: string;
     typeHandle: string;
 }
 
-interface ITextBlock extends IRichArticleBlock {
+export interface ITextBlock extends IRichArticleBlock {
     heading?: string;
     body?: string;
 }
@@ -77,4 +64,7 @@ export interface IFullWidthImageBlock extends IRichArticleBlock {
     imageCaption?: string;
 }
 
-  
+
+export interface IRichArticle {
+    [index: number]: ITextBlock | IFullWidthImageBlock | IVideoBlock 
+}
