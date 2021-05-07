@@ -10,10 +10,10 @@ import RichArticle from '../../components/content/rich-article/RichArticle'
 import staggerItemsIn from '../../animations/staggerItemsIn'
 import Button from '../../components/core/Button'
 
-import { IRichArticle } from '../../types/types'
+import { IRichArticle, IEntryPageData } from '../../types/types'
 
-const pageTemplate = (obj) => {
-  console.log('page data === ', obj)
+const pageTemplate = (obj: IEntryPageData) => {
+  console.log('page template obj === ', obj)
   const {
     title,
     projectTypeLabel,
@@ -50,18 +50,20 @@ const pageTemplate = (obj) => {
     )
   }
 
-  const projectEntryRef = useRef(null)
+  const projectEntryRef = useRef<HTMLDivElement | null>(null)
 
   useEffect(() => {
+    if(!projectEntryRef?.current) return
+
     const tl = staggerItemsIn(
-      projectEntryRef.current.children,
+      projectEntryRef?.current.children ,
       'Power3.out',
       0.9
     )
     return () => {
-      tl.kill()
+     tl? tl.kill() : null
     }
-  }, [])
+  }, [projectEntryRef])
 
   return (
     <>
@@ -78,7 +80,10 @@ const pageTemplate = (obj) => {
 
             <Section
               content={
-                <PageTitle title={title} subtitle={currentProjectType} />
+                <PageTitle 
+                    title={title} 
+                    subtitle={currentProjectType} 
+                />
               }
               container
             />
@@ -111,7 +116,9 @@ const pageTemplate = (obj) => {
           container
         />
         {richArticle && (
-          <RichArticle richArticle={richArticle} siteUrl={siteUrl} />
+          <RichArticle richArticle={richArticle} 
+          // siteUrl={siteUrl} 
+          />
         )}
       </div>
       <Section

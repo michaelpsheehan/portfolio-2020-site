@@ -12,7 +12,7 @@ interface IProps {
 const ImageBlock = ({ block, classes = '' }: IProps) => {
     const { constrainImage, image, imageCaption } = block
     
-    if (!image) return
+    if (!image) return null
 
     return (
         <ConditionalWrapper 

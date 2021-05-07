@@ -5,11 +5,18 @@ import TextBlock from './blocks/TextBlock'
 import WebGLBlock from './blocks/WebGLBlock'
 import VideoBlock from './blocks/VideoBlock'
 import Section from '../../core/Section'
+import { IRichArticleBlock } from '../../../types'
 
-const RichArticle = ({ richArticle, isHomepage, classes = '' }) => {
+interface IProps {
+  richArticle: any;
+  isHomepage: boolean
+  classes: string;
+}
+
+const RichArticle = ({ richArticle, isHomepage, classes = '' }: IProps) => {
   // checks the blockType from the matrix field and loads the appropriate component
-  const checkBlockType = (blockType, block) => {
-    switch (blockType) {
+  const checkBlockType = (block: IRichArticleBlock) => {
+    switch (block.typeHandle) {
       case 'text':
         return <TextBlock block={block} />
       case 'fullWidthImage':
@@ -30,8 +37,9 @@ const RichArticle = ({ richArticle, isHomepage, classes = '' }) => {
   return (
     richArticle && (
       <article className={`c-rich-article ${classes}`} ref={richArticleRef}>
-        {richArticle.map((block) => {
-          const currentBlock = checkBlockType(block.typeHandle, block, block.id)
+        {richArticle.map((block: IRichArticleBlock) => {
+          console.log('current block === ', block)
+          const currentBlock = checkBlockType( block)
           const fullHeightSection =
             block.typeHandle === 'animation' || block.typeHandle === 'webgl'
               ? true

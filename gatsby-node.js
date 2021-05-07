@@ -122,7 +122,7 @@ exports.createPages = async ({ actions, graphql }) => {
     result.data.craft.entries.map((page) => {
       actions.createPage({
         path: `/projects/${page.slug}`,
-        component: require.resolve('./src/pages/projects/entry.js'),
+        component: require.resolve('./src/pages/projects/entry.tsx'),
         context: { id: page.id },
       })
     })

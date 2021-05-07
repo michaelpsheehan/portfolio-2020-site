@@ -74,6 +74,12 @@ module.exports = {
         postCssPlugins: [require('tailwindcss')('./tailwind.js')],
       },
     },
+    // {
+    //   resolve: `gatsby-plugin-sass`,
+    //   options: {
+    //     postCssPlugins: [require('tailwindcss')('./tailwind.js')],
+    //   },
+    // },
     {
       resolve: 'gatsby-plugin-robots-txt',
       options: {

@@ -27,8 +27,8 @@ const LottieAnimation = ({
       },
     })
     return () => {
-      tlScroll.kill()
-      tlScroll.scrollTrigger.kill()
+      tlScroll?.kill()
+      tlScroll?.scrollTrigger?.kill()
     }
   }, [])
 

@@ -3,7 +3,7 @@ import Text from '../../../core/Text'
 import { ITextBlock } from '../../../../types/types'
 
 interface IProps {
-    classes: string;
+    classes?: string;
     block: ITextBlock
 }
 

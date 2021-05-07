@@ -6,6 +6,8 @@ import Section from '../../components/core/Section'
 import Grid from '../../components/core/Grid'
 import EntryCard from '../../components/core/EntryCard'
 import mergeEntries from '../../helpers/mergeEntries'
+
+
 const ProjectsIndexPage = () => {
   const { projects, entry, siteUrl } = projectsIndexData()
   const { seoMeta } = entry

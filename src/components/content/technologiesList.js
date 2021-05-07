@@ -6,7 +6,7 @@ const TechnologyList = ({ currentList }) => {
   useEffect(() => {
     const tl = staggerItemsIn(technologyListRef.current.children)
     return () => {
-      tl.kill()
+      tl?.kill()
     }
   }, [])
   return (

@@ -22,8 +22,8 @@ const AnimationBlock = ({ block, classes = '' }) => {
     )
 
     return () => {
-      tl.kill()
-      tl.scrollTrigger.kill()
+      tl?.kill()
+      tl.scrollTrigger?.kill()
     }
   }, [])
 

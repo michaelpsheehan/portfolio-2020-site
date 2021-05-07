@@ -26,7 +26,7 @@
     "gatsby-source-filesystem": "^2.3.31",
     "gatsby-source-graphql": "^2.7.5",
     "gsap": "^3.5.1",
-    "lazysizes": "^5.2.2",
+    "lazysizes": "^5.3.2",
     "lottie-react-web": "^2.2.2",
     "node-sass": "^4.14.1",
     "prop-types": "^15.7.2",
