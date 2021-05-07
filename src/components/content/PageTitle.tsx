@@ -2,7 +2,7 @@ import React from 'react'
 
 interface IProps {
     title: string;
-    classes: string;
+    classes?: string;
     underline?: string;
     subtitle?: JSX.Element | null;
 }

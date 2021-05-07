@@ -4,12 +4,19 @@ import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 gsap.registerPlugin(ScrollTrigger)
 
+interface IProps {
+  lottieAnimationData: any,
+  startPaused?: boolean;
+  shouldLoop?: boolean ;
+  classes?: string;
+}
+
 const LottieAnimation = ({
   lottieAnimationData,
   startPaused = true,
   shouldLoop = true,
   classes = '',
-}) => {
+}: IProps) => {
   if (lottieAnimationData === null) {
     return
   }
@@ -17,6 +24,8 @@ const LottieAnimation = ({
   const lottieAnimationRef = useRef(null)
 
   useEffect(() => {
+    if(!lottieAnimationRef?.current) return
+
     const tlScroll = gsap.timeline({
       scrollTrigger: {
         trigger: lottieAnimationRef.current,
@@ -33,9 +42,11 @@ const LottieAnimation = ({
   }, [])
 
   return (
-    <div className={`c-lottie-animation ${classes}`} ref={lottieAnimationRef}>
-      <Lottie
-        className="cursor-auto"
+    <div 
+        className={`c-lottie-animation ${classes}`} 
+        ref={lottieAnimationRef}>
+            <Lottie
+            // className="cursor-auto"
         options={{
           animationData: lottieAnimationData,
           loop: shouldLoop,

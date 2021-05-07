@@ -12,7 +12,7 @@ const NotFoundPage = () => (
       content={
         <PageTitle
           title="404 Not Found"
-          subtitle={`Oops. You've just hit a route that doesn't exist`}
+          subtitle={<>Oops. You've just hit a route that doesn't exist</>}
         />
       }
       container

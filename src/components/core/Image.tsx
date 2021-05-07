@@ -29,6 +29,9 @@ const Image = ({ image, alt = '', classes = '' }: ImageProps) => {
             alt={alt}
         />
 
+
+        console.log('image passed down == ', image)
+        console.log('image COMPONENT== ', imageComponent)
   return imageComponent
 }
 
