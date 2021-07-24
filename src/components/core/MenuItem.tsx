@@ -7,7 +7,25 @@ import {
 
 import { useGlobalDispatchContext } from '../../context/globalContext'
 
-const MenuItem = ({ name, link, forwardedRef }) => {
+import { IPageTransitionProps } from '../../types/types'
+
+interface ITest {
+  node: number;
+  exit: any;
+  e: any;
+  entry: any;
+}
+
+interface IProps {
+
+  name: string;
+  link: string;
+  forwardedRef: React.LegacyRef<HTMLSpanElement> | undefined;
+}
+
+const MenuItem = ({ name, link, forwardedRef }: IProps) => {
+  console.log('forwarded red ============== ', forwardedRef)
+
   const dispatch = useGlobalDispatchContext()
   const closeOverlay = () => {
     dispatch({
@@ -16,11 +34,15 @@ const MenuItem = ({ name, link, forwardedRef }) => {
     })
   }
 
-  const interestingExitAnimation = (exit, node, e, entry) => {
+  const interestingExitAnimation = ({exit, node, e, entry}: IPageTransitionProps) => {
+    console.log('exit == ', exit, typeof exit)
+    console.log('node == ', node, typeof node)
+    console.log('e == ', e, typeof e)
+    console.log('entry == ', entry, typeof entry)
     transitionStandard()
   }
 
-  const onPageEnter = (node, e, exit, entry) => {
+  const onPageEnter = ({node, e, exit, entry}: IPageTransitionProps) => {
     exitTransition(node)
     closeOverlay()
   }
@@ -40,7 +62,7 @@ const MenuItem = ({ name, link, forwardedRef }) => {
             }}
             entry={{
               delay: 1,
-              trigger: ({ node, e, exit, entry }) =>
+              trigger: ({ node, e, exit, entry }: ITest) =>
                 onPageEnter(node, e, exit, entry),
             }}
           >

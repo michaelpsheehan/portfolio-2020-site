@@ -1,6 +1,4 @@
 const mergeEntries = (featuredEntries, allEntries) => {
-  console.log('featured entries === ', featuredEntries)
-  console.log('all  entries === ', allEntries)
   
   const featEntIds = featuredEntries.map((el) => el.id)
   let featuredEntriesFull = []

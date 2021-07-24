@@ -1,6 +1,3 @@
-import { string } from "prop-types"
-import { Interface } from "readline"
-
 export interface IHeroImage {
     id: string;
     url: string;
@@ -32,9 +29,10 @@ export interface IVideoBlock extends IRichArticleBlock {
     video: IVideo[]
 }
 
-interface IRichArticleBlock {
+export interface IRichArticleBlock {
     id: string;
     typeHandle: string;
+    backgroundColour?: string | undefined
 }
 
 export interface ITextBlock extends IRichArticleBlock {
@@ -54,14 +52,14 @@ export interface IOptimizedImagesFullWidth {
 
 
 
-interface IFullWidthImage {
+export interface IFullWidthImage {
     id: string;
     optimizedImagesFullWidth: IOptimizedImagesFullWidth
 }
 
 export interface IFullWidthImageBlock extends IRichArticleBlock {
-    constrainImage: boolean;
-    id: string;
+    constrainImage?: boolean;
+    // id: string;
     url: string;
     image:  IFullWidthImage[]
     imageCaption?: string;
@@ -69,22 +67,26 @@ export interface IFullWidthImageBlock extends IRichArticleBlock {
 
 
 export interface IRichArticle {
-    [index: number]: ITextBlock | IFullWidthImageBlock | IVideoBlock 
-}
+    [index: number]: ITextBlock | IFullWidthImageBlock | IVideoBlock
+}[]
 
 
-interface ITechnologyentries {
+export type Testing =  ITextBlock | IFullWidthImageBlock | IVideoBlock 
+   
+
+
+export interface ITechnologyentries {
     id: string;
     title: string;
 }
 
 
 
-interface IOptimizedImagesGridThumbnail {
+export interface IOptimizedImagesGridThumbnail {
     src: string;
 }
 
-interface ISeoMeta {
+export interface ISeoMeta {
 
         title: string;
         description: string;
@@ -109,7 +111,7 @@ interface ISeoMeta {
 }
 
 
-interface IEntry {
+export interface IEntry {
     id: string;
     uid: string;
     url: string;
@@ -131,7 +133,7 @@ interface IEntry {
     seoMeta: ISeoMeta
 }
 
-interface ISite {
+export interface ISite {
     siteMetadata: {
         siteUrl: string
     }
@@ -145,4 +147,15 @@ export interface IEntryPageData {
         }
     }
 
+}
+
+
+export interface IPageTransitionProps {
+    node: any;
+    exit: {
+        length: number;
+        trigger: any;
+    };
+    e: any;
+    entry: any;
 }

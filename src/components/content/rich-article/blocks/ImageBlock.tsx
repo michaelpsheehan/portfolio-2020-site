@@ -10,20 +10,19 @@ interface IProps {
 }
 
 const ImageBlock = ({ block, classes = '' }: IProps) => {
-    console.log('image block === ', block)
+
     const { constrainImage, image, imageCaption } = block
-    console.log({constrainImage, image, imageCaption })
-    console.log('image optimized === ', image[0].optimizedImagesFullWidth)
+    
     if (!image) return null
 
     return (
         <ConditionalWrapper 
-            condition={constrainImage} 
+            condition={!!constrainImage} 
             wrapper={Container} 
             children={ 
                 <Image
                     classes={classes}
-                    image={image[0].optimizedImagesFullWidth}
+                    image={image[0]?.optimizedImagesFullWidth}
                     alt={imageCaption?? ''}
                 />
             } 

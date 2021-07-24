@@ -13,7 +13,6 @@ import Button from '../../components/core/Button'
 import { IRichArticle, IEntryPageData } from '../../types/types'
 
 const pageTemplate = (obj: IEntryPageData) => {
-  console.log('page template obj === ', obj)
   const {
     title,
     projectTypeLabel,
@@ -28,7 +27,6 @@ const pageTemplate = (obj: IEntryPageData) => {
     richArticle,
     seoMeta,
   } = obj.data.craft.entries[0]
-  const { siteUrl } = obj.data.site.siteMetadata
   const imageOptimizedHeroImage = heroImage
     ? heroImage[0].optimizedImagesFullWidth
     : null
@@ -117,7 +115,6 @@ const pageTemplate = (obj: IEntryPageData) => {
         />
         {richArticle && (
           <RichArticle richArticle={richArticle} 
-          // siteUrl={siteUrl} 
           />
         )}
       </div>

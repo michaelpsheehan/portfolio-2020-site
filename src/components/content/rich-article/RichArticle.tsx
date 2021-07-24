@@ -9,8 +9,8 @@ import { IRichArticleBlock } from '../../../types'
 
 interface IProps {
   richArticle: any;
-  isHomepage: boolean
-  classes: string;
+  isHomepage?: boolean
+  classes?: string;
 }
 
 const RichArticle = ({ richArticle, isHomepage, classes = '' }: IProps) => {

@@ -38,7 +38,8 @@ class PrimaryNav extends Component {
   }
 
   componentWillUnmount() {
-    this.tl.kill()
+    
+    this.tl?.kill()
   }
 
   render() {

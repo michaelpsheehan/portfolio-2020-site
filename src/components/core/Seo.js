@@ -34,7 +34,7 @@ const SEO = ({ title, description, socialMeta }) => {
 
   let facebook = socialMeta ? socialMeta.facebook : null
   let twitter = socialMeta ? socialMeta.twitter : null
-console.log('seo data is ---- ', seoData)
+// console.log('seo data is ---- ', seoData)
   return (
     <Helmet title={seoData.title}>
       <meta name="description" content={finalDescription} />
