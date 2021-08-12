@@ -3,8 +3,8 @@ module.exports = {
     container: {
       center: true,
       padding: {
-        default: '2rem',
-      },
+        DEFAULT: '2rem',
+      }
     },
     fontFamily: {
       sans: ['Lato', 'Helvetica', 'Arial', 'sans-serif'],

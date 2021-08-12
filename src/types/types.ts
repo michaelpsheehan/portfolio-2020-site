@@ -71,9 +71,6 @@ export interface IRichArticle {
 }[]
 
 
-export type Testing =  ITextBlock | IFullWidthImageBlock | IVideoBlock 
-   
-
 
 export interface ITechnologyentries {
     id: string;

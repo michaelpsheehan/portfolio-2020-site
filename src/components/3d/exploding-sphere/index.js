@@ -1,87 +1,25 @@
 import * as THREE from 'three'
 import React, { useRef, useState, useEffect } from 'react'
-import { Canvas, useFrame, useUpdate } from 'react-three-fiber'
-import { OrbitControls } from 'drei'
-
+import { Canvas, useFrame} from '@react-three/fiber'
+import { OrbitControls } from '@react-three/drei'
+import { useUpdate }from '../../../hooks/useUpdate'
 const getRandomVector = () =>  Math.random() * 2 - 1
 
 
 import useWindowSize from '../../../hooks/useWindowSize'
-import { IUniform } from 'three'
-interface Props {
-  spherePosition: THREE.Vector3 | [x: number, y: number, z: number] 
-  userScale: number
-}
-
-interface IMeshAttributes {
-  count: number
-}
-
-// interface IMesh {
-//   geometry: {
-//     getAttribute: (att: string) =>  IMeshAttributes
-//     setAttribute: (att: string, attType: THREE.BufferAttribute) =>  IMeshAttributes
-//   }
-// }
-
-interface ITest extends THREE.IUniform {
-    // explosion: {
-    //         value: number
-    //       }
-    //       time: {
-    //         value: number
-    //       } 
 
 
-          explosion: { type: string, value: number },
-          time: { type: string, value: number },
-          //   time: { type: 'f', value: 0 },
-}
-
-interface IMaterialRef extends THREE.ShaderMaterial {
-  args?: {
-
-    uniforms:{ 
-      // explosion: { type: 'f', value: 1 }
-      explosion: { type: string, value: number };
-      time:{ type: string, value: number };
-      
-    }[]
-}
-
-  //   uniforms: {
-  //     explosion: {
-  //       value: number
-  //     }
-  //     time: {
-  //       value: number
-  //     } 
-  // }
-}
 
 
-interface testGeoRef extends THREE.IcosahedronBufferGeometry { 
-  uniforms:{ 
-    // explosion: { type: 'f', value: 1 }
-    explosion: {type: string; value: number}
-    // THREE.IUniform ;
-    time: THREE.IUniform
-  
-  }
-}
-
-const Sphere: React.FC<Props> = ({ spherePosition, userScale = 1.5 }: Props) => {
+const Sphere = ({ spherePosition, userScale = 1.5 }) => {
   const [hovered, setHover] = useState(false)
 
-  // const geoRef = useRef<THREE.IcosahedronBufferGeometry>()
-  const geoRef = useRef<any>()
-  // const matRef = useRef<IMaterialRef>()
-  // const matRef = useRef<THREE.ShaderMaterial>()
-  const matRef = useRef<IMaterialRef>()
+  const geoRef = useRef()
+  const matRef = useRef()
 
   // custom shaders to handle the geometry explosion effect and the fragment colour effect
   
-  const fragmentShader: string = `
+  const fragmentShader = `
   varying vec3 vOriginalPosition;
   uniform float time;
   
@@ -90,7 +28,7 @@ const Sphere: React.FC<Props> = ({ spherePosition, userScale = 1.5 }: Props) => 
     gl_FragColor = vec4(color,1.0);
   }`
   
-  const vertexShader: string = `
+  const vertexShader = `
     uniform float time;
     uniform float explosion;
     attribute vec3 randomDirection;
@@ -107,14 +45,14 @@ const Sphere: React.FC<Props> = ({ spherePosition, userScale = 1.5 }: Props) => 
     }`
   
   // useUpdate allows me to do some of the initial sphere mesh setup imperatively
-  const meshRef = useUpdate((currentMesh: THREE.Mesh<THREE.BufferGeometry>) => {
+  const meshRef = useUpdate((currentMesh) => {
     const geometry  = currentMesh.geometry
     const positions = geometry.getAttribute('position')
     const vertexCount = positions.count
     const triangleCount = vertexCount / 3
 
-    const randomDirections: number[] = []
-    const randomStrengths: number[] = []
+    const randomDirections = []
+    const randomStrengths = []
     for (let i = 0; i < triangleCount; i++) {
       // Get a random vector
       const dir = new THREE.Vector3(
@@ -172,16 +110,13 @@ const Sphere: React.FC<Props> = ({ spherePosition, userScale = 1.5 }: Props) => 
     }
   })
 
-  const shadTest:IMaterialRef =  <shaderMaterial
+  const shadTest =  <shaderMaterial
   attach="material"
   args={[
     {
       vertexShader,
       fragmentShader,
-      // uniforms: {
-      //   explosion: 1,
-      //   time: 0,
-      // },
+     
       uniforms: {
         explosion: { type: 'f', value: 1 },
         time: { type: 'f', value: 0 },
@@ -189,10 +124,7 @@ const Sphere: React.FC<Props> = ({ spherePosition, userScale = 1.5 }: Props) => 
       side: THREE.DoubleSide,
     },
   ]}
-  // uniforms={
-  //   explosion: { type: 'f', value: 1 },
-  //   time: { type: 'f', value: 0 },
-  // }
+
   ref={matRef}
 />
 
@@ -207,7 +139,7 @@ const Sphere: React.FC<Props> = ({ spherePosition, userScale = 1.5 }: Props) => 
       >
         <icosahedronBufferGeometry
           attach="geometry"
-          args={[1, 5]
+          args={[1, 35]
           }
           ref={geoRef}
           uniforms={{
@@ -229,10 +161,6 @@ const Sphere: React.FC<Props> = ({ spherePosition, userScale = 1.5 }: Props) => 
               side: THREE.DoubleSide,
             },
           ]}
-          // uniforms={
-          //   explosion: { type: 'f', value: 1 },
-          //   time: { type: 'f', value: 0 },
-          // }
           ref={matRef}
         />
       </mesh>
@@ -243,8 +171,8 @@ const Sphere: React.FC<Props> = ({ spherePosition, userScale = 1.5 }: Props) => 
 // don't do 3D things during ssr, check browser exists
 const isBrowser = typeof window !== 'undefined'
 
-export default function BreakingSphere({ userScale }:Props) {
-  const [spherePosition, setPosition] = useState<[x: number, y: number, z: number] >([0, 0, 1])
+export default function BreakingSphere({ userScale }) {
+  const [spherePosition, setPosition] = useState([0, 0, 1])
 
   if (isBrowser) {
     const windowSize = useWindowSize()

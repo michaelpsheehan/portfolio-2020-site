@@ -6,7 +6,7 @@
   }
 
   &__list-item {
-    @apply uppercase text-white text-3xl py-2 mx-0 p-4 whitespace-no-wrap;
+    @apply uppercase text-white text-3xl py-2 mx-0 p-4 whitespace-nowrap;
 
     // the background needed to achieve the hover state. Not visible as default
     background: linear-gradient(

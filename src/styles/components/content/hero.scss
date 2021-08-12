@@ -15,7 +15,7 @@
   }
 
   &__text {
-    @apply font-sans text-2xl text-black my-16 whitespace-pre-wrap text-center;
+    @apply font-sans text-2xl text-black my-16 whitespace-pre-wrap text-center leading-tight;
     margin-right: auto;
     margin-left: auto;
     padding-right: 2rem;
@@ -26,7 +26,7 @@
     }
 
     @screen lg {
-      @apply text-5xl;
+      @apply text-5xl leading-tight;
     }
   }
 

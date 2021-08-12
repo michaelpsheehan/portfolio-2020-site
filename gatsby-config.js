@@ -50,23 +50,18 @@ module.exports = {
         background_color: `#663399`,
         theme_color: `#663399`,
         display: `minimal-ui`,
-        icon: `src/images/favicon.jpg`, // This path is relative to the root of the site.
+        icon: `src/images/favicon.jpg`, 
       },
     },
-
     {
-      resolve: `gatsby-plugin-prefetch-google-fonts`,
+      resolve: `gatsby-plugin-google-fonts`,
       options: {
         fonts: [
-          {
-            family: `Lato`,
-          },
-          {
-            family: 'Crimson Pro:300,400',
-          },
+          `Lato`,
+          `Crimson Pro:300,400` 
         ],
-        display: 'swap',
-      },
+        display: 'swap'
+      }
     },
     {
       resolve: `gatsby-plugin-sass`,
@@ -74,12 +69,7 @@ module.exports = {
         postCssPlugins: [require('tailwindcss')('./tailwind.js')],
       },
     },
-    // {
-    //   resolve: `gatsby-plugin-sass`,
-    //   options: {
-    //     postCssPlugins: [require('tailwindcss')('./tailwind.js')],
-    //   },
-    // },
+ 
     {
       resolve: 'gatsby-plugin-robots-txt',
       options: {
@@ -99,16 +89,39 @@ module.exports = {
       options: {
         printRejected: true, // Print removed selectors and processed file names
         tailwind: true, // Enable tailwindcss support
-        whitelist: [
-          'bg-black',
-          'bg-article-red',
-          'bg-article-green',
-          'video-react',
-          'tl-edges',
-          'tl-wrapper',
-        ],
-        whitelistPatterns: [/^video-react/, /^vjs/],
-        whitelistPatternsChildren: [/^video-react/],
+        ignore: [
+          './src/styles/components/core/overlay.scss', 
+          // '../src/styles/components/core/overlay.scss', 
+        ], // Ignore files/folders
+
+        // whitelist: [
+        //   'bg-black',
+        //   'bg-article-red',
+        //   'overlay',
+        //   'bg-article-green',
+        //   'video-react',
+        //   'tl-edges',
+        //   'tl-wrapper',
+        // ],
+        purgeCSSOptions: {
+          safelist: [
+            'bg-black',
+            'c-overlay',
+            'c-hero',
+            'bg-article-red',
+            'bg-article-green',
+            'video-react',
+            'tl-edges',
+            'tl-wrapper',
+            'video-react-video', 
+            'container',
+            /^vjs/,
+            
+
+          ]
+      
+        },
+
       },
     },
   ],
