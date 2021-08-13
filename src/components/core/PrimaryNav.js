@@ -6,6 +6,7 @@ import MenuItem from './MenuItem'
 import Overlay from './Overlay'
 gsap.registerPlugin(ScrollToPlugin, ScrollTrigger)
 
+
 class PrimaryNav extends Component {
   constructor() {
     super()
