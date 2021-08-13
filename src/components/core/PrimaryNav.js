@@ -3,7 +3,7 @@ import { gsap } from 'gsap'
 import { ScrollToPlugin } from 'gsap/ScrollToPlugin'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import MenuItem from './MenuItem'
-import Overlay from './Overlay'
+import Overlay from './Overlay.tsx'
 gsap.registerPlugin(ScrollToPlugin, ScrollTrigger)
 
 
