@@ -28,10 +28,10 @@ const introOverlayAnimation = (
 }
 
 const HomeTemplate = ({ data, pageContext }) => {
-  const { richArticle } = pageContext
   const entry = data.craft.entry[0]
-  const { siteUrl } = data.site
   const { seoMeta } = entry
+  const { richArticle } = entry
+  const   allLotties  = data.allLottie.nodes
 
   const [animationComplete, setAnimationComplete] = useState(false)
   const introOverlayLeftSectionEl = useRef(null)
@@ -48,6 +48,22 @@ const HomeTemplate = ({ data, pageContext }) => {
       introOverlayRightSectionEl.current,
       completeAnimation
     )
+
+    richArticle?.map(article => {
+
+        if(article.typeHandle === 'animation') {
+
+            const matchingtLottie = allLotties.find(lottie => article.animationUrl === lottie.animationUrl)
+
+            return article.animationData = JSON.parse(matchingtLottie.animationData ?? '') 
+
+        } else {
+            return article
+        }
+      
+      })
+
+
   }, [])
 
   return (
@@ -91,6 +107,13 @@ const HomeTemplate = ({ data, pageContext }) => {
 
 export const homeQuery = graphql`
   query homeTemplateQuery {
+    allLottie {
+              nodes {
+                id
+                animationUrl
+                animationData
+              }
+          }
     site {
       siteMetadata {
         siteUrl
@@ -100,6 +123,59 @@ export const homeQuery = graphql`
       entry: entries(section: "homepage") {
         title
         ... on Craft_homepage_homepage_Entry {
+          
+          richArticle {
+              ... on Craft_richArticle_animation_BlockType {
+                id
+                backgroundColour
+                typeHandle
+                alignAnimation(label: true)
+                animationUrl
+                animatorName
+                animatorUrl
+                fullWidthAnimation
+                body
+                heading
+              }
+              ... on Craft_richArticle_webgl_BlockType {
+                id
+                typeHandle
+                heading
+                body
+                backgroundColour
+                alignCanvas(label: true)
+                selectedScene
+              }
+              ... on Craft_richArticle_text_BlockType {
+                id
+                typeHandle
+                heading
+                body
+                backgroundColour
+              }
+              ... on Craft_richArticle_fullWidthImage_BlockType {
+                id
+                imageCaption
+                typeHandle
+                constrainImage
+                backgroundColour
+                image(optimizedImagesFullWidth: "") {
+                  ... on Craft_images_Asset {
+                    id
+                    url
+                    optimizedImagesFullWidth {
+                      focalPoint
+                      lightness
+                      placeholderImage
+                      src
+                      srcUrls
+                      srcWebp
+                      srcset
+                    }
+                  }
+                }
+              }
+            }
           heroTextBody
           ctaButton1Text
           ctaButton1Link
