@@ -29,7 +29,7 @@ const RichArticle = ({ richArticle,  classes = '' }: IProps) => {
       case 'animation':
         return <AnimationBlock block={block} />
       case 'webgl':
-        // return <WebGLBlock block={block} />
+        return <WebGLBlock block={block} />
       default:
         return null
     }
@@ -49,7 +49,6 @@ const RichArticle = ({ richArticle,  classes = '' }: IProps) => {
     richArticle && (
       <article className={`c-rich-article ${classes}`} ref={richArticleRef}>
         {richArticle?.map((block: IRichArticleBlock) => {
-          console.log('rich article block ==== ', block)
           const currentBlock = checkBlockType( block)
           if(!currentBlock) return null
           const fullHeightSection =

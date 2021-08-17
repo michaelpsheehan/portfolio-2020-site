@@ -24,8 +24,6 @@ const EntryCard = ({ item, itemSection = '', classes = '' }: EntryCardProps) => 
   const { slug, title, thumbnailDescription, imageCaption = '', heroImage } = item
   const entryCardImage = (heroImage && heroImage.length) ? heroImage[0] : null
 
-  console.log('the entry card image ===== ', entryCardImage)
-
   return (
     <div className={`c-entry-card ${classes}`}>
       <AniLink

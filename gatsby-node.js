@@ -19,7 +19,6 @@ exports.sourceNodes = async ({
 //   get the lottie animation data at build time and add as graphql nodes, This wouldn't work for a client site as it's not fully CMS driven but works for me. I'll eventually update this portfolio to just use mdx as it's just my site so I don't really need a CMS or a server for this  :)
 await Promise.all(
   await lottieUrls.map(async (lottie, i) => {
-    console.log('lott == ', lottie)
     const lottieJsonResponse = await axios.get(lottie.animationUrl)
     
     // stringify the JSON to make querying with GraphQL a little easier
