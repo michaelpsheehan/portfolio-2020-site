@@ -2,22 +2,18 @@ import React from 'react'
 import AniLink from 'gatsby-plugin-transition-link/AniLink'
 import Button from './Button'
 import Image from './Image'
+import {IOptimizedImagesFullWidth , IOptimizedImagesGridThumbnail} from '../../types/types'
 
 interface IHeroImage {
-    imageOptimizeSmallImage: {
-      url: string
-      placeholderImage: string
-      srcset: string
-    }
+    imageOptimizeSmallImage: IOptimizedImagesFullWidth
 }
-
 interface EntryCardProps {
   item: {
     slug: string
     title: string
     thumbnailDescription?: string
     imageCaption?: string
-    heroImage?: IHeroImage[] 
+    heroImage?: IHeroImage[] | null
   }
   itemSection?:  string
   classes?: string
@@ -26,7 +22,9 @@ interface EntryCardProps {
 
 const EntryCard = ({ item, itemSection = '', classes = '' }: EntryCardProps) => {
   const { slug, title, thumbnailDescription, imageCaption = '', heroImage } = item
-  const entryCardImage: IHeroImage | null = (heroImage && heroImage.length) ? heroImage[0] : null
+  const entryCardImage = (heroImage && heroImage.length) ? heroImage[0] : null
+
+  console.log('the entry card image ===== ', entryCardImage)
 
   return (
     <div className={`c-entry-card ${classes}`}>

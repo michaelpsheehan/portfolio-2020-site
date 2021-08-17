@@ -3,6 +3,8 @@ import React, { useRef, useState, useEffect } from 'react'
 import { Canvas, useFrame} from '@react-three/fiber'
 import { OrbitControls } from '@react-three/drei'
 import { useUpdate }from '../../../hooks/useUpdate'
+import { vertexShader, fragmentShader } from './shaders/shaders'
+
 const getRandomVector = () =>  Math.random() * 2 - 1
 
 
@@ -17,32 +19,6 @@ const Sphere = ({ spherePosition, userScale = 1.5 }) => {
   const geoRef = useRef()
   const matRef = useRef()
 
-  // custom shaders to handle the geometry explosion effect and the fragment colour effect
-  
-  const fragmentShader = `
-  varying vec3 vOriginalPosition;
-  uniform float time;
-  
-  void main() {
-    vec3 color = normalize( sin(vOriginalPosition)) * 0.5 + 0.5;
-    gl_FragColor = vec4(color,1.0);
-  }`
-  
-  const vertexShader = `
-    uniform float time;
-    uniform float explosion;
-    attribute vec3 randomDirection;
-    attribute float randomStrength;
-    varying vec3 vOriginalPosition;
-  
-    void main () {
-      vOriginalPosition = position.xyz;
-      float stretch = time; 
-      vec3 pos = position.xyz;
-      pos += randomDirection * randomStrength * explosion;
-      pos.xz *= sin(pos.y + stretch);
-      gl_Position = projectionMatrix * modelViewMatrix * vec4(pos.xyz, 1.0);
-    }`
   
   // useUpdate allows me to do some of the initial sphere mesh setup imperatively
   const meshRef = useUpdate((currentMesh) => {

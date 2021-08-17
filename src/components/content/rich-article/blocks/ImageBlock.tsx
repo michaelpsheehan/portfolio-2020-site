@@ -1,7 +1,7 @@
 import React from 'react'
 import Image from '../../../core/Image'
 import { IFullWidthImageBlock } from '../../../../types/types'
-import ConditionalWrapper from '../../../../utils/conditionalWrapper'
+import ConditionalWrapper from '../../../../utils/ConditionalWrapper'
 import Container from '../../../core/Container'
 
 interface IProps {

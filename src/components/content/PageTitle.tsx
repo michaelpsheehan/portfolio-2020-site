@@ -3,7 +3,7 @@ import React from 'react'
 interface IProps {
     title: string;
     classes?: string;
-    underline?: string;
+    underline?: boolean;
     subtitle?: JSX.Element | null;
 }
 

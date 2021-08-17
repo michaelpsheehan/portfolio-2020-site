@@ -5,6 +5,7 @@ import ConditionalWrapper from '../../utils/ConditionalWrapper'
 import Container from '../core/Container'
 
 gsap.registerPlugin(ScrollTrigger)
+
 import {
   useGlobalDispatchContext,
   useGlobalStateContext,
@@ -30,43 +31,43 @@ const Section = ({ content, container, isHomepage, classes = '' }: IProps) => {
     dispatch({ type: 'CHANGE_UI_STYLE', newUiStyle: 'ui-style-white-on-dark' })
   }
 
-  const handleScroll = (el: gsap.plugins.ScrollTriggerInstance) => {
-    console.log('handle scroll scroller ', el)
-    // console.log('handlescroll is, el === ', el)
+  const handleScroll = (el: globalThis.ScrollTrigger) => {
     if (el.trigger?.classList.contains('js-dark-bg')) {
       setUiLight()
     } else {
       setUiDark()
     }
   }
+  let scroller: globalThis.ScrollTrigger | null  = null
 
-  const handleScrollBackToStart = (scrollTrigger:  gsap.plugins.ScrollTriggerInstance) => {
-    console.log('the scroll triggger scroller === ', scrollTrigger.scroller.innerHeight)
-    const scrollPosition = scrollTrigger.scroller.scrollY
-    const windowHeight = scrollTrigger.scroller.innerHeight
+  const handleScrollBackToStart = (scrollTrigger:  globalThis.ScrollTrigger) => {
+   scroller = scrollTrigger.scroller
+    console.log('SCROLLER ==== ', scroller)
 
-    if (scrollPosition <= windowHeight) {
-      setUiLight()
+      const scrollPosition = scroller.scrollY
+      const windowHeight = scrollTrigger?.scroller?.innerHeight
+      
+      if (scrollPosition <= windowHeight) {
+        setUiLight()
+      }
     }
-  }
+  // }
 
   useEffect(() => {
     setUiLight()
   }, [])
 
 
-  let scroller: gsap.plugins.ScrollTriggerInstance | undefined 
 
   useEffect(() => {
-    console.log('scroller ===  ', scroller)
 
     if (isHomepage && sectionRef.current) {
         scroller = ScrollTrigger.create({
-          trigger: sectionRef.current!,
+          trigger: sectionRef.current,
           start: 'top 70',
-          onEnter: (el:gsap.plugins.ScrollTriggerInstance ) => handleScroll(el),
+          onEnter: (el: globalThis.ScrollTrigger ) => handleScroll(el),
           onEnterBack: (el) => handleScroll(el),
-          onLeaveBack: (el: gsap.plugins.ScrollTriggerInstance) => handleScrollBackToStart(el),
+          onLeaveBack: (el: globalThis.ScrollTrigger) => handleScrollBackToStart(el),
       })
     }
     if (isHomepage && scroller) {
@@ -75,6 +76,10 @@ const Section = ({ content, container, isHomepage, classes = '' }: IProps) => {
       }
     }
   }, [isHomepage, scroller ])
+
+  useEffect(()=> {
+    console.log('SCROLLER ==== ', scroller?.scrollY)
+  })
 
   // const isfalse = true
 

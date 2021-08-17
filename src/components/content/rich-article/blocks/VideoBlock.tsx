@@ -18,10 +18,10 @@ const VideoBlock = ({ block, classes = '' }: IProps) => {
             <Video
                 classes={classes}
                 videoUrl={videoUrl}
-                autoPlay={isAmbientVideo}
-                loop={isAmbientVideo}
-                muted={isAmbientVideo}
-                isAmbientVideo={isAmbientVideo}
+                autoPlay={!!isAmbientVideo}
+                loop={!!isAmbientVideo}
+                muted={!!isAmbientVideo}
+                isAmbientVideo={!!isAmbientVideo}
             />
         </div>
     )

@@ -77,6 +77,22 @@ export interface ITechnologyentries {
     title: string;
 }
 
+export interface IGlobalSets {
+    fallbacks: {
+        id: string;
+        fallbackImage: {
+            id: string;
+            url: string
+        }
+    }[]
+    socialLinks: {
+        id: string;
+        twitterUsername: string;
+        githubUrl: string;
+        linkedinUrl: string;
+    }[]
+}
+
 
 
 export interface IOptimizedImagesGridThumbnail {
@@ -128,6 +144,13 @@ export interface IEntry {
     technologyentries: ITechnologyentries[]
     heroImage: IHeroImage[]
     seoMeta: ISeoMeta
+}
+
+export type IIndexProjects = IEntry & {
+    featuredProjects: {
+        id: string;
+        title: string;
+    }
 }
 
 export interface ISite {

@@ -27,6 +27,7 @@ const pageTemplate = (obj: IEntryPageData) => {
     richArticle,
     seoMeta,
   } = obj.data.craft.entries[0]
+  
   const imageOptimizedHeroImage = heroImage
     ? heroImage[0].optimizedImagesFullWidth
     : null
