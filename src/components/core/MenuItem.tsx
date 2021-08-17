@@ -1,30 +1,16 @@
 import React from 'react'
 import TransitionLink from 'gatsby-plugin-transition-link'
-import {
-  transitionStandard,
-  exitTransition,
-} from './transitions/TransitionCover'
-
+import { transitionStandard, exitTransition } from './transitions/TransitionCover'
 import { useGlobalDispatchContext } from '../../context/globalContext'
-
 import { IPageTransitionProps } from '../../types/types'
 
-interface ITest {
-  node: number;
-  exit: any;
-  e: any;
-  entry: any;
-}
-
 interface IProps {
-
   name: string;
   link: string;
   forwardedRef: React.LegacyRef<HTMLSpanElement> | undefined;
 }
 
 const MenuItem = ({ name, link, forwardedRef }: IProps) => {
-  console.log('forwarded red ============== ', forwardedRef)
 
   const dispatch = useGlobalDispatchContext()
   const closeOverlay = () => {
@@ -32,19 +18,6 @@ const MenuItem = ({ name, link, forwardedRef }: IProps) => {
       type: 'CHANGE_OVERLAY',
       newStatus: 'closed',
     })
-  }
-
-  const interestingExitAnimation = ({exit, node, e, entry}: IPageTransitionProps) => {
-    console.log('exit == ', exit, typeof exit)
-    console.log('node == ', node, typeof node)
-    console.log('e == ', e, typeof e)
-    console.log('entry == ', entry, typeof entry)
-    transitionStandard()
-  }
-
-  const onPageEnter = ({node, e, exit, entry}: IPageTransitionProps) => {
-    exitTransition(node)
-    closeOverlay()
   }
 
   return (
@@ -56,14 +29,16 @@ const MenuItem = ({ name, link, forwardedRef }: IProps) => {
             className="c-primary-nav__list-item-link"
             activeClassName="is-current-page"
             exit={{
-              trigger: ({ node, e, exit, entry }) =>
-                interestingExitAnimation(exit, node, e, entry),
+              trigger: ({ node, e, exit, entry }: IPageTransitionProps) =>
+                transitionStandard(),
               length: 1,
             }}
             entry={{
               delay: 1,
-              trigger: ({ node, e, exit, entry }: ITest) =>
-                onPageEnter(node, e, exit, entry),
+              trigger: ({ node, e, exit, entry }: IPageTransitionProps) => {
+                exitTransition(node)
+                closeOverlay()
+              }
             }}
           >
             {name}

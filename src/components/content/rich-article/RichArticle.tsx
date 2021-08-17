@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { useRef, useEffect } from 'react'
 import AnimationBlock from './blocks/AnimationBlock'
 import ImageBlock from './blocks/ImageBlock'
 import TextBlock from './blocks/TextBlock'
@@ -6,6 +6,8 @@ import WebGLBlock from './blocks/WebGLBlock'
 import VideoBlock from './blocks/VideoBlock'
 import Section from '../../core/Section'
 import { IRichArticleBlock } from '../../../types'
+import { useLocation } from '@reach/router'
+
 
 interface IProps {
   richArticle: any;
@@ -13,7 +15,8 @@ interface IProps {
   classes?: string;
 }
 
-const RichArticle = ({ richArticle, isHomepage, classes = '' }: IProps) => {
+const RichArticle = ({ richArticle,  classes = '' }: IProps) => {
+  
   // checks the blockType from the matrix field and loads the appropriate component
   const checkBlockType = (block: IRichArticleBlock) => {
     switch (block.typeHandle) {
@@ -33,15 +36,23 @@ const RichArticle = ({ richArticle, isHomepage, classes = '' }: IProps) => {
   }
 
   const richArticleRef = useRef(null)
+  const { pathname } = useLocation()
+
+  let isHomepage = pathname === '/' ? true : false
+
+  useEffect(()=>{
+     isHomepage = pathname === '/' ? true : false 
+  })
+
 
   return (
     richArticle && (
       <article className={`c-rich-article ${classes}`} ref={richArticleRef}>
-        {richArticle.map((block: IRichArticleBlock) => {
-          console.log('current block === ', block)
+        {richArticle?.map((block: IRichArticleBlock) => {
           const currentBlock = checkBlockType( block)
+          if(!currentBlock) return null
           const fullHeightSection =
-            block.typeHandle === 'animation' || block.typeHandle === 'webgl'
+             block.typeHandle === 'animation' || block.typeHandle === 'webgl'
               ? true
               : false
 

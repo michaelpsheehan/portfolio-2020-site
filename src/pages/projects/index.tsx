@@ -18,19 +18,18 @@ const ProjectsIndexPage = () => {
       {entry && (
         <>
           <SEO
-            title={seoMeta.title || title}
+            title={seoMeta.title || entry.title}
             description={seoMeta.description}
             socialMeta={seoMeta.social}
           />
           <Section
-            content={<PageTitle title={entry.title} underline subtitle />}
+            content={<PageTitle title={entry.title} underline />}
             container
           />
         </>
       )}
       {projects && (
         <Section
-          // classes="overflow-y-visible"
           content={
             <Grid
               items={finaleEntries}

@@ -1,6 +1,14 @@
 import { graphql, useStaticQuery } from 'gatsby'
+import { IEntry, IIndexProjects, IGlobalSets } from 'types/types'
 
-const projectsIndexData = () => {
+type IProjectIndex = () => {
+  entry: IIndexProjects;
+  projects: IEntry[];
+  siteUrl: string;
+  globalSets: IGlobalSets;
+}
+
+const projectsIndexData: IProjectIndex = () => {
   const data = useStaticQuery(graphql`
     query projectsIndexQuery {
       site {
