@@ -6,6 +6,7 @@ gsap.registerPlugin(ScrollTrigger)
 
 import {
   useGlobalDispatchContext,
+  ActionTypes
 } from '../../context/globalContext'
 
 interface IProps {
@@ -21,13 +22,11 @@ const Section = ({ content, container, isHomepage, classes = '' }: IProps) => {
 
   const dispatch = useGlobalDispatchContext()
 
-  const setUiDark = () => {
-    dispatch({ type: 'CHANGE_UI_STYLE', newUiStyle: 'ui-style-dark-on-white' })
-  }
+  const setUiDark = () => dispatch({ type: ActionTypes.CHANGE_UI_STYLE, newUiStyle: 'ui-style-dark-on-white' })
+  
 
-  const setUiLight = () => {
-    dispatch({ type: 'CHANGE_UI_STYLE', newUiStyle: 'ui-style-white-on-dark' })
-  }
+  const setUiLight = () =>  dispatch({ type: ActionTypes.CHANGE_UI_STYLE, newUiStyle: 'ui-style-white-on-dark' })
+  
 
   const handleScroll = (el:  ScrollTrigger) => {
     if (el.trigger?.classList.contains('js-dark-bg')) {

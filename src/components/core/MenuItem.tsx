@@ -1,7 +1,7 @@
 import React from 'react'
 import TransitionLink from 'gatsby-plugin-transition-link'
 import { transitionStandard, exitTransition } from './transitions/TransitionCover'
-import { useGlobalDispatchContext } from '../../context/globalContext'
+import { useGlobalDispatchContext, ActionTypes } from '../../context/globalContext'
 import { IPageTransitionProps } from '../../types/types'
 
 interface IProps {
@@ -13,12 +13,9 @@ interface IProps {
 const MenuItem = ({ name, link, forwardedRef }: IProps) => {
 
   const dispatch = useGlobalDispatchContext()
-  const closeOverlay = () => {
-    dispatch({
-      type: 'CHANGE_OVERLAY',
-      newStatus: 'closed',
-    })
-  }
+  
+  const closeOverlay = () => dispatch({type: ActionTypes.CLOSE_OVERLAY})
+  
 
   return (
     <li className="c-primary-nav__list-item">

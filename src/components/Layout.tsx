@@ -2,23 +2,29 @@ import React, { useEffect, useRef } from 'react'
 import SiteHead from './core/SiteHead'
 import '../styles/main.scss'
 import useWindowSize from '../hooks/useWindowSize'
-import SiteFoot from './core/SiteFoot.tsx'
+import SiteFoot from './core/SiteFoot'
 import { useLocation } from '@reach/router'
-import TransitionCover from '../components/core/transitions/TransitionCover'
+import TransitionCover from './core/transitions/TransitionCover'
 import { gsap } from 'gsap'
 import { ScrollToPlugin } from 'gsap/ScrollToPlugin'
+
+
 gsap.registerPlugin(ScrollToPlugin)
 
-const Layout = ({ children, uri }) => {
+interface Props {
+  children: React.ReactNode
+}
+
+
+const Layout = ({ children}: Props) => {
   const { pathname } = useLocation()
   let isHomepage = pathname === '/' ? true : false
   const siteContainerEl = useRef(null)
-  let windowSize = useWindowSize()
 
   useEffect(() => {
     gsap.to(window, { duration: 0.1, scrollTo: 0 })
-    console.log('scroll to the top now')
   }, [])
+
 
   useEffect(() => {
     const tl = gsap.timeline()

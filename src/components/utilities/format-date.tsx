@@ -6,7 +6,7 @@ const dateFormat = new Intl.DateTimeFormat('en-GB', {
   day: 'numeric',
 })
 
-const formatDate = (dateToFormat) => (
+const formatDate = (dateToFormat: Date) => (
   <time>{dateFormat.format(new Date(dateToFormat))}</time>
 )
 
