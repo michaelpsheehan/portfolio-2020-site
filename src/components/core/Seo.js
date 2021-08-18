@@ -35,7 +35,7 @@ const SEO = ({ title, description, socialMeta }) => {
   let facebook = socialMeta ? socialMeta.facebook : null
   let twitter = socialMeta ? socialMeta.twitter : null
   return (
-    <Helmet title={seoData.title}>
+    <Helmet title={seoData.title} htmlAttributes={{lang: 'en'}}>
       <meta name="description" content={finalDescription} />
       {twitter && twitter.image && (
         <meta

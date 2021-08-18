@@ -18,7 +18,7 @@ const LottieAnimation = ({
   classes = '',
 }: IProps) => {
   if (lottieAnimationData === null) {
-    return
+    return null
   }
   const [isPaused, setPause] = useState(true)
   const lottieAnimationRef = useRef(null)

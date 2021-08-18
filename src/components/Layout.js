@@ -17,6 +17,7 @@ const Layout = ({ children, uri }) => {
 
   useEffect(() => {
     gsap.to(window, { duration: 0.1, scrollTo: 0 })
+    console.log('scroll to the top now')
   }, [])
 
   useEffect(() => {

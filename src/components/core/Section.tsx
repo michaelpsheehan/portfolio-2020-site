@@ -76,11 +76,11 @@ const Section = ({ content, container, isHomepage, classes = '' }: IProps) => {
   
 
   return container ? (
-    <section className={`c-section ${classes}`} ref={sectionRef}>
+    <section className={`c-section ${classes}`} ref={sectionRef} tabIndex={0}>
       <div className="container">{content}</div>
     </section>
   ) : (
-    <section className={`c-section ${classes}`} ref={sectionRef}>
+    <section className={`c-section ${classes}`} ref={sectionRef} tabIndex={0}>
       {content}
     </section>
   )

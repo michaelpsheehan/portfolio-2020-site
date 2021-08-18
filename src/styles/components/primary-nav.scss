@@ -34,9 +34,12 @@
     }
     
     &-link {
+      &:focus {
+        @apply text-brand-light-blue bg-white;
+      }
       
       &.is-current-page {
-        border-bottom: 5px solid #ffffff;
+          border-bottom: 5px solid white;
       }
     }
   }

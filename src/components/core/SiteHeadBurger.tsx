@@ -13,6 +13,7 @@ const SiteHeadBurger: React.FC<SiteHeadBurgerProps> = ({ overlayStatus, toggleOv
     <AccessibleFocusOutline classes="flex items-center">
       <button
         id="primary-nav-toggle"
+        aria-label="navigation menu"
         className={`c-site-head__hamburger ${uiStyle} ${
           overlayStatus === 'open'
             ? 'c-site-head__hamburger--open f-overlay-open'
