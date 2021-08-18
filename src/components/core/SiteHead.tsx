@@ -5,25 +5,44 @@ import SiteHeadBurger from './SiteHeadBurger'
 import {
   useGlobalStateContext,
   useGlobalDispatchContext,
+  ActionTypes
 } from '../../context/globalContext'
 
-const SiteHead = ({ classes = '', isHomepage }) => {
+interface Props {
+  classes?: string;
+  isHomepage?: boolean;
+}
+
+const SiteHead = ({ classes = '', isHomepage }: Props) => {
+
   const dispatch = useGlobalDispatchContext()
   const { overlayStatus, currentUiStyle } = useGlobalStateContext()
 
-  const toggleOverlay = () => {
-    if (overlayStatus === 'open') {
-      dispatch({
-        type: 'CHANGE_OVERLAY',
-        newStatus: 'closed',
-      })
-    } else {
-      dispatch({
-        type: 'CHANGE_OVERLAY',
-        newStatus: 'open',
-      })
+  const handleKeydown = (e: KeyboardEvent ) => {
+  
+    const isEscapeEvent = e.key === 'Escape' || e.key === 'Esc' 
+   
+    if (isEscapeEvent && overlayStatus === 'open') {
+      dispatch({type: ActionTypes.CLOSE_OVERLAY})
     }
   }
+
+  const toggleOverlay = () => {
+    overlayStatus === 'open' ?
+      dispatch({type: ActionTypes.CLOSE_OVERLAY})
+      : dispatch({type: ActionTypes.OPEN_OVERLAY})
+    }
+
+  useEffect(() => {
+   
+    window.addEventListener('keydown',  handleKeydown)
+
+    return ()=> {
+      window.removeEventListener('keydown', handleKeydown)
+    }
+  }, [overlayStatus])
+
+
   //  only allow the burger nav to change colour on scroll on the homepage. All other pages have the blue header bar with white ui items
   const burgerUiStyle = isHomepage ? currentUiStyle : 'ui-style-white-on-dark'
 
