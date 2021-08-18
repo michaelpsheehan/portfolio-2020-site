@@ -1,4 +1,4 @@
-Just my portfolio Site from last year. 
+Just my portfolio Site from last year. The animations are a bit over the top but it was fun to build :)
 
 I will eventually convert this fully to Typescript and refactor a lot of the components when I find the time. 
 I will probably remove the CMS at some point and convert it to just use MDX asI don't really need a full CMS for this.
