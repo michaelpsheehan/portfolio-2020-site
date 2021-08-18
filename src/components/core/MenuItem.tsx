@@ -25,6 +25,7 @@ const MenuItem = ({ name, link, forwardedRef }: IProps) => {
       <span className="c-primary-nav__link-animation-wrapper">
         <span className="c-primary-nav__link-animated-el" ref={forwardedRef}>
           <TransitionLink
+            tabIndex={0}
             to={link}
             className="c-primary-nav__list-item-link"
             activeClassName="is-current-page"

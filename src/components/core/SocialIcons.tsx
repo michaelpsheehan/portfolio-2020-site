@@ -30,6 +30,7 @@ const SocialIcons: React.FC<SocialIconsProps> = ({ twitter, linkedIn, github }:S
           target="_blank"
           rel="noopener noreferrer"
           className="c-social-icons__icon"
+          aria-label="link to my twitter"
         >
           {twitterIcon}
         </a>
@@ -40,6 +41,7 @@ const SocialIcons: React.FC<SocialIconsProps> = ({ twitter, linkedIn, github }:S
           target="_blank"
           rel="noopener noreferrer"
           className="c-social-icons__icon"
+          aria-label="link to my linkedin"
         >
           {linkedInIcon}
         </a>
@@ -50,6 +52,7 @@ const SocialIcons: React.FC<SocialIconsProps> = ({ twitter, linkedIn, github }:S
           target="_blank"
           rel="noopener noreferrer"
           className="c-social-icons__icon"
+          aria-label="link to my github"
         >
           {githubIcon}
         </a>
