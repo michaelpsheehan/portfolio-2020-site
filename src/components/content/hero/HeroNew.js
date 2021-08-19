@@ -166,7 +166,7 @@ class HeroNew extends Component {
   splitLetters = (word) => {
     const lettersArray = word.split('')
     const letters = lettersArray.map((letter, index) => (
-      <span className="c-hero__text-letter inline-block" key={index}>
+      <span className="c-hero__text-letter inline-block" key={index} >
         {letter}
       </span>
     ))
@@ -307,7 +307,12 @@ class HeroNew extends Component {
         <div className="c-hero__content" ref={this.heroContentEl}>
           {updatedHeroTextBody && (
             <>
-              <h1 className="c-hero__text ">{updatedHeroTextBody}</h1>
+              <h1 
+                className="c-hero__text "
+                aria-label={heroTextBody}
+               >
+                <span aria-hidden={true}>{updatedHeroTextBody}</span>
+              </h1>
             </>
           )}
           <div className="c-hero__buttons">
