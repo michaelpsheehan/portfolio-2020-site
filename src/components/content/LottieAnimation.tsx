@@ -42,7 +42,7 @@ const LottieAnimation = ({
   }, [])
 
   return (
-    <div className={`c-lottie-animation ${classes}`} ref={lottieAnimationRef}>
+    <div className={`c-lottie-animation ${classes}`} ref={lottieAnimationRef} aria-hidden={true}>
         <Lottie
           style={{cursor: 'auto'}}
           options={{
