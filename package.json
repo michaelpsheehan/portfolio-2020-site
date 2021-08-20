@@ -8,6 +8,8 @@
   "dependencies": {
     "@react-three/drei": "^7.3.1",
     "@react-three/fiber": "^7.0.6",
+    "@types/jest": "^27.0.1",
+    "@types/react-test-renderer": "^17.0.1",
     "@typescript-eslint/eslint-plugin": "^4.29.1",
     "@typescript-eslint/parser": "^4.29.1",
     "acorn": "^8.4.1",
@@ -40,10 +42,14 @@
     "video-react": "^0.14.1"
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^5.14.1",
+    "@testing-library/react": "^12.0.0",
     "@types/node": "^16.4.14",
     "@types/react": "^17.0.17",
     "@types/react-dom": "^17.0.9",
     "babel-eslint": "^10.1.0",
+    "babel-jest": "^27.0.6",
+    "babel-preset-gatsby": "^1.11.0",
     "env-cmd": "^10.1.0",
     "eslint": "^7.32.0",
     "eslint-config-airbnb": "^18.2.1",
@@ -56,8 +62,13 @@
     "eslint-plugin-prettier": "^3.4.0",
     "eslint-plugin-react": "^7.24.0",
     "eslint-plugin-react-hooks": "^4.2.0",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^27.0.6",
+    "jest-axe": "^5.0.1",
     "prettier": "^2.3.2",
-    "tailwindcss": "^2.2.7"
+    "react-test-renderer": "^17.0.2",
+    "tailwindcss": "^2.2.7",
+    "ts-jest": "^27.0.5"
   },
   "keywords": [
     "gatsby"
@@ -71,7 +82,7 @@
     "start": "npm run develop",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
-    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1",
+    "test": "jest",
     "analyze": "ANALYZE_BUNDLE_SIZE=true gatsby build"
   }
 }
