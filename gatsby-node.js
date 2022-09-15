@@ -3,7 +3,7 @@ const axios = require('axios')
 const lottieUrls = [
   {id: '385',animationUrl: 'https://assets8.lottiefiles.com/packages/lf20_1LhsaB.json'},
   {id: '383', animationUrl: 'https://assets6.lottiefiles.com/datafiles/fab7172a9302d416bcdb8ac7e1c71123/data.json'},
-  {id: '376', animationUrl: 'https://assets8.lottiefiles.com/packages/lf20_8hddy41z.json'},
+  {id: '376', animationUrl: 'https://assets9.lottiefiles.com/packages/lf20_5tl1xxnz.json'},
   {id: '382', animationUrl: 'https://assets6.lottiefiles.com/private_files/lf30_BX96aR.json'},
   {id: '377', animationUrl: 'https://assets2.lottiefiles.com/packages/lf20_MAiPvC.json'},
   {id: '375', animationUrl: 'https://assets2.lottiefiles.com/private_files/lf30_2u9Zt5.json'}
