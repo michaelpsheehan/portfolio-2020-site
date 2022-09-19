@@ -4,7 +4,7 @@ module.exports = {
   siteMetadata: {
     title: `Michael Sheehan Portfolio`,
     description: `Michael Sheehan web development portfolio`,
-    siteUrl: 'https://www.michaelsheehan.dev',
+    siteUrl: 'https://codebysheen.lol',
     frontendSiteUrl: 'https://www.codebysheen.com',
     twitterUsername: '@codebysheen',
   },
@@ -16,7 +16,7 @@ module.exports = {
         typeName: 'Craft',
         // Field under which the remote schema will be accessible. You'll use this in your Gatsby query
         fieldName: 'craft',
-        url: 'https://www.michaelsheehan.dev/api',
+        url: 'https://codebysheen.lol/api',
 
         headers: {
           Authorization: `Bearer ${process.env.CRAFTQL_API_KEY}`,
